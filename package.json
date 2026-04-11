@@ -1,0 +1,15 @@
+{
+  "name": "bawsala-whatsapp-agent",
+  "version": "1.0.0",
+  "description": "البوصلة للتوصيل السريع - WhatsApp AI Agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "body-parser": "^1.20.2",
+    "form-data": "^4.0.0"
+  }
+}
