@@ -16,10 +16,10 @@ const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'bawsala_verify_2024';
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const conversationHistory = {};
 
-const SYSTEM_PROMPT = `انت "بوصلة"، وكيل ذكاء اصطناعي لشركة البوصلة للتوصيل السريع في العراق.
-تخصصك توصيل الطرود من اربيل لجميع محافظات العراق.
-خدماتك: استقبال طلبات التوصيل، تتبع الشحنات، الاسعار، حل الشكاوى.
-تكلم بالعربي العراقي البسيط والودود. كون محترف وسريع. ردودك قصيرة وواضحة.`;
+const SYSTEM_PROMPT = `Ø§ÙØª "Ø¨ÙØµÙØ©"Ø ÙÙÙÙ Ø°ÙØ§Ø¡ Ø§ØµØ·ÙØ§Ø¹Ù ÙØ´Ø±ÙØ© Ø§ÙØ¨ÙØµÙØ© ÙÙØªÙØµÙÙ Ø§ÙØ³Ø±ÙØ¹ ÙÙ Ø§ÙØ¹Ø±Ø§Ù.
+ØªØ®ØµØµÙ ØªÙØµÙÙ Ø§ÙØ·Ø±ÙØ¯ ÙÙ Ø§Ø±Ø¨ÙÙ ÙØ¬ÙÙØ¹ ÙØ­Ø§ÙØ¸Ø§Øª Ø§ÙØ¹Ø±Ø§Ù.
+Ø®Ø¯ÙØ§ØªÙ: Ø§Ø³ØªÙØ¨Ø§Ù Ø·ÙØ¨Ø§Øª Ø§ÙØªÙØµÙÙØ ØªØªØ¨Ø¹ Ø§ÙØ´Ø­ÙØ§ØªØ Ø§ÙØ§Ø³Ø¹Ø§Ø±Ø Ø­Ù Ø§ÙØ´ÙØ§ÙÙ.
+ØªÙÙÙ Ø¨Ø§ÙØ¹Ø±Ø¨Ù Ø§ÙØ¹Ø±Ø§ÙÙ Ø§ÙØ¨Ø³ÙØ· ÙØ§ÙÙØ¯ÙØ¯. ÙÙÙ ÙØ­ØªØ±Ù ÙØ³Ø±ÙØ¹. Ø±Ø¯ÙØ¯Ù ÙØµÙØ±Ø© ÙÙØ§Ø¶Ø­Ø©.`;
 
 async function getClaudeResponse(userId, message) {
     if (!conversationHistory[userId]) conversationHistory[userId] = [];
@@ -88,12 +88,12 @@ app.post('/webhook', async (req, res) => {
           } else if (msgType === 'audio') {
                   const buf = await downloadMedia(message.audio.id);
                   const text = await transcribeAudio(buf);
-                  const reply = await getClaudeResponse(from, `[رسالة صوتية]: ${text}`);
+                  const reply = await getClaudeResponse(from, `[Ø±Ø³Ø§ÙØ© ØµÙØªÙØ©]: ${text}`);
                   await sendWhatsAppMessage(from, reply);
           } else if (msgType === 'image') {
                   const buf = await downloadMedia(message.image.id);
                   const b64 = buf.toString('base64');
-                  const caption = message.image?.caption || 'ماذا ترى في هذه الصورة؟';
+                  const caption = message.image?.caption || 'ÙØ§Ø°Ø§ ØªØ±Ù ÙÙ ÙØ°Ù Ø§ÙØµÙØ±Ø©Ø';
                   const resp = await anthropic.messages.create({
                             model: 'claude-opus-4-5', max_tokens: 1024,
                             messages: [{ role: 'user', content: [
@@ -108,8 +108,10 @@ app.post('/webhook', async (req, res) => {
     }
 });
 
+app.get('/privacy', (req, res) => res.send('Privacy Policy - Bawsala Messaging Agent. We collect only data necessary to provide our WhatsApp messaging service. Messages are processed to generate AI responses and are not shared with third parties. Contact: bakibaki199111@gmail.com'));
+
 app.get('/', (req, res) => res.json({
-    status: 'البوصلة Agent شغال',
+    status: 'Ø§ÙØ¨ÙØµÙØ© Agent Ø´ØºØ§Ù',
     timestamp: new Date().toISOString()
 }));
 
