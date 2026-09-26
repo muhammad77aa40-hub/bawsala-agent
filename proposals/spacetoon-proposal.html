@@ -544,6 +544,61 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 
 @media (max-width:1000px){.secs,.refs{grid-template-columns:1fr 1fr}.brands{grid-template-columns:1fr}}
 @media (max-width:640px){.secs,.refs{grid-template-columns:1fr}.subbrands{grid-template-columns:1fr 1fr}.ref .shot{height:300px}}
+
+/* ===== v4: product description & pricing ===== */
+.pdesc{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;align-items:start}
+.sheet{background:var(--surface);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-top{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:24px;border-bottom:1px solid var(--line)}
+.sheet-img{height:150px;border-radius:20px;background:var(--orange-soft);display:grid;place-items:center}
+.sheet-img svg{width:92px;height:92px}
+.sheet-top h3{font-size:22px;font-weight:800;margin-block:6px 8px}
+.pricebox{display:grid;gap:8px;background:var(--ground);border-radius:18px;padding:14px 16px}
+.pricebox .main-p{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pricebox .main-p b{font-family:var(--display);font-size:30px;font-weight:900;line-height:1.1}
+.pricebox .main-p s{color:var(--ink-3)}
+.pricebox .row{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--ink-2)}
+.pricebox .row.total{border-top:1px dashed var(--line);padding-top:8px;color:var(--ink);font-weight:800;font-size:15px}
+.sheet-body{padding:22px 24px 26px;display:grid;gap:22px}
+.sheet-body h4{font-size:16px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sheet-body h4 svg{width:18px;height:18px;color:var(--orange)}
+.sheet-body p{color:var(--ink-2);font-size:15px;max-width:62ch}
+.specs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.specs div{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;font-size:14px;border-bottom:1px solid var(--line)}
+.specs div:nth-child(odd){border-inline-end:1px solid var(--line)}
+.specs div:nth-last-child(-n+2){border-bottom:0}
+.specs span{color:var(--ink-2)}
+.specs b{font-weight:700;text-align:end}
+.box-list{display:flex;flex-wrap:wrap;gap:8px}
+.box-list span{background:var(--ground);border-radius:12px;padding:6px 12px;font-size:14px;font-weight:600}
+.warn{display:flex;gap:12px;background:var(--sun-soft);border-radius:16px;padding:12px 16px;font-size:14.5px}
+.warn svg{width:20px;height:20px;flex:none;color:#B07A00;margin-top:3px}
+:root[data-theme="dark"] .warn svg{color:var(--sun)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .warn svg{color:var(--sun)}}
+
+.admin-form{background:var(--surface);border-radius:26px;box-shadow:var(--shadow);padding:22px;display:grid;gap:14px}
+.af-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.af-head h3{font-size:18px;font-weight:800}
+.progress{height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;width:90%;background:var(--mint);border-radius:8px}
+.fields{display:grid;gap:8px}
+.field{display:flex;align-items:center;gap:10px;background:var(--ground);border-radius:14px;padding:10px 12px;font-size:14px}
+.field .st{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;flex:none}
+.field .st svg{width:14px;height:14px}
+.field .st.ok{background:var(--mint-soft);color:var(--mint)}
+.field .st.miss{background:var(--pink-soft);color:var(--pink)}
+.field b{font-weight:700}
+.field small{margin-inline-start:auto;color:var(--ink-3);font-size:12.5px;white-space:nowrap}
+.field.missing{outline:1.5px dashed var(--pink)}
+.publish{display:grid;gap:6px}
+.publish .btn-dis{background:var(--surface-2);color:var(--ink-3);border-radius:14px;padding:11px;text-align:center;font-weight:800;font-family:var(--display)}
+.publish small{color:var(--pink);font-size:13px;text-align:center}
+.margin-note{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1.5px dashed var(--line);border-radius:14px;padding:10px 12px;font-size:14px}
+
+.price-rules{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.w-save{background:var(--mint-soft);color:var(--mint);border-radius:.6em;padding:.15em .7em;font-weight:800;font-size:.95em}
+
+@media (max-width:1000px){.pdesc{grid-template-columns:1fr}.price-rules{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.sheet-top{grid-template-columns:1fr}.sheet-img{height:130px}.specs{grid-template-columns:1fr}.specs div:nth-child(odd){border-inline-end:0}.specs div:nth-last-child(2){border-bottom:1px solid var(--line)}.price-rules{grid-template-columns:1fr}}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -591,6 +646,10 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <symbol id="i-scooter" viewBox="0 0 48 48"><path fill="none" stroke="#1FB5A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M33 6l4 28M28 6h9"/><rect x="10" y="32" width="26" height="5" rx="2.5" fill="#1FB5A6"/><circle cx="11" cy="40" r="5" fill="#1C1A3B"/><circle cx="37" cy="40" r="5" fill="#1C1A3B"/><circle cx="11" cy="40" r="2" fill="#fff"/><circle cx="37" cy="40" r="2" fill="#fff"/></symbol>
     <symbol id="i-blaster" viewBox="0 0 48 48"><path fill="#FF6A2B" d="M6 16h28l6 4v6H22l-3 14h-8l3-14H6z"/><rect x="34" y="12" width="8" height="6" rx="2" fill="#3B7BF2"/><rect x="10" y="10" width="14" height="6" rx="2" fill="#FFC53D"/><circle cx="44" cy="23" r="2" fill="#3B7BF2"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 16L16 3l5 5L8 21zM7 12l2 2M10 9l2 2M13 6l2 2"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3l10 18H2z"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 10v5M12 18v.01"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M7 7l10 10M17 7L7 17"/></symbol>
   </defs>
 </svg>
 
@@ -834,6 +893,84 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <div class="note"><svg><use href="#i-grid"/></svg><p>يضيف المدير الأقسام والماركات والماركات الفرعية من لوحة التحكم دون الحاجة إلى مبرمج، ويمكن ربط المنتج الواحد بأكثر من قسم. فمثلاً تظهر سيارة هوت ويلز في قسم «أولاد» وفي صفحة «هوت ويلز» معاً. وفي كل قسم فلاتر للعمر والماركة والسعر والتوفر.</p></div>
   </section>
 
+  <!-- PRODUCT DESCRIPTION & PRICING -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">وصف المنتجات والأسعار</span><h2>وصف كامل لكل قطعة، وسعر واضح دون مفاجآت</h2></div>
+      <p>لكل منتج صفحة تجيب عن أسئلة الأهل قبل أن يطرحوها: لمن تناسب اللعبة، وماذا في العلبة، وما مقاساتها، وهل تحتاج إلى بطاريات. ويظهر السعر النهائي وأجور التوصيل قبل إتمام الطلب.</p>
+    </div>
+
+    <div class="pdesc num">
+      <article class="sheet">
+        <div class="sheet-top">
+          <div class="sheet-img"><svg><use href="#i-rocket"/></svg></div>
+          <div>
+            <span class="chip mint">متوفر · ١٢ قطعة</span>
+            <h3>صاروخ الفضاء القابل للتركيب مع رائد فضاء</h3>
+            <div class="pricebox">
+              <div class="main-p"><b>٤٢٬٠٠٠ د.ع</b><s>٥٠٬٠٠٠ د.ع</s><span class="chip mint">وفّر ٨٬٠٠٠ د.ع (١٦٪)</span></div>
+              <div class="row"><span>التوصيل إلى بغداد</span><span>٥٬٠٠٠ د.ع</span></div>
+              <div class="row"><span>التوصيل إلى المحافظات الأخرى</span><span>٧٬٠٠٠ د.ع</span></div>
+              <div class="row"><span>تغليف هدية (اختياري)</span><span>٢٬٠٠٠ د.ع</span></div>
+              <div class="row total"><span>المبلغ الكامل عند التوصيل إلى بغداد</span><span>٤٧٬٠٠٠ د.ع</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-body">
+          <div>
+            <h4><svg><use href="#i-doc"/></svg>الوصف</h4>
+            <p>صاروخ فضاء يركّبه الطفل بنفسه خطوة بخطوة، ثم ينطلق به في مغامرات خيالية مع رائد الفضاء المرفق. تنمّي اللعبة مهارات التركيز والتفكير الهندسي والتنسيق بين اليد والعين، وتنفصل مراحل الصاروخ الثلاث لتحاكي الإطلاق الحقيقي. تضيء قاعدة الإطلاق وتصدر صوت العد التنازلي عند الضغط على الزر.</p>
+          </div>
+          <div>
+            <h4><svg><use href="#i-ruler"/></svg>المواصفات</h4>
+            <div class="specs">
+              <div><span>العمر المناسب</span><b>٦ سنوات فأكثر</b></div>
+              <div><span>القسم</span><b>أولاد · فضاء وعلوم</b></div>
+              <div><span>عدد القطع</span><b>٢٤٦ قطعة</b></div>
+              <div><span>المادة</span><b>بلاستيك آمن للأطفال</b></div>
+              <div><span>المقاس بعد التركيب</span><b>٣٨ × ١٢ × ١٢ سم</b></div>
+              <div><span>مقاس العلبة</span><b>٤٠ × ٣٠ × ٨ سم</b></div>
+              <div><span>الوزن</span><b>٨٥٠ غراماً</b></div>
+              <div><span>البطاريات</span><b>بطاريتان قلميتان، غير مرفقة</b></div>
+              <div><span>بلد الصنع</span><b>الصين</b></div>
+              <div><span>الضمان</span><b>استبدال خلال ٧ أيام عند وجود عيب</b></div>
+            </div>
+          </div>
+          <div>
+            <h4><svg><use href="#i-box"/></svg>محتويات العلبة</h4>
+            <div class="box-list"><span>٢٤٦ قطعة تركيب</span><span>رائد فضاء</span><span>قاعدة إطلاق مضيئة</span><span>ورقة ملصقات</span><span>كتيّب تركيب مصوّر بالعربية</span></div>
+          </div>
+          <div class="warn"><svg><use href="#i-warn"/></svg><p><b>تحذير:</b> تحتوي اللعبة على قطع صغيرة قد تسبب الاختناق، وهي غير مناسبة للأطفال دون ثلاث سنوات. يُنصح بالتركيب تحت إشراف شخص بالغ.</p></div>
+        </div>
+      </article>
+
+      <aside class="admin-form" aria-label="نموذج إضافة منتج في لوحة التحكم">
+        <div class="af-head"><div><h3>إضافة منتج جديد</h3><span class="muted" style="font-size:13.5px">شاحنة عملاقة بجهاز تحكم</span></div><span class="chip">٩٠٪</span></div>
+        <div class="progress"><i></i></div>
+        <p class="muted" style="font-size:14px">يملأ الموظف هذه الحقول، ولا يُنشر المنتج حتى تكتمل الحقول الإلزامية، فلا تظهر في المتجر قطعة بلا وصف أو بلا سعر.</p>
+        <div class="fields">
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>الاسم والقسم والماركة</b><small>مكتمل</small></div>
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>الصور</b><small>٤ من ٤</small></div>
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>الوصف</b><small>٦٠ كلمة</small></div>
+          <div class="field missing"><span class="st miss"><svg><use href="#i-x"/></svg></span><b>المواصفات</b><small>٩ من ١٠</small></div>
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>محتويات العلبة</b><small>مكتمل</small></div>
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>العمر وتحذيرات السلامة</b><small>مكتمل</small></div>
+          <div class="field"><span class="st ok"><svg><use href="#i-check"/></svg></span><b>سعر البيع وسعر ما قبل الخصم</b><small>مكتمل</small></div>
+        </div>
+        <div class="margin-note"><span>سعر البيع · الكلفة · الربح</span><b>٩٥٬٠٠٠ · ٦٥٬٠٠٠ · ٣٢٪</b></div>
+        <p class="muted" style="font-size:12.5px;margin-top:-6px">يظهر سعر الكلفة للمدير والمحاسب فقط.</p>
+        <div class="publish"><span class="btn-dis">نشر المنتج</span><small>أكمل حقل «بلد الصنع» لتفعيل النشر</small></div>
+      </aside>
+    </div>
+
+    <div class="price-rules">
+      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-tag"/></svg></span><b>السعر على كل بطاقة</b><p>يظهر السعر بالدينار العراقي على كل منتج في كل الصفحات، دون عبارة «راسلنا للسعر».</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-cash"/></svg></span><b>الخصم بالمبلغ والنسبة</b><p>يظهر السعر قبل الخصم وبعده، ومقدار التوفير بالدينار وبالنسبة المئوية.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-truck"/></svg></span><b>التوصيل قبل الدفع</b><p>تُحتسب أجور التوصيل حسب المحافظة وتظهر في السلة قبل تأكيد الطلب.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-shield"/></svg></span><b>لا رسوم مخفية</b><p>المبلغ الظاهر في السلة هو نفسه المبلغ الذي يدفعه العميل للمندوب.</p></div>
+    </div>
+  </section>
+
   <!-- DESIGN -->
   <section>
     <div class="sec-head">
@@ -878,7 +1015,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
                   <span class="chip mint" style="align-self:flex-start">متوفر · ١٢ قطعة</span>
                   <h3>صاروخ الفضاء القابل للتركيب مع رائد فضاء</h3>
                   <div class="w-rate"><span class="stars-svg"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>٤٫٨ من ٨٤ تقييماً</div>
-                  <div class="w-price"><b>٤٢٬٠٠٠ د.ع</b><s>٥٠٬٠٠٠ د.ع</s></div>
+                  <div class="w-price"><b>٤٢٬٠٠٠ د.ع</b><s>٥٠٬٠٠٠ د.ع</s><span class="w-save">وفّر ٨٬٠٠٠ د.ع</span></div>
                   <div><span class="w-lbl">العمر المناسب</span><div class="w-opts"><span>+٣</span><span class="on">+٦</span><span>+٩</span><span>+١٢</span></div></div>
                   <div class="w-buy"><span class="w-qty"><span>−</span>١<span>+</span></span><span class="w-cta">أضف إلى السلة</span></div>
                   <div class="w-perks">
