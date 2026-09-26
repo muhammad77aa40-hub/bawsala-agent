@@ -607,6 +607,51 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 .m-url{margin:0 14px 6px;background:var(--surface);border-radius:10px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--ink-2);display:flex;gap:5px;align-items:center;justify-content:center;flex:none}
 .m-url svg{width:9px;height:9px}
 [hidden]{display:none!important}
+
+/* ===== v6: generated imagery ===== */
+.hero{display:block;position:relative;padding:0;min-height:600px;background:#FDD35A;color:#1C1A3B;overflow:hidden}
+.hero::after{display:none}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;display:block}
+.hero-copy{position:relative;width:50%;padding:52px 48px;display:grid;gap:0}
+.hero .eyebrow{color:#C2410C}
+.hero h1 em{color:#C2410C}
+.hero .lead{color:#3F3C5C}
+.hero-stats{margin-top:26px}
+.hero-stats > div{background:rgba(255,255,255,.78);backdrop-filter:blur(6px)}
+.hero-stats span{color:#4A4766}
+.gi{display:block;object-fit:contain;max-width:100%}
+.w-p .img .gi{width:82%;height:82%}
+.pc .img .gi{width:80%;height:80%}
+.w-cat i .gi{width:2.5em;height:2.5em}
+.cat i .gi{width:38px;height:38px}
+.sec-card .art .gi{width:60px;height:60px}
+.pd-img .gi{width:160px;height:160px}
+.w-main .gi{width:20em;height:20em}
+.w-thumbs .gi{width:4em;height:4em}
+.sheet-img .gi{width:136px;height:136px}
+.cart-item .th .gi{width:42px;height:42px}
+td .prod .th .gi,.low .th .gi{width:30px;height:30px}
+.bubble .gi{width:46px;height:46px}
+.w-feat .gi{position:absolute;top:.6em;inset-inline-start:.6em;width:9em;height:9em}
+.w-p .img,.pc .img{overflow:hidden}
+@media (max-width:760px){
+  .hero{min-height:0;background:var(--surface);color:var(--ink)}
+  .hero-img{position:relative;height:230px;inset:auto}
+  .hero-copy{width:auto;padding:22px 20px 26px}
+  .hero .lead{color:var(--ink-2)}
+  .hero .eyebrow,.hero h1 em{color:var(--orange)}
+  .hero-stats > div{background:var(--ground)}
+  .hero-stats span{color:var(--ink-2)}
+}
+.hero{background:linear-gradient(180deg,#FDD35A 0%,#FDD35A 62%,#E7DDF7 62%)}
+.hero-img{inset:0 auto 0 0;width:64%;object-position:left center;-webkit-mask-image:linear-gradient(to left,transparent 0,#000 22%);mask-image:linear-gradient(to left,transparent 0,#000 22%)}
+.hero-copy{width:46%}
+@media (max-width:760px){.hero{background:var(--surface)}.hero-img{width:100%;-webkit-mask-image:none;mask-image:none}.hero-copy{width:auto}}
+.hero{background:#FDD35A}
+.hero-img{width:57%;object-position:0% 60%;-webkit-mask-image:linear-gradient(to left,transparent 0,#000 18%);mask-image:linear-gradient(to left,transparent 0,#000 18%)}
+.hero-copy{width:45%}
+@media (max-width:1000px){.hero-img{width:100%;position:relative;height:300px;-webkit-mask-image:none;mask-image:none}.hero-copy{width:auto;padding:28px}}
+@media (max-width:760px){.hero{background:var(--surface)}.hero-img{height:230px}}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -677,12 +722,11 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 
   <!-- HERO -->
   <div class="hero">
-    <div>
+    <img class="hero-img" src="img/hero.webp" alt="ألعاب متنوعة: صاروخ ودب محشو وسكوتر وسيارة تحكم وقطار خشبي">
+    <div class="hero-copy">
       <span class="eyebrow">مقترح متجر إلكتروني متكامل</span>
       <h1>عالم سبيستون للألعاب، <em>على بُعد نقرة</em></h1>
       <p class="lead">متجر إلكتروني للألعاب والهدايا ومستلزمات الأطفال، يعمل على الحاسوب والهاتف، ويرتبط بنظام مخزون ولوحة تحكم يدير منها المدير فريق العمل، ويتابع كل منتج منذ وصوله إلى المخزن حتى تسليمه إلى باب العميل.</p>
-    </div>
-    <div class="hero-side">
       <div class="hero-stats">
         <div><b class="num">٦</b><span>أنظمة مترابطة</span></div>
         <div><b class="num">٥</b><span>أدوار للموظفين</span></div>
@@ -719,19 +763,19 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               </div>
             </div>
             <div class="w-cats">
-              <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
-              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
-              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
-              <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></i>الخشبيات</div>
-              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></i>سيارات التحكم الكبيرة</div>
-              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></i>السكوترات</div>
+              <div class="w-cat"><i style="background:var(--sky-soft)"><img class="gi" src="img/boys.webp" alt=""></i>أولاد</div>
+              <div class="w-cat"><i style="background:var(--pink-soft)"><img class="gi" src="img/girls.webp" alt=""></i>بنات</div>
+              <div class="w-cat"><i style="background:var(--mint-soft)"><img class="gi" src="img/baby.webp" alt=""></i>أطفال</div>
+              <div class="w-cat"><i style="background:var(--sun-soft)"><img class="gi" src="img/wood.webp" alt=""></i>الخشبيات</div>
+              <div class="w-cat"><i style="background:var(--pink-soft)"><img class="gi" src="img/rc.webp" alt=""></i>سيارات التحكم الكبيرة</div>
+              <div class="w-cat"><i style="background:var(--mint-soft)"><img class="gi" src="img/scooter.webp" alt=""></i>السكوترات</div>
             </div>
             <div class="w-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
             <div class="w-grid num">
-              <div class="w-p"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><img class="gi" src="img/rc.webp" alt=""></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
               <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-              <div class="w-p"><div class="img" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></div><div class="n">صاروخ الفضاء للتركيب</div><div class="p"><b>٤٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-              <div class="w-p"><div class="img" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></div><div class="n">دب محشو كبير ٦٠ سم</div><div class="p"><b>١٨٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--orange-soft)"><img class="gi" src="img/rocket.webp" alt=""></div><div class="n">صاروخ الفضاء للتركيب</div><div class="p"><b>٤٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--sun-soft)"><img class="gi" src="img/bear.webp" alt=""></div><div class="n">دب محشو كبير ٦٠ سم</div><div class="p"><b>١٨٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
               <div class="w-p"><div class="img" style="background:var(--mint-soft)"><span class="tag">جديد</span><svg><use href="#i-puzzle"/></svg></div><div class="n">أحجية خريطة العراق</div><div class="p"><b>١٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
             </div>
           </div>
@@ -757,14 +801,14 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               <span class="code">فضاء٢٠</span>
             </div>
             <div class="cats">
-              <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
-              <div class="cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
-              <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
-              <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-scooter"/></svg></i>سكوترات</div>
+              <div class="cat"><i style="background:var(--sky-soft)"><img class="gi" src="img/boys.webp" alt=""></i>أولاد</div>
+              <div class="cat"><i style="background:var(--pink-soft)"><img class="gi" src="img/girls.webp" alt=""></i>بنات</div>
+              <div class="cat"><i style="background:var(--mint-soft)"><img class="gi" src="img/baby.webp" alt=""></i>أطفال</div>
+              <div class="cat"><i style="background:var(--sun-soft)"><img class="gi" src="img/scooter.webp" alt=""></i>سكوترات</div>
             </div>
             <div class="s-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
             <div class="pgrid num">
-              <div class="pc"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="pc"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><img class="gi" src="img/rc.webp" alt=""></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
               <div class="pc"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
             </div>
           </div>
@@ -845,24 +889,24 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
                     <li class="more">عرض كل الماركات</li>
                   </ul>
                 </div>
-                <div class="w-feat"><svg><use href="#i-girl"/></svg><b>وصل حديثاً من Barbie</b><span>مجموعة الموسم الجديد</span></div>
+                <div class="w-feat"><img class="gi" src="img/girls.webp" alt=""><b>وصل حديثاً من Barbie</b><span>مجموعة الموسم الجديد</span></div>
               </div>
               <div class="w-dim"></div>
               <div class="w-cats" style="padding-top:1.2em">
-                <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
-                <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
-                <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
-                <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></i>الخشبيات</div>
-                <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></i>سيارات التحكم الكبيرة</div>
-                <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></i>السكوترات</div>
+                <div class="w-cat"><i style="background:var(--sky-soft)"><img class="gi" src="img/boys.webp" alt=""></i>أولاد</div>
+                <div class="w-cat"><i style="background:var(--pink-soft)"><img class="gi" src="img/girls.webp" alt=""></i>بنات</div>
+                <div class="w-cat"><i style="background:var(--mint-soft)"><img class="gi" src="img/baby.webp" alt=""></i>أطفال</div>
+                <div class="w-cat"><i style="background:var(--sun-soft)"><img class="gi" src="img/wood.webp" alt=""></i>الخشبيات</div>
+                <div class="w-cat"><i style="background:var(--pink-soft)"><img class="gi" src="img/rc.webp" alt=""></i>سيارات التحكم الكبيرة</div>
+                <div class="w-cat"><i style="background:var(--mint-soft)"><img class="gi" src="img/scooter.webp" alt=""></i>السكوترات</div>
               </div>
               <div class="w-title" style="margin-top:1.4em"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
               <div class="w-grid num" style="margin-top:1em">
-                <div class="w-p"><div class="img" style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></div><div class="n">دمية Barbie</div><div class="p"><b>٢٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></div><div class="n">مسار Hot Wheels</div><div class="p"><b>٣٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--pink-soft)"><img class="gi" src="img/girls.webp" alt=""></div><div class="n">دمية Barbie</div><div class="p"><b>٢٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><img class="gi" src="img/rc.webp" alt=""></div><div class="n">مسار Hot Wheels</div><div class="p"><b>٣٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
                 <div class="w-p"><div class="img" style="background:var(--orange-soft)"><svg><use href="#i-blaster"/></svg></div><div class="n">مسدس X-Shot</div><div class="p"><b>١٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-                <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></div><div class="n">سكوتر بثلاث عجلات</div><div class="p"><b>٤٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-                <div class="w-p"><div class="img" style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></div><div class="n">قطار خشبي</div><div class="p"><b>٢٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--mint-soft)"><img class="gi" src="img/scooter.webp" alt=""></div><div class="n">سكوتر بثلاث عجلات</div><div class="p"><b>٤٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sun-soft)"><img class="gi" src="img/wood.webp" alt=""></div><div class="n">قطار خشبي</div><div class="p"><b>٢٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
               </div>
             </div>
           </div>
@@ -872,12 +916,12 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     </div>
 
     <div class="secs" style="margin-top:36px">
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></span><div><h3>أولاد</h3><span class="sub">ألعاب مختارة للأولاد حسب العمر</span></div></div><div class="tags"><span>سيارات</span><span>مسدسات مائية وإسفنجية</span><span>ألعاب تركيب</span><span>شخصيات الأبطال</span><span>فضاء وعلوم</span></div></div>
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></span><div><h3>بنات</h3><span class="sub">ألعاب مختارة للبنات حسب العمر</span></div></div><div class="tags"><span>دمى</span><span>بيوت الدمى</span><span>إكسسوارات</span><span>أطقم المطبخ</span><span>أشغال يدوية</span></div></div>
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></span><div><h3>أطفال</h3><span class="sub">من الولادة حتى ثلاث سنوات</span></div></div><div class="tags"><span>ألعاب حسية</span><span>خشخيشات</span><span>ألعاب الاستحمام</span><span>ألعاب الدفع والمشي</span></div></div>
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></span><div><h3>الخشبيات</h3><span class="sub">ألعاب خشبية تعليمية وآمنة</span></div></div><div class="tags"><span>أحجيات</span><span>قطارات خشبية</span><span>مكعبات</span><span>ألعاب تعليمية</span></div></div>
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></span><div><h3>سيارات التحكم الكبيرة</h3><span class="sub">سيارات وشاحنات بأحجام كبيرة</span></div></div><div class="tags"><span>دفع رباعي</span><span>شاحنات عملاقة</span><span>سيارات يركبها الطفل</span><span>بطاريات وقطع غيار</span></div></div>
-      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></span><div><h3>السكوترات</h3><span class="sub">لكل الأعمار مع مستلزمات الأمان</span></div></div><div class="tags"><span>بعجلتين</span><span>بثلاث عجلات</span><span>كهربائية</span><span>خوذ وواقيات</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sky-soft)"><img class="gi" src="img/boys.webp" alt=""></span><div><h3>أولاد</h3><span class="sub">ألعاب مختارة للأولاد حسب العمر</span></div></div><div class="tags"><span>سيارات</span><span>مسدسات مائية وإسفنجية</span><span>ألعاب تركيب</span><span>شخصيات الأبطال</span><span>فضاء وعلوم</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><img class="gi" src="img/girls.webp" alt=""></span><div><h3>بنات</h3><span class="sub">ألعاب مختارة للبنات حسب العمر</span></div></div><div class="tags"><span>دمى</span><span>بيوت الدمى</span><span>إكسسوارات</span><span>أطقم المطبخ</span><span>أشغال يدوية</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><img class="gi" src="img/baby.webp" alt=""></span><div><h3>أطفال</h3><span class="sub">من الولادة حتى ثلاث سنوات</span></div></div><div class="tags"><span>ألعاب حسية</span><span>خشخيشات</span><span>ألعاب الاستحمام</span><span>ألعاب الدفع والمشي</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sun-soft)"><img class="gi" src="img/wood.webp" alt=""></span><div><h3>الخشبيات</h3><span class="sub">ألعاب خشبية تعليمية وآمنة</span></div></div><div class="tags"><span>أحجيات</span><span>قطارات خشبية</span><span>مكعبات</span><span>ألعاب تعليمية</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><img class="gi" src="img/rc.webp" alt=""></span><div><h3>سيارات التحكم الكبيرة</h3><span class="sub">سيارات وشاحنات بأحجام كبيرة</span></div></div><div class="tags"><span>دفع رباعي</span><span>شاحنات عملاقة</span><span>سيارات يركبها الطفل</span><span>بطاريات وقطع غيار</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><img class="gi" src="img/scooter.webp" alt=""></span><div><h3>السكوترات</h3><span class="sub">لكل الأعمار مع مستلزمات الأمان</span></div></div><div class="tags"><span>بعجلتين</span><span>بثلاث عجلات</span><span>كهربائية</span><span>خوذ وواقيات</span></div></div>
     </div>
 
     <div class="brands">
@@ -911,7 +955,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <div class="pdesc num">
       <article class="sheet">
         <div class="sheet-top">
-          <div class="sheet-img"><svg><use href="#i-rocket"/></svg></div>
+          <div class="sheet-img"><img class="gi" src="img/rocket.webp" alt=""></div>
           <div>
             <span class="chip mint">متوفر · ١٢ قطعة</span>
             <h3>صاروخ الفضاء القابل للتركيب مع رائد فضاء</h3>
@@ -1016,8 +1060,8 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               <div class="w-crumbs">الرئيسية · أولاد · فضاء وعلوم · <b>صاروخ الفضاء للتركيب</b></div>
               <div class="w-pd">
                 <div class="w-gal">
-                  <div class="w-thumbs"><span class="on"><svg><use href="#i-rocket"/></svg></span><span><svg><use href="#i-blocks"/></svg></span><span><svg><use href="#i-puzzle"/></svg></span><span><svg><use href="#i-ball"/></svg></span></div>
-                  <div class="w-main"><span class="chip pink">-١٦٪</span><svg><use href="#i-rocket"/></svg></div>
+                  <div class="w-thumbs"><span class="on"><img class="gi" src="img/rocket.webp" alt=""></span><span><svg><use href="#i-blocks"/></svg></span><span><svg><use href="#i-puzzle"/></svg></span><span><svg><use href="#i-ball"/></svg></span></div>
+                  <div class="w-main"><span class="chip pink">-١٦٪</span><img class="gi" src="img/rocket.webp" alt=""></div>
                 </div>
                 <div class="w-info num">
                   <span class="chip mint" style="align-self:flex-start">متوفر · ١٢ قطعة</span>
@@ -1036,7 +1080,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               <div class="w-title"><b>قد يعجبك أيضاً</b><span>عرض الكل</span></div>
               <div class="w-grid num">
                 <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><img class="gi" src="img/rc.webp" alt=""></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
                 <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></div><div class="n">أحجية خريطة العراق</div><div class="p"><b>١٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
                 <div class="w-p"><div class="img" style="background:var(--pink-soft)"><svg><use href="#i-ball"/></svg></div><div class="n">كرة ملونة للحديقة</div><div class="p"><b>٧٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
                 <div class="w-p"><div class="img" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></div><div class="n">ذراع تحكم للألعاب</div><div class="p"><b>٣٨٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
@@ -1054,7 +1098,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
           <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تفاصيل اللعبة</b><span class="ico" style="color:var(--pink)"><svg><use href="#i-heart"/></svg></span></div>
-            <div class="pd-img"><svg><use href="#i-rocket"/></svg><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
+            <div class="pd-img"><img class="gi" src="img/rocket.webp" alt=""><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
             <div class="pd-row num"><span class="chip mint" style="font-size:10px;padding:1px 8px">متوفر · ١٢ قطعة</span><span class="stars-svg" style="align-items:center"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="muted" style="font-size:10px;margin-inline-start:3px">(٨٤)</span></span></div>
             <b style="font-family:var(--display);font-size:15px;line-height:1.35">صاروخ الفضاء القابل للتركيب مع رائد فضاء</b>
             <div><span class="muted" style="font-size:10.5px">العمر المناسب</span>
@@ -1072,8 +1116,8 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
           <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">السلة</b><span class="chip num" style="font-size:10px;padding:1px 8px;background:var(--surface)">٣ قطع</span></div>
-            <div class="cart-item"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ci"><b>صاروخ الفضاء</b><span class="muted num">٤٢٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>١<i>+</i></span></div>
-            <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span><div class="ci"><b>دب محشو كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
+            <div class="cart-item"><span class="th" style="background:var(--orange-soft)"><img class="gi" src="img/rocket.webp" alt=""></span><div class="ci"><b>صاروخ الفضاء</b><span class="muted num">٤٢٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>١<i>+</i></span></div>
+            <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><img class="gi" src="img/bear.webp" alt=""></span><div class="ci"><b>دب محشو كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
             <div>
               <div class="promo"><input id="promo-input" type="text" value="" placeholder="رمز الخصم" aria-label="رمز الخصم" autocomplete="off" dir="rtl"><button id="promo-btn" type="button">تفعيل</button></div>
               <div id="promo-msg" class="promo-msg muted">جرّب الرمز: فضاء٢٠</div>
@@ -1210,8 +1254,8 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
                 <div class="panel">
                   <h4>أوشكت على النفاد <span class="chip pink num">٩ منتجات</span></h4>
                   <div class="lowlist num">
-                    <div class="low"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span><div class="ln"><b>سيارة سباق بجهاز تحكم</b><div class="bar"><i style="width:8%;background:var(--pink)"></i></div></div><span>٢</span></div>
-                    <div class="low"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ln"><b>صاروخ الفضاء</b><div class="bar"><i style="width:20%;background:var(--pink)"></i></div></div><span>٤</span></div>
+                    <div class="low"><span class="th" style="background:var(--sky-soft)"><img class="gi" src="img/rc.webp" alt=""></span><div class="ln"><b>سيارة سباق بجهاز تحكم</b><div class="bar"><i style="width:8%;background:var(--pink)"></i></div></div><span>٢</span></div>
+                    <div class="low"><span class="th" style="background:var(--orange-soft)"><img class="gi" src="img/rocket.webp" alt=""></span><div class="ln"><b>صاروخ الفضاء</b><div class="bar"><i style="width:20%;background:var(--pink)"></i></div></div><span>٤</span></div>
                     <div class="low"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span><div class="ln"><b>ذراع تحكم للألعاب</b><div class="bar"><i style="width:30%;background:var(--sun)"></i></div></div><span>٦</span></div>
                     <div class="low"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></span><div class="ln"><b>أحجية خريطة العراق</b><div class="bar"><i style="width:35%;background:var(--sun)"></i></div></div><span>٧</span></div>
                   </div>
@@ -1235,10 +1279,10 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
       <table>
         <thead><tr><th>المنتج</th><th>رمز المنتج</th><th>القسم</th><th>العمر</th><th>المخزن الرئيسي</th><th>فرع المنصور</th><th>الحالة</th></tr></thead>
         <tbody class="num">
-          <tr><td><span class="prod"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span>صاروخ الفضاء القابل للتركيب</span></td><td><span class="sku">١٠-٠١٤٢</span></td><td>فضاء وعلوم</td><td>+٦</td><td>٤</td><td>٠</td><td><span class="chip pink">أوشك على النفاد</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--orange-soft)"><img class="gi" src="img/rocket.webp" alt=""></span>صاروخ الفضاء القابل للتركيب</span></td><td><span class="sku">١٠-٠١٤٢</span></td><td>فضاء وعلوم</td><td>+٦</td><td>٤</td><td>٠</td><td><span class="chip pink">أوشك على النفاد</span></td></tr>
           <tr><td><span class="prod"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></span>مكعبات بناء ١٢٠ قطعة</span></td><td><span class="sku">٢٠-٠٠٨٧</span></td><td>ألعاب تركيب</td><td>+٣</td><td>٥٨</td><td>١٤</td><td><span class="chip mint">متوفر</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span>دب محشو كبير ٦٠ سم</span></td><td><span class="sku">٣٠-٠٢١٠</span></td><td>دمى</td><td>+٠</td><td>٢٢</td><td>٩</td><td><span class="chip mint">متوفر</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span>سيارة سباق بجهاز تحكم</span></td><td><span class="sku">٤٠-٠٠٣١</span></td><td>سيارات</td><td>+٨</td><td>٢</td><td>٣</td><td><span class="chip sun">طلبية في الطريق</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sun-soft)"><img class="gi" src="img/bear.webp" alt=""></span>دب محشو كبير ٦٠ سم</span></td><td><span class="sku">٣٠-٠٢١٠</span></td><td>دمى</td><td>+٠</td><td>٢٢</td><td>٩</td><td><span class="chip mint">متوفر</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sky-soft)"><img class="gi" src="img/rc.webp" alt=""></span>سيارة سباق بجهاز تحكم</span></td><td><span class="sku">٤٠-٠٠٣١</span></td><td>سيارات</td><td>+٨</td><td>٢</td><td>٣</td><td><span class="chip sun">طلبية في الطريق</span></td></tr>
           <tr><td><span class="prod"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span>ذراع تحكم لاسلكية للألعاب</span></td><td><span class="sku">٥٠-٠٤١٥</span></td><td>إلكترونيات</td><td>+٧</td><td>٠</td><td>٠</td><td><span class="chip">نفدت · ١٧ في قائمة الانتظار</span></td></tr>
         </tbody>
       </table>
@@ -1302,7 +1346,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     </div>
     <div class="card">
       <div class="track-card">
-        <span class="bubble" style="background:var(--orange-soft);color:var(--orange);width:56px;height:56px"><svg><use href="#i-rocket"/></svg></span>
+        <span class="bubble" style="background:var(--orange-soft);color:var(--orange);width:56px;height:56px"><img class="gi" src="img/rocket.webp" alt=""></span>
         <div><div class="big">صاروخ الفضاء القابل للتركيب</div><span class="muted num">رقم القطعة ١٠-٠١٤٢-٠٠١٩ · الطلب رقم ٢٠٤١٨</span></div>
         <span class="chip orange">مع المندوب الآن</span>
       </div>
