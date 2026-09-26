@@ -601,6 +601,12 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 
 @media (max-width:1000px){.pdesc{grid-template-columns:1fr}.price-rules{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.sheet-top{grid-template-columns:1fr}.sheet-img{height:130px}.specs{grid-template-columns:1fr}.specs div:nth-child(odd){border-inline-end:0}.specs div:nth-last-child(2){border-bottom:1px solid var(--line)}.price-rules{grid-template-columns:1fr}}
+
+/* ===== v5: mobile website (browser) ===== */
+.screen{height:590px}
+.m-url{margin:0 14px 6px;background:var(--surface);border-radius:10px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--ink-2);display:flex;gap:5px;align-items:center;justify-content:center;flex:none}
+.m-url svg{width:9px;height:9px}
+[hidden]{display:none!important}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -737,7 +743,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <div class="phone-over" aria-hidden="true">
       <div class="phone">
         <div class="screen">
-          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head">
               <span class="ico"><svg><use href="#i-bell"/></svg></span>
@@ -780,7 +786,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
       <p>لا يقتصر المشروع على واجهة للبيع، بل هو منظومة واحدة تربط العميل بالمخزن وبفريق العمل، فيُحتسب كل طلب، ويُعرف موقع كل قطعة، ولا يرى كل موظف إلا ما يخصّه.</p>
     </div>
     <div class="grid-3">
-      <div class="card feat"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><h3>المتجر الإلكتروني</h3><p>موقع للحاسوب وتطبيق للهاتف: تصفح حسب العمر والقسم، وسلة مشتريات، ودفع، وتتبع للطلب، وقائمة مفضلة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><h3>المتجر الإلكتروني</h3><p>موقع واحد يعمل على الحاسوب والهاتف دون الحاجة إلى تنزيل أي تطبيق: تصفح حسب العمر والقسم، وسلة مشتريات، ودفع، وتتبع للطلب، وقائمة مفضلة.</p></div>
       <div class="card feat"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-box"/></svg></span><h3>نظام المخزون</h3><p>كميات محدّثة لحظياً، وباركود، وتنبيه عند اقتراب النفاد، وجرد دوري، ودعم لأكثر من مخزن وفرع.</p></div>
       <div class="card feat"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-users"/></svg></span><h3>المدير والموظفون</h3><p>يضيف المدير الموظفين ويمنح كل واحد منهم صلاحياته، ويطّلع على سجل كامل بكل عملية تمت.</p></div>
       <div class="card feat"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-truck"/></svg></span><h3>تتبع المنتج والطلب</h3><p>رحلة كل قطعة من الاستلام إلى التخزين فالتغليف فالتوصيل، ويتابع العميل طلبه خطوة بخطوة.</p></div>
@@ -1045,7 +1051,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <div class="screens">
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تفاصيل اللعبة</b><span class="ico" style="color:var(--pink)"><svg><use href="#i-heart"/></svg></span></div>
             <div class="pd-img"><svg><use href="#i-rocket"/></svg><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
@@ -1063,13 +1069,13 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">السلة</b><span class="chip num" style="font-size:10px;padding:1px 8px;background:var(--surface)">٣ قطع</span></div>
             <div class="cart-item"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ci"><b>صاروخ الفضاء</b><span class="muted num">٤٢٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>١<i>+</i></span></div>
             <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span><div class="ci"><b>دب محشو كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
             <div>
-              <div class="promo"><input id="promo-input" type="text" value="" placeholder="رمز الخصم" aria-label="رمز الخصم" autocomplete="off" dir="rtl"><button id="promo-btn" type="button">تطبيق</button></div>
+              <div class="promo"><input id="promo-input" type="text" value="" placeholder="رمز الخصم" aria-label="رمز الخصم" autocomplete="off" dir="rtl"><button id="promo-btn" type="button">تفعيل</button></div>
               <div id="promo-msg" class="promo-msg muted">جرّب الرمز: فضاء٢٠</div>
             </div>
             <div class="sum num">
@@ -1087,7 +1093,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div><div class="m-url"><svg><use href="#i-lock"/></svg>متجر سبيستون</div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تتبع طلبي</b><span class="ico"><svg><use href="#i-chat"/></svg></span></div>
             <div style="background:var(--orange);color:#fff;border-radius:16px;padding:12px">
@@ -1303,7 +1309,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
       <div class="track num">
         <div class="step done"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>الاستلام من المورّد</b><p>دفعة من ٤٠ قطعة مع فحص الجودة</p><time>٢ أيلول</time></div>
         <div class="step done"><span class="dot"><svg><use href="#i-shelf"/></svg></span><b>التخزين</b><p>المخزن الرئيسي، الرف ب-٠٤</p><time>٢ أيلول</time></div>
-        <div class="step done"><span class="dot"><svg><use href="#i-bag"/></svg></span><b>طلب العميل</b><p>من التطبيق برمز الخصم فضاء٢٠</p><time>٢٥ أيلول · ١٠:١٢ ص</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-bag"/></svg></span><b>طلب العميل</b><p>من الموقع عبر الهاتف برمز الخصم فضاء٢٠</p><time>٢٥ أيلول · ١٠:١٢ ص</time></div>
         <div class="step done"><span class="dot"><svg><use href="#i-gift"/></svg></span><b>التجهيز والتغليف</b><p>بواسطة علي مع تغليف هدية</p><time>١١:٤٠ ص</time></div>
         <div class="step now"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>التوصيل</b><p>المندوب حسين إلى الكرادة</p><time>متوقع بين ٤ و٧ م</time></div>
         <div class="step"><span class="dot"><svg><use href="#i-check"/></svg></span><b>التسليم</b><p>تأكيد برمز التحقق أو التوقيع</p><time>بانتظار التسليم</time></div>
@@ -1361,7 +1367,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
       <div class="phase"><div class="w"><span class="n">٣</span><span class="chip">اليوم ٧-٨</span></div><h3>المحتوى والاختبار</h3><ul><li>رفع المنتجات بأوصافها وأسعارها</li><li>ربط التوصيل والدفع عند الاستلام</li><li>تجربة كاملة للطلب من البداية إلى النهاية</li></ul></div>
       <div class="phase"><div class="w"><span class="n">٤</span><span class="chip">اليوم ٩-١٠</span></div><h3>التدريب والإطلاق</h3><ul><li>تدريب المدير والموظفين</li><li>إطلاق المتجر للعملاء</li><li>متابعة يومية خلال الشهر الأول بعد الإطلاق</li></ul></div>
     </div>
-    <div class="note"><svg><use href="#i-bell"/></svg><p>يبدأ العدّ من يوم استلام قائمة المنتجات وصورها والمتطلبات المذكورة أدناه. أما ربط زين كاش وكي كارد ونشر التطبيق في متجري آبل وغوغل فيعتمد على موافقة تلك الجهات، ويُفعَّل فور صدورها دون أن يؤخر إطلاق المتجر.</p></div>
+    <div class="note"><svg><use href="#i-bell"/></svg><p>يبدأ العدّ من يوم استلام قائمة المنتجات وصورها والمتطلبات المذكورة أدناه. أما ربط الدفع الإلكتروني عبر زين كاش وكي كارد فيعتمد على موافقة الشركتين، ويُفعَّل فور صدورها دون أن يؤخر إطلاق المتجر.</p></div>
   </section>
 
   <!-- CTA -->
@@ -1408,7 +1414,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     if(!r){msg.className='promo-msg bad';msg.textContent='الرمز غير صحيح، يُرجى التحقق منه';row.hidden=true;tEl.textContent=fmt(SUB+SHIP);return;}
     var d=r.p?Math.round(SUB*r.p):r.flat;
     row.hidden=false;dEl.textContent='− '+fmt(d);tEl.textContent=fmt(SUB-d+SHIP);
-    msg.className='promo-msg ok';msg.textContent='تم تطبيق الرمز '+r.label+'، ووفّرت '+fmt(d);
+    msg.className='promo-msg ok';msg.textContent='تم تفعيل الرمز '+r.label+'، ووفّرت '+fmt(d);
   }
   document.getElementById('promo-btn').addEventListener('click',apply);
   input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();apply();}});
