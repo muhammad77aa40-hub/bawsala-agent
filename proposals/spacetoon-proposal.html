@@ -1,0 +1,791 @@
+<title>مقترح متجر سبيستون</title>
+<style>
+@font-face{font-family:"SF Arabic";src:local("SF Arabic");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"SF Arabic Rounded";src:local("SF Arabic Rounded");font-weight:1 1000;font-display:swap}
+
+:root{
+  --ground:#F6F4FD;
+  --surface:#FFFFFF;
+  --surface-2:#EFECFA;
+  --ink:#1C1A3B;
+  --ink-2:#55527A;
+  --ink-3:#8E8BAE;
+  --line:#E1DDF2;
+  --orange:#FF6A2B;
+  --orange-soft:#FFE7DC;
+  --sun:#FFC53D;
+  --sun-soft:#FFF3D1;
+  --mint:#1FB5A6;
+  --mint-soft:#D6F4F0;
+  --pink:#F2507F;
+  --pink-soft:#FDE0E9;
+  --sky:#3B7BF2;
+  --sky-soft:#DDE8FF;
+  --shadow:0 1px 2px rgba(28,26,59,.06),0 12px 32px -12px rgba(28,26,59,.18);
+  --display:"SF Arabic Rounded","SF Arabic",-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --body:"SF Arabic",-apple-system,"Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#121027;--surface:#1B1937;--surface-2:#24214A;--ink:#F3F1FF;--ink-2:#B9B5DB;--ink-3:#7F7BA6;--line:#302D57;
+    --orange:#FF7C45;--orange-soft:#3D2330;--sun:#FFCF5C;--sun-soft:#3A3223;--mint:#3CD1C1;--mint-soft:#173A3E;
+    --pink:#FF6D96;--pink-soft:#3D1E36;--sky:#6A9BFF;--sky-soft:#1F2B55;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121027;--surface:#1B1937;--surface-2:#24214A;--ink:#F3F1FF;--ink-2:#B9B5DB;--ink-3:#7F7BA6;--line:#302D57;
+  --orange:#FF7C45;--orange-soft:#3D2330;--sun:#FFCF5C;--sun-soft:#3A3223;--mint:#3CD1C1;--mint-soft:#173A3E;
+  --pink:#FF6D96;--pink-soft:#3D1E36;--sky:#6A9BFF;--sky-soft:#1F2B55;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.page{direction:rtl;max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.25}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.02em;color:var(--orange);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:18px;height:6px;border-radius:6px;background:currentColor}
+.muted{color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip.orange{background:var(--orange-soft);color:var(--orange)}
+.chip.mint{background:var(--mint-soft);color:var(--mint)}
+.chip.pink{background:var(--pink-soft);color:var(--pink)}
+.chip.sun{background:var(--sun-soft);color:#B07A00}
+:root[data-theme="dark"] .chip.sun{color:var(--sun)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.sun{color:var(--sun)}}
+.chip.sky{background:var(--sky-soft);color:var(--sky)}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:22px}
+.logo{width:40px;height:40px;border-radius:13px;background:var(--orange);display:grid;place-items:center;box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+.logo svg{width:24px;height:24px}
+.meta{display:flex;gap:8px;flex-wrap:wrap}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;background:var(--surface);border-radius:32px;padding:44px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset-inline-start:-80px;bottom:-120px;width:320px;height:320px;border-radius:50%;background:var(--sun-soft);z-index:0}
+.hero > *{position:relative;z-index:1}
+.hero h1{font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.01em;margin-block:14px 16px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .lead{font-size:18px;color:var(--ink-2);max-width:34em}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px}
+.hero-stats b{display:block;font-family:var(--display);font-size:28px;font-weight:800}
+.hero-stats span{font-size:14px;color:var(--ink-2)}
+
+/* phone mockup */
+.phone{width:100%;max-width:290px;margin-inline:auto;background:var(--ink);border-radius:42px;padding:10px;box-shadow:0 30px 60px -20px rgba(28,26,59,.45)}
+.screen{background:var(--ground);border-radius:33px;overflow:hidden;height:560px;display:flex;flex-direction:column;font-size:12px;line-height:1.5}
+.sbar{display:flex;justify-content:space-between;padding:12px 22px 6px;font-weight:700;font-size:11px;direction:ltr}
+.s-body{padding:6px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1;overflow:hidden}
+.s-head{display:flex;justify-content:space-between;align-items:center}
+.s-head b{font-family:var(--display);font-size:16px}
+.ico{width:30px;height:30px;border-radius:10px;background:var(--surface);display:grid;place-items:center}
+.ico svg{width:16px;height:16px}
+.search{background:var(--surface);border-radius:12px;padding:8px 12px;color:var(--ink-3);display:flex;gap:6px;align-items:center}
+.banner{background:var(--orange);color:#fff;border-radius:18px;padding:14px;position:relative;overflow:hidden;min-height:96px}
+.banner b{font-family:var(--display);font-size:17px;display:block;line-height:1.3}
+.banner .code{display:inline-block;margin-top:8px;background:rgba(255,255,255,.22);border:1.5px dashed rgba(255,255,255,.7);border-radius:8px;padding:2px 8px;font-weight:700;direction:ltr}
+.banner .blob{position:absolute;inset-inline-start:-18px;bottom:-22px;width:92px;height:92px;border-radius:50%;background:var(--sun)}
+.banner .blob2{position:absolute;inset-inline-start:48px;top:-18px;width:36px;height:36px;border-radius:50%;background:var(--pink)}
+.cats{display:flex;gap:8px}
+.cat{flex:1;text-align:center;font-size:10.5px;font-weight:600}
+.cat i{display:grid;place-items:center;height:44px;border-radius:14px;margin-bottom:4px}
+.cat i svg{width:22px;height:22px}
+.s-title{display:flex;justify-content:space-between;align-items:baseline}
+.s-title b{font-family:var(--display);font-size:13.5px}
+.s-title span{color:var(--orange);font-size:11px;font-weight:600}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pc{background:var(--surface);border-radius:14px;padding:6px 6px 8px}
+.pc .img{height:74px;border-radius:10px;display:grid;place-items:center;position:relative}
+.pc .img svg{width:40px;height:40px}
+.pc .tag{position:absolute;top:5px;inset-inline-end:5px;background:var(--pink);color:#fff;font-size:9px;font-weight:700;border-radius:6px;padding:0 5px}
+.pc .n{font-weight:600;font-size:11px;margin-top:5px;line-height:1.35}
+.pc .p{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.pc .p b{font-size:11.5px}
+.pc .add{width:20px;height:20px;border-radius:7px;background:var(--ink);color:var(--ground);display:grid;place-items:center;font-weight:700;font-size:13px;line-height:1}
+.tabbar{display:flex;justify-content:space-around;background:var(--surface);padding:10px 8px 14px;border-top:1px solid var(--line)}
+.tabbar span{display:grid;justify-items:center;gap:2px;font-size:9.5px;color:var(--ink-3);font-weight:600}
+.tabbar span.on{color:var(--orange)}
+.tabbar svg{width:18px;height:18px}
+
+/* sections */
+section{margin-top:88px}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;align-items:end;margin-bottom:32px}
+.sec-head h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;margin-top:10px}
+.sec-head p{color:var(--ink-2);font-size:17px;max-width:36em}
+
+.card{background:var(--surface);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feat h3{font-size:19px;font-weight:700;margin-block:14px 6px}
+.feat p{color:var(--ink-2);font-size:15px}
+.bubble{width:48px;height:48px;border-radius:16px;display:grid;place-items:center}
+.bubble svg{width:24px;height:24px}
+
+/* design choice */
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.opt{border:2px solid var(--line);border-radius:24px;padding:24px;background:var(--surface);cursor:pointer;text-align:start;font:inherit;color:inherit;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+.opt:hover{transform:translateY(-2px)}
+.opt:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.opt[aria-pressed="true"]{border-color:var(--orange);box-shadow:var(--shadow)}
+.opt .rh{display:flex;justify-content:space-between;align-items:center}
+.opt h3{font-size:20px;font-weight:700}
+.radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink-3);display:grid;place-items:center;flex:none}
+.opt[aria-pressed="true"] .radio{border-color:var(--orange)}
+.opt[aria-pressed="true"] .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--orange)}
+.opt ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;color:var(--ink-2);font-size:15px}
+.opt li{display:flex;gap:8px;align-items:flex-start}
+.opt li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);margin-top:10px;flex:none}
+.swatches{display:flex;gap:6px;margin-top:4px}
+.swatches i{width:28px;height:28px;border-radius:9px;display:block}
+
+/* screens row */
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
+.screens figure{margin:0;display:grid;gap:14px}
+.screens figcaption{text-align:center}
+.screens figcaption b{font-family:var(--display);font-size:16px;display:block}
+.screens figcaption span{font-size:14px;color:var(--ink-2)}
+.pd-img{height:190px;border-radius:20px;background:var(--sky-soft);display:grid;place-items:center;position:relative}
+.pd-img svg{width:110px;height:110px}
+.dots{position:absolute;bottom:10px;display:flex;gap:4px;inset-inline:0;justify-content:center}
+.dots i{width:6px;height:6px;border-radius:6px;background:var(--ink-3);opacity:.4}
+.dots i.on{width:16px;background:var(--sky);opacity:1}
+.pd-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.age{display:flex;gap:5px;flex-wrap:wrap}
+.age span{font-size:10px;padding:2px 8px;border-radius:999px;background:var(--surface);font-weight:600}
+.age span.on{background:var(--ink);color:var(--ground)}
+.btn{background:var(--orange);color:#fff;border-radius:14px;padding:11px;text-align:center;font-weight:700;font-family:var(--display);font-size:13px}
+.stars{color:var(--sun);letter-spacing:1px}
+.cart-item{display:flex;gap:8px;background:var(--surface);border-radius:14px;padding:7px;align-items:center}
+.cart-item .th{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;flex:none}
+.cart-item .th svg{width:28px;height:28px}
+.cart-item .ci{flex:1;min-width:0}
+.cart-item .ci b{display:block;font-size:11px}
+.qty{display:flex;gap:6px;align-items:center;font-weight:700}
+.qty i{font-style:normal;width:18px;height:18px;border-radius:6px;background:var(--surface-2);display:grid;place-items:center}
+.promo{display:flex;gap:6px;background:var(--surface);border-radius:12px;padding:5px;border:1.5px dashed var(--line)}
+.promo input{flex:1;min-width:0;border:0;background:transparent;font:inherit;color:var(--ink);padding-inline:6px;direction:ltr;text-align:right;font-weight:700;letter-spacing:.04em}
+.promo input:focus{outline:none}
+.promo button{border:0;background:var(--ink);color:var(--ground);font:inherit;font-weight:700;border-radius:9px;padding:4px 12px;cursor:pointer}
+.promo-msg{font-size:10.5px;min-height:16px;font-weight:600}
+.promo-msg.ok{color:var(--mint)}.promo-msg.bad{color:var(--pink)}
+.sum{background:var(--surface);border-radius:14px;padding:10px;display:grid;gap:4px}
+.sum div{display:flex;justify-content:space-between}
+.sum .disc{color:var(--mint)}
+.sum .tot{border-top:1px dashed var(--line);padding-top:6px;margin-top:2px;font-weight:800;font-size:13px}
+.pay{display:flex;gap:5px;flex-wrap:wrap}
+.pay span{font-size:9.5px;padding:3px 7px;border-radius:7px;background:var(--surface);border:1px solid var(--line);font-weight:600}
+.pay span.on{border-color:var(--orange);color:var(--orange)}
+
+/* dashboard */
+.dash{background:var(--surface);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:220px 1fr;overflow:hidden}
+.side{background:var(--ink);color:#F3F1FF;padding:22px 16px;display:flex;flex-direction:column;gap:4px}
+:root[data-theme="dark"] .side{background:#0C0B1F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .side{background:#0C0B1F}}
+.side .brand{font-size:17px;margin-bottom:18px;color:#fff}
+.side .brand .logo{width:32px;height:32px;border-radius:10px}
+.side .brand .logo svg{width:18px;height:18px}
+.side a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;color:#BDB9E0;text-decoration:none;font-size:14px;font-weight:600}
+.side a svg{width:17px;height:17px;flex:none}
+.side a.on{background:rgba(255,255,255,.1);color:#fff}
+.side .who{margin-top:auto;display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:rgba(255,255,255,.06);font-size:13px}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none;color:#1C1A3B}
+.main{padding:24px;display:grid;gap:18px;min-width:0}
+.main-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.main-top h3{font-size:22px;font-weight:800}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--ground);border-radius:18px;padding:14px 16px}
+.kpi span{font-size:13px;color:var(--ink-2)}
+.kpi b{display:block;font-family:var(--display);font-size:24px;font-weight:800;margin-block:2px}
+.kpi small{font-size:12px;font-weight:700}
+.up{color:var(--mint)}.down{color:var(--pink)}
+.dash-row{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
+.panel{background:var(--ground);border-radius:18px;padding:16px;min-width:0}
+.panel h4{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chart svg{width:100%;height:auto;display:block}
+.lowlist{display:grid;gap:8px}
+.low{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.low .th{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.low .th svg{width:20px;height:20px}
+.low .ln{flex:1;min-width:0}
+.low .ln b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{height:5px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;border-radius:5px}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:760px}
+th,td{padding:14px 18px;text-align:start;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:700;font-size:13px;color:var(--ink-2);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td .prod{display:flex;align-items:center;gap:10px;font-weight:600}
+td .prod .th{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+td .prod .th svg{width:20px;height:20px}
+.sku{direction:ltr;display:inline-block;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.inv-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.mini{background:var(--surface);border-radius:18px;padding:18px;display:grid;gap:6px}
+.mini b{font-family:var(--display);font-size:16px}
+.mini p{font-size:14px;color:var(--ink-2)}
+
+/* roles */
+.roles{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:start}
+.roles > *,.hero > *,.sec-head > *,.cta > *{min-width:0}
+.tree{display:grid;gap:12px;justify-items:center;padding:28px 20px}
+.node{display:flex;align-items:center;gap:10px;background:var(--ground);border-radius:16px;padding:10px 14px;font-weight:700;font-size:14.5px;width:100%;max-width:280px}
+.node small{display:block;font-weight:500;color:var(--ink-2);font-size:12.5px}
+.node.boss{background:var(--orange);color:#fff;max-width:300px}
+.node.boss small{color:rgba(255,255,255,.85)}
+.stem{width:2px;height:18px;background:var(--line)}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.team .node{max-width:none}
+.matrix td,.matrix th{text-align:center}
+.matrix td:first-child,.matrix th:first-child{text-align:start}
+.yes,.no,.part{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;font-weight:800;font-size:13px}
+.yes{background:var(--mint-soft);color:var(--mint)}
+.no{background:var(--surface-2);color:var(--ink-3)}
+.part{background:var(--sun-soft);color:#B07A00}
+:root[data-theme="dark"] .part{color:var(--sun)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .part{color:var(--sun)}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:12px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend .yes,.legend .no,.legend .part{width:20px;height:20px;font-size:11px;border-radius:6px}
+.log{display:grid;gap:10px;margin-top:18px}
+.log-row{display:flex;gap:12px;align-items:center;font-size:14px;background:var(--surface);border-radius:14px;padding:10px 14px}
+.log-row time{margin-inline-start:auto;color:var(--ink-3);font-size:13px;white-space:nowrap}
+
+/* tracking */
+.track{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;padding-top:8px}
+.step{display:grid;justify-items:center;text-align:center;gap:10px;position:relative;padding-inline:6px}
+.step::before{content:"";position:absolute;top:27px;inset-inline-start:50%;width:100%;height:3px;background:var(--line);z-index:0}
+.step:last-child::before{display:none}
+.step.done::before{background:var(--mint)}
+.dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:3px solid var(--line);position:relative;z-index:1}
+.dot svg{width:24px;height:24px}
+.step.done .dot{background:var(--mint);border-color:var(--mint);color:#fff}
+.step.now .dot{border-color:var(--orange);color:var(--orange);box-shadow:0 0 0 6px var(--orange-soft)}
+.step b{font-family:var(--display);font-size:15px}
+.step p{font-size:13px;color:var(--ink-2);line-height:1.55}
+.step time{font-size:12px;color:var(--ink-3)}
+.track-card{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;margin-bottom:26px}
+.track-card .big{font-family:var(--display);font-size:20px;font-weight:800}
+
+/* promos */
+.coupons{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.coupon{border-radius:22px;padding:22px;color:#fff;position:relative;overflow:hidden;display:grid;gap:8px;min-height:190px}
+.coupon::before,.coupon::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:var(--ground);top:50%;transform:translateY(-50%)}
+.coupon::before{inset-inline-start:-13px}.coupon::after{inset-inline-end:-13px}
+.coupon .pct{font-family:var(--display);font-size:44px;font-weight:900;line-height:1}
+.coupon .cd{justify-self:start;border:2px dashed rgba(255,255,255,.75);border-radius:10px;padding:3px 12px;font-weight:800;letter-spacing:.06em;direction:ltr;background:rgba(255,255,255,.14)}
+.coupon .rules{font-size:13px;opacity:.92;line-height:1.6}
+.c1{background:var(--orange)}.c2{background:var(--mint)}.c3{background:var(--pink)}
+.promo-types{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+
+/* extras */
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ex{background:var(--surface);border-radius:20px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.ex h3{font-size:16.5px;font-weight:700;margin-bottom:4px}
+.ex p{font-size:14.5px;color:var(--ink-2);line-height:1.65}
+
+/* timeline */
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:ph}
+.phase{background:var(--surface);border-radius:22px;padding:22px;display:grid;gap:10px;align-content:start;box-shadow:var(--shadow)}
+.phase .w{display:flex;justify-content:space-between;align-items:center}
+.phase .n{font-family:var(--display);font-size:38px;font-weight:900;line-height:1;color:var(--orange)}
+.phase h3{font-size:18px;font-weight:700}
+.phase ul{margin:0;padding-inline-start:18px;color:var(--ink-2);font-size:14.5px;display:grid;gap:4px}
+
+.cta{margin-top:88px;background:var(--ink);color:#F3F1FF;border-radius:32px;padding:44px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+:root[data-theme="dark"] .cta{background:var(--surface-2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cta{background:var(--surface-2)}}
+.cta h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-block:10px 12px}
+.cta p{color:#C9C5EA}
+.need{display:grid;gap:10px}
+.need div{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.07);border-radius:14px;padding:12px 14px;font-weight:600;font-size:15px}
+.need i{width:24px;height:24px;border-radius:8px;background:var(--sun);color:#1C1A3B;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:13px;flex:none}
+footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
+
+@media (max-width:1000px){
+  .hero,.sec-head,.roles,.cta{grid-template-columns:1fr}
+  .grid-3,.extras,.coupons{grid-template-columns:1fr 1fr}
+  .grid-4,.inv-feats,.promo-types,.phases{grid-template-columns:1fr 1fr}
+  .dash{grid-template-columns:1fr}
+  .side{flex-direction:row;flex-wrap:wrap;align-items:center}
+  .side .brand{margin:0 0 0 12px}
+  .side .who{display:none}
+  .kpis{grid-template-columns:1fr 1fr}
+  .dash-row{grid-template-columns:1fr}
+  .screens{grid-template-columns:1fr 1fr}
+  .track{grid-template-columns:repeat(3,1fr);row-gap:28px}
+  .step:nth-child(3)::before{display:none}
+}
+@media (max-width:640px){
+  .page{padding-inline:16px}
+  .hero,.cta{padding:26px 20px;border-radius:26px}
+  .grid-3,.grid-2,.extras,.coupons,.grid-4,.inv-feats,.promo-types,.phases,.choice,.screens{grid-template-columns:1fr}
+  .side a span{display:none}
+  .side a{padding:9px}
+  .main{padding:16px}
+  .track{grid-template-columns:1fr;row-gap:0}
+  .step{grid-template-columns:56px 1fr;justify-items:start;text-align:start;column-gap:14px;row-gap:2px;padding-block-end:18px}
+  .step .dot{grid-row:span 3}
+  .step::before{top:56px;inset-inline-start:auto;inset-inline-end:auto;right:27px;width:3px;height:calc(100% - 56px)}
+  .step:nth-child(3)::before{display:block}
+  .track-card{grid-template-columns:1fr}
+  section{margin-top:64px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 48 48"><path fill="#FF6A2B" d="M24 4c7 5 10 13 8 22l-4 6h-8l-4-6c-2-9 1-17 8-22z"/><circle cx="24" cy="18" r="4" fill="#fff"/><path fill="#FFC53D" d="M16 26l-6 8 7-1zM32 26l6 8-7-1z"/><path fill="#F2507F" d="M21 33h6l-3 9z"/></symbol>
+    <symbol id="i-bear" viewBox="0 0 48 48"><circle cx="13" cy="13" r="6" fill="#C9854A"/><circle cx="35" cy="13" r="6" fill="#C9854A"/><circle cx="24" cy="26" r="15" fill="#D99A5E"/><ellipse cx="24" cy="31" rx="7" ry="5.5" fill="#F3D2AE"/><circle cx="18.5" cy="23" r="2" fill="#1C1A3B"/><circle cx="29.5" cy="23" r="2" fill="#1C1A3B"/><ellipse cx="24" cy="29" rx="2.4" ry="1.8" fill="#1C1A3B"/></symbol>
+    <symbol id="i-car" viewBox="0 0 48 48"><path fill="#3B7BF2" d="M6 28l4-9c1-2 3-3 5-3h14c2 0 4 1 5 3l5 9h3v8H3v-8z"/><path fill="#DDE8FF" d="M14 19h6v7h-9zM23 19h7l4 7H23z"/><circle cx="13" cy="36" r="5" fill="#1C1A3B"/><circle cx="35" cy="36" r="5" fill="#1C1A3B"/><circle cx="13" cy="36" r="2" fill="#fff"/><circle cx="35" cy="36" r="2" fill="#fff"/></symbol>
+    <symbol id="i-blocks" viewBox="0 0 48 48"><rect x="5" y="26" width="18" height="16" rx="3" fill="#1FB5A6"/><rect x="25" y="26" width="18" height="16" rx="3" fill="#FFC53D"/><rect x="15" y="8" width="18" height="16" rx="3" fill="#F2507F"/><circle cx="20" cy="8" r="2.5" fill="#F2507F"/><circle cx="28" cy="8" r="2.5" fill="#F2507F"/></symbol>
+    <symbol id="i-pad" viewBox="0 0 48 48"><path fill="#1C1A3B" d="M10 16h28c5 0 8 5 7 11l-1 6c-1 5-6 6-9 2l-3-4H16l-3 4c-3 4-8 3-9-2l-1-6c-1-6 2-11 7-11z"/><path fill="#fff" d="M12 22h3v-3h3v3h3v3h-3v3h-3v-3h-3z"/><circle cx="33" cy="21" r="2" fill="#FFC53D"/><circle cx="37" cy="25" r="2" fill="#F2507F"/><circle cx="29" cy="25" r="2" fill="#1FB5A6"/></symbol>
+    <symbol id="i-ball" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="#FFC53D"/><path fill="#FF6A2B" d="M24 6a18 18 0 0 1 0 36c6-5 8-11 8-18S30 11 24 6z"/><path fill="#fff" opacity=".5" d="M16 13a3 3 0 1 1-4 4 10 10 0 0 1 4-4z"/></symbol>
+    <symbol id="i-puzzle" viewBox="0 0 48 48"><path fill="#1FB5A6" d="M8 12h10a4 4 0 1 1 8 0h10v10a4 4 0 1 1 0 8v10H26a4 4 0 1 0-8 0H8V30a4 4 0 1 0 0-8z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5zM3 7.5l9 4.5 9-4.5M12 12v9"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 10l8-6 8 6v10h-5v-6H9v6H4z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-8-4.6-8-10.3A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 8 2.7C20 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.5 3.6 5.2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="18" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4M7 8v8M10 8v8M13 8v8M17 8v8"/></symbol>
+    <symbol id="i-shelf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 3v18M21 3v18M3 9h18M3 15h18M6 6h4M12 12h5M6 18h3"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 9h18v4H3zM5 13h14v8H5zM12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-cake" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 12h16v9H4zM4 16c2 1.5 4 1.5 5.3 0s3.4-1.5 5.3 0 4 1.5 5.4 0M12 12V8M12 5.5c-1-1-1-2 0-3 1 1 1 2 0 3z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 9l2-5h14l2 5M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8M10 21v-5h4v5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 16l4 4"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+  </defs>
+</svg>
+
+<div class="page" dir="rtl" lang="ar">
+
+  <header class="top">
+    <div class="brand">
+      <span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>
+      سبيستون
+    </div>
+    <div class="meta">
+      <span class="chip">مقترح مشروع</span>
+      <span class="chip">متجر إلكتروني + نظام إدارة</span>
+      <span class="chip num">أيلول ٢٠٢٦</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <span class="eyebrow">مقترح متجر إلكتروني متكامل</span>
+      <h1>كل ألعاب سبيستون، <em>بلمسة وحدة</em> من الموبايل</h1>
+      <p class="lead">متجر إلكتروني للألعاب والهدايا ومستلزمات الأطفال، مربوط بنظام مخزون ولوحة تحكم يدير منها المدير الموظفين، ويتابع كل منتج من لحظة وصوله للمخزن لحد ما يوصل لبيت الزبون.</p>
+      <div class="hero-stats">
+        <div><b>٦</b><span>أنظمة مترابطة</span></div>
+        <div><b>٥</b><span>أدوار للموظفين</span></div>
+        <div><b class="num">١٨</b><span>محافظة للتوصيل</span></div>
+        <div><b class="num">٨–١٠</b><span>أسابيع للإطلاق</span></div>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="شكل الصفحة الرئيسية للمتجر على الموبايل">
+      <div class="screen">
+        <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+        <div class="s-body">
+          <div class="s-head">
+            <span class="ico"><svg><use href="#i-bell"/></svg></span>
+            <b>سبيستون</b>
+            <span class="ico"><svg><use href="#i-bag"/></svg></span>
+          </div>
+          <div class="search"><svg width="14" height="14"><use href="#i-search"/></svg> دوّر على لعبة، ماركة، أو عمر…</div>
+          <div class="banner">
+            <span class="blob"></span><span class="blob2"></span>
+            <b>عروض العودة<br>للمدارس</b>
+            <span class="code">SPACE20</span>
+          </div>
+          <div class="cats">
+            <div class="cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء</div>
+            <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
+            <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>تركيب</div>
+            <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
+          </div>
+          <div class="s-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
+          <div class="pgrid">
+            <div class="pc"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بالريموت</div><div class="p"><b class="num">٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+            <div class="pc"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b class="num">٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <span class="on"><svg><use href="#i-home"/></svg>الرئيسية</span>
+          <span><svg><use href="#i-grid"/></svg>الأقسام</span>
+          <span><svg><use href="#i-heart"/></svg>المفضلة</span>
+          <span><svg><use href="#i-user"/></svg>حسابي</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">نظرة عامة</span><h2>شنو راح نبني لسبيستون؟</h2></div>
+      <p>المشروع مو بس واجهة بيع. هو منظومة وحدة تربط الزبون بالمخزن وبفريق العمل، حتى كل طلب ينحسب، وكل قطعة معروف وين صارت، وكل موظف يشوف بس الي يخصه.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card feat"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><h3>المتجر الإلكتروني</h3><p>موقع وتطبيق موبايل للزبائن: تصفح حسب العمر والقسم، سلة، دفع، تتبع الطلب، ومفضلة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-box"/></svg></span><h3>نظام المخزون</h3><p>كميات لحظية، باركود، تنبيه عند قرب النفاد، جرد، وأكثر من مخزن أو فرع.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-users"/></svg></span><h3>المدير والموظفين</h3><p>المدير يضيف الموظفين ويعطي كل واحد صلاحياته، ويشوف سجل كامل بكل حركة صارت.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-truck"/></svg></span><h3>تتبع المنتج والطلب</h3><p>رحلة كل قطعة من الاستلام للتخزين للتغليف للتوصيل، والزبون يتابع طلبه خطوة بخطوة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-tag"/></svg></span><h3>التسويق والعروض</h3><p>بروموكودات، خصومات موسمية، نقاط ولاء، بطاقات هدايا، وتذكير بالسلة المتروكة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-chart"/></svg></span><h3>التقارير</h3><p>المبيعات، الأرباح، أكثر الألعاب طلباً، أداء الموظفين، وتقارير المخزون جاهزة للتصدير.</p></div>
+    </div>
+  </section>
+
+  <!-- DESIGN -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">تصميم الواجهة UI / UX</span><h2>التصميم على ذوق سبيستون</h2></div>
+      <p>عندنا طريقتين للتصميم، والتاجر يختار الي يناسبه. بالحالتين التجربة مبنية للموبايل أولاً، وبالعربي من اليمين لليسار، ومريحة للأهل وهم يدورون هدية بسرعة.</p>
+    </div>
+    <div class="choice" role="group" aria-label="طريقة التصميم">
+      <button class="opt" id="opt-ours" aria-pressed="true" type="button">
+        <div class="rh"><h3>تصميم نقترحه إحنا</h3><span class="radio"></span></div>
+        <p class="muted">هوية ملونة ومرحة تناسب عالم الأطفال، مثل الي تشوفه بهذا المقترح.</p>
+        <ul><li>ألوان وأيقونات ورسومات خاصة بالمتجر</li><li>٣ جولات تعديل على التصميم قبل التنفيذ</li><li>نموذج تفاعلي على Figma تجربه قبل البرمجة</li></ul>
+        <div class="swatches"><i style="background:#FF6A2B"></i><i style="background:#FFC53D"></i><i style="background:#1FB5A6"></i><i style="background:#F2507F"></i><i style="background:#1C1A3B"></i></div>
+      </button>
+      <button class="opt" id="opt-ref" aria-pressed="false" type="button">
+        <div class="rh"><h3>حسب مرجع التاجر</h3><span class="radio"></span></div>
+        <p class="muted">التاجر ينطينا شعاره وألوانه أو موقع يعجبه كمرجع، وإحنا نطبقه بدقة.</p>
+        <ul><li>نلتزم بالهوية الموجودة (شعار، خطوط، ألوان)</li><li>نحسّن تجربة الاستخدام بدون ما نغير الطابع</li><li>مراجعة واعتماد كل شاشة قبل البرمجة</li></ul>
+        <div class="swatches"><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i></div>
+      </button>
+    </div>
+
+    <div class="screens">
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="s-body">
+            <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تفاصيل اللعبة</b><span class="ico" style="color:var(--pink)"><svg><use href="#i-heart"/></svg></span></div>
+            <div class="pd-img"><svg><use href="#i-rocket"/></svg><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
+            <div class="pd-row"><span class="chip mint" style="font-size:10px;padding:1px 8px">متوفر · ١٢ قطعة</span><span class="stars">★★★★★ <span class="muted num" style="font-size:10px">(٨٤)</span></span></div>
+            <b style="font-family:var(--display);font-size:15px;line-height:1.35">صاروخ الفضاء القابل للتركيب مع رائد فضاء</b>
+            <div><span class="muted" style="font-size:10.5px">العمر المناسب</span>
+              <div class="age"><span>٣+</span><span class="on">٦+</span><span>٩+</span><span>١٢+</span></div></div>
+            <div class="pd-row"><span class="muted" style="font-size:10.5px">تغليف هدية؟</span><span class="chip sun" style="font-size:10px;padding:1px 8px">+٢٬٠٠٠ د.ع</span></div>
+            <div class="pd-row" style="margin-top:auto"><b class="num" style="font-size:16px">٤٢٬٠٠٠ د.ع</b><span class="muted num" style="text-decoration:line-through;font-size:11px">٥٠٬٠٠٠</span></div>
+            <div class="btn">أضف للسلة</div>
+          </div>
+        </div></div>
+        <figcaption><b>صفحة المنتج</b><span>العمر، التوفر، التقييمات، وتغليف الهدية</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="s-body">
+            <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">السلة</b><span class="chip" style="font-size:10px;padding:1px 8px;background:var(--surface)">٣ قطع</span></div>
+            <div class="cart-item"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ci"><b>صاروخ الفضاء</b><span class="muted num">٤٢٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>١<i>+</i></span></div>
+            <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span><div class="ci"><b>دبدوب كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
+            <div>
+              <div class="promo"><input id="promo-input" type="text" value="" placeholder="بروموكود" aria-label="بروموكود" autocomplete="off"><button id="promo-btn" type="button">تطبيق</button></div>
+              <div id="promo-msg" class="promo-msg muted">جرّب: SPACE20</div>
+            </div>
+            <div class="sum num">
+              <div><span class="muted">المجموع</span><span id="s-sub">٧٨٬٠٠٠ د.ع</span></div>
+              <div class="disc" id="row-disc" hidden><span>خصم الكود</span><span id="s-disc"></span></div>
+              <div><span class="muted">التوصيل · بغداد</span><span>٥٬٠٠٠ د.ع</span></div>
+              <div class="tot"><span>الإجمالي</span><span id="s-tot">٨٣٬٠٠٠ د.ع</span></div>
+            </div>
+            <div class="pay"><span class="on">الدفع عند الاستلام</span><span>زين كاش</span><span>كي كارد</span><span>ماستر / فيزا</span></div>
+            <div class="btn" style="margin-top:auto">إتمام الطلب</div>
+          </div>
+        </div></div>
+        <figcaption><b>السلة والدفع</b><span>جرّب تكتب الكود بالشاشة فوق</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="s-body">
+            <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تتبع طلبي</b><span class="ico"><svg><use href="#i-chat"/></svg></span></div>
+            <div style="background:var(--orange);color:#fff;border-radius:16px;padding:12px">
+              <span style="opacity:.85;font-size:10.5px">طلب رقم</span>
+              <b class="num" style="display:block;font-family:var(--display);font-size:18px;direction:ltr;text-align:right">#SP-20418</b>
+              <span style="font-size:11px">يوصلك اليوم بين ٤ و ٧ مساءً</span>
+            </div>
+            <div style="display:grid;gap:10px;background:var(--surface);border-radius:16px;padding:12px">
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم تأكيد الطلب</b><div class="muted num" style="font-size:10px">١٠:١٢ ص</div></div></div>
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم التغليف</b><div class="muted num" style="font-size:10px">١١:٤٠ ص · بواسطة علي</div></div></div>
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;border:2.5px solid var(--orange);box-shadow:0 0 0 4px var(--orange-soft)"></span><div><b style="color:var(--orange)">مع المندوب</b><div class="muted" style="font-size:10px">بالطريق إلى الكرادة</div></div></div>
+              <div style="display:flex;gap:8px;align-items:center;opacity:.5"><span style="width:22px;height:22px;border-radius:50%;border:2.5px solid var(--line)"></span><div><b>تم التسليم</b></div></div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;background:var(--surface);border-radius:14px;padding:8px">
+              <span class="av" style="background:var(--sun)">ح</span><div style="flex:1"><b>حسين · المندوب</b><div class="muted" style="font-size:10px">توصيل سريع</div></div><span class="chip mint" style="font-size:10px;padding:1px 8px">اتصال</span>
+            </div>
+          </div>
+        </div></div>
+        <figcaption><b>تتبع الطلب</b><span>الزبون يعرف وين طلبه بدون ما يتصل</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">لوحة التحكم</span><h2>المتجر كله قدام المدير بشاشة وحدة</h2></div>
+      <p>أول ما يفتح المدير اللوحة يشوف مبيعات اليوم، الطلبات الي تنتظر، والألعاب الي قربت تخلص. الأرقام بالشكل أدناه أمثلة توضيحية.</p>
+    </div>
+    <div class="dash">
+      <nav class="side" aria-label="قائمة لوحة التحكم">
+        <div class="brand"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</div>
+        <a class="on"><svg><use href="#i-chart"/></svg><span>الرئيسية</span></a>
+        <a><svg><use href="#i-bag"/></svg><span>الطلبات</span></a>
+        <a><svg><use href="#i-box"/></svg><span>المخزون</span></a>
+        <a><svg><use href="#i-grid"/></svg><span>المنتجات</span></a>
+        <a><svg><use href="#i-tag"/></svg><span>العروض</span></a>
+        <a><svg><use href="#i-users"/></svg><span>الموظفين</span></a>
+        <a><svg><use href="#i-user"/></svg><span>الزبائن</span></a>
+        <div class="who"><span class="av" style="background:var(--sun)">م</span><div>المدير<br><span style="color:#9A96C4;font-size:12px">صلاحية كاملة</span></div></div>
+      </nav>
+      <div class="main">
+        <div class="main-top"><h3>صباح الخير</h3><span class="chip orange">٧ طلبات تنتظر التغليف</span></div>
+        <div class="kpis num">
+          <div class="kpi"><span>مبيعات اليوم</span><b>١٬٨٤٠٬٠٠٠</b><small class="up">▲ ١٢٪ عن أمس</small></div>
+          <div class="kpi"><span>الطلبات</span><b>٤٦</b><small class="up">▲ ٨ طلبات</small></div>
+          <div class="kpi"><span>متوسط السلة</span><b>٤٠٬٠٠٠</b><small class="muted">دينار</small></div>
+          <div class="kpi"><span>قريبة النفاد</span><b>٩</b><small class="down">تحتاج طلبية</small></div>
+        </div>
+        <div class="dash-row">
+          <div class="panel chart">
+            <h4>مبيعات آخر ٧ أيام <span class="chip" style="background:var(--surface)">ألف دينار</span></h4>
+            <svg viewBox="0 0 420 180" role="img" aria-label="مخطط مبيعات أسبوعي">
+              <defs><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6A2B" stop-opacity=".28"/><stop offset="1" stop-color="#FF6A2B" stop-opacity="0"/></linearGradient></defs>
+              <g stroke="var(--line)" stroke-width="1"><line x1="40" y1="20" x2="410" y2="20"/><line x1="40" y1="65" x2="410" y2="65"/><line x1="40" y1="110" x2="410" y2="110"/><line x1="40" y1="155" x2="410" y2="155"/></g>
+              <g fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="inherit"><text x="32" y="24">٢٠٠٠</text><text x="32" y="69">١٥٠٠</text><text x="32" y="114">١٠٠٠</text><text x="32" y="159">٥٠٠</text></g>
+              <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4 L400 155 L60 155Z" fill="url(#gA)"/>
+              <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4" fill="none" stroke="#FF6A2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="400" cy="34.4" r="5.5" fill="#FF6A2B" stroke="var(--ground)" stroke-width="3"/>
+              <g fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="inherit"><text x="60" y="175">سبت</text><text x="118" y="175">أحد</text><text x="176" y="175">اثنين</text><text x="234" y="175">ثلاثاء</text><text x="292" y="175">أربعاء</text><text x="350" y="175">خميس</text><text x="400" y="175">جمعة</text></g>
+            </svg>
+          </div>
+          <div class="panel">
+            <h4>قربت تخلص <span class="chip pink">٩ منتجات</span></h4>
+            <div class="lowlist">
+              <div class="low"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span><div class="ln"><b>سيارة سباق بالريموت</b><div class="bar"><i style="width:8%;background:var(--pink)"></i></div></div><span class="num">٢</span></div>
+              <div class="low"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ln"><b>صاروخ الفضاء</b><div class="bar"><i style="width:20%;background:var(--pink)"></i></div></div><span class="num">٤</span></div>
+              <div class="low"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span><div class="ln"><b>يد تحكم ألعاب</b><div class="bar"><i style="width:30%;background:var(--sun)"></i></div></div><span class="num">٦</span></div>
+              <div class="low"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></span><div class="ln"><b>بزل خريطة العراق</b><div class="bar"><i style="width:35%;background:var(--sun)"></i></div></div><span class="num">٧</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">المخزون</span><h2>كل قطعة محسوبة، بكل مخزن وفرع</h2></div>
+      <p>الكمية تنقص تلقائياً مع كل طلب أونلاين أو بيع من المحل، وترجع تلقائياً عند الإرجاع. النظام يصيح قبل ما تخلص اللعبة، مو بعد.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المنتج</th><th>الرمز SKU</th><th>القسم</th><th>العمر</th><th>المخزن الرئيسي</th><th>فرع المنصور</th><th>الحالة</th></tr></thead>
+        <tbody class="num">
+          <tr><td><span class="prod"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span>صاروخ الفضاء القابل للتركيب</span></td><td><span class="sku">SP-TOY-0142</span></td><td>فضاء وعلوم</td><td>٦+</td><td>٤</td><td>٠</td><td><span class="chip pink">قريب النفاد</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></span>مكعبات بناء ١٢٠ قطعة</span></td><td><span class="sku">SP-BLD-0087</span></td><td>تركيب</td><td>٣+</td><td>٥٨</td><td>١٤</td><td><span class="chip mint">متوفر</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span>دبدوب كبير ٦٠ سم</span></td><td><span class="sku">SP-PLS-0210</span></td><td>دمى</td><td>٠+</td><td>٢٢</td><td>٩</td><td><span class="chip mint">متوفر</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span>سيارة سباق بالريموت</span></td><td><span class="sku">SP-RC-0031</span></td><td>سيارات</td><td>٨+</td><td>٢</td><td>٣</td><td><span class="chip sun">طلبية بالطريق</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span>يد تحكم ألعاب لاسلكية</span></td><td><span class="sku">SP-GAM-0415</span></td><td>ألعاب إلكترونية</td><td>٧+</td><td>٠</td><td>٠</td><td><span class="chip">نفدت · قائمة انتظار ١٧</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="inv-feats">
+      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-scan"/></svg></span><b>باركود وQR</b><p>طباعة ملصقات لكل منتج، والاستلام والجرد بالمسح من الموبايل.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-shelf"/></svg></span><b>مواقع التخزين</b><p>كل لعبة إلها رف ومكان، حتى الموظف يلگاها بثواني وقت التغليف.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-truck"/></svg></span><b>الموردين والطلبيات</b><p>أوامر شراء للموردين، واستلام جزئي، وتكلفة كل دفعة لحساب الربح الحقيقي.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-bell"/></svg></span><b>أعلمني عند التوفر</b><p>الزبون يسجل على اللعبة النافدة، وتوصله رسالة أول ما ترجع للمخزن.</p></div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">المدير والموظفين</span><h2>المدير يعيّن، وكل موظف يشوف شغله بس</h2></div>
+      <p>المدير يضيف موظف برقم تلفونه، ويختار دوره، وممكن يحدده بفرع معين. كل تعديل على سعر أو كمية أو طلب ينسجل باسم الي سواه ووقته.</p>
+    </div>
+    <div class="roles">
+      <div class="card tree">
+        <div class="node boss"><span class="av" style="background:#fff">م</span><div>المدير العام<small>يضيف ويحذف الموظفين ويحدد الصلاحيات</small></div></div>
+        <span class="stem"></span>
+        <div class="team">
+          <div class="node"><span class="av" style="background:var(--mint)">ز</span><div>مشرف المخزون<small>الاستلام والجرد</small></div></div>
+          <div class="node"><span class="av" style="background:var(--sky)">ع</span><div>موظف الطلبات<small>التجهيز والتغليف</small></div></div>
+          <div class="node"><span class="av" style="background:var(--pink)">س</span><div>خدمة العملاء<small>الرد والإرجاع</small></div></div>
+          <div class="node"><span class="av" style="background:var(--sun)">ك</span><div>المحاسب<small>المبالغ والتقارير</small></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="tbl-wrap">
+          <table class="matrix" style="min-width:560px">
+            <thead><tr><th>الصلاحية</th><th>المدير</th><th>المخزون</th><th>الطلبات</th><th>خدمة العملاء</th><th>المحاسب</th></tr></thead>
+            <tbody>
+              <tr><td>إضافة وتعديل المنتجات</td><td><span class="yes">✓</span></td><td><span class="part">~</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>تعديل الأسعار</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>تعديل الكميات والجرد</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>تجهيز الطلبات وتحديث حالتها</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="part">~</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>الإرجاع والاستبدال</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>إنشاء بروموكود</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>التقارير المالية</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td></tr>
+              <tr><td>إدارة الموظفين</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="legend"><span><span class="yes">✓</span>صلاحية كاملة</span><span><span class="part">~</span>عرض أو صلاحية محدودة</span><span><span class="no">–</span>ما يشوفها</span></div>
+      </div>
+    </div>
+    <div class="log">
+      <div class="log-row"><span class="av" style="background:var(--mint)">ز</span><span><b>زينب</b> استلمت ٤٠ قطعة من <b>مكعبات بناء ١٢٠ قطعة</b> للمخزن الرئيسي</span><time class="num">٩:٠٥ ص</time></div>
+      <div class="log-row"><span class="av" style="background:var(--sky)">ع</span><span><b>علي</b> غلّف الطلب <span class="sku">#SP-20418</span> وسلّمه للمندوب</span><time class="num">١١:٤٠ ص</time></div>
+      <div class="log-row"><span class="av" style="background:var(--sun)">م</span><span><b>المدير</b> غيّر سعر <b>صاروخ الفضاء</b> من ٥٠٬٠٠٠ إلى ٤٢٬٠٠٠ د.ع</span><time class="num">١٢:١٥ م</time></div>
+    </div>
+  </section>
+
+  <!-- TRACKING -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">تتبع المنتج</span><h2>رحلة اللعبة من المورد لإيد الطفل</h2></div>
+      <p>كل قطعة إلها سجل: منين إجت، بأي رف انحطت، منو غلّفها، وياهو المندوب الي وصّلها. إذا صار خطأ أو إرجاع، نعرف بالضبط وين صار.</p>
+    </div>
+    <div class="card">
+      <div class="track-card">
+        <span class="bubble" style="background:var(--orange-soft);color:var(--orange);width:56px;height:56px"><svg><use href="#i-rocket"/></svg></span>
+        <div><div class="big">صاروخ الفضاء القابل للتركيب</div><span class="muted">رقم القطعة <span class="sku">SP-TOY-0142-0019</span> · الطلب <span class="sku">#SP-20418</span></span></div>
+        <span class="chip orange">مع المندوب الآن</span>
+      </div>
+      <div class="track num">
+        <div class="step done"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>الاستلام من المورد</b><p>دفعة ٤٠ قطعة، فحص الجودة</p><time>٢ أيلول</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-shelf"/></svg></span><b>التخزين</b><p>المخزن الرئيسي، رف B-04</p><time>٢ أيلول</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-bag"/></svg></span><b>طلب الزبون</b><p>من التطبيق، كود SPACE20</p><time>٢٥ أيلول · ١٠:١٢ ص</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-gift"/></svg></span><b>التجهيز والتغليف</b><p>علي، مع تغليف هدية</p><time>١١:٤٠ ص</time></div>
+        <div class="step now"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>التوصيل</b><p>المندوب حسين، الكرادة</p><time>متوقع ٤–٧ م</time></div>
+        <div class="step"><span class="dot"><svg><use href="#i-check"/></svg></span><b>التسليم</b><p>تأكيد بالكود أو التوقيع</p><time>—</time></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMOS -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">البروموكودات والعروض</span><h2>عروض تجيب زبون وترجّعه</h2></div>
+      <p>المدير يسوي الكود بدقيقة: نسبة أو مبلغ ثابت، حد أدنى للسلة، تاريخ انتهاء، عدد استخدامات، ومحصور بقسم أو منتج معين. وكل كود إله تقرير يبين كم جاب مبيعات.</p>
+    </div>
+    <div class="coupons">
+      <div class="coupon c1"><span style="font-weight:700">عودة للمدارس</span><span class="pct num">٢٠٪</span><span class="cd">SPACE20</span><span class="rules num">على كل الأقسام · حد أدنى ٥٠٬٠٠٠ د.ع · ينتهي ٣٠ أيلول · استخدام واحد لكل زبون</span></div>
+      <div class="coupon c2"><span style="font-weight:700">أول طلب</span><span class="pct num">١٠٬٠٠٠ د.ع</span><span class="cd">WELCOME</span><span class="rules">للزبائن الجدد فقط · يُفعّل تلقائياً بعد التسجيل</span></div>
+      <div class="coupon c3"><span style="font-weight:700">عيد ميلاد سعيد</span><span class="pct num">١٥٪</span><span class="cd">BDAY-SARA</span><span class="rules">كود شخصي يوصل قبل عيد ميلاد الطفل بأسبوع · صالح ١٤ يوم</span></div>
+    </div>
+    <div class="promo-types">
+      <div class="mini"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-star"/></svg></span><b>نقاط الولاء</b><p>كل ١٬٠٠٠ د.ع = نقطة. النقاط تتحول لخصم بالطلب الجاي.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-gift"/></svg></span><b>بطاقات هدايا</b><p>الأهل والأصدقاء يهدون رصيد بدل ما يحتارون باللعبة.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-tag"/></svg></span><b>عروض الباقات</b><p>اشترِ ٢ والثالثة بنص السعر، أو باقة جاهزة لعيد الميلاد.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-bag"/></svg></span><b>السلة المتروكة</b><p>تذكير تلقائي بعد ساعات، مع كود صغير إذا ما رجع الزبون.</p></div>
+    </div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">إضافات نقترحها</span><h2>التفاصيل الي تخلي المتجر متكامل</h2></div>
+      <p>هاي الإضافات مو ضرورية بيوم الإطلاق، بس هي الي تفرق متجر ألعاب عادي عن متجر يرجعله الزبون كل مناسبة.</p>
+    </div>
+    <div class="extras">
+      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-search"/></svg></span><div><h3>تسوق حسب العمر والمناسبة</h3><p>فلتر: ولد أو بنت، العمر، الميزانية، والمناسبة (عيد، نجاح، عيد ميلاد).</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-cake"/></svg></span><div><h3>تذكير أعياد الميلاد</h3><p>الأهل يسجلون أعمار أطفالهم، والمتجر يقترح ألعاب مناسبة قبل المناسبة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-gift"/></svg></span><div><h3>تغليف هدية وبطاقة إهداء</h3><p>خيار تغليف مع رسالة مكتوبة، وإخفاء السعر من الفاتورة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-chat"/></svg></span><div><h3>إشعارات واتساب</h3><p>تأكيد الطلب، خروجه للتوصيل، ووصوله، كلها برسالة واتساب للزبون.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-heart"/></svg></span><div><h3>المفضلة وقائمة الأمنيات</h3><p>الطفل يسوي قائمة ألعابه، والأهل يشاركونها مع العائلة قبل العيد.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-star"/></svg></span><div><h3>تقييمات بالصور</h3><p>الزبائن يقيّمون اللعبة ويرفعون صور، والمدير يوافق قبل النشر.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><div><h3>نقطة بيع للمحل</h3><p>كاشير مربوط بنفس المخزون، حتى البيع بالمحل والأونلاين ما يتضاربون.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-truck"/></svg></span><div><h3>شركات التوصيل</h3><p>ربط مع شركات التوصيل المحلية، وسعر توصيل حسب المحافظة يتحسب تلقائياً.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-shield"/></svg></span><div><h3>سلامة الطفل</h3><p>تحذيرات القطع الصغيرة والمواد وشهادات الجودة واضحة بصفحة كل لعبة.</p></div></div>
+    </div>
+  </section>
+
+  <!-- PHASES -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">مراحل التنفيذ</span><h2>من الفكرة للإطلاق بأربع مراحل</h2></div>
+      <p>كل مرحلة تنتهي بشي يقدر التاجر يشوفه ويعتمده قبل ما ننتقل للي بعدها.</p>
+    </div>
+    <div class="phases">
+      <div class="phase"><div class="w"><span class="n num">١</span><span class="chip">أسبوع ١–٢</span></div><h3>الاكتشاف والتصميم</h3><ul><li>جمع المنتجات والأقسام</li><li>اختيار أسلوب التصميم</li><li>تصميم كل الشاشات على Figma</li></ul></div>
+      <div class="phase"><div class="w"><span class="n num">٢</span><span class="chip">أسبوع ٣–٦</span></div><h3>البرمجة</h3><ul><li>المتجر والتطبيق</li><li>لوحة التحكم والمخزون</li><li>الأدوار والصلاحيات</li></ul></div>
+      <div class="phase"><div class="w"><span class="n num">٣</span><span class="chip">أسبوع ٧–٨</span></div><h3>الربط والتجربة</h3><ul><li>بوابات الدفع والتوصيل</li><li>رفع المنتجات والكميات</li><li>تدريب المدير والموظفين</li></ul></div>
+      <div class="phase"><div class="w"><span class="n num">٤</span><span class="chip">أسبوع ٩–١٠</span></div><h3>الإطلاق والدعم</h3><ul><li>إطلاق المتجر ونشر التطبيق</li><li>متابعة يومية أول شهر</li><li>تحسينات حسب الاستخدام</li></ul></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div>
+      <span class="eyebrow" style="color:var(--sun)">الخطوة الجاية</span>
+      <h2>نبلش أول ما توصلنا هاي الأمور</h2>
+      <p>بعد ما نستلمها نرجعلكم بعرض سعر مفصل وجدول زمني نهائي، وأول نسخة من التصميم خلال أسبوعين.</p>
+    </div>
+    <div class="need">
+      <div><i>✓</i>الشعار والهوية (أو نصمم لكم)</div>
+      <div><i>✓</i>قائمة المنتجات والأسعار والكميات</div>
+      <div><i>✓</i>عدد الفروع والمخازن والموظفين</div>
+      <div><i>✓</i>طرق الدفع والتوصيل المطلوبة</div>
+    </div>
+  </div>
+
+  <footer>مقترح أولي قابل للتعديل حسب احتياج المتجر · الأسعار والأرقام بالشاشات أمثلة توضيحية</footer>
+</div>
+
+<script>
+(function(){
+  document.documentElement.setAttribute('dir','rtl');
+  document.documentElement.setAttribute('lang','ar');
+
+  var opts=[document.getElementById('opt-ours'),document.getElementById('opt-ref')];
+  opts.forEach(function(b){b.addEventListener('click',function(){opts.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});});});
+
+  var ar=function(n){return n.toLocaleString('ar-IQ',{useGrouping:true})+' د.ع'};
+  var SUB=78000,SHIP=5000;
+  var codes={SPACE20:{p:.20,min:50000},WELCOME:{flat:10000,min:0}};
+  var input=document.getElementById('promo-input'),msg=document.getElementById('promo-msg'),
+      row=document.getElementById('row-disc'),dEl=document.getElementById('s-disc'),tEl=document.getElementById('s-tot');
+  function apply(){
+    var c=(input.value||'').trim().toUpperCase(),r=codes[c];
+    if(!c){msg.className='promo-msg muted';msg.textContent='جرّب: SPACE20';row.hidden=true;tEl.textContent=ar(SUB+SHIP);return;}
+    if(!r){msg.className='promo-msg bad';msg.textContent='الكود غير صحيح، تأكد من الحروف';row.hidden=true;tEl.textContent=ar(SUB+SHIP);return;}
+    var d=r.p?Math.round(SUB*r.p):r.flat;
+    row.hidden=false;dEl.textContent='− '+ar(d);tEl.textContent=ar(SUB-d+SHIP);
+    msg.className='promo-msg ok';msg.textContent='تم تطبيق الكود '+c+'، وفّرت '+ar(d);
+  }
+  document.getElementById('promo-btn').addEventListener('click',apply);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();apply();}});
+})();
+</script>
