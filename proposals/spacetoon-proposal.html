@@ -478,6 +478,72 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
 @media (max-width:640px){
   .hero-stats{grid-template-columns:1fr 1fr}
 }
+
+/* ===== v3: sections, brands, references ===== */
+.w-subnav{display:flex;gap:.4em;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.55em 0;margin-top:-.4em;font-weight:700;color:var(--ink-2);flex-wrap:nowrap}
+.w-subnav span{padding:.35em .9em;border-radius:.7em;white-space:nowrap;display:inline-flex;align-items:center;gap:.4em}
+.w-subnav span.on{background:var(--ink);color:var(--ground)}
+.w-subnav span.hot{color:var(--pink)}
+.w-subnav svg{width:.8em;height:.8em}
+.w-cat{padding:.8em .7em;gap:.6em;font-size:.95em;line-height:1.3}
+.web-stack{position:relative;flex:1;overflow:hidden}
+.w-mega{position:absolute;inset-inline:0;top:0;z-index:3;background:var(--surface);border-radius:0 0 1.6em 1.6em;box-shadow:0 2em 3em -1.5em rgba(28,26,59,.35);padding:1.8em 2em;display:grid;grid-template-columns:1fr 1fr 1fr 1.1fr;gap:2em}
+.w-dim{position:absolute;inset:0;background:rgba(28,26,59,.28);z-index:2}
+.w-col h5{font-family:var(--display);font-size:1.25em;font-weight:800;margin:0 0 .8em;display:flex;align-items:center;gap:.5em}
+.w-col h5 i{width:1.9em;height:1.9em;border-radius:.6em;display:grid;place-items:center;font-style:normal;color:#fff;font-size:.8em}
+.w-col ul{list-style:none;margin:0;padding:0;display:grid;gap:.55em;font-weight:600;color:var(--ink-2)}
+.w-col li{display:flex;align-items:center;gap:.6em}
+.w-col li::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--dot,var(--line));flex:none}
+.w-col li.more{color:var(--orange)}
+.w-col li.more::before{background:var(--orange)}
+.w-feat{border-radius:1.4em;background:var(--pink-soft);padding:1.3em;display:flex;flex-direction:column;gap:.5em;justify-content:flex-end;position:relative;overflow:hidden;min-height:14em}
+.w-feat svg{position:absolute;top:1em;inset-inline-start:1em;width:7em;height:7em}
+.w-feat b{font-family:var(--display);font-size:1.3em;position:relative}
+.w-feat span{position:relative;color:var(--ink-2)}
+
+.secs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sec-card{background:var(--surface);border-radius:24px;padding:22px;display:grid;gap:14px;align-content:start;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.sec-card .top-row{display:flex;align-items:center;gap:14px}
+.sec-card .art{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;flex:none}
+.sec-card .art svg{width:42px;height:42px}
+.sec-card h3{font-size:21px;font-weight:800}
+.sec-card .sub{font-size:13.5px;color:var(--ink-2)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:13px;font-weight:600;padding:4px 11px;border-radius:999px;background:var(--ground);color:var(--ink-2)}
+
+.brands{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.brand-card{background:var(--surface);border-radius:26px;padding:24px;box-shadow:var(--shadow);display:grid;gap:18px}
+.brand-head{display:flex;align-items:center;gap:14px}
+.wordmark{height:58px;min-width:58px;padding-inline:18px;border-radius:18px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:21px;color:#fff;white-space:nowrap}
+.brand-head h3{font-size:20px;font-weight:800}
+.brand-head p{font-size:14px;color:var(--ink-2)}
+.subbrands{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sb{border-radius:16px;padding:14px 12px;display:grid;gap:4px;justify-items:center;text-align:center;border:1.5px solid var(--line);background:var(--ground)}
+.sb b{font-family:var(--display);font-weight:900;font-size:17px}
+.sb span{font-size:12px;color:var(--ink-2)}
+.sb.more{border-style:dashed;color:var(--ink-3)}
+.sb.more b{color:var(--ink-3);font-weight:700}
+.note{display:flex;gap:12px;align-items:flex-start;background:var(--sky-soft);border-radius:18px;padding:14px 18px;margin-top:18px;font-size:15px}
+.note svg{width:20px;height:20px;color:var(--sky);flex:none;margin-top:4px}
+
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.ref{background:var(--surface);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.ref .shot{background:var(--surface-2);height:340px;overflow:hidden;position:relative}
+.ref .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.ref .shot.tall{overflow-y:auto}
+.ref .shot.tall img{height:auto}
+.ref .shot .n{position:absolute;top:12px;inset-inline-start:12px;background:var(--ink);color:var(--ground);border-radius:12px;padding:3px 12px;font-weight:800;font-family:var(--display);font-size:14px}
+.ref .txt{padding:20px 22px 22px;display:grid;gap:10px}
+.ref h3{font-size:19px;font-weight:800}
+.ref ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14.5px;color:var(--ink-2)}
+.ref li{display:flex;gap:8px}
+.ref li svg{width:15px;height:15px;color:var(--mint);flex:none;margin-top:6px}
+.ref .fit{font-size:13.5px;border-top:1px dashed var(--line);padding-top:10px;color:var(--ink-2)}
+.ref .fit b{color:var(--ink)}
+.credit{font-size:13px;color:var(--ink-3);margin-top:14px}
+
+@media (max-width:1000px){.secs,.refs{grid-template-columns:1fr 1fr}.brands{grid-template-columns:1fr}}
+@media (max-width:640px){.secs,.refs{grid-template-columns:1fr}.subbrands{grid-template-columns:1fr 1fr}.ref .shot{height:300px}}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -517,6 +583,14 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2" d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
     <symbol id="i-minus" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M7 12h10"/></symbol>
     <symbol id="i-part" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/><path fill="currentColor" d="M12 6a6 6 0 0 1 0 12z"/></symbol>
+    <symbol id="i-boy" viewBox="0 0 48 48"><rect x="12" y="14" width="24" height="20" rx="6" fill="#3B7BF2"/><rect x="21" y="6" width="6" height="8" rx="2" fill="#1C1A3B"/><circle cx="24" cy="5" r="3" fill="#FF6A2B"/><circle cx="19" cy="23" r="3.5" fill="#fff"/><circle cx="29" cy="23" r="3.5" fill="#fff"/><circle cx="19" cy="23" r="1.6" fill="#1C1A3B"/><circle cx="29" cy="23" r="1.6" fill="#1C1A3B"/><rect x="19" y="29" width="10" height="2" rx="1" fill="#DDE8FF"/><rect x="16" y="35" width="16" height="9" rx="3" fill="#1C1A3B"/><rect x="6" y="18" width="5" height="11" rx="2.5" fill="#FFC53D"/><rect x="37" y="18" width="5" height="11" rx="2.5" fill="#FFC53D"/></symbol>
+    <symbol id="i-girl" viewBox="0 0 48 48"><path fill="#FFC53D" d="M16 9l4 4 4-6 4 6 4-4-1 8H17z"/><circle cx="24" cy="23" r="8" fill="#F3D2AE"/><path fill="#8A4B2A" d="M15 23c0-7 4-10 9-10s9 3 9 10c-2-3-5-5-9-5s-7 2-9 5z"/><circle cx="21" cy="24" r="1.2" fill="#1C1A3B"/><circle cx="27" cy="24" r="1.2" fill="#1C1A3B"/><path fill="#F2507F" d="M16 44l4-13h8l4 13z"/><circle cx="18.5" cy="26.5" r="1.5" fill="#F2507F" opacity=".5"/><circle cx="29.5" cy="26.5" r="1.5" fill="#F2507F" opacity=".5"/></symbol>
+    <symbol id="i-baby" viewBox="0 0 48 48"><circle cx="24" cy="16" r="11" fill="#1FB5A6"/><circle cx="24" cy="16" r="6" fill="#D6F4F0"/><circle cx="17" cy="11" r="2" fill="#FFC53D"/><circle cx="31" cy="11" r="2" fill="#F2507F"/><rect x="21.5" y="26" width="5" height="14" rx="2.5" fill="#FFC53D"/><circle cx="24" cy="42" r="4" fill="#F2507F"/></symbol>
+    <symbol id="i-wood" viewBox="0 0 48 48"><rect x="4" y="18" width="16" height="16" rx="2" fill="#C9854A"/><rect x="7" y="12" width="7" height="6" rx="1" fill="#A96B37"/><rect x="22" y="22" width="12" height="12" rx="2" fill="#D99A5E"/><rect x="36" y="22" width="9" height="12" rx="2" fill="#E8B27C"/><circle cx="10" cy="37" r="4" fill="#8A5528"/><circle cx="28" cy="37" r="4" fill="#8A5528"/><circle cx="40" cy="37" r="3.5" fill="#8A5528"/><rect x="8" y="21" width="8" height="6" rx="1" fill="#F3D2AE"/></symbol>
+    <symbol id="i-rc" viewBox="0 0 48 48"><path fill="#F2507F" d="M8 22l4-7h16l5 7h8v7H6v-7z"/><path fill="#FDE0E9" d="M14 16h6v6h-8zM23 16h5l3.5 6H23z"/><circle cx="13" cy="34" r="8" fill="#1C1A3B"/><circle cx="36" cy="34" r="8" fill="#1C1A3B"/><circle cx="13" cy="34" r="3" fill="#FFC53D"/><circle cx="36" cy="34" r="3" fill="#FFC53D"/><path stroke="#1C1A3B" stroke-width="2" stroke-linecap="round" d="M34 15V5"/><circle cx="34" cy="5" r="2" fill="#FF6A2B"/></symbol>
+    <symbol id="i-scooter" viewBox="0 0 48 48"><path fill="none" stroke="#1FB5A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M33 6l4 28M28 6h9"/><rect x="10" y="32" width="26" height="5" rx="2.5" fill="#1FB5A6"/><circle cx="11" cy="40" r="5" fill="#1C1A3B"/><circle cx="37" cy="40" r="5" fill="#1C1A3B"/><circle cx="11" cy="40" r="2" fill="#fff"/><circle cx="37" cy="40" r="2" fill="#fff"/></symbol>
+    <symbol id="i-blaster" viewBox="0 0 48 48"><path fill="#FF6A2B" d="M6 16h28l6 4v6H22l-3 14h-8l3-14H6z"/><rect x="34" y="12" width="8" height="6" rx="2" fill="#3B7BF2"/><rect x="10" y="10" width="14" height="6" rx="2" fill="#FFC53D"/><circle cx="44" cy="23" r="2" fill="#3B7BF2"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
   </defs>
 </svg>
 
@@ -560,10 +634,10 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
           <div class="web">
             <div class="w-head">
               <span class="w-logo"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</span>
-              <nav class="w-nav"><b>الرئيسية</b><span>الأقسام</span><span>العروض</span><span>الماركات</span><span>تتبع طلبي</span></nav>
-              <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة أو فئة عمرية</span>
+                            <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة مثل باربي أو هوت ويلز</span>
               <span class="w-icons"><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-bag"/></svg><em>٣</em></span><span><svg><use href="#i-user"/></svg></span></span>
             </div>
+            <div class="w-subnav"><span>أولاد</span><span>بنات</span><span>أطفال</span><span>الماركات<svg><use href="#i-down"/></svg></span><span>الخشبيات</span><span>سيارات التحكم الكبيرة</span><span>السكوترات</span><span class="hot">العروض</span></div>
             <div class="w-hero">
               <div class="w-banner">
                 <span class="blob"></span><span class="blob2"></span>
@@ -578,12 +652,12 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               </div>
             </div>
             <div class="w-cats">
-              <div class="w-cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء وعلوم</div>
-              <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
-              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>ألعاب تركيب</div>
-              <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
-              <div class="w-cat"><i style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></i>إلكترونيات</div>
-              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-ball"/></svg></i>ألعاب خارجية</div>
+              <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
+              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
+              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
+              <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></i>الخشبيات</div>
+              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></i>سيارات التحكم الكبيرة</div>
+              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></i>السكوترات</div>
             </div>
             <div class="w-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
             <div class="w-grid num">
@@ -616,10 +690,10 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
               <span class="code">فضاء٢٠</span>
             </div>
             <div class="cats">
-              <div class="cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء</div>
-              <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
-              <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>تركيب</div>
-              <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
+              <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
+              <div class="cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
+              <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
+              <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-scooter"/></svg></i>سكوترات</div>
             </div>
             <div class="s-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
             <div class="pgrid num">
@@ -654,6 +728,112 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     </div>
   </section>
 
+  <!-- SECTIONS & BRANDS -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">الأقسام والماركات</span><h2>أقسام واضحة يجد فيها كل طفل لعبته</h2></div>
+      <p>يُقسَّم المتجر بطريقتين معاً: حسب الطفل ونوع اللعبة، وحسب الماركة. يظهر الشريط نفسه أعلى كل صفحة، وعند المرور على «الماركات» تنفتح قائمة تعرض كل ماركة وماركاتها الفرعية.</p>
+    </div>
+
+    <div class="mac" aria-label="قائمة الماركات مفتوحة في المتجر على جهاز ماك">
+      <div class="mac-lid">
+        <div class="mac-screen">
+          <div class="chrome"><span class="lights"><i></i><i></i><i></i></span><span class="addr"><svg><use href="#i-lock"/></svg>متجر سبيستون · الماركات</span><span class="sp"></span></div>
+          <div class="web">
+            <div class="w-head">
+              <span class="w-logo"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</span>
+              <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة مثل باربي أو هوت ويلز</span>
+              <span class="w-icons"><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-bag"/></svg><em>٣</em></span><span><svg><use href="#i-user"/></svg></span></span>
+            </div>
+            <div class="w-subnav"><span>أولاد</span><span>بنات</span><span>أطفال</span><span class="on">الماركات<svg><use href="#i-down"/></svg></span><span>الخشبيات</span><span>سيارات التحكم الكبيرة</span><span>السكوترات</span><span class="hot">العروض</span></div>
+            <div class="web-stack">
+              <div class="w-mega">
+                <div class="w-col">
+                  <h5><i style="background:#3B7BF2">ت</i>توي ترايانغل</h5>
+                  <ul>
+                    <li style="--dot:#FF6A2B">هوت ويلز</li>
+                    <li style="--dot:#3B7BF2">إكس شوت</li>
+                    <li style="--dot:#1FB5A6">ماركة فرعية</li>
+                    <li style="--dot:#FFC53D">ماركة فرعية</li>
+                    <li class="more">كل منتجات توي ترايانغل</li>
+                  </ul>
+                </div>
+                <div class="w-col">
+                  <h5><i style="background:#E0263A">م</i>ماتيل</h5>
+                  <ul>
+                    <li style="--dot:#F2507F">باربي</li>
+                    <li style="--dot:#7A3FC4">مونستر هاي</li>
+                    <li style="--dot:#E0263A">أونو</li>
+                    <li style="--dot:#FFC53D">ماركة فرعية</li>
+                    <li class="more">كل منتجات ماتيل</li>
+                  </ul>
+                </div>
+                <div class="w-col">
+                  <h5><i style="background:var(--ink-3)">+</i>ماركات أخرى</h5>
+                  <ul>
+                    <li>ماركة ١</li>
+                    <li>ماركة ٢</li>
+                    <li>ماركة ٣</li>
+                    <li>ماركة ٤</li>
+                    <li class="more">عرض كل الماركات</li>
+                  </ul>
+                </div>
+                <div class="w-feat"><svg><use href="#i-girl"/></svg><b>وصل حديثاً من باربي</b><span>مجموعة الموسم الجديد</span></div>
+              </div>
+              <div class="w-dim"></div>
+              <div class="w-cats" style="padding-top:1.2em">
+                <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></i>أولاد</div>
+                <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></i>بنات</div>
+                <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></i>أطفال</div>
+                <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></i>الخشبيات</div>
+                <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></i>سيارات التحكم الكبيرة</div>
+                <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></i>السكوترات</div>
+              </div>
+              <div class="w-title" style="margin-top:1.4em"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
+              <div class="w-grid num" style="margin-top:1em">
+                <div class="w-p"><div class="img" style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></div><div class="n">دمية باربي</div><div class="p"><b>٢٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></div><div class="n">مسار هوت ويلز</div><div class="p"><b>٣٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--orange-soft)"><svg><use href="#i-blaster"/></svg></div><div class="n">مسدس إكس شوت</div><div class="p"><b>١٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></div><div class="n">سكوتر بثلاث عجلات</div><div class="p"><b>٤٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></div><div class="n">قطار خشبي</div><div class="p"><b>٢٠٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mac-base"></div>
+    </div>
+
+    <div class="secs" style="margin-top:36px">
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sky-soft)"><svg><use href="#i-boy"/></svg></span><div><h3>أولاد</h3><span class="sub">ألعاب مختارة للأولاد حسب العمر</span></div></div><div class="tags"><span>سيارات</span><span>مسدسات مائية وإسفنجية</span><span>ألعاب تركيب</span><span>شخصيات الأبطال</span><span>فضاء وعلوم</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><svg><use href="#i-girl"/></svg></span><div><h3>بنات</h3><span class="sub">ألعاب مختارة للبنات حسب العمر</span></div></div><div class="tags"><span>دمى</span><span>بيوت الدمى</span><span>إكسسوارات</span><span>أطقم المطبخ</span><span>أشغال يدوية</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><svg><use href="#i-baby"/></svg></span><div><h3>أطفال</h3><span class="sub">من الولادة حتى ثلاث سنوات</span></div></div><div class="tags"><span>ألعاب حسية</span><span>خشخيشات</span><span>ألعاب الاستحمام</span><span>ألعاب الدفع والمشي</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--sun-soft)"><svg><use href="#i-wood"/></svg></span><div><h3>الخشبيات</h3><span class="sub">ألعاب خشبية تعليمية وآمنة</span></div></div><div class="tags"><span>أحجيات</span><span>قطارات خشبية</span><span>مكعبات</span><span>ألعاب تعليمية</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--pink-soft)"><svg><use href="#i-rc"/></svg></span><div><h3>سيارات التحكم الكبيرة</h3><span class="sub">سيارات وشاحنات بأحجام كبيرة</span></div></div><div class="tags"><span>دفع رباعي</span><span>شاحنات عملاقة</span><span>سيارات يركبها الطفل</span><span>بطاريات وقطع غيار</span></div></div>
+      <div class="sec-card"><div class="top-row"><span class="art" style="background:var(--mint-soft)"><svg><use href="#i-scooter"/></svg></span><div><h3>السكوترات</h3><span class="sub">لكل الأعمار مع مستلزمات الأمان</span></div></div><div class="tags"><span>بعجلتين</span><span>بثلاث عجلات</span><span>كهربائية</span><span>خوذ وواقيات</span></div></div>
+    </div>
+
+    <div class="brands">
+      <div class="brand-card">
+        <div class="brand-head"><span class="wordmark" style="background:#3B7BF2">توي ترايانغل</span><div><h3>ماركة رئيسية</h3><p>صفحة خاصة للماركة، وصفحة وفلتر لكل ماركة فرعية</p></div></div>
+        <div class="subbrands">
+          <div class="sb"><b style="color:#FF6A2B">هوت ويلز</b><span>سيارات ومسارات</span></div>
+          <div class="sb"><b style="color:#3B7BF2">إكس شوت</b><span>مسدسات إسفنجية ومائية</span></div>
+          <div class="sb more"><b>+ المزيد</b><span>من قائمة التاجر</span></div>
+        </div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-head"><span class="wordmark" style="background:#E0263A">ماتيل</span><div><h3>ماركة رئيسية</h3><p>صفحة خاصة للماركة، وصفحة وفلتر لكل ماركة فرعية</p></div></div>
+        <div class="subbrands">
+          <div class="sb"><b style="color:#F2507F">باربي</b><span>دمى وإكسسوارات</span></div>
+          <div class="sb"><b style="color:#7A3FC4">مونستر هاي</b><span>دمى الشخصيات</span></div>
+          <div class="sb"><b style="color:#E0263A">أونو</b><span>ألعاب الورق</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><svg><use href="#i-grid"/></svg><p>يضيف المدير الأقسام والماركات والماركات الفرعية من لوحة التحكم دون الحاجة إلى مبرمج، ويمكن ربط المنتج الواحد بأكثر من قسم. فمثلاً تظهر سيارة هوت ويلز في قسم «أولاد» وفي صفحة «هوت ويلز» معاً. وفي كل قسم فلاتر للعمر والماركة والسعر والتوفر.</p></div>
+  </section>
+
   <!-- DESIGN -->
   <section>
     <div class="sec-head">
@@ -669,7 +849,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
       </button>
       <button class="opt" id="opt-ref" aria-pressed="false" type="button">
         <div class="rh"><h3>وفق مرجع التاجر</h3><span class="radio"></span></div>
-        <p class="muted">يزوّدنا التاجر بشعاره وألوانه أو بموقع يعجبه مرجعاً، فنطبّقه بدقة.</p>
+        <p class="muted">يزوّدنا التاجر بشعاره وألوانه أو بتصاميم تعجبه، مثل المراجع المعروضة أدناه، فنطبّقها بدقة.</p>
         <ul><li>الالتزام بالهوية القائمة من شعار وخطوط وألوان</li><li>تحسين تجربة الاستخدام دون تغيير الطابع العام</li><li>مراجعة كل شاشة واعتمادها قبل البرمجة</li></ul>
         <div class="swatches"><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i></div>
       </button>
@@ -684,11 +864,11 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
             <div class="web">
               <div class="w-head">
                 <span class="w-logo"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</span>
-                <nav class="w-nav"><span>الرئيسية</span><b>الأقسام</b><span>العروض</span><span>الماركات</span><span>تتبع طلبي</span></nav>
-                <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة أو فئة عمرية</span>
+                                <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة مثل باربي أو هوت ويلز</span>
                 <span class="w-icons"><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-bag"/></svg><em>٣</em></span><span><svg><use href="#i-user"/></svg></span></span>
               </div>
-              <div class="w-crumbs">الرئيسية · فضاء وعلوم · <b>صاروخ الفضاء للتركيب</b></div>
+              <div class="w-subnav"><span class="on">أولاد</span><span>بنات</span><span>أطفال</span><span>الماركات<svg><use href="#i-down"/></svg></span><span>الخشبيات</span><span>سيارات التحكم الكبيرة</span><span>السكوترات</span><span class="hot">العروض</span></div>
+              <div class="w-crumbs">الرئيسية · أولاد · فضاء وعلوم · <b>صاروخ الفضاء للتركيب</b></div>
               <div class="w-pd">
                 <div class="w-gal">
                   <div class="w-thumbs"><span class="on"><svg><use href="#i-rocket"/></svg></span><span><svg><use href="#i-blocks"/></svg></span><span><svg><use href="#i-puzzle"/></svg></span><span><svg><use href="#i-ball"/></svg></span></div>
@@ -790,6 +970,53 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
         <figcaption><b>تتبع الطلب</b><span>يعرف العميل مكان طلبه دون الحاجة إلى الاتصال</span></figcaption>
       </figure>
     </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section>
+    <div class="sec-head">
+      <div><span class="eyebrow">مراجع التصميم</span><h2>أي أسلوب يناسب ذوقكم؟</h2></div>
+      <p>هذه ثلاثة مراجع لأساليب مختلفة. اختاروا الأقرب إليكم، أو اختاروا عناصر من أكثر من مرجع، ونبني على أساسها تصميم سبيستون بهويته الخاصة.</p>
+    </div>
+    <div class="refs">
+      <article class="ref">
+        <div class="shot"><img src="refs/ref1.jpg" alt="مرجع تصميم لتطبيق بواجهة فاتحة وبطاقات كبيرة وشريط قنوات أفقي" loading="lazy"><span class="n num">المرجع ١</span></div>
+        <div class="txt">
+          <h3>واجهة هادئة وبطاقات واضحة</h3>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>خلفية فاتحة وبطاقات كبيرة بزوايا دائرية</li>
+            <li><svg><use href="#i-check"/></svg>شريط أفقي للماركات يسهل التنقل بينها</li>
+            <li><svg><use href="#i-check"/></svg>شريط سفلي بزر بحث بارز في المنتصف</li>
+          </ul>
+          <p class="fit"><b>يناسب:</b> متجر كثير المنتجات يريد السرعة والوضوح.</p>
+        </div>
+      </article>
+      <article class="ref">
+        <div class="shot"><img src="refs/ref2.jpg" alt="مرجع تصميم لتطبيق أطفال برسومات مرحة وشخصية مرافقة وأيقونات أقسام دائرية" loading="lazy"><span class="n num">المرجع ٢</span></div>
+        <div class="txt">
+          <h3>رسومات مرحة وشخصية للمتجر</h3>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>شخصية مرسومة ترافق الطفل وترحب به</li>
+            <li><svg><use href="#i-check"/></svg>أقسام بأيقونات دائرية ملونة</li>
+            <li><svg><use href="#i-check"/></svg>ألوان ناعمة ومشاهد ألعاب مجسّمة للعرض</li>
+          </ul>
+          <p class="fit"><b>يناسب:</b> هوية ودودة تجذب الأطفال والأهل معاً.</p>
+        </div>
+      </article>
+      <article class="ref">
+        <div class="shot tall" tabindex="0" aria-label="مرجع ٣، يمكن التمرير داخل الصورة"><img src="refs/ref3.jpg" alt="مرجع تصميم لموقع ألعاب بألوان صفراء وزرقاء جريئة وشخصيات كبيرة على أطراف الصفحة" loading="lazy"><span class="n num">المرجع ٣</span></div>
+        <div class="txt">
+          <h3>ألوان جريئة وشخصيات كبيرة</h3>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>ألوان قوية وشخصيات تخرج من أطراف الصفحة</li>
+            <li><svg><use href="#i-check"/></svg>شبكة أقسام بالصور وشريط لمزايا التوصيل</li>
+            <li><svg><use href="#i-check"/></svg>نقاط ولاء بعملة خاصة بالمتجر</li>
+          </ul>
+          <p class="fit"><b>يناسب:</b> متجر يريد طابعاً احتفالياً لافتاً على شاشة الحاسوب.</p>
+        </div>
+      </article>
+    </div>
+    <p class="credit">صور المراجع أعمال مصممين آخرين، وهي معروضة هنا لتوضيح الأسلوب فقط ولن تُستخدم في المتجر.</p>
   </section>
 
   <!-- DASHBOARD -->
