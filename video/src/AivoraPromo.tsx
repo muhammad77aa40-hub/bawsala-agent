@@ -14,6 +14,8 @@ import {
 	staticFile,
 	useCurrentFrame,
 } from 'remotion';
+import {BarChart3, CheckCircle2, Clapperboard, Globe, Landmark, type LucideIcon, MonitorSmartphone, ShoppingBag, Smartphone, Zap} from 'lucide-react';
+import {siInstagram, siWhatsapp} from 'simple-icons';
 import T from './timeline.json';
 
 // Brand colors taken from aivorastudio.info
@@ -260,6 +262,12 @@ const Center: React.FC<{children: React.ReactNode; gap?: number; style?: React.C
 	<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', direction: 'rtl', gap, ...style}}>{children}</AbsoluteFill>
 );
 
+const BrandIcon: React.FC<{path: string}> = ({path}) => (
+	<svg width={52} height={52} viewBox="0 0 24 24" fill={LIME}>
+		<path d={path} />
+	</svg>
+);
+
 // ---------- scenes (local frame f) ----------
 
 const Intro: React.FC<{f: number}> = ({f}) => {
@@ -317,7 +325,7 @@ const Intro: React.FC<{f: number}> = ({f}) => {
 					transform: 'skewX(-10deg)',
 				}}
 			>
-				شركة برمجيات عراقية 🇮🇶
+				شركة برمجيات عراقية
 			</div>
 		</Center>
 	);
@@ -363,13 +371,13 @@ const Headline: React.FC<{f: number}> = ({f}) => {
 	);
 };
 
-const SERVICES = [
-	{icon: '🖥️', title: 'مواقع ويب', sub: 'سريعة • متجاوبة • تبيع'},
-	{icon: '📱', title: 'تطبيقات موبايل', sub: 'iOS + Android'},
-	{icon: '🛒', title: 'متاجر إلكترونية', sub: 'دفع إلكتروني • طلبات • مخزون'},
-	{icon: '🏦', title: 'أنظمة مصرفية', sub: 'صرافة • محاسبة • ERP'},
-	{icon: '📊', title: 'لوحات تحكم', sub: 'تحليلات لحظية • CRM'},
-	{icon: '🎬', title: 'هوية وموشن', sub: 'تصميم • فيديو • براند'},
+const SERVICES: {icon: LucideIcon; title: string; sub: string}[] = [
+	{icon: MonitorSmartphone, title: 'مواقع ويب', sub: 'سريعة • متجاوبة • تبيع'},
+	{icon: Smartphone, title: 'تطبيقات موبايل', sub: 'iOS + Android'},
+	{icon: ShoppingBag, title: 'متاجر إلكترونية', sub: 'دفع إلكتروني • طلبات • مخزون'},
+	{icon: Landmark, title: 'أنظمة مصرفية', sub: 'صرافة • محاسبة • ERP'},
+	{icon: BarChart3, title: 'لوحات تحكم', sub: 'تحليلات لحظية • CRM'},
+	{icon: Clapperboard, title: 'هوية وموشن', sub: 'تصميم • فيديو • براند'},
 ];
 
 const Services: React.FC<{f: number}> = ({f}) => {
@@ -403,16 +411,18 @@ const Services: React.FC<{f: number}> = ({f}) => {
 						width: 300,
 						height: 300,
 						borderRadius: 80,
-						background: inverted ? INK : `linear-gradient(135deg, ${SKY}, ${VIOLET})`,
+						background: inverted
+							? INK
+							: `linear-gradient(${INK}, ${INK}) padding-box, linear-gradient(135deg, ${SKY}, ${VIOLET}, ${LIME}) border-box`,
+						border: '6px solid transparent',
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-						fontSize: 170,
-						boxShadow: `0 0 90px ${inverted ? 'rgba(0,0,0,0.4)' : SKY}`,
+						boxShadow: `0 0 90px ${inverted ? 'rgba(0,0,0,0.4)' : `${SKY}88`}, inset 0 0 60px ${VIOLET}55`,
 						rotate: `${interpolate(lf, [0, 10], [dir * 40, 0], clamp)}deg`,
 					}}
 				>
-					{s.icon}
+					<s.icon size={170} strokeWidth={1.6} color={LIME} style={{filter: `drop-shadow(0 0 18px ${LIME}aa)`}} />
 				</div>
 				<div style={{...slideIn(lf, 3, dir * 1200), fontSize: 130, fontWeight: 900, color: fg, textAlign: 'center', lineHeight: 1.1, maxWidth: 980}}>
 					{s.title}
@@ -466,7 +476,7 @@ const AiScene: React.FC<{f: number}> = ({f}) => {
 	const glitchIn = interpolate(f, [0, 10], [1, 0], clamp);
 	const glitch = Math.max(glitchIn, f > 75 ? build * (random(`ag${Math.floor(f / 2)}`) > 0.5 ? 1 : 0.2) : 0);
 	const typing = f >= 45 && f < 60;
-	const bubble = (at: number, mine: boolean, text: string) => (
+	const bubble = (at: number, mine: boolean, text: string, check = false) => (
 		<div
 			style={{
 				...slam(f, at, 0.3, 6),
@@ -478,9 +488,13 @@ const AiScene: React.FC<{f: number}> = ({f}) => {
 				background: mine ? 'rgba(255,255,255,0.12)' : LIME,
 				color: mine ? WHITE : INK,
 				border: mine ? '2px solid rgba(255,255,255,0.2)' : 'none',
+				display: 'flex',
+				alignItems: 'center',
+				gap: 18,
 			}}
 		>
 			{text}
+			{check ? <CheckCircle2 size={56} strokeWidth={2.6} /> : null}
 		</div>
 	);
 	return (
@@ -506,7 +520,7 @@ const AiScene: React.FC<{f: number}> = ({f}) => {
 					24/7
 				</div>
 				<div style={{display: 'flex', flexDirection: 'column', gap: 26, width: 900}}>
-					{bubble(30, true, 'عندكم موعد باچر؟ 🤔')}
+					{bubble(30, true, 'عندكم موعد باچر؟')}
 					{typing ? (
 						<div style={{alignSelf: 'flex-end', display: 'flex', gap: 14, padding: '34px 46px', borderRadius: 46, background: LIME}}>
 							{[0, 1, 2].map((k) => (
@@ -514,7 +528,7 @@ const AiScene: React.FC<{f: number}> = ({f}) => {
 							))}
 						</div>
 					) : (
-						bubble(60, false, 'أكيد! ١٠ الصبح أو ٢ الظهر ✅')
+						bubble(60, false, 'أكيد! ١٠ الصبح أو ٢ الظهر', true)
 					)}
 				</div>
 			</Center>
@@ -526,9 +540,9 @@ const Cta: React.FC<{f: number}> = ({f}) => {
 	const pulse = 1 + envelope(f % 15, [0], 4) * 0.06 * (f >= 30 ? 1 : 0);
 	const finalHit = envelope(f, [120], 10);
 	const contacts = [
-		{icon: '💬', text: '+964 750 999 9380', at: 45},
-		{icon: '📸', text: '@aivoraastudio', at: 60},
-		{icon: '🌐', text: 'aivorastudio.info', at: 75},
+		{icon: <BrandIcon path={siWhatsapp.path} />, text: '+964 750 999 9380', at: 45},
+		{icon: <BrandIcon path={siInstagram.path} />, text: '@aivoraastudio', at: 60},
+		{icon: <Globe size={52} strokeWidth={2} color={LIME} />, text: 'aivorastudio.info', at: 75},
 	];
 	return (
 		<Center gap={44}>
@@ -553,7 +567,10 @@ const Cta: React.FC<{f: number}> = ({f}) => {
 					boxShadow: `0 0 ${60 + finalHit * 120}px ${LIME}aa`,
 				}}
 			>
-				جلسة استكشاف مجانية ⚡
+				<span style={{display: 'inline-flex', alignItems: 'center', gap: 20}}>
+					جلسة استكشاف مجانية
+					<Zap size={60} strokeWidth={2.6} fill={INK} />
+				</span>
 			</div>
 			<div style={{display: 'flex', flexDirection: 'column', gap: 24, marginTop: 20}}>
 				{contacts.map((c, i) => (
@@ -573,7 +590,7 @@ const Cta: React.FC<{f: number}> = ({f}) => {
 							padding: '16px 40px',
 						}}
 					>
-						<span>{c.icon}</span>
+						<span style={{display: 'flex'}}>{c.icon}</span>
 						<span style={{direction: 'ltr'}}>{c.text}</span>
 					</div>
 				))}
