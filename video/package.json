@@ -1,0 +1,15 @@
+{
+  "name": "aivora-promo",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render AivoraPromo out/aivora-promo.mp4"
+  },
+  "dependencies": {
+    "@fontsource/cairo": "^5.0.0",
+    "@remotion/cli": "4.0.529",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.529"
+  }
+}
