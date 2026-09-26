@@ -1,7 +1,7 @@
 <title>مقترح متجر سبيستون</title>
 <style>
-@font-face{font-family:"SF Arabic";src:local("SF Arabic");font-weight:1 1000;font-display:swap}
-@font-face{font-family:"SF Arabic Rounded";src:local("SF Arabic Rounded");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"SF Arabic";src:local("SF Arabic");font-weight:1 1000;font-display:block}
+@font-face{font-family:"SF Arabic Rounded";src:local("SF Arabic Rounded");font-weight:1 1000;font-display:block}
 
 :root{
   --ground:#F6F4FD;
@@ -42,7 +42,7 @@
   --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
 }
 
-*{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;font-family:inherit}
 body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
 .page{direction:rtl;max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
 h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.25}
@@ -91,8 +91,8 @@ p{margin:0}
 .banner{background:var(--orange);color:#fff;border-radius:18px;padding:14px;position:relative;overflow:hidden;min-height:96px}
 .banner b{font-family:var(--display);font-size:17px;display:block;line-height:1.3}
 .banner .code{display:inline-block;margin-top:8px;background:rgba(255,255,255,.22);border:1.5px dashed rgba(255,255,255,.7);border-radius:8px;padding:2px 8px;font-weight:700;direction:ltr}
-.banner .blob{position:absolute;inset-inline-start:-18px;bottom:-22px;width:92px;height:92px;border-radius:50%;background:var(--sun)}
-.banner .blob2{position:absolute;inset-inline-start:48px;top:-18px;width:36px;height:36px;border-radius:50%;background:var(--pink)}
+.banner .blob{position:absolute;inset-inline-end:-18px;bottom:-22px;width:92px;height:92px;border-radius:50%;background:var(--sun)}
+.banner .blob2{position:absolute;inset-inline-end:48px;top:-18px;width:36px;height:36px;border-radius:50%;background:var(--pink)}
 .cats{display:flex;gap:8px}
 .cat{flex:1;text-align:center;font-size:10.5px;font-weight:600}
 .cat i{display:grid;place-items:center;height:44px;border-radius:14px;margin-bottom:4px}
@@ -341,8 +341,144 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   section{margin-top:64px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
 
+
+/* ===== v2: Mac showcase ===== */
+.hero{grid-template-columns:1.1fr .9fr;align-items:end}
+.hero-side{display:grid;gap:18px}
+.hero-stats{margin-top:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-stats > div{background:var(--ground);border-radius:18px;padding:14px 18px}
+.icon-inline{width:1em;height:1em;vertical-align:-.12em}
+
+.showcase{position:relative;margin-top:36px;padding-inline:5%;padding-bottom:10px}
+.mac{position:relative;max-width:1040px;margin-inline:auto}
+.mac-lid{background:#16151c;border-radius:22px 22px 12px 12px;padding:16px 14px 14px;border:1px solid #34323f;box-shadow:0 40px 80px -30px rgba(28,26,59,.55);position:relative}
+.mac-lid::before{content:"";position:absolute;top:6px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#2d2c38}
+.mac-screen{border-radius:8px;overflow:hidden;background:var(--ground);container-type:inline-size;aspect-ratio:16/10;display:flex;flex-direction:column}
+.mac-screen.free{aspect-ratio:auto;container-type:normal}
+.mac-base{position:relative;height:16px;margin-inline:-5.5%;background:linear-gradient(#e2e1ea,#b3b2bd 70%,#8f8e9a);border-radius:2px 2px 22px 22px}
+.mac-base::before{content:"";position:absolute;top:0;left:50%;width:15%;height:7px;transform:translateX(-50%);background:#a4a3ae;border-radius:0 0 10px 10px}
+:root[data-theme="dark"] .mac-base{background:linear-gradient(#5b5a66,#3b3a45 70%,#2a2932)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mac-base{background:linear-gradient(#5b5a66,#3b3a45 70%,#2a2932)}}
+
+/* browser chrome */
+.chrome{direction:ltr;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:9px 14px;background:var(--surface-2);border-bottom:1px solid var(--line);flex:none}
+.lights{display:flex;gap:7px}
+.lights i{width:11px;height:11px;border-radius:50%;display:block}
+.lights i:nth-child(1){background:#FF5F57}.lights i:nth-child(2){background:#FEBC2E}.lights i:nth-child(3){background:#28C840}
+.addr{direction:rtl;justify-self:center;display:flex;align-items:center;gap:6px;background:var(--surface);border-radius:8px;padding:3px 16px;font-size:12px;color:var(--ink-2);min-width:0;max-width:60%;white-space:nowrap;overflow:hidden}
+.addr svg{width:11px;height:11px;flex:none}
+.chrome .sp{width:47px}
+
+/* scaled desktop store (em units, 1em = 1.25cqw) */
+.web{font-size:1.25cqw;line-height:1.5;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:1.4em;padding:0 2.4em 2em}
+.web .chrome{font-size:12px}
+.w-head{display:flex;align-items:center;gap:2em;padding-top:1.3em}
+.w-logo{display:flex;align-items:center;gap:.6em;font-family:var(--display);font-weight:800;font-size:1.5em}
+.w-logo .logo{width:1.7em;height:1.7em;border-radius:.55em}
+.w-logo .logo svg{width:1em;height:1em}
+.w-nav{display:flex;gap:1.6em;font-weight:600;color:var(--ink-2)}
+.w-nav b{color:var(--ink)}
+.w-search{flex:1;display:flex;align-items:center;gap:.6em;background:var(--surface);border-radius:.9em;padding:.6em 1em;color:var(--ink-3)}
+.w-search svg{width:1.1em;height:1.1em}
+.w-icons{display:flex;gap:.6em}
+.w-icons span{width:2.5em;height:2.5em;border-radius:.8em;background:var(--surface);display:grid;place-items:center;position:relative}
+.w-icons svg{width:1.2em;height:1.2em}
+.w-icons em{position:absolute;top:-.3em;inset-inline-end:-.3em;background:var(--orange);color:#fff;font-style:normal;font-size:.75em;font-weight:700;width:1.6em;height:1.6em;border-radius:50%;display:grid;place-items:center}
+.w-hero{display:grid;grid-template-columns:2fr 1fr;gap:1.2em}
+.w-banner{background:var(--orange);color:#fff;border-radius:1.6em;padding:2.2em 2.4em;position:relative;overflow:hidden;min-height:15em;display:flex;flex-direction:column;justify-content:center;gap:.6em}
+.w-banner h3{font-size:2.5em;font-weight:900;line-height:1.2;position:relative;z-index:1}
+.w-banner p{position:relative;z-index:1;opacity:.92;font-size:1.1em}
+.w-banner .row{display:flex;gap:.8em;align-items:center;position:relative;z-index:1;margin-top:.4em}
+.w-code{border:.13em dashed rgba(255,255,255,.8);border-radius:.6em;padding:.25em .9em;font-weight:800;background:rgba(255,255,255,.15)}
+.w-btn{background:#fff;color:var(--orange);border-radius:.8em;padding:.5em 1.4em;font-weight:800;font-family:var(--display)}
+.w-banner .art{position:absolute;inset-inline-end:2.5em;top:50%;transform:translateY(-50%);width:13em;height:13em}
+.w-banner .blob{position:absolute;inset-inline-end:-3em;bottom:-5em;width:17em;height:17em;border-radius:50%;background:var(--sun)}
+.w-banner .blob2{position:absolute;inset-inline-end:15em;top:-2em;width:5em;height:5em;border-radius:50%;background:var(--pink)}
+.w-side{display:grid;gap:1.2em}
+.w-card{border-radius:1.6em;padding:1.3em 1.5em;display:flex;flex-direction:column;justify-content:center;gap:.5em}
+.w-card b{font-family:var(--display);font-size:1.3em}
+.w-ages{display:flex;gap:.4em;flex-wrap:wrap}
+.w-ages span{background:var(--surface);border-radius:99em;padding:.15em .8em;font-weight:700;font-size:.9em}
+.w-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:1em}
+.w-cat{background:var(--surface);border-radius:1.2em;padding:.9em;display:flex;align-items:center;gap:.7em;font-weight:700}
+.w-cat i{width:2.8em;height:2.8em;border-radius:.9em;display:grid;place-items:center;flex:none}
+.w-cat i svg{width:1.8em;height:1.8em}
+.w-title{display:flex;justify-content:space-between;align-items:baseline}
+.w-title b{font-family:var(--display);font-size:1.4em}
+.w-title span{color:var(--orange);font-weight:700}
+.w-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1em}
+.w-p{background:var(--surface);border-radius:1.2em;padding:.6em .6em .9em}
+.w-p .img{height:9em;border-radius:.9em;display:grid;place-items:center;position:relative}
+.w-p .img svg{width:5em;height:5em}
+.w-p .tag{position:absolute;top:.6em;inset-inline-end:.6em;background:var(--pink);color:#fff;font-size:.8em;font-weight:700;border-radius:.5em;padding:0 .5em}
+.w-p .n{font-weight:600;margin-top:.5em}
+.w-p .p{display:flex;justify-content:space-between;align-items:center;margin-top:.2em}
+.w-p .add{width:1.9em;height:1.9em;border-radius:.6em;background:var(--ink);color:var(--ground);display:grid;place-items:center;font-weight:700}
+
+.phone-over{position:absolute;inset-inline-end:0;bottom:-30px;width:250px;z-index:2}
+.phone-over .phone{transform:scale(.86);transform-origin:bottom left}
+
+/* desktop product page */
+.w-crumbs{color:var(--ink-3);font-size:.95em;padding-top:.2em}
+.w-crumbs b{color:var(--ink);font-weight:600}
+.w-pd{display:grid;grid-template-columns:1.05fr 1fr;gap:2.4em}
+.w-gal{display:grid;grid-template-columns:5em 1fr;gap:1em}
+.w-thumbs{display:grid;gap:.8em;align-content:start}
+.w-thumbs span{height:5em;border-radius:1em;background:var(--surface);display:grid;place-items:center;border:.15em solid transparent}
+.w-thumbs span.on{border-color:var(--sky)}
+.w-thumbs svg{width:3em;height:3em}
+.w-main{height:24em;border-radius:1.8em;background:var(--sky-soft);display:grid;place-items:center;position:relative}
+.w-main svg{width:15em;height:15em}
+.w-main .chip{position:absolute;top:1.2em;inset-inline-end:1.2em;font-size:.95em}
+.w-info{display:flex;flex-direction:column;gap:1em}
+.w-info h3{font-size:2.2em;font-weight:800;line-height:1.25}
+.w-rate{display:flex;gap:.6em;align-items:center;color:var(--ink-2)}
+.stars-svg{display:inline-flex;gap:.1em;color:var(--sun)}
+.stars-svg svg{width:1.1em;height:1.1em}
+.w-price{display:flex;gap:.8em;align-items:baseline}
+.w-price b{font-family:var(--display);font-size:2.2em;font-weight:800}
+.w-price s{color:var(--ink-3)}
+.w-lbl{font-weight:700;margin-bottom:.4em;display:block}
+.w-opts{display:flex;gap:.5em}
+.w-opts span{border:.13em solid var(--line);border-radius:.8em;padding:.35em 1em;font-weight:700;background:var(--surface)}
+.w-opts span.on{border-color:var(--ink);background:var(--ink);color:var(--ground)}
+.w-buy{display:flex;gap:.8em}
+.w-qty{display:flex;align-items:center;gap:1em;background:var(--surface);border-radius:.9em;padding:.6em 1em;font-weight:800}
+.w-buy .w-cta{flex:1;background:var(--orange);color:#fff;border-radius:.9em;display:grid;place-items:center;font-weight:800;font-family:var(--display);font-size:1.15em}
+.w-perks{display:grid;grid-template-columns:repeat(3,1fr);gap:.8em}
+.w-perks div{background:var(--surface);border-radius:1em;padding:.8em;display:flex;gap:.6em;align-items:center;font-size:.92em;font-weight:600}
+.w-perks svg{width:1.4em;height:1.4em;flex:none}
+
+.pd-section{margin-top:28px}
+.check-ico{width:14px;height:14px}
+.yes svg,.no svg,.part svg{width:15px;height:15px}
+.legend svg{width:12px;height:12px}
+.need i svg{width:14px;height:14px}
+.sbar svg{height:10px;width:auto}
+.sbar .r{display:flex;gap:4px;align-items:center}
+
+@media (max-width:1000px){
+  .hero{grid-template-columns:1fr}
+  .phone-over{width:200px;bottom:-24px}
+  .phone-over .phone{transform:scale(.7)}
+}
+@media (max-width:760px){
+  .phone-over{display:none}
+  .showcase{padding-inline:4%}
+  .mac-lid{padding:8px 7px 7px;border-radius:12px 12px 6px 6px}
+  .mac-lid::before{display:none}
+  .mac-base{height:9px}
+  .chrome{padding:6px 8px;gap:6px}
+  .lights i{width:7px;height:7px}
+  .lights{gap:4px}
+  .addr{font-size:9px;padding:2px 8px}
+  .chrome .sp{width:29px}
+}
+@media (max-width:640px){
+  .hero-stats{grid-template-columns:1fr 1fr}
+}
+</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
@@ -375,6 +511,12 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 16l4 4"/></symbol>
     <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
     <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5l7 9H5z"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 16"><rect x="1" y="10" width="4" height="6" rx="1" fill="currentColor"/><rect x="7" y="7" width="4" height="9" rx="1" fill="currentColor"/><rect x="13" y="4" width="4" height="12" rx="1" fill="currentColor"/><rect x="19" y="1" width="4" height="15" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-batt" viewBox="0 0 30 16"><rect x="1" y="2" width="24" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="4.5" width="17" height="7" rx="2" fill="currentColor"/><rect x="26.5" y="6" width="2" height="4" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2" d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M7 12h10"/></symbol>
+    <symbol id="i-part" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/><path fill="currentColor" d="M12 6a6 6 0 0 1 0 12z"/></symbol>
   </defs>
 </svg>
 
@@ -387,7 +529,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
     </div>
     <div class="meta">
       <span class="chip">مقترح مشروع</span>
-      <span class="chip">متجر إلكتروني + نظام إدارة</span>
+      <span class="chip">متجر إلكتروني ونظام إدارة</span>
       <span class="chip num">أيلول ٢٠٢٦</span>
     </div>
   </header>
@@ -396,48 +538,101 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   <div class="hero">
     <div>
       <span class="eyebrow">مقترح متجر إلكتروني متكامل</span>
-      <h1>كل ألعاب سبيستون، <em>بلمسة وحدة</em> من الموبايل</h1>
-      <p class="lead">متجر إلكتروني للألعاب والهدايا ومستلزمات الأطفال، مربوط بنظام مخزون ولوحة تحكم يدير منها المدير الموظفين، ويتابع كل منتج من لحظة وصوله للمخزن لحد ما يوصل لبيت الزبون.</p>
+      <h1>عالم سبيستون للألعاب، <em>على بُعد نقرة</em></h1>
+      <p class="lead">متجر إلكتروني للألعاب والهدايا ومستلزمات الأطفال، يعمل على الحاسوب والهاتف، ويرتبط بنظام مخزون ولوحة تحكم يدير منها المدير فريق العمل، ويتابع كل منتج منذ وصوله إلى المخزن حتى تسليمه إلى باب العميل.</p>
+    </div>
+    <div class="hero-side">
       <div class="hero-stats">
-        <div><b>٦</b><span>أنظمة مترابطة</span></div>
-        <div><b>٥</b><span>أدوار للموظفين</span></div>
-        <div><b class="num">١٨</b><span>محافظة للتوصيل</span></div>
-        <div><b class="num">٨–١٠</b><span>أسابيع للإطلاق</span></div>
+        <div><b class="num">٦</b><span>أنظمة مترابطة</span></div>
+        <div><b class="num">٥</b><span>أدوار للموظفين</span></div>
+        <div><b class="num">١٨</b><span>محافظة يشملها التوصيل</span></div>
+        <div><b class="num">٨-١٠</b><span>أسابيع حتى الإطلاق</span></div>
       </div>
     </div>
+  </div>
 
-    <div class="phone" aria-label="شكل الصفحة الرئيسية للمتجر على الموبايل">
-      <div class="screen">
-        <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
-        <div class="s-body">
-          <div class="s-head">
-            <span class="ico"><svg><use href="#i-bell"/></svg></span>
-            <b>سبيستون</b>
-            <span class="ico"><svg><use href="#i-bag"/></svg></span>
-          </div>
-          <div class="search"><svg width="14" height="14"><use href="#i-search"/></svg> دوّر على لعبة، ماركة، أو عمر…</div>
-          <div class="banner">
-            <span class="blob"></span><span class="blob2"></span>
-            <b>عروض العودة<br>للمدارس</b>
-            <span class="code">SPACE20</span>
-          </div>
-          <div class="cats">
-            <div class="cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء</div>
-            <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
-            <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>تركيب</div>
-            <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
-          </div>
-          <div class="s-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
-          <div class="pgrid">
-            <div class="pc"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بالريموت</div><div class="p"><b class="num">٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
-            <div class="pc"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b class="num">٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+  <!-- MAC SHOWCASE: storefront -->
+  <div class="showcase">
+    <div class="mac" aria-label="الصفحة الرئيسية للمتجر على جهاز ماك">
+      <div class="mac-lid">
+        <div class="mac-screen">
+          <div class="chrome"><span class="lights"><i></i><i></i><i></i></span><span class="addr"><svg><use href="#i-lock"/></svg>متجر سبيستون · الصفحة الرئيسية</span><span class="sp"></span></div>
+          <div class="web">
+            <div class="w-head">
+              <span class="w-logo"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</span>
+              <nav class="w-nav"><b>الرئيسية</b><span>الأقسام</span><span>العروض</span><span>الماركات</span><span>تتبع طلبي</span></nav>
+              <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة أو فئة عمرية</span>
+              <span class="w-icons"><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-bag"/></svg><em>٣</em></span><span><svg><use href="#i-user"/></svg></span></span>
+            </div>
+            <div class="w-hero">
+              <div class="w-banner">
+                <span class="blob"></span><span class="blob2"></span>
+                <svg class="art"><use href="#i-rocket"/></svg>
+                <h3>عروض العودة<br>إلى المدارس</h3>
+                <p>خصم ٢٠٪ على جميع الألعاب التعليمية</p>
+                <div class="row"><span class="w-code">فضاء٢٠</span><span class="w-btn">تسوّق الآن</span></div>
+              </div>
+              <div class="w-side">
+                <div class="w-card" style="background:var(--mint-soft)"><b>تسوّق حسب العمر</b><div class="w-ages num"><span>٠-٢</span><span>٣-٥</span><span>٦-٨</span><span>٩-١٢</span><span>+١٢</span></div></div>
+                <div class="w-card" style="background:var(--sun-soft)"><b>توصيل إلى ١٨ محافظة</b><span class="muted">مجاني للطلبات فوق ١٠٠٬٠٠٠ د.ع</span></div>
+              </div>
+            </div>
+            <div class="w-cats">
+              <div class="w-cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء وعلوم</div>
+              <div class="w-cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
+              <div class="w-cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>ألعاب تركيب</div>
+              <div class="w-cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
+              <div class="w-cat"><i style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></i>إلكترونيات</div>
+              <div class="w-cat"><i style="background:var(--pink-soft)"><svg><use href="#i-ball"/></svg></i>ألعاب خارجية</div>
+            </div>
+            <div class="w-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
+            <div class="w-grid num">
+              <div class="w-p"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></div><div class="n">صاروخ الفضاء للتركيب</div><div class="p"><b>٤٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></div><div class="n">دب محشو كبير ٦٠ سم</div><div class="p"><b>١٨٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="w-p"><div class="img" style="background:var(--mint-soft)"><span class="tag">جديد</span><svg><use href="#i-puzzle"/></svg></div><div class="n">أحجية خريطة العراق</div><div class="p"><b>١٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+            </div>
           </div>
         </div>
-        <div class="tabbar">
-          <span class="on"><svg><use href="#i-home"/></svg>الرئيسية</span>
-          <span><svg><use href="#i-grid"/></svg>الأقسام</span>
-          <span><svg><use href="#i-heart"/></svg>المفضلة</span>
-          <span><svg><use href="#i-user"/></svg>حسابي</span>
+      </div>
+      <div class="mac-base"></div>
+    </div>
+
+    <div class="phone-over" aria-hidden="true">
+      <div class="phone">
+        <div class="screen">
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
+          <div class="s-body">
+            <div class="s-head">
+              <span class="ico"><svg><use href="#i-bell"/></svg></span>
+              <b>سبيستون</b>
+              <span class="ico"><svg><use href="#i-bag"/></svg></span>
+            </div>
+            <div class="search"><svg width="14" height="14"><use href="#i-search"/></svg> ابحث عن لعبة…</div>
+            <div class="banner">
+              <span class="blob"></span><span class="blob2"></span>
+              <b>عروض العودة<br>إلى المدارس</b>
+              <span class="code">فضاء٢٠</span>
+            </div>
+            <div class="cats">
+              <div class="cat"><i style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></i>فضاء</div>
+              <div class="cat"><i style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></i>سيارات</div>
+              <div class="cat"><i style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></i>تركيب</div>
+              <div class="cat"><i style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></i>دمى</div>
+            </div>
+            <div class="s-title"><b>الأكثر مبيعاً</b><span>عرض الكل</span></div>
+            <div class="pgrid num">
+              <div class="pc"><div class="img" style="background:var(--sky-soft)"><span class="tag">-١٥٪</span><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              <div class="pc"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="on"><svg><use href="#i-home"/></svg>الرئيسية</span>
+            <span><svg><use href="#i-grid"/></svg>الأقسام</span>
+            <span><svg><use href="#i-heart"/></svg>المفضلة</span>
+            <span><svg><use href="#i-user"/></svg>حسابي</span>
+          </div>
         </div>
       </div>
     </div>
@@ -446,97 +641,145 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   <!-- OVERVIEW -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">نظرة عامة</span><h2>شنو راح نبني لسبيستون؟</h2></div>
-      <p>المشروع مو بس واجهة بيع. هو منظومة وحدة تربط الزبون بالمخزن وبفريق العمل، حتى كل طلب ينحسب، وكل قطعة معروف وين صارت، وكل موظف يشوف بس الي يخصه.</p>
+      <div><span class="eyebrow">نظرة عامة</span><h2>ماذا سنبني لسبيستون؟</h2></div>
+      <p>لا يقتصر المشروع على واجهة للبيع، بل هو منظومة واحدة تربط العميل بالمخزن وبفريق العمل، فيُحتسب كل طلب، ويُعرف موقع كل قطعة، ولا يرى كل موظف إلا ما يخصّه.</p>
     </div>
     <div class="grid-3">
-      <div class="card feat"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><h3>المتجر الإلكتروني</h3><p>موقع وتطبيق موبايل للزبائن: تصفح حسب العمر والقسم، سلة، دفع، تتبع الطلب، ومفضلة.</p></div>
-      <div class="card feat"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-box"/></svg></span><h3>نظام المخزون</h3><p>كميات لحظية، باركود، تنبيه عند قرب النفاد، جرد، وأكثر من مخزن أو فرع.</p></div>
-      <div class="card feat"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-users"/></svg></span><h3>المدير والموظفين</h3><p>المدير يضيف الموظفين ويعطي كل واحد صلاحياته، ويشوف سجل كامل بكل حركة صارت.</p></div>
-      <div class="card feat"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-truck"/></svg></span><h3>تتبع المنتج والطلب</h3><p>رحلة كل قطعة من الاستلام للتخزين للتغليف للتوصيل، والزبون يتابع طلبه خطوة بخطوة.</p></div>
-      <div class="card feat"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-tag"/></svg></span><h3>التسويق والعروض</h3><p>بروموكودات، خصومات موسمية، نقاط ولاء، بطاقات هدايا، وتذكير بالسلة المتروكة.</p></div>
-      <div class="card feat"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-chart"/></svg></span><h3>التقارير</h3><p>المبيعات، الأرباح، أكثر الألعاب طلباً، أداء الموظفين، وتقارير المخزون جاهزة للتصدير.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><h3>المتجر الإلكتروني</h3><p>موقع للحاسوب وتطبيق للهاتف: تصفح حسب العمر والقسم، وسلة مشتريات، ودفع، وتتبع للطلب، وقائمة مفضلة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-box"/></svg></span><h3>نظام المخزون</h3><p>كميات محدّثة لحظياً، وباركود، وتنبيه عند اقتراب النفاد، وجرد دوري، ودعم لأكثر من مخزن وفرع.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-users"/></svg></span><h3>المدير والموظفون</h3><p>يضيف المدير الموظفين ويمنح كل واحد منهم صلاحياته، ويطّلع على سجل كامل بكل عملية تمت.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-truck"/></svg></span><h3>تتبع المنتج والطلب</h3><p>رحلة كل قطعة من الاستلام إلى التخزين فالتغليف فالتوصيل، ويتابع العميل طلبه خطوة بخطوة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-tag"/></svg></span><h3>التسويق والعروض</h3><p>رموز خصم، وتخفيضات موسمية، ونقاط ولاء، وبطاقات هدايا، وتذكير بالسلال المتروكة.</p></div>
+      <div class="card feat"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-chart"/></svg></span><h3>التقارير</h3><p>المبيعات والأرباح والألعاب الأكثر طلباً وأداء الموظفين وحالة المخزون، جاهزة للتصدير.</p></div>
     </div>
   </section>
 
   <!-- DESIGN -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">تصميم الواجهة UI / UX</span><h2>التصميم على ذوق سبيستون</h2></div>
-      <p>عندنا طريقتين للتصميم، والتاجر يختار الي يناسبه. بالحالتين التجربة مبنية للموبايل أولاً، وبالعربي من اليمين لليسار، ومريحة للأهل وهم يدورون هدية بسرعة.</p>
+      <div><span class="eyebrow">تصميم الواجهة وتجربة المستخدم</span><h2>تصميم يعبّر عن هوية سبيستون</h2></div>
+      <p>نوفّر أسلوبين للتصميم، ويختار التاجر ما يناسبه. وفي الحالتين تكون الواجهة عربية من اليمين إلى اليسار، ومريحة على شاشة الحاسوب والهاتف معاً، وتساعد الأهل على إيجاد الهدية المناسبة بسرعة.</p>
     </div>
-    <div class="choice" role="group" aria-label="طريقة التصميم">
+    <div class="choice" role="group" aria-label="أسلوب التصميم">
       <button class="opt" id="opt-ours" aria-pressed="true" type="button">
-        <div class="rh"><h3>تصميم نقترحه إحنا</h3><span class="radio"></span></div>
-        <p class="muted">هوية ملونة ومرحة تناسب عالم الأطفال، مثل الي تشوفه بهذا المقترح.</p>
-        <ul><li>ألوان وأيقونات ورسومات خاصة بالمتجر</li><li>٣ جولات تعديل على التصميم قبل التنفيذ</li><li>نموذج تفاعلي على Figma تجربه قبل البرمجة</li></ul>
+        <div class="rh"><h3>تصميم نقترحه نحن</h3><span class="radio"></span></div>
+        <p class="muted">هوية ملونة ومرحة تلائم عالم الأطفال، على غرار ما تراه في هذا المقترح.</p>
+        <ul><li>ألوان وأيقونات ورسومات خاصة بالمتجر</li><li>ثلاث جولات تعديل قبل بدء التنفيذ</li><li>نموذج تفاعلي تجرّبه قبل البرمجة</li></ul>
         <div class="swatches"><i style="background:#FF6A2B"></i><i style="background:#FFC53D"></i><i style="background:#1FB5A6"></i><i style="background:#F2507F"></i><i style="background:#1C1A3B"></i></div>
       </button>
       <button class="opt" id="opt-ref" aria-pressed="false" type="button">
-        <div class="rh"><h3>حسب مرجع التاجر</h3><span class="radio"></span></div>
-        <p class="muted">التاجر ينطينا شعاره وألوانه أو موقع يعجبه كمرجع، وإحنا نطبقه بدقة.</p>
-        <ul><li>نلتزم بالهوية الموجودة (شعار، خطوط، ألوان)</li><li>نحسّن تجربة الاستخدام بدون ما نغير الطابع</li><li>مراجعة واعتماد كل شاشة قبل البرمجة</li></ul>
+        <div class="rh"><h3>وفق مرجع التاجر</h3><span class="radio"></span></div>
+        <p class="muted">يزوّدنا التاجر بشعاره وألوانه أو بموقع يعجبه مرجعاً، فنطبّقه بدقة.</p>
+        <ul><li>الالتزام بالهوية القائمة من شعار وخطوط وألوان</li><li>تحسين تجربة الاستخدام دون تغيير الطابع العام</li><li>مراجعة كل شاشة واعتمادها قبل البرمجة</li></ul>
         <div class="swatches"><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i><i style="background:var(--surface-2);border:2px dashed var(--ink-3)"></i></div>
       </button>
+    </div>
+
+    <!-- Mac product page -->
+    <div class="showcase pd-section">
+      <div class="mac" aria-label="صفحة المنتج على جهاز ماك">
+        <div class="mac-lid">
+          <div class="mac-screen">
+            <div class="chrome"><span class="lights"><i></i><i></i><i></i></span><span class="addr"><svg><use href="#i-lock"/></svg>متجر سبيستون · صاروخ الفضاء للتركيب</span><span class="sp"></span></div>
+            <div class="web">
+              <div class="w-head">
+                <span class="w-logo"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</span>
+                <nav class="w-nav"><span>الرئيسية</span><b>الأقسام</b><span>العروض</span><span>الماركات</span><span>تتبع طلبي</span></nav>
+                <span class="w-search"><svg><use href="#i-search"/></svg>ابحث عن لعبة أو ماركة أو فئة عمرية</span>
+                <span class="w-icons"><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-bag"/></svg><em>٣</em></span><span><svg><use href="#i-user"/></svg></span></span>
+              </div>
+              <div class="w-crumbs">الرئيسية · فضاء وعلوم · <b>صاروخ الفضاء للتركيب</b></div>
+              <div class="w-pd">
+                <div class="w-gal">
+                  <div class="w-thumbs"><span class="on"><svg><use href="#i-rocket"/></svg></span><span><svg><use href="#i-blocks"/></svg></span><span><svg><use href="#i-puzzle"/></svg></span><span><svg><use href="#i-ball"/></svg></span></div>
+                  <div class="w-main"><span class="chip pink">-١٦٪</span><svg><use href="#i-rocket"/></svg></div>
+                </div>
+                <div class="w-info num">
+                  <span class="chip mint" style="align-self:flex-start">متوفر · ١٢ قطعة</span>
+                  <h3>صاروخ الفضاء القابل للتركيب مع رائد فضاء</h3>
+                  <div class="w-rate"><span class="stars-svg"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>٤٫٨ من ٨٤ تقييماً</div>
+                  <div class="w-price"><b>٤٢٬٠٠٠ د.ع</b><s>٥٠٬٠٠٠ د.ع</s></div>
+                  <div><span class="w-lbl">العمر المناسب</span><div class="w-opts"><span>+٣</span><span class="on">+٦</span><span>+٩</span><span>+١٢</span></div></div>
+                  <div class="w-buy"><span class="w-qty"><span>−</span>١<span>+</span></span><span class="w-cta">أضف إلى السلة</span></div>
+                  <div class="w-perks">
+                    <div><svg style="color:var(--orange)"><use href="#i-gift"/></svg>تغليف هدية</div>
+                    <div><svg style="color:var(--mint)"><use href="#i-truck"/></svg>يصل غداً</div>
+                    <div><svg style="color:var(--sky)"><use href="#i-shield"/></svg>آمن للأطفال</div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-title"><b>قد يعجبك أيضاً</b><span>عرض الكل</span></div>
+              <div class="w-grid num">
+                <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></div><div class="n">مكعبات بناء ١٢٠ قطعة</div><div class="p"><b>٢٥٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></div><div class="n">سيارة سباق بجهاز تحكم</div><div class="p"><b>٣٤٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></div><div class="n">أحجية خريطة العراق</div><div class="p"><b>١٢٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--pink-soft)"><svg><use href="#i-ball"/></svg></div><div class="n">كرة ملونة للحديقة</div><div class="p"><b>٧٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+                <div class="w-p"><div class="img" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></div><div class="n">ذراع تحكم للألعاب</div><div class="p"><b>٣٨٬٠٠٠ د.ع</b><span class="add">+</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mac-base"></div>
+      </div>
     </div>
 
     <div class="screens">
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تفاصيل اللعبة</b><span class="ico" style="color:var(--pink)"><svg><use href="#i-heart"/></svg></span></div>
             <div class="pd-img"><svg><use href="#i-rocket"/></svg><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
-            <div class="pd-row"><span class="chip mint" style="font-size:10px;padding:1px 8px">متوفر · ١٢ قطعة</span><span class="stars">★★★★★ <span class="muted num" style="font-size:10px">(٨٤)</span></span></div>
+            <div class="pd-row num"><span class="chip mint" style="font-size:10px;padding:1px 8px">متوفر · ١٢ قطعة</span><span class="stars-svg" style="align-items:center"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="muted" style="font-size:10px;margin-inline-start:3px">(٨٤)</span></span></div>
             <b style="font-family:var(--display);font-size:15px;line-height:1.35">صاروخ الفضاء القابل للتركيب مع رائد فضاء</b>
             <div><span class="muted" style="font-size:10.5px">العمر المناسب</span>
-              <div class="age"><span>٣+</span><span class="on">٦+</span><span>٩+</span><span>١٢+</span></div></div>
-            <div class="pd-row"><span class="muted" style="font-size:10.5px">تغليف هدية؟</span><span class="chip sun" style="font-size:10px;padding:1px 8px">+٢٬٠٠٠ د.ع</span></div>
-            <div class="pd-row" style="margin-top:auto"><b class="num" style="font-size:16px">٤٢٬٠٠٠ د.ع</b><span class="muted num" style="text-decoration:line-through;font-size:11px">٥٠٬٠٠٠</span></div>
-            <div class="btn">أضف للسلة</div>
+              <div class="age num"><span>+٣</span><span class="on">+٦</span><span>+٩</span><span>+١٢</span></div></div>
+            <div class="pd-row num"><span class="muted" style="font-size:10.5px">إضافة تغليف هدية</span><span class="chip sun" style="font-size:10px;padding:1px 8px">+٢٬٠٠٠ د.ع</span></div>
+            <div class="pd-row num" style="margin-top:auto"><b style="font-size:16px">٤٢٬٠٠٠ د.ع</b><span class="muted" style="text-decoration:line-through;font-size:11px">٥٠٬٠٠٠</span></div>
+            <div class="btn">أضف إلى السلة</div>
           </div>
         </div></div>
-        <figcaption><b>صفحة المنتج</b><span>العمر، التوفر، التقييمات، وتغليف الهدية</span></figcaption>
+        <figcaption><b>صفحة المنتج</b><span>العمر والتوفر والتقييمات وتغليف الهدية</span></figcaption>
       </figure>
 
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
           <div class="s-body">
-            <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">السلة</b><span class="chip" style="font-size:10px;padding:1px 8px;background:var(--surface)">٣ قطع</span></div>
+            <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">السلة</b><span class="chip num" style="font-size:10px;padding:1px 8px;background:var(--surface)">٣ قطع</span></div>
             <div class="cart-item"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ci"><b>صاروخ الفضاء</b><span class="muted num">٤٢٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>١<i>+</i></span></div>
-            <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span><div class="ci"><b>دبدوب كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
+            <div class="cart-item"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span><div class="ci"><b>دب محشو كبير ٦٠ سم</b><span class="muted num">١٨٬٠٠٠ د.ع</span></div><span class="qty num"><i>−</i>٢<i>+</i></span></div>
             <div>
-              <div class="promo"><input id="promo-input" type="text" value="" placeholder="بروموكود" aria-label="بروموكود" autocomplete="off"><button id="promo-btn" type="button">تطبيق</button></div>
-              <div id="promo-msg" class="promo-msg muted">جرّب: SPACE20</div>
+              <div class="promo"><input id="promo-input" type="text" value="" placeholder="رمز الخصم" aria-label="رمز الخصم" autocomplete="off" dir="rtl"><button id="promo-btn" type="button">تطبيق</button></div>
+              <div id="promo-msg" class="promo-msg muted">جرّب الرمز: فضاء٢٠</div>
             </div>
             <div class="sum num">
               <div><span class="muted">المجموع</span><span id="s-sub">٧٨٬٠٠٠ د.ع</span></div>
-              <div class="disc" id="row-disc" hidden><span>خصم الكود</span><span id="s-disc"></span></div>
+              <div class="disc" id="row-disc" hidden><span>خصم الرمز</span><span id="s-disc"></span></div>
               <div><span class="muted">التوصيل · بغداد</span><span>٥٬٠٠٠ د.ع</span></div>
               <div class="tot"><span>الإجمالي</span><span id="s-tot">٨٣٬٠٠٠ د.ع</span></div>
             </div>
-            <div class="pay"><span class="on">الدفع عند الاستلام</span><span>زين كاش</span><span>كي كارد</span><span>ماستر / فيزا</span></div>
+            <div class="pay"><span class="on">عند الاستلام</span><span>زين كاش</span><span>كي كارد</span><span>البطاقات المصرفية</span></div>
             <div class="btn" style="margin-top:auto">إتمام الطلب</div>
           </div>
         </div></div>
-        <figcaption><b>السلة والدفع</b><span>جرّب تكتب الكود بالشاشة فوق</span></figcaption>
+        <figcaption><b>السلة والدفع</b><span>اكتب رمز الخصم في الشاشة أعلاه لتجربته</span></figcaption>
       </figure>
 
       <figure>
         <div class="phone"><div class="screen">
-          <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="sbar"><span class="num">٩:٤١</span><span class="r"><svg viewBox="0 0 24 16"><use href="#i-signal"/></svg><svg viewBox="0 0 30 16"><use href="#i-batt"/></svg></span></div>
           <div class="s-body">
             <div class="s-head"><span class="ico"><svg><use href="#i-back"/></svg></span><b style="font-size:13px">تتبع طلبي</b><span class="ico"><svg><use href="#i-chat"/></svg></span></div>
             <div style="background:var(--orange);color:#fff;border-radius:16px;padding:12px">
-              <span style="opacity:.85;font-size:10.5px">طلب رقم</span>
-              <b class="num" style="display:block;font-family:var(--display);font-size:18px;direction:ltr;text-align:right">#SP-20418</b>
-              <span style="font-size:11px">يوصلك اليوم بين ٤ و ٧ مساءً</span>
+              <span style="opacity:.85;font-size:10.5px">رقم الطلب</span>
+              <b class="num" style="display:block;font-family:var(--display);font-size:18px">٢٠٤١٨#</b>
+              <span class="num" style="font-size:11px">يصلك اليوم بين الرابعة والسابعة مساءً</span>
             </div>
-            <div style="display:grid;gap:10px;background:var(--surface);border-radius:16px;padding:12px">
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم تأكيد الطلب</b><div class="muted num" style="font-size:10px">١٠:١٢ ص</div></div></div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم التغليف</b><div class="muted num" style="font-size:10px">١١:٤٠ ص · بواسطة علي</div></div></div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;border:2.5px solid var(--orange);box-shadow:0 0 0 4px var(--orange-soft)"></span><div><b style="color:var(--orange)">مع المندوب</b><div class="muted" style="font-size:10px">بالطريق إلى الكرادة</div></div></div>
+            <div class="num" style="display:grid;gap:10px;background:var(--surface);border-radius:16px;padding:12px">
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم تأكيد الطلب</b><div class="muted" style="font-size:10px">١٠:١٢ ص</div></div></div>
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><b>تم التغليف</b><div class="muted" style="font-size:10px">١١:٤٠ ص · بواسطة علي</div></div></div>
+              <div style="display:flex;gap:8px;align-items:center"><span style="width:22px;height:22px;border-radius:50%;border:2.5px solid var(--orange);box-shadow:0 0 0 4px var(--orange-soft)"></span><div><b style="color:var(--orange)">مع المندوب</b><div class="muted" style="font-size:10px">في الطريق إلى الكرادة</div></div></div>
               <div style="display:flex;gap:8px;align-items:center;opacity:.5"><span style="width:22px;height:22px;border-radius:50%;border:2.5px solid var(--line)"></span><div><b>تم التسليم</b></div></div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;background:var(--surface);border-radius:14px;padding:8px">
@@ -544,7 +787,7 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
             </div>
           </div>
         </div></div>
-        <figcaption><b>تتبع الطلب</b><span>الزبون يعرف وين طلبه بدون ما يتصل</span></figcaption>
+        <figcaption><b>تتبع الطلب</b><span>يعرف العميل مكان طلبه دون الحاجة إلى الاتصال</span></figcaption>
       </figure>
     </div>
   </section>
@@ -552,96 +795,104 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   <!-- DASHBOARD -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">لوحة التحكم</span><h2>المتجر كله قدام المدير بشاشة وحدة</h2></div>
-      <p>أول ما يفتح المدير اللوحة يشوف مبيعات اليوم، الطلبات الي تنتظر، والألعاب الي قربت تخلص. الأرقام بالشكل أدناه أمثلة توضيحية.</p>
+      <div><span class="eyebrow">لوحة التحكم</span><h2>المتجر بأكمله أمام المدير في شاشة واحدة</h2></div>
+      <p>بمجرد فتح اللوحة يرى المدير مبيعات اليوم، والطلبات المنتظرة، والألعاب التي أوشكت على النفاد. الأرقام الظاهرة أدناه أمثلة توضيحية.</p>
     </div>
-    <div class="dash">
-      <nav class="side" aria-label="قائمة لوحة التحكم">
-        <div class="brand"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</div>
-        <a class="on"><svg><use href="#i-chart"/></svg><span>الرئيسية</span></a>
-        <a><svg><use href="#i-bag"/></svg><span>الطلبات</span></a>
-        <a><svg><use href="#i-box"/></svg><span>المخزون</span></a>
-        <a><svg><use href="#i-grid"/></svg><span>المنتجات</span></a>
-        <a><svg><use href="#i-tag"/></svg><span>العروض</span></a>
-        <a><svg><use href="#i-users"/></svg><span>الموظفين</span></a>
-        <a><svg><use href="#i-user"/></svg><span>الزبائن</span></a>
-        <div class="who"><span class="av" style="background:var(--sun)">م</span><div>المدير<br><span style="color:#9A96C4;font-size:12px">صلاحية كاملة</span></div></div>
-      </nav>
-      <div class="main">
-        <div class="main-top"><h3>صباح الخير</h3><span class="chip orange">٧ طلبات تنتظر التغليف</span></div>
-        <div class="kpis num">
-          <div class="kpi"><span>مبيعات اليوم</span><b>١٬٨٤٠٬٠٠٠</b><small class="up">▲ ١٢٪ عن أمس</small></div>
-          <div class="kpi"><span>الطلبات</span><b>٤٦</b><small class="up">▲ ٨ طلبات</small></div>
-          <div class="kpi"><span>متوسط السلة</span><b>٤٠٬٠٠٠</b><small class="muted">دينار</small></div>
-          <div class="kpi"><span>قريبة النفاد</span><b>٩</b><small class="down">تحتاج طلبية</small></div>
-        </div>
-        <div class="dash-row">
-          <div class="panel chart">
-            <h4>مبيعات آخر ٧ أيام <span class="chip" style="background:var(--surface)">ألف دينار</span></h4>
-            <svg viewBox="0 0 420 180" role="img" aria-label="مخطط مبيعات أسبوعي">
-              <defs><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6A2B" stop-opacity=".28"/><stop offset="1" stop-color="#FF6A2B" stop-opacity="0"/></linearGradient></defs>
-              <g stroke="var(--line)" stroke-width="1"><line x1="40" y1="20" x2="410" y2="20"/><line x1="40" y1="65" x2="410" y2="65"/><line x1="40" y1="110" x2="410" y2="110"/><line x1="40" y1="155" x2="410" y2="155"/></g>
-              <g fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="inherit"><text x="32" y="24">٢٠٠٠</text><text x="32" y="69">١٥٠٠</text><text x="32" y="114">١٠٠٠</text><text x="32" y="159">٥٠٠</text></g>
-              <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4 L400 155 L60 155Z" fill="url(#gA)"/>
-              <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4" fill="none" stroke="#FF6A2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-              <circle cx="400" cy="34.4" r="5.5" fill="#FF6A2B" stroke="var(--ground)" stroke-width="3"/>
-              <g fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="inherit"><text x="60" y="175">سبت</text><text x="118" y="175">أحد</text><text x="176" y="175">اثنين</text><text x="234" y="175">ثلاثاء</text><text x="292" y="175">أربعاء</text><text x="350" y="175">خميس</text><text x="400" y="175">جمعة</text></g>
-            </svg>
-          </div>
-          <div class="panel">
-            <h4>قربت تخلص <span class="chip pink">٩ منتجات</span></h4>
-            <div class="lowlist">
-              <div class="low"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span><div class="ln"><b>سيارة سباق بالريموت</b><div class="bar"><i style="width:8%;background:var(--pink)"></i></div></div><span class="num">٢</span></div>
-              <div class="low"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ln"><b>صاروخ الفضاء</b><div class="bar"><i style="width:20%;background:var(--pink)"></i></div></div><span class="num">٤</span></div>
-              <div class="low"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span><div class="ln"><b>يد تحكم ألعاب</b><div class="bar"><i style="width:30%;background:var(--sun)"></i></div></div><span class="num">٦</span></div>
-              <div class="low"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></span><div class="ln"><b>بزل خريطة العراق</b><div class="bar"><i style="width:35%;background:var(--sun)"></i></div></div><span class="num">٧</span></div>
+    <div class="mac">
+      <div class="mac-lid">
+        <div class="mac-screen free">
+          <div class="chrome"><span class="lights"><i></i><i></i><i></i></span><span class="addr"><svg><use href="#i-lock"/></svg>لوحة تحكم سبيستون</span><span class="sp"></span></div>
+          <div class="dash" style="border-radius:0;box-shadow:none">
+            <nav class="side" aria-label="قائمة لوحة التحكم">
+              <div class="brand"><span class="logo"><svg style="color:#fff"><use href="#i-star"/></svg></span>سبيستون</div>
+              <a class="on"><svg><use href="#i-chart"/></svg><span>الرئيسية</span></a>
+              <a><svg><use href="#i-bag"/></svg><span>الطلبات</span></a>
+              <a><svg><use href="#i-box"/></svg><span>المخزون</span></a>
+              <a><svg><use href="#i-grid"/></svg><span>المنتجات</span></a>
+              <a><svg><use href="#i-tag"/></svg><span>العروض</span></a>
+              <a><svg><use href="#i-users"/></svg><span>الموظفون</span></a>
+              <a><svg><use href="#i-user"/></svg><span>العملاء</span></a>
+              <div class="who"><span class="av" style="background:var(--sun)">م</span><div>المدير<br><span style="color:#9A96C4;font-size:12px">صلاحية كاملة</span></div></div>
+            </nav>
+            <div class="main">
+              <div class="main-top"><h3>صباح الخير</h3><span class="chip orange num">٧ طلبات بانتظار التغليف</span></div>
+              <div class="kpis num">
+                <div class="kpi"><span>مبيعات اليوم</span><b>١٬٨٤٠٬٠٠٠</b><small class="up"><svg class="icon-inline"><use href="#i-up"/></svg> ١٢٪ مقارنة بالأمس</small></div>
+                <div class="kpi"><span>الطلبات</span><b>٤٦</b><small class="up"><svg class="icon-inline"><use href="#i-up"/></svg> ٨ طلبات</small></div>
+                <div class="kpi"><span>متوسط قيمة السلة</span><b>٤٠٬٠٠٠</b><small class="muted">دينار</small></div>
+                <div class="kpi"><span>أوشكت على النفاد</span><b>٩</b><small class="down">تحتاج إلى طلبية</small></div>
+              </div>
+              <div class="dash-row">
+                <div class="panel chart">
+                  <h4>مبيعات آخر ٧ أيام <span class="chip num" style="background:var(--surface)">بالألف دينار</span></h4>
+                  <svg viewBox="0 0 420 180" role="img" aria-label="مخطط المبيعات الأسبوعية">
+                    <defs><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6A2B" stop-opacity=".28"/><stop offset="1" stop-color="#FF6A2B" stop-opacity="0"/></linearGradient></defs>
+                    <g stroke="var(--line)" stroke-width="1"><line x1="40" y1="20" x2="410" y2="20"/><line x1="40" y1="65" x2="410" y2="65"/><line x1="40" y1="110" x2="410" y2="110"/><line x1="40" y1="155" x2="410" y2="155"/></g>
+                    <g fill="var(--ink-3)" font-size="11" text-anchor="end"><text x="32" y="24">٢٠٠٠</text><text x="32" y="69">١٥٠٠</text><text x="32" y="114">١٠٠٠</text><text x="32" y="159">٥٠٠</text></g>
+                    <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4 L400 155 L60 155Z" fill="url(#gA)"/>
+                    <path d="M60 110.9 L118 97.4 L176 83.9 L234 101.9 L292 61.4 L350 38.9 L400 34.4" fill="none" stroke="#FF6A2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="400" cy="34.4" r="5.5" fill="#FF6A2B" stroke="var(--ground)" stroke-width="3"/>
+                    <g fill="var(--ink-3)" font-size="11" text-anchor="middle"><text x="60" y="175">السبت</text><text x="118" y="175">الأحد</text><text x="176" y="175">الاثنين</text><text x="234" y="175">الثلاثاء</text><text x="292" y="175">الأربعاء</text><text x="350" y="175">الخميس</text><text x="400" y="175">الجمعة</text></g>
+                  </svg>
+                </div>
+                <div class="panel">
+                  <h4>أوشكت على النفاد <span class="chip pink num">٩ منتجات</span></h4>
+                  <div class="lowlist num">
+                    <div class="low"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span><div class="ln"><b>سيارة سباق بجهاز تحكم</b><div class="bar"><i style="width:8%;background:var(--pink)"></i></div></div><span>٢</span></div>
+                    <div class="low"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span><div class="ln"><b>صاروخ الفضاء</b><div class="bar"><i style="width:20%;background:var(--pink)"></i></div></div><span>٤</span></div>
+                    <div class="low"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span><div class="ln"><b>ذراع تحكم للألعاب</b><div class="bar"><i style="width:30%;background:var(--sun)"></i></div></div><span>٦</span></div>
+                    <div class="low"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-puzzle"/></svg></span><div class="ln"><b>أحجية خريطة العراق</b><div class="bar"><i style="width:35%;background:var(--sun)"></i></div></div><span>٧</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="mac-base"></div>
     </div>
   </section>
 
   <!-- INVENTORY -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">المخزون</span><h2>كل قطعة محسوبة، بكل مخزن وفرع</h2></div>
-      <p>الكمية تنقص تلقائياً مع كل طلب أونلاين أو بيع من المحل، وترجع تلقائياً عند الإرجاع. النظام يصيح قبل ما تخلص اللعبة، مو بعد.</p>
+      <div><span class="eyebrow">المخزون</span><h2>كل قطعة محسوبة في كل مخزن وفرع</h2></div>
+      <p>تنقص الكمية تلقائياً مع كل طلب إلكتروني أو عملية بيع في المحل، وتعود تلقائياً عند الإرجاع. وينبّه النظام قبل نفاد اللعبة، لا بعده.</p>
     </div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>المنتج</th><th>الرمز SKU</th><th>القسم</th><th>العمر</th><th>المخزن الرئيسي</th><th>فرع المنصور</th><th>الحالة</th></tr></thead>
+        <thead><tr><th>المنتج</th><th>رمز المنتج</th><th>القسم</th><th>العمر</th><th>المخزن الرئيسي</th><th>فرع المنصور</th><th>الحالة</th></tr></thead>
         <tbody class="num">
-          <tr><td><span class="prod"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span>صاروخ الفضاء القابل للتركيب</span></td><td><span class="sku">SP-TOY-0142</span></td><td>فضاء وعلوم</td><td>٦+</td><td>٤</td><td>٠</td><td><span class="chip pink">قريب النفاد</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></span>مكعبات بناء ١٢٠ قطعة</span></td><td><span class="sku">SP-BLD-0087</span></td><td>تركيب</td><td>٣+</td><td>٥٨</td><td>١٤</td><td><span class="chip mint">متوفر</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span>دبدوب كبير ٦٠ سم</span></td><td><span class="sku">SP-PLS-0210</span></td><td>دمى</td><td>٠+</td><td>٢٢</td><td>٩</td><td><span class="chip mint">متوفر</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span>سيارة سباق بالريموت</span></td><td><span class="sku">SP-RC-0031</span></td><td>سيارات</td><td>٨+</td><td>٢</td><td>٣</td><td><span class="chip sun">طلبية بالطريق</span></td></tr>
-          <tr><td><span class="prod"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span>يد تحكم ألعاب لاسلكية</span></td><td><span class="sku">SP-GAM-0415</span></td><td>ألعاب إلكترونية</td><td>٧+</td><td>٠</td><td>٠</td><td><span class="chip">نفدت · قائمة انتظار ١٧</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--orange-soft)"><svg><use href="#i-rocket"/></svg></span>صاروخ الفضاء القابل للتركيب</span></td><td><span class="sku">١٠-٠١٤٢</span></td><td>فضاء وعلوم</td><td>+٦</td><td>٤</td><td>٠</td><td><span class="chip pink">أوشك على النفاد</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--mint-soft)"><svg><use href="#i-blocks"/></svg></span>مكعبات بناء ١٢٠ قطعة</span></td><td><span class="sku">٢٠-٠٠٨٧</span></td><td>ألعاب تركيب</td><td>+٣</td><td>٥٨</td><td>١٤</td><td><span class="chip mint">متوفر</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sun-soft)"><svg><use href="#i-bear"/></svg></span>دب محشو كبير ٦٠ سم</span></td><td><span class="sku">٣٠-٠٢١٠</span></td><td>دمى</td><td>+٠</td><td>٢٢</td><td>٩</td><td><span class="chip mint">متوفر</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--sky-soft)"><svg><use href="#i-car"/></svg></span>سيارة سباق بجهاز تحكم</span></td><td><span class="sku">٤٠-٠٠٣١</span></td><td>سيارات</td><td>+٨</td><td>٢</td><td>٣</td><td><span class="chip sun">طلبية في الطريق</span></td></tr>
+          <tr><td><span class="prod"><span class="th" style="background:var(--surface-2)"><svg><use href="#i-pad"/></svg></span>ذراع تحكم لاسلكية للألعاب</span></td><td><span class="sku">٥٠-٠٤١٥</span></td><td>إلكترونيات</td><td>+٧</td><td>٠</td><td>٠</td><td><span class="chip">نفدت · ١٧ في قائمة الانتظار</span></td></tr>
         </tbody>
       </table>
     </div>
     <div class="inv-feats">
-      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-scan"/></svg></span><b>باركود وQR</b><p>طباعة ملصقات لكل منتج، والاستلام والجرد بالمسح من الموبايل.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-shelf"/></svg></span><b>مواقع التخزين</b><p>كل لعبة إلها رف ومكان، حتى الموظف يلگاها بثواني وقت التغليف.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-truck"/></svg></span><b>الموردين والطلبيات</b><p>أوامر شراء للموردين، واستلام جزئي، وتكلفة كل دفعة لحساب الربح الحقيقي.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-bell"/></svg></span><b>أعلمني عند التوفر</b><p>الزبون يسجل على اللعبة النافدة، وتوصله رسالة أول ما ترجع للمخزن.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-scan"/></svg></span><b>الباركود</b><p>طباعة ملصق لكل منتج، وتنفيذ الاستلام والجرد بالمسح من الهاتف.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-shelf"/></svg></span><b>مواقع التخزين</b><p>لكل لعبة رفّ ومكان محدد، فيجدها الموظف خلال ثوانٍ عند التغليف.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-truck"/></svg></span><b>الموردون والطلبيات</b><p>أوامر شراء للموردين، واستلام جزئي، وتكلفة كل دفعة لاحتساب الربح الفعلي.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-bell"/></svg></span><b>أعلِمني عند التوفر</b><p>يسجّل العميل اهتمامه باللعبة النافدة، فتصله رسالة فور عودتها إلى المخزن.</p></div>
     </div>
   </section>
 
   <!-- ROLES -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">المدير والموظفين</span><h2>المدير يعيّن، وكل موظف يشوف شغله بس</h2></div>
-      <p>المدير يضيف موظف برقم تلفونه، ويختار دوره، وممكن يحدده بفرع معين. كل تعديل على سعر أو كمية أو طلب ينسجل باسم الي سواه ووقته.</p>
+      <div><span class="eyebrow">المدير والموظفون</span><h2>المدير يعيّن، وكل موظف يرى عمله فقط</h2></div>
+      <p>يضيف المدير الموظف برقم هاتفه، ويحدد دوره، ويمكنه ربطه بفرع معين. وكل تعديل على سعر أو كمية أو طلب يُسجَّل باسم من أجراه ووقت إجرائه.</p>
     </div>
     <div class="roles">
       <div class="card tree">
-        <div class="node boss"><span class="av" style="background:#fff">م</span><div>المدير العام<small>يضيف ويحذف الموظفين ويحدد الصلاحيات</small></div></div>
+        <div class="node boss"><span class="av" style="background:#fff">م</span><div>المدير العام<small>يضيف الموظفين ويحذفهم ويحدد صلاحياتهم</small></div></div>
         <span class="stem"></span>
         <div class="team">
           <div class="node"><span class="av" style="background:var(--mint)">ز</span><div>مشرف المخزون<small>الاستلام والجرد</small></div></div>
           <div class="node"><span class="av" style="background:var(--sky)">ع</span><div>موظف الطلبات<small>التجهيز والتغليف</small></div></div>
-          <div class="node"><span class="av" style="background:var(--pink)">س</span><div>خدمة العملاء<small>الرد والإرجاع</small></div></div>
+          <div class="node"><span class="av" style="background:var(--pink)">س</span><div>خدمة العملاء<small>الردود والمرتجعات</small></div></div>
           <div class="node"><span class="av" style="background:var(--sun)">ك</span><div>المحاسب<small>المبالغ والتقارير</small></div></div>
         </div>
       </div>
@@ -650,46 +901,46 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
           <table class="matrix" style="min-width:560px">
             <thead><tr><th>الصلاحية</th><th>المدير</th><th>المخزون</th><th>الطلبات</th><th>خدمة العملاء</th><th>المحاسب</th></tr></thead>
             <tbody>
-              <tr><td>إضافة وتعديل المنتجات</td><td><span class="yes">✓</span></td><td><span class="part">~</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>تعديل الأسعار</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>تعديل الكميات والجرد</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>تجهيز الطلبات وتحديث حالتها</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="part">~</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>الإرجاع والاستبدال</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>إنشاء بروموكود</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
-              <tr><td>التقارير المالية</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="yes">✓</span></td></tr>
-              <tr><td>إدارة الموظفين</td><td><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td><td><span class="no">–</span></td></tr>
+              <tr><td>إضافة المنتجات وتعديلها</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="part"><svg><use href="#i-part"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>تعديل الأسعار</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>تعديل الكميات والجرد</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>تجهيز الطلبات وتحديث حالتها</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="part"><svg><use href="#i-part"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>الإرجاع والاستبدال</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>إنشاء رموز الخصم</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
+              <tr><td>التقارير المالية</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td></tr>
+              <tr><td>إدارة الموظفين</td><td><span class="yes"><svg><use href="#i-check"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td><td><span class="no"><svg><use href="#i-minus"/></svg></span></td></tr>
             </tbody>
           </table>
         </div>
-        <div class="legend"><span><span class="yes">✓</span>صلاحية كاملة</span><span><span class="part">~</span>عرض أو صلاحية محدودة</span><span><span class="no">–</span>ما يشوفها</span></div>
+        <div class="legend"><span><span class="yes"><svg><use href="#i-check"/></svg></span>صلاحية كاملة</span><span><span class="part"><svg><use href="#i-part"/></svg></span>اطّلاع أو صلاحية محدودة</span><span><span class="no"><svg><use href="#i-minus"/></svg></span>غير متاحة</span></div>
       </div>
     </div>
-    <div class="log">
-      <div class="log-row"><span class="av" style="background:var(--mint)">ز</span><span><b>زينب</b> استلمت ٤٠ قطعة من <b>مكعبات بناء ١٢٠ قطعة</b> للمخزن الرئيسي</span><time class="num">٩:٠٥ ص</time></div>
-      <div class="log-row"><span class="av" style="background:var(--sky)">ع</span><span><b>علي</b> غلّف الطلب <span class="sku">#SP-20418</span> وسلّمه للمندوب</span><time class="num">١١:٤٠ ص</time></div>
-      <div class="log-row"><span class="av" style="background:var(--sun)">م</span><span><b>المدير</b> غيّر سعر <b>صاروخ الفضاء</b> من ٥٠٬٠٠٠ إلى ٤٢٬٠٠٠ د.ع</span><time class="num">١٢:١٥ م</time></div>
+    <div class="log num">
+      <div class="log-row"><span class="av" style="background:var(--mint)">ز</span><span><b>زينب</b> استلمت ٤٠ قطعة من <b>مكعبات بناء ١٢٠ قطعة</b> في المخزن الرئيسي</span><time>٩:٠٥ ص</time></div>
+      <div class="log-row"><span class="av" style="background:var(--sky)">ع</span><span><b>علي</b> غلّف الطلب رقم ٢٠٤١٨ وسلّمه إلى المندوب</span><time>١١:٤٠ ص</time></div>
+      <div class="log-row"><span class="av" style="background:var(--sun)">م</span><span><b>المدير</b> غيّر سعر <b>صاروخ الفضاء</b> من ٥٠٬٠٠٠ إلى ٤٢٬٠٠٠ د.ع</span><time>١٢:١٥ م</time></div>
     </div>
   </section>
 
   <!-- TRACKING -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">تتبع المنتج</span><h2>رحلة اللعبة من المورد لإيد الطفل</h2></div>
-      <p>كل قطعة إلها سجل: منين إجت، بأي رف انحطت، منو غلّفها، وياهو المندوب الي وصّلها. إذا صار خطأ أو إرجاع، نعرف بالضبط وين صار.</p>
+      <div><span class="eyebrow">تتبع المنتج</span><h2>رحلة اللعبة من المورّد إلى يد الطفل</h2></div>
+      <p>لكل قطعة سجلّ يوضح مصدرها، والرف الذي وُضعت عليه، ومن غلّفها، والمندوب الذي أوصلها. وعند حدوث خطأ أو إرجاع نعرف بدقة أين وقع.</p>
     </div>
     <div class="card">
       <div class="track-card">
         <span class="bubble" style="background:var(--orange-soft);color:var(--orange);width:56px;height:56px"><svg><use href="#i-rocket"/></svg></span>
-        <div><div class="big">صاروخ الفضاء القابل للتركيب</div><span class="muted">رقم القطعة <span class="sku">SP-TOY-0142-0019</span> · الطلب <span class="sku">#SP-20418</span></span></div>
+        <div><div class="big">صاروخ الفضاء القابل للتركيب</div><span class="muted num">رقم القطعة ١٠-٠١٤٢-٠٠١٩ · الطلب رقم ٢٠٤١٨</span></div>
         <span class="chip orange">مع المندوب الآن</span>
       </div>
       <div class="track num">
-        <div class="step done"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>الاستلام من المورد</b><p>دفعة ٤٠ قطعة، فحص الجودة</p><time>٢ أيلول</time></div>
-        <div class="step done"><span class="dot"><svg><use href="#i-shelf"/></svg></span><b>التخزين</b><p>المخزن الرئيسي، رف B-04</p><time>٢ أيلول</time></div>
-        <div class="step done"><span class="dot"><svg><use href="#i-bag"/></svg></span><b>طلب الزبون</b><p>من التطبيق، كود SPACE20</p><time>٢٥ أيلول · ١٠:١٢ ص</time></div>
-        <div class="step done"><span class="dot"><svg><use href="#i-gift"/></svg></span><b>التجهيز والتغليف</b><p>علي، مع تغليف هدية</p><time>١١:٤٠ ص</time></div>
-        <div class="step now"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>التوصيل</b><p>المندوب حسين، الكرادة</p><time>متوقع ٤–٧ م</time></div>
-        <div class="step"><span class="dot"><svg><use href="#i-check"/></svg></span><b>التسليم</b><p>تأكيد بالكود أو التوقيع</p><time>—</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>الاستلام من المورّد</b><p>دفعة من ٤٠ قطعة مع فحص الجودة</p><time>٢ أيلول</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-shelf"/></svg></span><b>التخزين</b><p>المخزن الرئيسي، الرف ب-٠٤</p><time>٢ أيلول</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-bag"/></svg></span><b>طلب العميل</b><p>من التطبيق برمز الخصم فضاء٢٠</p><time>٢٥ أيلول · ١٠:١٢ ص</time></div>
+        <div class="step done"><span class="dot"><svg><use href="#i-gift"/></svg></span><b>التجهيز والتغليف</b><p>بواسطة علي مع تغليف هدية</p><time>١١:٤٠ ص</time></div>
+        <div class="step now"><span class="dot"><svg><use href="#i-truck"/></svg></span><b>التوصيل</b><p>المندوب حسين إلى الكرادة</p><time>متوقع بين ٤ و٧ م</time></div>
+        <div class="step"><span class="dot"><svg><use href="#i-check"/></svg></span><b>التسليم</b><p>تأكيد برمز التحقق أو التوقيع</p><time>بانتظار التسليم</time></div>
       </div>
     </div>
   </section>
@@ -697,71 +948,71 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   <!-- PROMOS -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">البروموكودات والعروض</span><h2>عروض تجيب زبون وترجّعه</h2></div>
-      <p>المدير يسوي الكود بدقيقة: نسبة أو مبلغ ثابت، حد أدنى للسلة، تاريخ انتهاء، عدد استخدامات، ومحصور بقسم أو منتج معين. وكل كود إله تقرير يبين كم جاب مبيعات.</p>
+      <div><span class="eyebrow">رموز الخصم والعروض</span><h2>عروض تجذب العميل وتعيده</h2></div>
+      <p>ينشئ المدير رمز الخصم في دقيقة واحدة: نسبة مئوية أو مبلغ ثابت، وحد أدنى للسلة، وتاريخ انتهاء، وعدد مرات الاستخدام، مع إمكانية قصره على قسم أو منتج معين. ولكل رمز تقرير يوضح حجم المبيعات التي حققها.</p>
     </div>
-    <div class="coupons">
-      <div class="coupon c1"><span style="font-weight:700">عودة للمدارس</span><span class="pct num">٢٠٪</span><span class="cd">SPACE20</span><span class="rules num">على كل الأقسام · حد أدنى ٥٠٬٠٠٠ د.ع · ينتهي ٣٠ أيلول · استخدام واحد لكل زبون</span></div>
-      <div class="coupon c2"><span style="font-weight:700">أول طلب</span><span class="pct num">١٠٬٠٠٠ د.ع</span><span class="cd">WELCOME</span><span class="rules">للزبائن الجدد فقط · يُفعّل تلقائياً بعد التسجيل</span></div>
-      <div class="coupon c3"><span style="font-weight:700">عيد ميلاد سعيد</span><span class="pct num">١٥٪</span><span class="cd">BDAY-SARA</span><span class="rules">كود شخصي يوصل قبل عيد ميلاد الطفل بأسبوع · صالح ١٤ يوم</span></div>
+    <div class="coupons num">
+      <div class="coupon c1"><span style="font-weight:700">العودة إلى المدارس</span><span class="pct">٢٠٪</span><span class="cd">فضاء٢٠</span><span class="rules">على جميع الأقسام · حد أدنى ٥٠٬٠٠٠ د.ع · ينتهي في ٣٠ أيلول · مرة واحدة لكل عميل</span></div>
+      <div class="coupon c2"><span style="font-weight:700">الطلب الأول</span><span class="pct">١٠٬٠٠٠ د.ع</span><span class="cd">أهلاً</span><span class="rules">للعملاء الجدد فقط · يُفعَّل تلقائياً بعد التسجيل</span></div>
+      <div class="coupon c3"><span style="font-weight:700">عيد ميلاد سعيد</span><span class="pct">١٥٪</span><span class="cd">ميلاد-سارة</span><span class="rules">رمز شخصي يصل قبل عيد ميلاد الطفل بأسبوع · صالح لمدة ١٤ يوماً</span></div>
     </div>
-    <div class="promo-types">
-      <div class="mini"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-star"/></svg></span><b>نقاط الولاء</b><p>كل ١٬٠٠٠ د.ع = نقطة. النقاط تتحول لخصم بالطلب الجاي.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-gift"/></svg></span><b>بطاقات هدايا</b><p>الأهل والأصدقاء يهدون رصيد بدل ما يحتارون باللعبة.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-tag"/></svg></span><b>عروض الباقات</b><p>اشترِ ٢ والثالثة بنص السعر، أو باقة جاهزة لعيد الميلاد.</p></div>
-      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-bag"/></svg></span><b>السلة المتروكة</b><p>تذكير تلقائي بعد ساعات، مع كود صغير إذا ما رجع الزبون.</p></div>
+    <div class="promo-types num">
+      <div class="mini"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-star"/></svg></span><b>نقاط الولاء</b><p>كل ١٬٠٠٠ د.ع تساوي نقطة واحدة، وتتحول النقاط إلى خصم في الطلب التالي.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-gift"/></svg></span><b>بطاقات الهدايا</b><p>يُهدي الأهل والأصدقاء رصيداً بدلاً من الحيرة في اختيار اللعبة.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-tag"/></svg></span><b>عروض الباقات</b><p>اشترِ لعبتين واحصل على الثالثة بنصف السعر، أو باقات جاهزة لأعياد الميلاد.</p></div>
+      <div class="mini"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-bag"/></svg></span><b>السلة المتروكة</b><p>تذكير تلقائي بعد ساعات، مع رمز خصم صغير إن لم يعد العميل.</p></div>
     </div>
   </section>
 
   <!-- EXTRAS -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">إضافات نقترحها</span><h2>التفاصيل الي تخلي المتجر متكامل</h2></div>
-      <p>هاي الإضافات مو ضرورية بيوم الإطلاق، بس هي الي تفرق متجر ألعاب عادي عن متجر يرجعله الزبون كل مناسبة.</p>
+      <div><span class="eyebrow">إضافات مقترحة</span><h2>التفاصيل التي تجعل المتجر متكاملاً</h2></div>
+      <p>هذه الإضافات ليست ضرورية يوم الإطلاق، لكنها ما يميّز متجر ألعاب عادياً عن متجر يعود إليه العميل في كل مناسبة.</p>
     </div>
     <div class="extras">
-      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-search"/></svg></span><div><h3>تسوق حسب العمر والمناسبة</h3><p>فلتر: ولد أو بنت، العمر، الميزانية، والمناسبة (عيد، نجاح، عيد ميلاد).</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-cake"/></svg></span><div><h3>تذكير أعياد الميلاد</h3><p>الأهل يسجلون أعمار أطفالهم، والمتجر يقترح ألعاب مناسبة قبل المناسبة.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-gift"/></svg></span><div><h3>تغليف هدية وبطاقة إهداء</h3><p>خيار تغليف مع رسالة مكتوبة، وإخفاء السعر من الفاتورة.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-chat"/></svg></span><div><h3>إشعارات واتساب</h3><p>تأكيد الطلب، خروجه للتوصيل، ووصوله، كلها برسالة واتساب للزبون.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-heart"/></svg></span><div><h3>المفضلة وقائمة الأمنيات</h3><p>الطفل يسوي قائمة ألعابه، والأهل يشاركونها مع العائلة قبل العيد.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-star"/></svg></span><div><h3>تقييمات بالصور</h3><p>الزبائن يقيّمون اللعبة ويرفعون صور، والمدير يوافق قبل النشر.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><div><h3>نقطة بيع للمحل</h3><p>كاشير مربوط بنفس المخزون، حتى البيع بالمحل والأونلاين ما يتضاربون.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-truck"/></svg></span><div><h3>شركات التوصيل</h3><p>ربط مع شركات التوصيل المحلية، وسعر توصيل حسب المحافظة يتحسب تلقائياً.</p></div></div>
-      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-shield"/></svg></span><div><h3>سلامة الطفل</h3><p>تحذيرات القطع الصغيرة والمواد وشهادات الجودة واضحة بصفحة كل لعبة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-search"/></svg></span><div><h3>التسوق حسب العمر والمناسبة</h3><p>تصفية حسب جنس الطفل وعمره والميزانية والمناسبة، كالعيد أو النجاح أو عيد الميلاد.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-cake"/></svg></span><div><h3>تذكير بأعياد الميلاد</h3><p>يسجّل الأهل أعمار أطفالهم، فيقترح المتجر ألعاباً مناسبة قبل المناسبة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--sun-soft);color:#B07A00"><svg><use href="#i-gift"/></svg></span><div><h3>تغليف الهدايا وبطاقة الإهداء</h3><p>خيار تغليف مع رسالة مكتوبة، وإخفاء السعر من الفاتورة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-chat"/></svg></span><div><h3>إشعارات واتساب</h3><p>رسائل تلقائية للعميل عند تأكيد الطلب وخروجه للتوصيل ووصوله.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--sky-soft);color:var(--sky)"><svg><use href="#i-heart"/></svg></span><div><h3>المفضلة وقائمة الأمنيات</h3><p>ينشئ الطفل قائمة بألعابه المفضلة، ويشاركها الأهل مع العائلة قبل العيد.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-star"/></svg></span><div><h3>تقييمات مصوّرة</h3><p>يقيّم العملاء اللعبة ويرفعون صورها، ويوافق المدير عليها قبل النشر.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--orange-soft);color:var(--orange)"><svg><use href="#i-store"/></svg></span><div><h3>نقطة بيع للمحل</h3><p>نظام كاشير مرتبط بالمخزون نفسه، فلا يتعارض البيع في المحل مع البيع الإلكتروني.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--mint-soft);color:var(--mint)"><svg><use href="#i-truck"/></svg></span><div><h3>شركات التوصيل</h3><p>ربط مع شركات التوصيل المحلية، واحتساب أجور التوصيل تلقائياً حسب المحافظة.</p></div></div>
+      <div class="ex"><span class="bubble" style="background:var(--pink-soft);color:var(--pink)"><svg><use href="#i-shield"/></svg></span><div><h3>سلامة الطفل</h3><p>تحذيرات القطع الصغيرة والمواد المصنوعة منها وشهادات الجودة واضحة في صفحة كل لعبة.</p></div></div>
     </div>
   </section>
 
   <!-- PHASES -->
   <section>
     <div class="sec-head">
-      <div><span class="eyebrow">مراحل التنفيذ</span><h2>من الفكرة للإطلاق بأربع مراحل</h2></div>
-      <p>كل مرحلة تنتهي بشي يقدر التاجر يشوفه ويعتمده قبل ما ننتقل للي بعدها.</p>
+      <div><span class="eyebrow">مراحل التنفيذ</span><h2>من الفكرة إلى الإطلاق في أربع مراحل</h2></div>
+      <p>تنتهي كل مرحلة بمخرجات يستطيع التاجر الاطلاع عليها واعتمادها قبل الانتقال إلى المرحلة التالية.</p>
     </div>
-    <div class="phases">
-      <div class="phase"><div class="w"><span class="n num">١</span><span class="chip">أسبوع ١–٢</span></div><h3>الاكتشاف والتصميم</h3><ul><li>جمع المنتجات والأقسام</li><li>اختيار أسلوب التصميم</li><li>تصميم كل الشاشات على Figma</li></ul></div>
-      <div class="phase"><div class="w"><span class="n num">٢</span><span class="chip">أسبوع ٣–٦</span></div><h3>البرمجة</h3><ul><li>المتجر والتطبيق</li><li>لوحة التحكم والمخزون</li><li>الأدوار والصلاحيات</li></ul></div>
-      <div class="phase"><div class="w"><span class="n num">٣</span><span class="chip">أسبوع ٧–٨</span></div><h3>الربط والتجربة</h3><ul><li>بوابات الدفع والتوصيل</li><li>رفع المنتجات والكميات</li><li>تدريب المدير والموظفين</li></ul></div>
-      <div class="phase"><div class="w"><span class="n num">٤</span><span class="chip">أسبوع ٩–١٠</span></div><h3>الإطلاق والدعم</h3><ul><li>إطلاق المتجر ونشر التطبيق</li><li>متابعة يومية أول شهر</li><li>تحسينات حسب الاستخدام</li></ul></div>
+    <div class="phases num">
+      <div class="phase"><div class="w"><span class="n">١</span><span class="chip">الأسبوع ١-٢</span></div><h3>الاستكشاف والتصميم</h3><ul><li>جمع المنتجات وتحديد الأقسام</li><li>اختيار أسلوب التصميم</li><li>تصميم جميع الشاشات في نموذج تفاعلي</li></ul></div>
+      <div class="phase"><div class="w"><span class="n">٢</span><span class="chip">الأسبوع ٣-٦</span></div><h3>البرمجة</h3><ul><li>الموقع والتطبيق</li><li>لوحة التحكم والمخزون</li><li>الأدوار والصلاحيات</li></ul></div>
+      <div class="phase"><div class="w"><span class="n">٣</span><span class="chip">الأسبوع ٧-٨</span></div><h3>الربط والاختبار</h3><ul><li>بوابات الدفع وشركات التوصيل</li><li>رفع المنتجات والكميات</li><li>تدريب المدير والموظفين</li></ul></div>
+      <div class="phase"><div class="w"><span class="n">٤</span><span class="chip">الأسبوع ٩-١٠</span></div><h3>الإطلاق والدعم</h3><ul><li>إطلاق المتجر ونشر التطبيق</li><li>متابعة يومية خلال الشهر الأول</li><li>تحسينات بناءً على الاستخدام</li></ul></div>
     </div>
   </section>
 
   <!-- CTA -->
   <div class="cta">
     <div>
-      <span class="eyebrow" style="color:var(--sun)">الخطوة الجاية</span>
-      <h2>نبلش أول ما توصلنا هاي الأمور</h2>
-      <p>بعد ما نستلمها نرجعلكم بعرض سعر مفصل وجدول زمني نهائي، وأول نسخة من التصميم خلال أسبوعين.</p>
+      <span class="eyebrow" style="color:var(--sun)">الخطوة التالية</span>
+      <h2>نبدأ فور استلام المتطلبات التالية</h2>
+      <p>بعد استلامها نقدّم عرض سعر مفصلاً وجدولاً زمنياً نهائياً، مع النسخة الأولى من التصميم خلال أسبوعين.</p>
     </div>
     <div class="need">
-      <div><i>✓</i>الشعار والهوية (أو نصمم لكم)</div>
-      <div><i>✓</i>قائمة المنتجات والأسعار والكميات</div>
-      <div><i>✓</i>عدد الفروع والمخازن والموظفين</div>
-      <div><i>✓</i>طرق الدفع والتوصيل المطلوبة</div>
+      <div><i><svg><use href="#i-check"/></svg></i>الشعار والهوية البصرية، أو نصممها لكم</div>
+      <div><i><svg><use href="#i-check"/></svg></i>قائمة المنتجات وأسعارها وكمياتها</div>
+      <div><i><svg><use href="#i-check"/></svg></i>عدد الفروع والمخازن والموظفين</div>
+      <div><i><svg><use href="#i-check"/></svg></i>طرق الدفع والتوصيل المطلوبة</div>
     </div>
   </div>
 
-  <footer>مقترح أولي قابل للتعديل حسب احتياج المتجر · الأسعار والأرقام بالشاشات أمثلة توضيحية</footer>
+  <footer>مقترح أولي قابل للتعديل وفق احتياجات المتجر · الأسعار والأرقام الظاهرة في الشاشات أمثلة توضيحية</footer>
 </div>
 
 <script>
@@ -772,18 +1023,25 @@ footer{margin-top:40px;text-align:center;color:var(--ink-3);font-size:13px}
   var opts=[document.getElementById('opt-ours'),document.getElementById('opt-ref')];
   opts.forEach(function(b){b.addEventListener('click',function(){opts.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});});});
 
-  var ar=function(n){return n.toLocaleString('ar-IQ',{useGrouping:true})+' د.ع'};
+  var fmt=function(n){return n.toLocaleString('ar-IQ',{useGrouping:true})+' د.ع'};
   var SUB=78000,SHIP=5000;
-  var codes={SPACE20:{p:.20,min:50000},WELCOME:{flat:10000,min:0}};
+  var norm=function(s){
+    return (s||'').trim()
+      .replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d]})
+      .replace(/[ً-ْ]/g,'').replace(/[أإآ]/g,'ا').replace(/\s+/g,'');
+  };
+  var codes={};
+  codes[norm('فضاء٢٠')]={p:.20,label:'فضاء٢٠'};
+  codes[norm('أهلاً')]={flat:10000,label:'أهلاً'};
   var input=document.getElementById('promo-input'),msg=document.getElementById('promo-msg'),
       row=document.getElementById('row-disc'),dEl=document.getElementById('s-disc'),tEl=document.getElementById('s-tot');
   function apply(){
-    var c=(input.value||'').trim().toUpperCase(),r=codes[c];
-    if(!c){msg.className='promo-msg muted';msg.textContent='جرّب: SPACE20';row.hidden=true;tEl.textContent=ar(SUB+SHIP);return;}
-    if(!r){msg.className='promo-msg bad';msg.textContent='الكود غير صحيح، تأكد من الحروف';row.hidden=true;tEl.textContent=ar(SUB+SHIP);return;}
+    var c=norm(input.value),r=codes[c];
+    if(!c){msg.className='promo-msg muted';msg.textContent='جرّب الرمز: فضاء٢٠';row.hidden=true;tEl.textContent=fmt(SUB+SHIP);return;}
+    if(!r){msg.className='promo-msg bad';msg.textContent='الرمز غير صحيح، يُرجى التحقق منه';row.hidden=true;tEl.textContent=fmt(SUB+SHIP);return;}
     var d=r.p?Math.round(SUB*r.p):r.flat;
-    row.hidden=false;dEl.textContent='− '+ar(d);tEl.textContent=ar(SUB-d+SHIP);
-    msg.className='promo-msg ok';msg.textContent='تم تطبيق الكود '+c+'، وفّرت '+ar(d);
+    row.hidden=false;dEl.textContent='− '+fmt(d);tEl.textContent=fmt(SUB-d+SHIP);
+    msg.className='promo-msg ok';msg.textContent='تم تطبيق الرمز '+r.label+'، ووفّرت '+fmt(d);
   }
   document.getElementById('promo-btn').addEventListener('click',apply);
   input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();apply();}});
