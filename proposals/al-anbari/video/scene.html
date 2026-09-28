@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>منظومة الأنباري الذكية — فيديو</title>
+<style>
+@font-face{font-family:"SF Arabic";src:url(../fonts/SFArabic-Regular.ttf);font-weight:400}
+@font-face{font-family:"SF Arabic";src:url(../fonts/SFArabic-Medium.ttf);font-weight:500}
+@font-face{font-family:"SF Arabic";src:url(../fonts/SFArabic-Semibold.ttf);font-weight:600}
+@font-face{font-family:"SF Arabic";src:url(../fonts/SFArabic-Bold.ttf);font-weight:700}
+@font-face{font-family:"SF Arabic";src:url(../fonts/SFArabic-Heavy.ttf);font-weight:800}
+@font-face{font-family:"Cormorant Garamond";src:url(../fonts/cormorant-garamond-latin-500-normal.woff);font-weight:500}
+@font-face{font-family:"Cormorant Garamond";src:url(../fonts/cormorant-garamond-latin-600-normal.woff);font-weight:600}
+@font-face{font-family:"Cormorant Garamond";src:url(../fonts/cormorant-garamond-latin-500-italic.woff);font-weight:500;font-style:italic}
+
+:root{--gold:#C9A04E;--gold-l:#E8CD8A;--gold-d:#9A7430;--ink:#0A0908;--panel:#15120D;--line:#2E281E;--txt:#F3E7CC;--mut:#A39681}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+body{font-family:"SF Arabic","Cormorant Garamond";color:var(--txt);font-variant-numeric:lining-nums;position:relative}
+.en{font-family:"Cormorant Garamond";direction:ltr;unicode-bidi:isolate}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;opacity:0}
+.center{left:0;width:1080px;text-align:center}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse 900px 1100px at 50% 45%,#2A2014 0%,#120F0B 45%,#0A0908 75%)}
+.frame{position:absolute;left:34px;top:34px;width:1012px;height:1852px;border:2px solid rgba(201,160,78,.45)}
+.frame2{position:absolute;left:44px;top:44px;width:992px;height:1832px;border:1px solid rgba(201,160,78,.25)}
+.spark{position:absolute;width:10px;height:10px;background:var(--gold-l);transform:rotate(45deg);border-radius:1px;box-shadow:0 0 12px 3px rgba(232,205,138,.6)}
+
+.kicker{font-family:"Cormorant Garamond";font-style:italic;font-size:40px;color:var(--gold);direction:ltr}
+.h1{font-weight:800;font-size:84px;line-height:1.3;color:var(--txt)}
+.h2{font-weight:700;font-size:64px;line-height:1.35;color:var(--txt)}
+.sub{font-size:40px;line-height:1.6;color:#CFC4B1}
+.gold{color:var(--gold-l)}
+.rule{height:5px;width:180px;background:linear-gradient(90deg,var(--gold-d),var(--gold-l),var(--gold-d));margin:26px auto 0}
+
+.num{font-family:"Cormorant Garamond";font-weight:600;color:var(--gold);font-size:64px;direction:ltr;display:inline-block}
+.shead{position:absolute;top:150px;right:90px;width:900px;text-align:right}
+.shead .num{margin-left:18px}
+.shead .t{font-weight:800;font-size:60px;line-height:1.3;margin-top:6px}
+.shead .s{font-size:36px;color:var(--mut);margin-top:10px}
+
+.card{background:var(--panel);border:2px solid var(--line);border-radius:28px}
+.pcard{background:#17140F;border:2px solid var(--line);border-radius:22px;overflow:hidden}
+.pcard img{display:block;width:100%;height:210px;object-fit:cover}
+.pcard .b{padding:14px 18px 18px}
+.pcard .n{font-size:28px;font-weight:700;color:var(--txt)}
+.pcard .m{font-size:24px;color:var(--mut)}
+.pcard .m .en{font-weight:600;color:var(--gold-l);font-size:28px}
+.wa{margin-top:12px;background:linear-gradient(135deg,#B8893A,#E8CD8A);color:#14110D;border-radius:14px;text-align:center;font-weight:800;font-size:21px;padding:8px 0;white-space:nowrap}
+
+.phone{position:absolute;width:560px;height:1120px;left:260px;top:430px;background:#050505;border-radius:78px;padding:18px;border:3px solid #3A342A;box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 1px #000}
+.screen{position:relative;width:100%;height:100%;border-radius:62px;overflow:hidden;background:#0F0D0B}
+.notch{position:absolute;top:18px;left:190px;width:142px;height:40px;border-radius:24px;background:#000;z-index:5}
+.sb{position:absolute;top:22px;left:40px;right:40px;height:34px;font-family:"Cormorant Garamond";font-weight:600;font-size:28px;direction:ltr}
+.sb .bat{position:absolute;right:0;top:6px;width:44px;height:22px;border:2px solid #fff;border-radius:6px}
+.sb .bat:after{content:"";position:absolute;left:3px;top:3px;width:28px;height:12px;background:#fff;border-radius:2px}
+
+.chip{display:inline-block;border-radius:40px;padding:8px 22px;font-size:24px;margin:0 0 10px 10px;border:2px solid #3A3226;color:#CFC4B1}
+.chip.on{background:var(--gold);color:#14110D;border-color:var(--gold);font-weight:800}
+.live{display:inline-block;width:16px;height:16px;border-radius:50%;background:#4CC38A;margin-left:10px;vertical-align:2px}
+
+.bub{display:inline-block;border-radius:30px;padding:14px 24px;font-size:26px;line-height:1.6;max-width:400px;text-align:right}
+.row{margin-bottom:14px}
+.row.me{text-align:left}
+.row.bot{text-align:right}
+.bub.me{background:var(--gold);color:#14110D;border-bottom-left-radius:8px;font-weight:500}
+.bub.bot{background:#1F1B16;color:#EDE3CF;border:2px solid var(--line);border-bottom-right-radius:8px}
+.dots span{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--gold-l);margin:0 4px}
+
+.prob{position:absolute;right:90px;width:900px;height:132px;border-radius:26px;background:var(--panel);border:2px solid var(--line);display:flex;align-items:center;padding:0 34px}
+.prob .ic{width:78px;height:78px;border-radius:50%;background:#221D15;display:flex;align-items:center;justify-content:center;margin-left:28px;flex:none}
+.prob .tx{font-size:40px;font-weight:700;color:var(--txt)}
+.prob .ds{font-size:27px;color:var(--mut);margin-top:2px}
+
+.comp{position:absolute;width:260px;text-align:center}
+.comp .c{width:150px;height:150px;border-radius:50%;background:#15120D;border:3px solid var(--gold);margin:0 auto;display:flex;align-items:center;justify-content:center}
+.comp .l{font-size:34px;font-weight:700;margin-top:16px}
+
+.fbox{display:inline-block;border:3px solid var(--gold);border-radius:22px;background:#15120D;padding:16px 22px;text-align:center;vertical-align:middle}
+.fbox .a{font-size:32px;font-weight:700}
+.fbox .b{font-family:"Cormorant Garamond";font-style:italic;font-size:26px;color:var(--gold);direction:ltr}
+.op{display:inline-block;font-family:"Cormorant Garamond";font-weight:600;font-size:60px;color:var(--gold);margin:0 12px;vertical-align:middle}
+
+.kpi{background:#17140F;border:2px solid var(--line);border-radius:22px;padding:22px 24px;flex:1}
+.kpi .kl{font-size:24px;color:var(--mut)}
+.kpi .kv{font-family:"Cormorant Garamond";font-weight:600;font-size:74px;line-height:1.05;color:var(--txt);direction:ltr;text-align:right}
+.kpi .ku{font-size:24px;color:var(--gold)}
+
+.node{position:absolute;width:300px;padding:26px 16px;border-radius:26px;background:#15120D;border:3px solid var(--gold);text-align:center}
+.node .l{font-size:36px;font-weight:800;margin-top:8px}
+.node .d{font-size:24px;color:var(--mut)}
+.pill{display:inline-block;border:2px solid #5C4A2A;border-radius:40px;padding:12px 28px;font-size:30px;color:var(--gold-l);background:#17140F;margin:0 8px 16px}
+
+.footer{position:absolute;bottom:56px;left:0;width:1080px;text-align:center;font-size:26px;color:#8E8272}
+.footer .en{letter-spacing:6px;color:var(--gold);font-weight:600;font-size:26px}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="sparks"></div>
+<div class="frame"></div><div class="frame2"></div>
+
+<!-- ========== S1 INTRO ========== -->
+<div class="scene" id="s1">
+  <svg class="abs" style="left:150px;top:300px" width="780" height="900" viewBox="0 0 780 900" fill="none">
+    <path id="arch1" d="M20 900 V380 A370 370 0 0 1 760 380 V900" stroke="#C9A04E" stroke-width="4" fill="none"/>
+    <path id="arch2" d="M50 900 V390 A340 340 0 0 1 730 390 V900" stroke="#C9A04E" stroke-width="1.5" fill="none" opacity=".55"/>
+  </svg>
+  <div id="s1img" class="abs" style="left:300px;top:470px;width:480px;height:480px;border-radius:50%;border:5px solid #C9A04E;padding:14px">
+    <img src="../assets/p_set.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
+  </div>
+  <div id="s1en" class="abs center en" style="top:1034px;font-size:32px;color:#C9A04E;font-weight:600">AL-ANBARI JEWELRY · BAGHDAD</div>
+  <div id="s1ar" class="abs center" style="top:1090px;font-size:130px;font-weight:800;color:#E8CD8A;line-height:1.3">مجوهرات الأنباري</div>
+  <div id="s1line" class="abs" style="top:1330px;left:140px;width:800px;height:3px;background:linear-gradient(90deg,transparent,#C9A04E,transparent)"></div>
+  <div id="s1t" class="abs center" style="top:1380px">
+    <div style="font-size:66px;font-weight:700">منظومة الأنباري الذكية</div>
+    <div class="kicker" style="margin-top:14px">The Smart Jewelry System</div>
+  </div>
+</div>
+
+<!-- ========== S2 PROBLEMS ========== -->
+<div class="scene" id="s2">
+  <div class="abs" style="top:170px;right:90px;width:900px;text-align:right">
+    <div class="kicker" id="s2k">The daily reality</div>
+    <div class="h1" id="s2h" style="font-size:72px">يومٌ عادي في محل الذهب…</div>
+  </div>
+  <div id="probs"></div>
+  <div id="s2end" class="abs center" style="top:1610px">
+    <div style="font-size:50px;font-weight:800;color:#E8CD8A">وقت ضائع · أخطاء · زبائن يذهبون</div>
+  </div>
+</div>
+
+<!-- ========== S3 SOLUTION ========== -->
+<div class="scene" id="s3">
+  <div class="abs center" style="top:300px">
+    <div class="kicker" id="s3k">The solution</div>
+    <div id="s3h" style="font-size:112px;font-weight:800;line-height:1.3;color:#E8CD8A">منظومة واحدة ذكية</div>
+    <div id="s3s" class="sub" style="margin-top:10px">تخدم الزبون والموظف والإدارة… معاً</div>
+  </div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920" fill="none">
+    <circle id="s3ring" cx="540" cy="1180" r="330" stroke="#5C4A2A" stroke-width="2" stroke-dasharray="10 10" fill="none"/>
+  </svg>
+  <div id="s3db" class="abs" style="left:430px;top:1070px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#2E2415,#15120D);border:3px solid #E8CD8A;display:flex;align-items:center;justify-content:center;flex-direction:column">
+    <div data-icon="db" data-size="76" data-color="#E8CD8A"></div>
+    <div style="font-size:26px;color:#E8CD8A;font-weight:700;margin-top:6px">قاعدة واحدة</div>
+  </div>
+  <div id="comps"></div>
+</div>
+
+<!-- ========== S4 STORE ========== -->
+<div class="scene" id="s4">
+  <div class="shead"><span class="num">01</span>&nbsp;<span class="kicker">Online Boutique</span><div class="t">المتجر الإلكتروني</div></div>
+  <div class="phone" id="p4">
+    <div class="screen">
+      <div class="notch"></div><div class="sb">9:41<span class="bat"></span></div>
+      <div class="abs" style="top:86px;right:36px;width:452px">
+        <div style="font-size:42px;font-weight:800;color:#E8CD8A;line-height:1.2">مجوهرات الأنباري</div>
+        <div class="en" style="font-size:22px;letter-spacing:5px;color:#9E927F;text-align:right">AL-ANBARI JEWELRY</div>
+        <div id="p4rate" style="margin-top:22px;background:linear-gradient(135deg,#1F1910,#2E2415);border:2px solid #5C4A2A;border-radius:20px;padding:16px 20px">
+          <div style="font-size:26px;color:#E8CD8A;font-weight:800"><span class="live" id="p4dot"></span>سعر الذهب اليوم · محدَّث تلقائياً</div>
+          <div style="font-size:24px;color:#CFC4B1;margin-top:6px">عيار 24 ▲ · عيار 21 ▲ · عيار 18 ▲</div>
+        </div>
+        <div id="p4hero" style="margin-top:20px;height:230px;border-radius:20px;overflow:hidden;position:relative">
+          <img src="../assets/p_collection1.jpg" style="width:100%;height:100%;object-fit:cover">
+          <div class="abs" style="left:0;right:0;bottom:0;height:120px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"></div>
+          <div class="abs" style="bottom:16px;right:20px;font-size:32px;font-weight:800">التشكيلة الإيطالية الجديدة</div>
+        </div>
+        <div id="p4chips" style="margin-top:20px"><span class="chip on">الكل</span><span class="chip">قلائد</span><span class="chip">أساور</span><span class="chip">محابس</span></div>
+        <div style="display:flex;gap:16px;margin-top:6px">
+          <div class="pcard p4c" style="flex:1"><img src="../assets/p_necklace.jpg"><div class="b"><div class="n">قلادة مارينا</div><div class="m"><span class="en">47.86 g</span> · عيار 21</div><div class="wa">اطلب عبر واتساب</div></div></div>
+          <div class="pcard p4c" style="flex:1"><img src="../assets/p_bangle.jpg"><div class="b"><div class="n">سوار مخرّم</div><div class="m"><span class="en">13.55 g</span> · عيار 21</div><div class="wa">اطلب عبر واتساب</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="abs center" style="top:1580px" id="s4f">
+    <span class="fbox s4f"><div class="a">الوزن</div><div class="b">Weight</div></span><span class="op s4f">×</span><span class="fbox s4f"><div class="a">سعر اليوم</div><div class="b">Daily rate</div></span><span class="op s4f">+</span><span class="fbox s4f"><div class="a">المصنعية</div><div class="b">Making</div></span>
+  </div>
+  <div class="abs center" id="s4r" style="top:1722px;font-size:38px;font-weight:800;color:#E8CD8A">= السعر النهائي، يتحدّث تلقائياً كل صباح ✓</div>
+</div>
+
+<!-- ========== S5 AI ASSISTANT ========== -->
+<div class="scene" id="s5">
+  <div class="shead"><span class="num">02</span>&nbsp;<span class="kicker">AI Concierge</span><div class="t">المساعد الذكي · 24 ساعة</div></div>
+  <div class="phone" id="p5">
+    <div class="screen">
+      <div class="notch"></div><div class="sb">9:41<span class="bat"></span></div>
+      <div class="abs" style="top:78px;left:0;right:0;height:110px;border-bottom:2px solid var(--line);padding:18px 34px 0 0">
+        <div style="display:flex;align-items:center;gap:16px">
+          <img src="../assets/p_set.jpg" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #C9A04E">
+          <div><div style="font-size:32px;font-weight:800">مساعد الأنباري</div><div style="font-size:22px;color:#6FD39C"><span class="live"></span>يرد فوراً</div></div>
+        </div>
+      </div>
+      <div class="abs" id="chat" style="top:210px;left:30px;right:30px"></div>
+      <div class="abs" style="bottom:28px;left:30px;right:30px;height:74px;border-radius:40px;background:#1F1B16;border:2px solid var(--line)">
+        <div class="abs" style="right:30px;top:16px;font-size:26px;color:#8E8272">اكتب رسالتك…</div>
+        <div class="abs" style="left:10px;top:9px;width:52px;height:52px;border-radius:50%;background:#C9A04E;display:flex;align-items:center;justify-content:center" data-icon="send" data-size="28" data-color="#14110D"></div>
+      </div>
+    </div>
+  </div>
+  <div class="abs center" id="s5c" style="top:1640px">
+    <div style="font-size:44px;font-weight:800">يجاوب · يقترح · <span class="gold">ويحوّل للموظف</span></div>
+    <div class="sub" style="font-size:32px;margin-top:8px">بلهجة الزبون، ومن بيانات المحل الحقيقية</div>
+  </div>
+</div>
+
+<!-- ========== S6 RING SIZER ========== -->
+<div class="scene" id="s6">
+  <div class="shead"><span class="num">03</span>&nbsp;<span class="kicker">Ring Sizer</span><div class="t">مقاس الخاتم من الموبايل</div></div>
+  <div class="phone" id="p6">
+    <div class="screen">
+      <div class="notch"></div><div class="sb">9:41<span class="bat"></span></div>
+      <div class="abs center" style="top:100px;width:524px">
+        <div style="font-size:38px;font-weight:800">قياس مقاس الخاتم</div>
+        <div style="font-size:24px;color:var(--mut)">ضع خاتمك على الدائرة وطابقها</div>
+      </div>
+      <svg class="abs" style="left:52px;top:230px" width="420" height="420" viewBox="0 0 420 420" fill="none">
+        <circle cx="210" cy="210" r="200" stroke="#2E281E" stroke-width="2" fill="none"/>
+        <circle id="ringO" cx="210" cy="210" r="160" stroke="#E8CD8A" stroke-width="38" fill="none" opacity=".92"/>
+        <circle id="ringI" cx="210" cy="210" r="110" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="10 8" fill="none"/>
+        <line id="ringL" x1="100" y1="210" x2="320" y2="210" stroke="#C9A04E" stroke-width="2"/>
+      </svg>
+      <div class="abs center" style="top:690px;width:524px">
+        <div style="font-size:24px;color:var(--mut)">القطر الداخلي</div>
+        <div class="en" id="mm" style="font-size:88px;font-weight:600;color:#E8CD8A;line-height:1.1">15.0 mm</div>
+      </div>
+      <div class="abs" style="top:830px;left:60px;width:404px;height:12px;border-radius:6px;background:#2E281E">
+        <div id="sl" class="abs" style="right:0;top:0;height:12px;border-radius:6px;background:#C9A04E;width:100px"></div>
+        <div id="sk" class="abs" style="top:-12px;width:36px;height:36px;border-radius:50%;background:#E8CD8A;border:4px solid #0F0D0B"></div>
+      </div>
+      <div id="res" class="abs" style="top:890px;left:60px;width:404px;height:150px;border-radius:24px;background:linear-gradient(135deg,#B8893A,#E8CD8A);text-align:center;color:#14110D;padding-top:16px">
+        <div style="font-size:28px;font-weight:700">مقاسك</div>
+        <div style="font-size:72px;font-weight:800;line-height:1.1">16</div>
+      </div>
+    </div>
+  </div>
+  <div class="abs center" id="s6c" style="top:1640px">
+    <div style="font-size:44px;font-weight:800">شراء بثقة · <span class="gold">تعديل أقل بعد البيع</span></div>
+    <div class="sub" style="font-size:32px;margin-top:8px">والمقاس يوصل للموظف مع الطلب</div>
+  </div>
+</div>
+
+<!-- ========== S7 STAFF DASHBOARD ========== -->
+<div class="scene" id="s7">
+  <div class="shead"><span class="num">04</span>&nbsp;<span class="kicker">Staff Copilot</span><div class="t">داشبورد الموظف + مساعد ذكي</div></div>
+  <div class="abs card" id="dash" style="left:70px;top:450px;width:940px;height:1130px;padding:40px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:40px;font-weight:800">صباح الخير، محمد</div><div style="font-size:24px;color:var(--mut)"><span class="live"></span>الأسعار محدّثة تلقائياً</div></div>
+      <div style="font-size:24px;background:#3A2F14;color:#E8CD8A;border-radius:30px;padding:6px 20px">3 تنبيهات</div>
+    </div>
+    <div style="display:flex;gap:18px;margin-top:30px">
+      <div class="kpi"><div class="kl">القطع المباعة اليوم</div><div class="kv" id="k1">0</div><div class="ku">قطعة</div></div>
+      <div class="kpi"><div class="kl">الوزن المباع</div><div class="kv" id="k2">0.0</div><div class="ku">غرام</div></div>
+      <div class="kpi"><div class="kl">كسر مستلم</div><div class="kv" id="k3">0.0</div><div class="ku">غرام</div></div>
+    </div>
+    <div style="margin-top:34px;border:3px solid #5C4A2A;border-radius:26px;background:#100E0B;padding:30px">
+      <div style="font-size:30px;font-weight:800;color:#E8CD8A;display:flex;align-items:center;gap:12px"><span data-icon="bot" data-size="38" data-color="#E8CD8A"></span>المساعد الذكي</div>
+      <div style="margin-top:20px;background:#0A0908;border:2px solid var(--line);border-radius:20px;padding:20px 24px;font-size:34px;min-height:84px;display:flex;align-items:center;gap:14px">
+        <span data-icon="mic" data-size="34" data-color="#C9A04E"></span><span id="typed"></span><span id="caret" style="display:inline-block;width:3px;height:40px;background:#E8CD8A"></span>
+      </div>
+      <div id="ans" style="margin-top:26px;font-size:32px;line-height:1.7;color:#E3D8C4">
+        المتوفر من <b class="gold">أساور عيار 21</b>: <span class="en" style="font-weight:600;font-size:40px;color:#F3E7CC">38</span> قطعة بوزن <span class="en" style="font-weight:600;font-size:40px;color:#F3E7CC">512.8 g</span><br>منها 4 قطع محجوزة، وصنف «سوار مخرّم» أوشك على النفاد.
+      </div>
+      <div id="bars" style="margin-top:24px;height:210px;display:flex;align-items:flex-end;gap:22px;padding:0 10px;border-bottom:2px solid var(--line)"></div>
+      <div id="acts" style="margin-top:22px"><span class="chip on" style="font-size:26px">اعرض القطع</span><span class="chip" style="font-size:26px">أنشئ طلب شراء</span></div>
+    </div>
+  </div>
+  <div class="abs center" id="s7c" style="top:1640px">
+    <div style="font-size:44px;font-weight:800">يسأل بالعربي… <span class="gold">وينجز بثوانٍ</span></div>
+    <div class="sub" style="font-size:32px;margin-top:8px">فواتير، كسر، مخزون، حجوزات — بدون تدوير بالقوائم</div>
+  </div>
+</div>
+
+<!-- ========== S8 ACCOUNTING + CONNECTED ========== -->
+<div class="scene" id="s8">
+  <div class="shead"><span class="num">05</span>&nbsp;<span class="kicker">Gold-native accounting</span><div class="t">محاسبة كاملة وكل شي مترابط</div></div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920" fill="none">
+    <path class="ln" d="M540 830 V640" stroke="#C9A04E" stroke-width="4"/>
+    <path class="ln" d="M540 1030 V1220" stroke="#C9A04E" stroke-width="4"/>
+    <path class="ln" d="M440 930 H330" stroke="#C9A04E" stroke-width="4"/>
+    <path class="ln" d="M640 930 H750" stroke="#C9A04E" stroke-width="4"/>
+  </svg>
+  <div id="s8db" class="abs" style="left:440px;top:830px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#2E2415,#15120D);border:3px solid #E8CD8A;display:flex;align-items:center;justify-content:center">
+    <div data-icon="db" data-size="84" data-color="#E8CD8A"></div>
+  </div>
+  <div class="node n8" style="left:390px;top:470px"><div data-icon="globe" data-size="46" data-color="#E8CD8A"></div><div class="l">المتجر</div><div class="d">كتالوج · أسعار حيّة</div></div>
+  <div class="node n8" style="left:390px;top:1220px"><div data-icon="receipt" data-size="46" data-color="#E8CD8A"></div><div class="l">المحاسبة</div><div class="d">مبيعات · مخزون · تقارير</div></div>
+  <div class="node n8" style="left:50px;top:835px;width:280px"><div data-icon="bot" data-size="46" data-color="#E8CD8A"></div><div class="l">المساعد</div><div class="d">واتساب · انستغرام</div></div>
+  <div class="node n8" style="left:750px;top:835px;width:280px"><div data-icon="monitor" data-size="46" data-color="#E8CD8A"></div><div class="l">الداشبورد</div><div class="d">بيع · فواتير</div></div>
+  <div class="abs" id="pills" style="top:1470px;left:60px;width:960px;text-align:center"></div>
+</div>
+
+<!-- ========== S9 OUTRO ========== -->
+<div class="scene" id="s9">
+  <svg class="abs" id="alogo" style="left:390px;top:420px" width="300" height="300" viewBox="0 0 64 64" fill="none">
+    <path id="am1" d="M32 3 L61 32 L32 61 L3 32 Z" stroke="#E8CD8A" stroke-width="1.4" fill="none"/>
+    <path id="am2" d="M32 11 L53 32 L32 53 L11 32 Z" stroke="#E8CD8A" stroke-width="0.5" fill="none" opacity=".55"/>
+    <path id="am3" d="M20 45 L32 17 L44 45" stroke="#E8CD8A" stroke-width="2.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <path id="am4" d="M25.5 36 L38.5 36" stroke="#E8CD8A" stroke-width="2" stroke-linecap="round"/>
+    <path id="am5" d="M46 14 L47.4 18.6 L52 20 L47.4 21.4 L46 26 L44.6 21.4 L40 20 L44.6 18.6 Z" fill="#E8CD8A"/>
+  </svg>
+  <div id="s9n" class="abs center en" style="top:760px;font-size:96px;font-weight:600;letter-spacing:26px;color:#E8CD8A;padding-left:26px">AIVORA</div>
+  <div id="s9s" class="abs center en" style="top:880px;font-size:34px;font-weight:600;letter-spacing:22px;color:#BFB3A0;padding-left:22px">STUDIO</div>
+  <div id="s9line" class="abs" style="top:1010px;left:240px;width:600px;height:3px;background:linear-gradient(90deg,transparent,#C9A04E,transparent)"></div>
+  <div id="s9t" class="abs center" style="top:1080px">
+    <div style="font-size:60px;font-weight:800">منظومة الأنباري الذكية</div>
+    <div class="sub" style="margin-top:14px;font-size:38px">متجر · مساعد ذكي · قياس الخاتم · داشبورد · محاسبة</div>
+  </div>
+  <div id="s9c" class="abs" style="top:1360px;left:190px;width:700px;border-radius:26px;background:linear-gradient(135deg,#B8893A,#E8CD8A);text-align:center;padding:30px 0;color:#14110D">
+    <div style="font-size:46px;font-weight:800">لنحجز اجتماعاً ونبدأ</div>
+    <div style="font-size:30px;font-weight:600;margin-top:4px">ونقدّم لكم عرضاً مخصصاً حسب احتياجكم</div>
+  </div>
+  <div id="s9f" class="abs center" style="top:1600px;font-size:30px;color:#A39681">Aivora Studio · أربيل</div>
+</div>
+
+<div class="footer" id="foot"><span>مجوهرات الأنباري</span>&nbsp;&nbsp;<span style="color:#C9A04E">◆</span>&nbsp;&nbsp;<span class="en">AIVORA STUDIO</span></div>
+
+<script>
+const ICONS = {
+  tag:'<path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8" r="1.5"/>',
+  chat:'<path d="M4 5h16v11H9.5L4 20V5z"/><path d="M8 9.5h8M8 12.5h5"/>',
+  book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+  scale:'<path d="M12 3v17M7.5 20.5h9M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0L5 7zM19 7l-3 6a3 3 0 0 0 6 0l-3-6z"/>',
+  ring:'<circle cx="12" cy="14.5" r="6"/><path d="M9 5.5l3-3 3 3-3 3z"/>',
+  flame:'<path d="M12 2.5c1 4 6 5.5 6 11a6 6 0 0 1-12 0c0-3 1.5-4.5 2.5-6.5 1 1.5 1.5 2.5 3 3.5.5-2.5.5-5 .5-8z"/>',
+  db:'<ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+  bot:'<rect x="4.5" y="8" width="15" height="11" rx="3"/><path d="M12 4v4M2.5 13v2M21.5 13v2"/><circle cx="9.3" cy="13.5" r="1.2"/><circle cx="14.7" cy="13.5" r="1.2"/>',
+  monitor:'<rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/>',
+  receipt:'<path d="M6 2.5h12v19l-3-2-3 2-3-2-3 2v-19z"/><path d="M9 7.5h6M9 11h6M9 14.5h4"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+  send:'<path d="M20.5 3.5L3 11l7 2.5 2.5 7z"/><path d="M10 13.5l5-5"/>',
+};
+function svgIcon(n,s,c,sw){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="${sw||1.5}" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]}</svg>`}
+function hydrateIcons(root){root.querySelectorAll('[data-icon]').forEach(e=>{e.innerHTML=svgIcon(e.dataset.icon,+e.dataset.size,e.dataset.color);})}
+
+// ---- build dynamic content ----
+const PROBS=[
+  ['tag','تسعير يدوي كل صباح','سعر الغرام والدولار يتغيرون يومياً'],
+  ['chat','مئات الرسائل يومياً','«بيش المثقال؟ متوفر؟ يتوصل؟»'],
+  ['book','دفاتر وحسابات ورقية','والخطأ يُكتشف بعد أسابيع'],
+  ['scale','مخزون بالغرام والعيار','ومطابقة مرهقة آخر اليوم'],
+  ['flame','الكسر والاستبدال','حساب بالآلة الحاسبة أمام الزبون'],
+  ['ring','مقاس الخاتم مجهول','تردد بالشراء وتعديل بعد البيع'],
+];
+document.getElementById('probs').innerHTML=PROBS.map((p,i)=>`<div class="prob" style="top:${470+i*168}px"><div class="ic">${svgIcon(p[0],44,'#E8CD8A')}</div><div><div class="tx">${p[1]}</div><div class="ds">${p[2]}</div></div></div>`).join('');
+
+const COMPS=[['globe','المتجر'],['bot','المساعد الذكي'],['ring','قياس الخاتم'],['monitor','داشبورد الموظف'],['receipt','المحاسبة']];
+document.getElementById('comps').innerHTML=COMPS.map((c,i)=>{
+  const a=-Math.PI/2+i*2*Math.PI/5, x=540+330*Math.cos(a), y=1180+330*Math.sin(a);
+  return `<div class="comp" style="left:${x-130}px;top:${y-75}px"><div class="c">${svgIcon(c[0],70,'#E8CD8A')}</div><div class="l">${c[1]}</div></div>`}).join('');
+
+const CHAT=[
+  ['me','عدكم هدايا للمولود؟ ميزانيتي متوسطة'],
+  ['bot','أهلاً بك 🤍 هذه قطع متوفرة الآن ومناسبة لهدية مولود:'],
+  ['cards',''],
+  ['me','الثاني حلو، ممكن أحجزه؟'],
+  ['bot','تم إرسال طلب الحجز للموظف مع صورة القطعة ورقمها. تستلم من المحل أم توصيل؟'],
+];
+document.getElementById('chat').innerHTML=CHAT.map((c,i)=>{
+  if(c[0]==='cards') return `<div class="row bot msg"><div style="display:flex;gap:14px;width:420px;margin-right:0">
+    <div class="pcard" style="flex:1"><img src="../assets/p_rings2.jpg" style="height:118px"><div class="b"><div class="n" style="font-size:24px">خاتم ناعم</div><div class="m"><span class="en" style="font-size:24px">3.10 g</span> · عيار 18</div></div></div>
+    <div class="pcard" style="flex:1"><img src="../assets/p_bangle.jpg" style="height:118px"><div class="b"><div class="n" style="font-size:24px">سوار صغير</div><div class="m"><span class="en" style="font-size:24px">6.40 g</span> · عيار 21</div></div></div></div></div>`;
+  return `<div class="row ${c[0]} msg"><div class="bub ${c[0]}">${c[1]}</div></div>`}).join('')
+  + `<div class="row bot" id="typing" style="position:absolute;right:0"><div class="bub bot dots" style="padding:22px 26px"><span></span><span></span><span></span></div></div>`;
+
+const BARS=[.72,.52,.95,.4,.66,.3];
+document.getElementById('bars').innerHTML=BARS.map((h,i)=>`<div class="bar" data-h="${h}" style="flex:1;border-radius:10px 10px 0 0;background:${['#C9A04E','#8A6C33','#E8CD8A','#8A6C33','#C9A04E','#5C4A2A'][i]};height:0"></div>`).join('');
+
+const PILLS=['المبيعات','المشتريات','المخزون بالغرام والعيار','الكسر والاستبدال','ديون الزبائن','حسابات التجار','الدينار والدولار','الأرباح','تقارير يومية وشهرية','الصلاحيات'];
+document.getElementById('pills').innerHTML=PILLS.map(p=>`<span class="pill">${p}</span>`).join('');
+
+// sparks
+const SP=[];for(let i=0;i<16;i++){const s=document.createElement('div');s.className='spark';const r=Math.sin(i*91.7)*43758.5453;const f=r-Math.floor(r);const r2=Math.sin(i*12.9)*9999.1;const g=r2-Math.floor(r2);
+  s.style.left=(80+f*920)+'px';s.style.top=(120+g*1680)+'px';document.getElementById('sparks').appendChild(s);SP.push({el:s,ph:i*1.37,sp:.6+f*.8,sc:.5+g*.8});}
+hydrateIcons(document);
+
+// ---- timeline helpers ----
+const cl=(x)=>Math.max(0,Math.min(1,x));
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const eo=(x)=>1-Math.pow(1-x,3);            // easeOutCubic
+const eio=(x)=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=(x)=>{const c1=1.5,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function set(el,o,tx=0,ty=0,sc=1){if(!el)return;el.style.opacity=o;el.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;}
+const $=(id)=>document.getElementById(id);
+const $$=(q)=>Array.from(document.querySelectorAll(q));
+function sceneWin(el,t,a,b,fi=.45,fo=.45){const o=Math.min(seg(t,a,a+fi),1-seg(t,b-fo,b));el.style.opacity=(t<a||t>b)?0:o;return o;}
+function appear(el,t,a,d=.6,dy=40,sc0=1){const p=eo(seg(t,a,a+d));set(el,p,0,(1-p)*dy,sc0+(1-sc0)*p);return p;}
+function draw(path,t,a,b){const L=path.getTotalLength();path.style.strokeDasharray=L;path.style.strokeDashoffset=L*(1-eio(seg(t,a,b)));}
+
+const T={s1:[0,4.4],s2:[4.2,11.6],s3:[11.4,15.4],s4:[15.2,21.6],s5:[21.4,27.6],s6:[27.4,32.6],s7:[32.4,38.8],s8:[38.6,42.8],s9:[42.6,47]};
+window.DURATION=47;
+
+window.render=function(t){
+  // sparks
+  SP.forEach(s=>{const v=Math.max(0,Math.sin(t*s.sp*2+s.ph));s.el.style.opacity=v*.7;s.el.style.transform=`rotate(45deg) scale(${s.sc*(.4+v*.6)})`;});
+  $('foot').style.opacity=seg(t,3.0,4.0)*(1-seg(t,42.4,42.9));
+
+  // S1
+  sceneWin($('s1'),t,...T.s1,.01,.5);
+  draw($('arch1'),t,0,1.8); draw($('arch2'),t,.2,2.0);
+  appear($('s1img'),t,.5,1.2,0,.82);
+  const pe=eo(seg(t,1.3,2.3)); $('s1en').style.opacity=pe; $('s1en').style.letterSpacing=(2+pe*7)+'px';
+  appear($('s1ar'),t,1.6,.9,50);
+  const pl=eio(seg(t,2.2,3.0)); $('s1line').style.transform=`scaleX(${pl})`; $('s1line').style.opacity=pl;
+  appear($('s1t'),t,2.5,.8,30);
+
+  // S2
+  sceneWin($('s2'),t,...T.s2);
+  appear($('s2k'),t,4.4,.6,20); appear($('s2h'),t,4.5,.7,30);
+  $$('#probs .prob').forEach((e,i)=>{const p=eo(seg(t,5.3+i*.6,5.9+i*.6));set(e,p,-(1-p)*140,0,1);});
+  appear($('s2end'),t,9.4,.6,20,.9);
+
+  // S3
+  sceneWin($('s3'),t,...T.s3);
+  appear($('s3k'),t,11.6,.5,20); appear($('s3h'),t,11.7,.7,40,.92); appear($('s3s'),t,12.1,.6,20);
+  const r=$('s3ring'); const rl=2*Math.PI*330; r.style.opacity=seg(t,12.2,12.6); r.setAttribute('transform',`rotate(${t*8} 540 1180)`);
+  const pdb=back(seg(t,12.3,12.9)); set($('s3db'),seg(t,12.3,12.6),0,0,.3+.7*pdb);
+  $$('#comps .comp').forEach((e,i)=>{const p=seg(t,12.6+i*.22,13.1+i*.22);set(e,eo(p),0,0,.4+.6*back(p));});
+
+  // S4
+  sceneWin($('s4'),t,...T.s4);
+  appear($('s4 .shead')||document.querySelector('#s4 .shead'),t,15.4,.6,30);
+  appear($('p4'),t,15.5,.9,260);
+  $('p4dot').style.opacity=.4+.6*Math.abs(Math.sin(t*3));
+  appear($('p4rate'),t,16.2,.5,20); appear($('p4hero'),t,16.5,.5,20); appear($('p4chips'),t,16.8,.4,10);
+  $$('#s4 .p4c').forEach((e,i)=>appear(e,t,17.0+i*.2,.5,30,.9));
+  $$('#s4 .s4f').forEach((e,i)=>appear(e,t,18.0+i*.25,.45,24,.7));
+  appear($('s4r'),t,19.6,.6,20);
+
+  // S5
+  sceneWin($('s5'),t,...T.s5);
+  appear(document.querySelector('#s5 .shead'),t,21.6,.6,30);
+  appear($('p5'),t,21.6,.8,260);
+  const msgs=$$('#chat .msg'); const times=[22.6,23.9,24.5,25.3,26.3]; let yy=0;
+  msgs.forEach((m,i)=>{const p=eo(seg(t,times[i],times[i]+.4));m.style.opacity=p;m.style.transform=`translateY(${(1-p)*30}px) scale(${.92+.08*p})`;m.style.transformOrigin=m.classList.contains('me')?'left bottom':'right bottom';});
+  // typing indicator before bot messages
+  const ty=$('typing'); const tyOn=(t>23.2&&t<23.9)||(t>25.7&&t<26.3);
+  ty.style.opacity=tyOn?1:0; ty.style.top=(t<24?  (msgs[0].offsetTop+msgs[0].offsetHeight) : (msgs[3].offsetTop+msgs[3].offsetHeight))+'px';
+  $$('#typing .dots span').forEach((d,i)=>{d.style.transform=`translateY(${-6*Math.max(0,Math.sin(t*9-i*.8))}px)`;});
+  appear($('s5c'),t,22.8,.6,20);
+
+  // S6
+  sceneWin($('s6'),t,...T.s6);
+  appear(document.querySelector('#s6 .shead'),t,27.6,.6,30);
+  appear($('p6'),t,27.6,.8,260);
+  const pr=eio(seg(t,28.6,30.4));
+  const rad=110+pr*31; $('ringI').setAttribute('r',rad); $('ringL').setAttribute('x1',210-rad); $('ringL').setAttribute('x2',210+rad);
+  $('mm').textContent=(15.0+pr*2.3).toFixed(1)+' mm';
+  const w=100+pr*230; $('sl').style.width=w+'px'; $('sk').style.right=(w-18)+'px';
+  const pres=seg(t,30.5,30.9); set($('res'),pres,0,(1-eo(pres))*30,.85+.15*back(pres));
+  $('ringI').setAttribute('stroke',pr>=1?'#6FD39C':'#FFFFFF');
+  appear($('s6c'),t,28.4,.6,20);
+
+  // S7
+  sceneWin($('s7'),t,...T.s7);
+  appear(document.querySelector('#s7 .shead'),t,32.6,.6,30);
+  appear($('dash'),t,32.6,.8,200,.96);
+  const pk=eo(seg(t,33.2,34.6));
+  $('k1').textContent=Math.round(14*pk); $('k2').textContent=(186.4*pk).toFixed(1); $('k3').textContent=(42.7*pk).toFixed(1);
+  const Q='كم غرام أساور عيار 21 عدنا هسه؟'; const nq=Math.floor(seg(t,34.4,36.0)*Q.length);
+  $('typed').textContent=Q.slice(0,nq); $('caret').style.opacity=(t<36.2 && Math.floor(t*3)%2===0)?1:0;
+  appear($('ans'),t,36.3,.5,20);
+  $$('#bars .bar').forEach((b,i)=>{b.style.height=(eo(seg(t,36.6+i*.1,37.3+i*.1))*+b.dataset.h*200)+'px';});
+  appear($('acts'),t,37.4,.4,10);
+  appear($('s7c'),t,33.4,.6,20);
+
+  // S8
+  sceneWin($('s8'),t,...T.s8);
+  appear(document.querySelector('#s8 .shead'),t,38.8,.6,30);
+  const pd=seg(t,39.0,39.5); set($('s8db'),pd,0,0,.4+.6*back(pd));
+  $$('#s8 .ln').forEach((l,i)=>draw(l,t,39.4+i*.08,39.9+i*.08));
+  $$('#s8 .n8').forEach((n,i)=>appear(n,t,39.7+i*.12,.45,0,.6));
+  $$('#pills .pill').forEach((p,i)=>appear(p,t,40.3+i*.1,.35,16,.7));
+
+  // S9
+  sceneWin($('s9'),t,...T.s9,.4,.01);
+  ['am1','am2','am3','am4'].forEach((id,i)=>draw($(id),t,42.8+i*.15,43.8+i*.15));
+  const ps=seg(t,43.7,44.1); $('am5').style.opacity=ps; $('am5').style.transformOrigin='46px 20px'; $('am5').style.transform=`scale(${.2+.8*back(ps)})`;
+  const pn=eo(seg(t,43.6,44.4)); $('s9n').style.opacity=pn; $('s9n').style.letterSpacing=(10+pn*16)+'px';
+  appear($('s9s'),t,43.9,.6,10);
+  const l9=eio(seg(t,44.2,44.8)); $('s9line').style.transform=`scaleX(${l9})`; $('s9line').style.opacity=l9;
+  appear($('s9t'),t,44.4,.6,30); appear($('s9c'),t,44.9,.6,30,.9); appear($('s9f'),t,45.3,.5,10);
+};
+window.render(0);
+</script>
+</body>
+</html>
