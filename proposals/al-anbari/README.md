@@ -4,7 +4,7 @@ Arabic RTL proposal PDF generated with WeasyPrint.
 
 ```bash
 pip install weasyprint pymupdf fonttools brotli
-./fetch_fonts.sh        # SF Arabic + Cormorant Garamond (not committed)
+./fetch_fonts.sh [SF-Arabic.dmg]   # SF Arabic (from Apple DMG or npm) + Cormorant (not committed)
 python3 build.py        # -> output/Al-Anbari-Proposal-Aivora.pdf + output/preview/*.png
 ```
 
