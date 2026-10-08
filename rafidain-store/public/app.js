@@ -1,9 +1,13 @@
 (function () {
   const C = window.CATALOG;
+  const S = C.store;
   const byId = Object.fromEntries(C.products.map(p => [p.id, p]));
   const $ = s => document.querySelector(s);
-  const fmt = n => n.toLocaleString('ar-IQ') + ' د.ع';
+  const $$ = s => document.querySelectorAll(s);
+  const ar = n => n.toLocaleString('ar-IQ');
+  const fmt = n => ar(n) + ' د.ع';
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const icon = id => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } }
@@ -26,243 +30,338 @@
     };
     return shapes[p.shape] || shapes.bottle;
   }
-  const tileBg = p => `background: color-mix(in srgb, ${p.tint} 14%, var(--surface-2))`;
+  const tileBg = p => `background: color-mix(in srgb, ${p.tint} 15%, var(--surface-2))`;
 
-  /* ---------- catalog rendering ---------- */
-  let activeCat = 'all', query = '';
-  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
+  /* ---------- catalog ---------- */
+  let activeCat = 'all', activeConcern = null, query = '', sort = '';
+  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/گ/g, 'ك').toLowerCase();
+  const concernOf = id => C.concerns.find(c => c.ids.includes(id));
 
   function card(p) {
-    return `<article class="card" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}">
+    return `<article class="card" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}، ${fmt(p.price)}">
       <div class="art" style="${tileBg(p)}">${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}${art(p)}</div>
       <div class="info"><h3>${esc(p.name)}</h3><div class="short">${esc(p.short)}</div>
-        <div class="row"><span class="price num">${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="أضف ${esc(p.name)} للسلة">+</button></div>
+        <div class="row"><span class="price num">${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="أضف ${esc(p.name)} للسلة">${icon('i-plus')}</button></div>
       </div></article>`;
   }
   function renderGrid() {
     const q = norm(query.trim());
-    const list = C.products.filter(p =>
-      (activeCat === 'all' || p.cat === activeCat) &&
+    let list = activeConcern ? activeConcern.ids.map(id => byId[id]) : C.products;
+    list = list.filter(p => (activeCat === 'all' || p.cat === activeCat) &&
       (!q || norm([p.name, p.short, p.desc, ...p.tags].join(' ')).includes(q)));
-    $('#grid').innerHTML = list.map(card).join('') || `<div class="empty">ما لقينا شي بهالاسم. جرّب تسأل المساعد الذكي.</div>`;
+    if (sort) list = [...list].sort((a, b) => sort === 'asc' ? a.price - b.price : b.price - a.price);
+    $('#grid').innerHTML = list.map(card).join('') ||
+      `<div class="empty"><div>ما لقينا شي يطابق «${esc(query || 'هذا الاختيار')}».</div><button class="btn soft" data-open-chat>اسأل المساعد الذكي</button></div>`;
+    const note = $('#filterNote');
+    note.hidden = !activeConcern;
+    if (activeConcern) note.innerHTML = `<span>منتجات تناسب <b>${esc(activeConcern.name)}</b> · ${ar(list.length)} منتج</span><button data-clear>عرض الكل</button>`;
   }
   $('#chips').innerHTML = C.categories.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${c.id === 'all'}">${esc(c.name)}</button>`).join('');
   $('#chips').addEventListener('click', e => {
     const b = e.target.closest('[data-cat]'); if (!b) return;
-    activeCat = b.dataset.cat;
-    document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+    activeCat = b.dataset.cat; activeConcern = null;
+    $$('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
     renderGrid();
   });
   $('#q').addEventListener('input', e => { query = e.target.value; renderGrid(); });
-  $('#openSearch').addEventListener('click', () => { $('#shop').scrollIntoView(); setTimeout(() => $('#q').focus(), 300); });
+  $('#sort').addEventListener('change', e => { sort = e.target.value; renderGrid(); });
+  $('#filterNote').addEventListener('click', e => { if (e.target.closest('[data-clear]')) { activeConcern = null; renderGrid(); } });
+  $('#openSearch').addEventListener('click', () => { $('#shop').scrollIntoView(); setTimeout(() => $('#q').focus({ preventScroll: true }), 350); });
+
+  $('#concernList').innerHTML = C.concerns.map(c => `<button class="concern" data-concern="${c.id}">
+      <span class="ic">${icon('c-' + c.id)}</span><b>${esc(c.name)}</b><span>${ar(c.ids.length)} منتجات</span></button>`).join('');
+  $('#concernList').addEventListener('click', e => {
+    const b = e.target.closest('[data-concern]'); if (!b) return;
+    activeConcern = C.concerns.find(c => c.id === b.dataset.concern); activeCat = 'all'; query = ''; $('#q').value = '';
+    $$('.chip').forEach(x => x.setAttribute('aria-pressed', x.dataset.cat === 'all'));
+    renderGrid(); $('#shop').scrollIntoView();
+  });
 
   $('#setsGrid').innerHTML = C.products.filter(p => p.cat === 'sets').map(card).join('');
-  $('#heroStage').innerHTML = ['growth-oil', 'growth-set', 'face-cream'].map(id => art(byId[id])).join('');
-  $('#branchList').innerHTML = C.store.branches.map(b => `<div class="branch"><h3>${esc(b.name)}</h3><div>${esc(b.area)}</div><div class="meta">${esc(b.address)}</div><div class="meta">${esc(b.hours)}</div></div>`).join('');
+  $('#heroStage').innerHTML = `<span class="tag">الأكثر طلباً: <b>مجموعة الإنبات</b></span>` + ['growth-oil', 'growth-set', 'face-cream'].map(id => art(byId[id])).join('');
+  $('#branchList').innerHTML = S.branches.map(b => `<div class="branch"><h3>${esc(b.name)}</h3><div>${esc(b.area)}</div><div class="meta">${esc(b.address)}</div><div class="meta">${esc(b.hours)}</div>
+    <a href="https://www.google.com/maps/search/${encodeURIComponent('معصرة الرافدين ' + b.area)}" target="_blank" rel="noopener">افتح بالخريطة ‹</a></div>`).join('');
   renderGrid();
 
+  /* ---------- global clicks ---------- */
   document.addEventListener('click', e => {
-    const add = e.target.closest('[data-add]');
-    if (add) { e.stopPropagation(); addToCart(add.dataset.add, 1); return; }
-    const c = e.target.closest('.card');
-    if (c) openProduct(c.dataset.id);
+    const t = e.target;
+    const add = t.closest('[data-add]');
+    if (add) { e.stopPropagation(); addToCart(add.dataset.add, 1); flash(add); return; }
+    if (t.closest('[data-open-chat]')) { toggleChat(true); return; }
+    if (t.closest('[data-cart]')) { openCart(); return; }
+    if (t.closest('[data-orders]')) { openOrders(); return; }
+    const go = t.closest('[data-go]');
+    if (go) { document.getElementById(go.dataset.go).scrollIntoView(); return; }
+    const c = t.closest('.card, [data-open]');
+    if (c) openProduct(c.dataset.id || c.dataset.open);
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.classList?.contains('card')) openProduct(e.target.dataset.id);
     if (e.key === 'Escape') { closeSheet(); toggleChat(false); }
   });
+  function flash(btn) {
+    btn.classList.add('done'); const was = btn.innerHTML;
+    if (btn.classList.contains('add')) btn.innerHTML = icon('i-check'); else btn.textContent = 'انضاف ✓';
+    setTimeout(() => { btn.classList.remove('done'); btn.innerHTML = was; }, 1200);
+  }
+
+  // tab bar highlights the section in view
+  const tabs = $$('.tabbar [data-go]');
+  const io = 'IntersectionObserver' in window && new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) tabs.forEach(b => b.classList.toggle('on', b.dataset.go === (en.target.id === 'shop' ? 'shop' : 'top')));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  if (io) ['top', 'shop', 'assistant'].forEach(id => io.observe(document.getElementById(id)));
 
   /* ---------- sheet ---------- */
+  let lastFocus;
   function openSheet(html) {
+    lastFocus = document.activeElement;
+    $('#toast').classList.remove('on');
     $('#sheetBody').innerHTML = html;
     $('#sheet').hidden = false; $('#scrim').hidden = false;
-    requestAnimationFrame(() => { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); });
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#closeSheet').focus({ preventScroll: true }); });
     $('#sheet').scrollTop = 0;
   }
   function closeSheet() {
+    if ($('#sheet').hidden) return;
     $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on');
-    setTimeout(() => { if (!$('#sheet').classList.contains('on')) { $('#sheet').hidden = true; $('#scrim').hidden = true; } }, 320);
+    document.body.style.overflow = '';
+    setTimeout(() => { if (!$('#sheet').classList.contains('on')) { $('#sheet').hidden = true; $('#scrim').hidden = true; } }, 340);
+    lastFocus?.focus?.({ preventScroll: true });
   }
   $('#closeSheet').addEventListener('click', closeSheet);
   $('#scrim').addEventListener('click', closeSheet);
 
+  function miniCard(p) {
+    return `<div class="rec"><div class="mini" data-open="${p.id}" style="${tileBg(p)}">${art(p)}</div><b>${esc(p.name)}</b><span class="price num">${fmt(p.price)}</span><button data-add="${p.id}">أضف للسلة</button></div>`;
+  }
+
   function openProduct(id) {
     const p = byId[id]; if (!p) return;
+    toggleChat(false);
     let qty = 1;
+    const cn = concernOf(id);
+    const related = (cn ? cn.ids : C.products.filter(x => x.cat === p.cat).map(x => x.id)).filter(x => x !== id).slice(0, 4).map(x => byId[x]);
     openSheet(`<div class="pd">
-      <div class="pd-art" style="${tileBg(p)}">${art(p)}</div>
-      ${p.badge ? `<div class="eyebrow">${esc(p.badge)}</div>` : ''}
+      <div class="pd-art" style="${tileBg(p)}">${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}${art(p)}</div>
+      ${cn ? `<div class="eyebrow">يناسب: ${esc(cn.name)}</div>` : ''}
       <h2>${esc(p.name)}</h2>
-      <div class="price num" style="font-size:20px;margin-top:4px">${fmt(p.price)}</div>
+      <div class="price num" style="font-size:21px;margin-top:2px">${fmt(p.price)}</div>
       <p>${esc(p.desc)}</p>
-      <h4>المكونات</h4><ul>${p.ingredients.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
-      <h4>طريقة الاستخدام</h4><p>${esc(p.usage)}</p>
+      <h4>المكونات</h4><div class="ings">${p.ingredients.map(i => `<span>${esc(i)}</span>`).join('')}</div>
+      <h4>طريقة الاستخدام</h4><div class="use">${esc(p.usage)}</div>
+      <div class="perks"><div><b>طبيعي</b>بدون حافظات</div><div><b>الدفع</b>عند الاستلام</div><div><b>التوصيل</b>٢٤–٤٨ ساعة</div></div>
+      ${related.length ? `<h4>يكمّل روتينك</h4><div class="related">${related.map(miniCard).join('')}</div>` : ''}
       <div class="pd-buy">
         <div class="qty"><button data-q="1" aria-label="زيادة">+</button><span class="num" id="pq">١</span><button data-q="-1" aria-label="نقصان">−</button></div>
-        <button class="btn block" id="pdAdd">أضف للسلة</button>
+        <button class="btn block" id="pdAdd">أضف للسلة · <span class="num" id="pdTotal">${fmt(p.price)}</span></button>
       </div></div>`);
     $('#sheetBody').querySelectorAll('[data-q]').forEach(b => b.onclick = () => {
-      qty = Math.max(1, qty + Number(b.dataset.q)); $('#pq').textContent = qty.toLocaleString('ar-IQ');
+      qty = Math.min(20, Math.max(1, qty + Number(b.dataset.q)));
+      $('#pq').textContent = ar(qty); $('#pdTotal').textContent = fmt(p.price * qty);
     });
     $('#pdAdd').onclick = () => { addToCart(id, qty); closeSheet(); };
   }
 
   /* ---------- cart ---------- */
-  let cart = store.get('rafidain.cart', []);
+  let cart = store.get('rafidain.cart', []).filter(l => byId[l.id]);
   const saveCart = () => { store.set('rafidain.cart', cart); renderCount(); };
-  function renderCount() {
+  function renderCount(bump) {
     const n = cart.reduce((a, l) => a + l.qty, 0);
-    $('#cartCount').hidden = n === 0; $('#cartCount').textContent = n.toLocaleString('ar-IQ');
+    $$('.count').forEach(c => { c.hidden = n === 0; c.textContent = ar(n); if (bump) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } });
   }
-  function addToCart(id, qty = 1, silent) {
+  function addToCart(id, qty = 1) {
     if (!byId[id]) return;
     const l = cart.find(x => x.id === id);
-    if (l) l.qty += qty; else cart.push({ id, qty });
-    saveCart();
-    if (!silent) toast(`انضاف ${byId[id].name} للسلة`);
+    if (l) l.qty = Math.min(20, l.qty + qty); else cart.push({ id, qty });
+    saveCart(); renderCount(true);
+    toast(`انضاف ${byId[id].name}`, 'عرض السلة', openCart);
   }
   function totals(gov) {
     const sub = cart.reduce((a, l) => a + byId[l.id].price * l.qty, 0);
-    const d = C.store.delivery;
+    const d = S.delivery;
     const fee = sub === 0 || sub >= d.freeOver ? 0 : (gov && gov !== 'بغداد' ? d.provinces : d.baghdad);
     return { sub, fee, total: sub + fee };
   }
+  function shipBar(sub) {
+    const left = S.delivery.freeOver - sub;
+    if (left <= 0) return `<div class="ship free">${icon('i-check').replace('<svg', '<svg style="width:16px;height:16px;vertical-align:-3px"')} صار توصيلك مجاني</div>`;
+    return `<div class="ship">باقي <b class="num">${fmt(left)}</b> وتحصل توصيل مجاني<div class="bar"><i style="width:${Math.round(sub / S.delivery.freeOver * 100)}%"></i></div></div>`;
+  }
+  const steps = n => `<div class="steps">${['السلة', 'التوصيل', 'تم'].map((s, i) => `<span class="${i <= n ? 'on' : ''}">${s}</span>`).join('<i></i>')}</div>`;
+
   function openCart() {
+    toggleChat(false);
     if (!cart.length) {
-      openSheet(`<div class="done"><h2>السلة فارغة</h2><p class="hint">تصفح المتجر، أو خلّي المساعد يختارلك.</p><button class="btn" id="goShop">تسوّق الآن</button></div>`);
+      openSheet(`<div class="done"><h2>السلة فارغة</h2><p class="hint">تصفح المتجر، أو خلّي المساعد يختارلك.</p>
+        <div class="ctas"><button class="btn" id="goShop">تسوّق الآن</button><button class="btn soft" data-open-chat>اسأل المساعد</button></div></div>`);
       $('#goShop').onclick = () => { closeSheet(); $('#shop').scrollIntoView(); };
       return;
     }
     const t = totals('بغداد');
-    openSheet(`<h2>سلتك</h2>
+    const ids = cart.map(l => l.id);
+    const upsell = C.products.filter(p => !ids.includes(p.id) && ids.some(i => concernOf(i)?.ids.includes(p.id))).slice(0, 4);
+    openSheet(`<h2>سلتك</h2>${steps(0)}
       <div>${cart.map(l => { const p = byId[l.id]; return `<div class="line">
-        <div class="thumb" style="${tileBg(p)}">${art(p)}</div>
-        <div style="min-width:0"><div class="nm">${esc(p.name)}</div><div class="sub num">${fmt(p.price)}</div></div>
-        <div class="qty"><button data-inc="${p.id}" aria-label="زيادة">+</button><span class="num">${l.qty.toLocaleString('ar-IQ')}</span><button data-dec="${p.id}" aria-label="نقصان">−</button></div>
+        <div class="thumb" data-open="${p.id}" style="${tileBg(p)}">${art(p)}</div>
+        <div style="min-width:0"><div class="nm">${esc(p.name)}</div><div class="sub num">${fmt(p.price * l.qty)}</div></div>
+        <div class="qty"><button data-inc="${p.id}" aria-label="زيادة">+</button><span class="num">${ar(l.qty)}</span><button data-dec="${p.id}" aria-label="${l.qty === 1 ? 'حذف' : 'نقصان'}">${l.qty === 1 ? '×' : '−'}</button></div>
       </div>`; }).join('')}</div>
+      ${shipBar(t.sub)}
       <div class="totals num">
         <div><span>المجموع</span><span>${fmt(t.sub)}</span></div>
-        <div><span>التوصيل (بغداد)</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div>
-        <div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>
+        <div><span>التوصيل</span><span>${t.fee ? 'من ' + fmt(t.fee) : 'مجاني'}</span></div>
+        <div class="grand"><span>الكلي التقريبي</span><span>${fmt(t.total)}</span></div>
       </div>
-      <p class="hint">التوصيل مجاني للطلبات فوق ${fmt(C.store.delivery.freeOver)}. المحافظات ${fmt(C.store.delivery.provinces)}.</p>
-      <button class="btn block" id="toCheckout">أكمل الطلب</button>`);
+      <button class="btn block" id="toCheckout">أكمل الطلب</button>
+      ${upsell.length ? `<h4 style="margin:22px 0 8px">ناس طلبوا ويّاها هم</h4><div class="related">${upsell.map(miniCard).join('')}</div>` : ''}`);
     $('#sheetBody').querySelectorAll('[data-inc],[data-dec]').forEach(b => b.onclick = () => {
       const id = b.dataset.inc || b.dataset.dec, l = cart.find(x => x.id === id);
-      l.qty += b.dataset.inc ? 1 : -1;
+      l.qty = Math.min(20, l.qty + (b.dataset.inc ? 1 : -1));
       if (l.qty <= 0) cart = cart.filter(x => x !== l);
-      saveCart(); openCart();
+      saveCart(); const y = $('#sheet').scrollTop; openCart(); $('#sheet').scrollTop = y;
     });
     $('#toCheckout').onclick = openCheckout;
   }
-  $('#openCart').addEventListener('click', openCart);
 
   function openCheckout() {
+    toggleChat(false);
     const prev = store.get('rafidain.customer', {});
-    openSheet(`<h2>معلومات التوصيل</h2>
-      <form class="form" id="checkout" novalidate style="margin-top:14px">
+    openSheet(`<h2>معلومات التوصيل</h2>${steps(1)}
+      <form class="form" id="checkout" novalidate>
         <div class="two">
           <label for="cName">الاسم<input id="cName" required value="${esc(prev.name || '')}" autocomplete="name"></label>
-          <label for="cPhone">رقم الهاتف<input id="cPhone" required inputmode="tel" dir="ltr" placeholder="07XX XXX XXXX" value="${esc(prev.phone || '')}" autocomplete="tel"></label>
+          <label for="cPhone">رقم الهاتف<input id="cPhone" required type="tel" inputmode="tel" dir="ltr" placeholder="07XX XXX XXXX" value="${esc(prev.phone || '')}" autocomplete="tel"></label>
         </div>
         <div class="two">
-          <label for="cGov">المحافظة<select id="cGov">${C.store.governorates.map(g => `<option ${g === (prev.gov || 'بغداد') ? 'selected' : ''}>${g}</option>`).join('')}</select></label>
-          <label for="cArea">المنطقة<input id="cArea" required placeholder="مثال: المنصور" value="${esc(prev.area || '')}"></label>
+          <label for="cGov">المحافظة<select id="cGov">${S.governorates.map(g => `<option ${g === (prev.gov || 'بغداد') ? 'selected' : ''}>${g}</option>`).join('')}</select></label>
+          <label for="cArea">المنطقة<input id="cArea" required placeholder="مثال: المنصور" value="${esc(prev.area || '')}" autocomplete="address-level3"></label>
         </div>
         <label for="cAddr">أقرب نقطة دالة<input id="cAddr" placeholder="مثال: قرب جامع…" value="${esc(prev.addr || '')}"></label>
         <label for="cNote">ملاحظات<textarea id="cNote" rows="2" placeholder="اختياري"></textarea></label>
-        <div class="pay">الدفع نقداً عند الاستلام</div>
+        <div class="pay">${icon('i-cash')}الدفع نقداً عند الاستلام</div>
         <div class="totals num" id="coTotals"></div>
-        <div class="err" id="coErr" hidden></div>
+        <div class="err" id="coErr" role="alert" hidden></div>
         <button class="btn block" id="placeOrder" type="submit">تأكيد الطلب</button>
+        <button class="btn ghost" type="button" id="backCart" style="justify-self:center">رجوع للسلة</button>
       </form>`);
     const upd = () => {
       const t = totals($('#cGov').value);
-      $('#coTotals').innerHTML = `<div><span>المنتجات</span><span>${fmt(t.sub)}</span></div><div><span>التوصيل</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div><div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>`;
+      $('#coTotals').innerHTML = `<div><span>المنتجات (${ar(cart.reduce((a, l) => a + l.qty, 0))})</span><span>${fmt(t.sub)}</span></div><div><span>التوصيل لـ${esc($('#cGov').value)}</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div><div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>`;
+      $('#placeOrder').textContent = `تأكيد الطلب · ${fmt(t.total)}`;
     };
     $('#cGov').onchange = upd; upd();
+    $('#backCart').onclick = openCart;
     $('#checkout').onsubmit = async e => {
       e.preventDefault();
-      const c = { name: $('#cName').value.trim(), phone: $('#cPhone').value.replace(/\s/g, ''), gov: $('#cGov').value, area: $('#cArea').value.trim(), addr: $('#cAddr').value.trim(), note: $('#cNote').value.trim() };
-      const err = !c.name ? 'اكتب الاسم.' : !/^(\+?964|0)7\d{9}$/.test(c.phone) ? 'رقم الهاتف لازم يبدي بـ 07 ويكون ١١ رقم.' : !c.area ? 'اكتب المنطقة.' : '';
-      if (err) { $('#coErr').textContent = err; $('#coErr').hidden = false; return; }
+      const c = { name: $('#cName').value.trim(), phone: $('#cPhone').value.replace(/[\s-]/g, '').replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)), gov: $('#cGov').value, area: $('#cArea').value.trim(), addr: $('#cAddr').value.trim(), note: $('#cNote').value.trim() };
+      const checks = [['cName', !c.name, 'اكتب الاسم.'], ['cPhone', !/^(\+?964|0)7\d{9}$/.test(c.phone), 'رقم الهاتف لازم يبدي بـ 07 ويكون ١١ رقم.'], ['cArea', !c.area, 'اكتب المنطقة.']];
+      checks.forEach(([id, bad]) => $('#' + id).setAttribute('aria-invalid', bad));
+      const bad = checks.find(x => x[1]);
+      if (bad) { $('#coErr').textContent = bad[2]; $('#coErr').hidden = false; $('#' + bad[0]).focus(); return; }
       store.set('rafidain.customer', c);
       $('#placeOrder').disabled = true; $('#placeOrder').textContent = 'جاري الإرسال…';
       const t = totals(c.gov);
-      const order = { customer: c, items: cart.map(l => ({ id: l.id, name: byId[l.id].name, qty: l.qty, price: byId[l.id].price })), ...t };
+      const order = { customer: c, items: cart.map(l => ({ id: l.id, qty: l.qty })) };
       let id;
       try {
         const r = await fetch('api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(order) });
         if (!r.ok) throw 0; id = (await r.json()).id;
-      } catch { id = 'RF-' + Date.now().toString().slice(-6); }  // preview mode: no server
-      const orders = store.get('rafidain.orders', []); orders.unshift({ id, at: Date.now(), total: t.total }); store.set('rafidain.orders', orders.slice(0, 20));
+      } catch { id = 'RF-' + String(Date.now()).slice(-6); }  // preview mode: no server
+      const orders = store.get('rafidain.orders', []);
+      orders.unshift({ id, at: Date.now(), total: t.total, phone: c.phone, items: cart.map(l => `${byId[l.id].name} × ${l.qty}`) });
+      store.set('rafidain.orders', orders.slice(0, 20));
       cart = []; saveCart();
-      openSheet(`<div class="done"><div class="tick">✓</div><h2>وصلنا طلبك</h2>
+      openSheet(`${steps(2)}<div class="done"><div class="tick">${icon('i-check')}</div><h2>وصلنا طلبك، شكراً إلك</h2>
         <p class="hint">رقم الطلب</p><code>${esc(id)}</code>
         <p class="hint" style="max-width:34ch">راح نتصل بيك على <span dir="ltr">${esc(c.phone)}</span> حتى نأكد الطلب. التوصيل خلال ٢٤–٤٨ ساعة.</p>
-        <button class="btn" id="doneBtn">تمام</button></div>`);
+        <div class="ctas"><button class="btn" id="doneBtn">تمام</button><button class="btn soft" data-orders>تابع طلبك</button></div></div>`);
       $('#doneBtn').onclick = closeSheet;
     };
   }
 
+  /* ---------- my orders ---------- */
+  const STAGES = ['new', 'confirmed', 'shipped', 'delivered'];
+  const STATUS = { new: 'استلمنا الطلب', confirmed: 'تم التأكيد', shipped: 'ويّه المندوب', delivered: 'تم التوصيل', cancelled: 'ملغي' };
+  async function openOrders() {
+    toggleChat(false);
+    const orders = store.get('rafidain.orders', []);
+    if (!orders.length) {
+      openSheet(`<div class="done"><h2>ما عندك طلبات بعد</h2><p class="hint">لما تطلب، تكدر تتابع طلبك من هنا.</p><button class="btn" id="goShop">تسوّق الآن</button></div>`);
+      $('#goShop').onclick = () => { closeSheet(); $('#shop').scrollIntoView(); };
+      return;
+    }
+    const row = (o, st) => `<div class="order"><div class="top"><b class="num" dir="ltr">${esc(o.id)}</b><span class="pill ${st}">${STATUS[st]}</span></div>
+      <div class="hint">${new Date(o.at).toLocaleDateString('ar-IQ', { day: 'numeric', month: 'long' })} · ${fmt(o.total)}</div>
+      ${o.items ? `<div class="hint">${o.items.map(esc).join('، ')}</div>` : ''}
+      ${st !== 'cancelled' ? `<div class="track">${STAGES.map((s, i) => `<i class="${i <= STAGES.indexOf(st) ? 'on' : ''}"></i>`).join('')}</div>` : ''}</div>`;
+    openSheet(`<h2>طلباتي</h2><p class="hint" style="margin:4px 0 14px">للاستفسار اتصل على <span dir="ltr" class="num">${esc(S.phone)}</span></p><div id="orderList">${orders.map(o => row(o, 'new')).join('')}</div>`);
+    const live = await Promise.all(orders.map(async o => {
+      try { const r = await fetch(`api/orders/${encodeURIComponent(o.id)}?phone=${encodeURIComponent(o.phone || '')}`); if (r.ok) return (await r.json()).status; } catch { /* preview mode */ }
+      return 'new';
+    }));
+    if ($('#orderList')) $('#orderList').innerHTML = orders.map((o, i) => row(o, STATUS[live[i]] ? live[i] : 'new')).join('');
+  }
+
   let toastT;
-  function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 1800); }
+  function toast(msg, action, fn) {
+    const t = $('#toast');
+    t.innerHTML = `<span>${esc(msg)}</span>${action ? `<button type="button">${esc(action)}</button>` : ''}`;
+    if (action) t.querySelector('button').onclick = () => { t.classList.remove('on'); fn(); };
+    t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600);
+  }
   renderCount();
 
   /* ---------- AI assistant ---------- */
   const history = [];
   const msgs = $('#msgs');
   function toggleChat(on) {
-    $('#chat').classList.toggle('on', on);
-    if (on) { if (!msgs.children.length) greet(); setTimeout(() => $('#chatInput').focus(), 200); }
+    const chat = $('#chat');
+    if (on === chat.classList.contains('on')) return;
+    chat.classList.toggle('on', on);
+    if (on) { closeSheet(); if (!msgs.children.length) greet(); if (matchMedia('(min-width: 721px)').matches) setTimeout(() => $('#chatInput').focus(), 200); }
   }
-  document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => toggleChat(true)));
   $('#closeChat').addEventListener('click', () => toggleChat(false));
 
-  function bubble(text, who) {
-    const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = text; msgs.appendChild(d);
+  function bubble(html, who) {
+    const d = document.createElement('div'); d.className = 'msg ' + who; d.innerHTML = html; msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight; return d;
   }
   function recs(ids) {
     const list = ids.map(id => byId[id]).filter(Boolean); if (!list.length) return;
-    const d = document.createElement('div'); d.className = 'recs';
-    d.innerHTML = list.map(p => `<div class="rec"><div class="mini" style="${tileBg(p)}">${art(p)}</div><b>${esc(p.name)}</b><span class="price num">${fmt(p.price)}</span><button data-add="${p.id}">أضف للسلة</button></div>`).join('');
+    const d = document.createElement('div'); d.className = 'recs'; d.innerHTML = list.map(miniCard).join('');
     msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   }
-  function suggestions(list) {
-    $('#sugg').innerHTML = list.map(s => `<button type="button">${esc(s)}</button>`).join('');
-  }
+  function suggestions(list) { $('#sugg').innerHTML = list.map(s => `<button type="button">${esc(s)}</button>`).join(''); }
   $('#sugg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) send(b.textContent); });
   function greet() {
-    bubble('هلا بيك بمعصرة الرافدين. آني مساعدك الذكي.\nاحجيلي شنو تحتاج: مشكلة بالشعر، البشرة، أعشاب، لو تريد تطلب مباشرة.', 'bot');
-    suggestions(['شعري يتساقط', 'عندي حبوب بالوجه', 'شنو أفضل باكج؟', 'وين فروعكم؟']);
+    bubble(esc('هلا بيك بمعصرة الرافدين 🌿\nآني مساعدك الذكي. احجيلي شنو تحتاج: مشكلة بالشعر أو البشرة، أعشاب، أو تريد تطلب مباشرة.'), 'bot');
+    suggestions(['شعري يتساقط', 'عندي حبوب بالوجه', 'بشرتي جافة', 'شنو أفضل باكج؟', 'وين فروعكم؟']);
   }
 
   let lastRecs = [];
   async function send(text) {
     text = text.trim(); if (!text) return;
-    bubble(text, 'user'); suggestions([]);
+    bubble(esc(text), 'user'); suggestions([]);
     history.push({ role: 'user', content: text });
-    const typing = bubble('يكتب…', 'bot typing');
+    const typing = bubble('<span class="dots" aria-label="يكتب"><i></i><i></i><i></i></span>', 'bot');
     let res;
     try {
-      const r = await fetch('api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history.slice(-16), cart }) });
+      const r = await fetch('api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history.slice(-16), cart }) });
       if (!r.ok) throw 0; res = await r.json();
-      $('#agentMode').textContent = 'مدعوم بالذكاء الاصطناعي';
     } catch {
-      await new Promise(r => setTimeout(r, 450));
+      await new Promise(r => setTimeout(r, 500));
       res = localAgent(text);  // preview mode: no server, use the built-in rules
-      $('#agentMode').textContent = 'وضع تجريبي';
     }
     typing.remove();
-    bubble(res.reply, 'bot');
+    bubble(esc(res.reply), 'bot');
     history.push({ role: 'assistant', content: res.reply });
     if (res.products?.length) { recs(res.products); lastRecs = res.products; }
     (res.actions || []).forEach(a => {
       if (a.type === 'add') addToCart(a.id, a.qty || 1);
-      if (a.type === 'open_cart') { toggleChat(false); openCart(); }
-      if (a.type === 'checkout') { toggleChat(false); cart.length ? openCheckout() : openCart(); }
+      if (a.type === 'checkout') cart.length ? openCheckout() : openCart();
     });
     if (res.suggestions?.length) suggestions(res.suggestions);
   }
@@ -271,8 +370,7 @@
   // Rule-based fallback so the assistant still works without the AI server (preview / offline).
   function localAgent(raw) {
     const t = norm(raw), has = (...w) => w.some(x => t.includes(norm(x)));
-    const S = C.store;
-    if (has('اي', 'نعم', 'ضيف', 'اضيف', 'أضف', 'زين', 'تمام', 'اوكي') && lastRecs.length && t.length < 20)
+    if (has('نعم', 'ضيف', 'اضيف', 'أضف', 'زين', 'تمام', 'اوكي', 'موافق') && lastRecs.length && t.length < 24)
       return { reply: `ضفت ${byId[lastRecs[0]].name} للسلة. تريد تكمل الطلب هسه؟`, actions: [{ type: 'add', id: lastRecs[0] }], suggestions: ['أكمل الطلب', 'أريد شي ثاني'] };
     if (has('اكمل', 'أكمل', 'اطلب', 'الطلب', 'السله', 'سلة'))
       return { reply: 'تمام، فتحتلك صفحة الطلب. الدفع عند الاستلام والتوصيل خلال ٢٤–٤٨ ساعة.', actions: [{ type: 'checkout' }] };
@@ -293,8 +391,10 @@
     if (has('نوم', 'ارق', 'توتر', 'هدوء'))
       return { reply: 'للنوم والهدوء: كوب بابونج قبل النوم بنص ساعة.', products: ['chamomile'] };
     if (has('عسل')) return { reply: 'عدنا عسل السدر وعسل جبلي من كردستان.', products: ['sidr-honey', 'mountain-honey'] };
-    if (has('باكج', 'مجموعه', 'افضل', 'أفضل', 'عرض'))
+    if (has('باكج', 'مجموعه', 'افضل', 'عرض'))
       return { reply: 'أكثر شي ينطلب عدنا مجموعة الإنبات للشعر. وإذا مهتم بالبشرة، روتين البشرة الطبيعي. وخلطة شيخ العطارين هي خلطتنا الأصلية.', products: ['growth-set', 'skin-routine', 'sheikh-blend'] };
+    if (has('طلبي', 'تتبع', 'وين وصل'))
+      return { reply: 'تكدر تتابع طلباتك من «طلباتي». وإذا تأخر الطلب، اتصل بينا على ' + S.phone + '.' };
     if (has('وين', 'فرع', 'عنوان', 'موقع', 'مكان'))
       return { reply: S.branches.map(b => `${b.name}: ${b.area}، ${b.address}`).join('\n') + `\nللتواصل: ${S.phone}`, suggestions: ['شكد التوصيل؟'] };
     if (has('توصيل', 'شكد', 'سعر', 'محافظ'))
@@ -303,6 +403,6 @@
       return { reply: 'هلا بيك وعليكم السلام. شلون أكدر أساعدك اليوم؟', suggestions: ['شعري يتساقط', 'عندي حبوب بالوجه', 'وين فروعكم؟'] };
     const hits = C.products.filter(p => norm([p.name, ...p.tags].join(' ')).split(/\s+/).some(w => w.length > 2 && t.includes(w))).slice(0, 3);
     if (hits.length) return { reply: 'هاي المنتجات اللي تناسب سؤالك:', products: hits.map(p => p.id) };
-    return { reply: `ما فهمت عليك زين. تكدر تحجيلي عن مشكلة بالشعر أو البشرة، أو تسأل عن منتج، أو تتصل بينا على ${S.phone}.`, suggestions: ['شعري يتساقط', 'بشرتي جافة', 'شنو أفضل باكج؟'] };
+    return { reply: `ما فهمت عليك زين. احجيلي عن مشكلة بالشعر أو البشرة، أو اسأل عن منتج، أو اتصل بينا على ${S.phone}.`, suggestions: ['شعري يتساقط', 'بشرتي جافة', 'شنو أفضل باكج؟'] };
   }
 })();

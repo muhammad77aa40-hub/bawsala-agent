@@ -5,363 +5,518 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>معصرة الرافدين</title>
 <meta name="description" content="زيوت طبيعية، أعشاب، وعناية بالشعر والبشرة من معصرة الرافدين في بغداد. اطلب أونلاين والتوصيل لكل العراق.">
+<meta name="theme-color" content="#1f5a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: Apple-style store. Single centered column (max 1080px), glass nav, big quiet headlines,
-   soft tinted product tiles, sheets that slide up from the bottom, one herb-green accent. */
+/* Layout: Apple-style store. One centered column (max 1120px), glass nav, big quiet headlines,
+   tinted product tiles, bottom sheets, and a bottom tab bar on phones (app feel).
+
+   ===== ألوان المعصرة (BRAND) =====
+   كل ألوان الموقع تطلع من هالبلوك. لتبديلها بألوان الشعار الحقيقية بدّل --brand و --oil
+   (وأخواتهن بالوضع الداكن تحت). الباقي (خلفيات، نصوص) محايد دافئ يمشي ويه أي لون. */
 :root {
-  --bg: #fbfbf9;
+  --brand: #1f5a3d;        /* أخضر الأعشاب: الأزرار، الروابط، الشعار */
+  --brand-ink: #ffffff;    /* لون النص فوق الأخضر */
+  --brand-soft: #e2ede5;   /* خلفيات خفيفة للأخضر */
+  --oil: #c46d16;          /* كهرماني الزيت: الشارات، الأسعار المميزة، التنبيهات */
+  --oil-soft: #f8ead8;
+
+  --bg: #f7f5ef;           /* كريمي دافئ بدل الأبيض الصافي */
   --surface: #ffffff;
-  --surface-2: #f2f2ee;
-  --fg: #1d1d1f;
-  --muted: #6e6e69;
-  --line: #e3e3de;
-  --accent: #2f6b4f;
-  --accent-fg: #ffffff;
-  --accent-soft: #e6efe9;
-  --gold: #a8741e;
-  --nav: rgba(251, 251, 249, 0.78);
-  --shadow: 0 10px 40px rgba(30, 40, 30, 0.10);
-  --scrim: rgba(20, 22, 20, 0.38);
+  --surface-2: #efece4;
+  --fg: #1b211c;
+  --muted: #676c62;
+  --line: #e1ddd2;
+  --danger: #b3261e;
+  --nav: rgba(247, 245, 239, 0.8);
+  --shadow: 0 12px 40px rgba(27, 45, 32, 0.12);
+  --shadow-sm: 0 2px 10px rgba(27, 45, 32, 0.06);
+  --scrim: rgba(16, 22, 18, 0.42);
 
   --font: 'IBM Plex Sans Arabic', 'SF Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, sans-serif;
-  --r-lg: 28px;
-  --r-md: 18px;
-  --r-sm: 12px;
-  --wrap: 1080px;
+  --r-xl: 32px; --r-lg: 24px; --r-md: 18px; --r-sm: 12px;
+  --wrap: 1120px;
+  --tabbar: 0px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0b0c0b; --surface: #161816; --surface-2: #1e211f; --fg: #f3f3ef; --muted: #a2a59f;
-    --line: #2b2e2b; --accent: #6fc496; --accent-fg: #0b1a12; --accent-soft: #1b2b22; --gold: #d9a54a;
-    --nav: rgba(11, 12, 11, 0.72); --shadow: 0 10px 40px rgba(0, 0, 0, 0.5); --scrim: rgba(0, 0, 0, 0.6);
+    --brand: #6cc493; --brand-ink: #08170f; --brand-soft: #18291f; --oil: #eda552; --oil-soft: #2d2215;
+    --bg: #0c100d; --surface: #151a16; --surface-2: #1d241f; --fg: #f0eee6; --muted: #a2a79b; --line: #283029;
+    --danger: #ff8a80; --nav: rgba(12, 16, 13, 0.78); --shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3); --scrim: rgba(0, 0, 0, 0.62);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0b0c0b; --surface: #161816; --surface-2: #1e211f; --fg: #f3f3ef; --muted: #a2a59f;
-  --line: #2b2e2b; --accent: #6fc496; --accent-fg: #0b1a12; --accent-soft: #1b2b22; --gold: #d9a54a;
-  --nav: rgba(11, 12, 11, 0.72); --shadow: 0 10px 40px rgba(0, 0, 0, 0.5); --scrim: rgba(0, 0, 0, 0.6);
+  --brand: #6cc493; --brand-ink: #08170f; --brand-soft: #18291f; --oil: #eda552; --oil-soft: #2d2215;
+  --bg: #0c100d; --surface: #151a16; --surface-2: #1d241f; --fg: #f0eee6; --muted: #a2a79b; --line: #283029;
+  --danger: #ff8a80; --nav: rgba(12, 16, 13, 0.78); --shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3); --scrim: rgba(0, 0, 0, 0.62);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
   margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font);
   font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  padding-bottom: var(--tabbar);
 }
 button, input, select, textarea { font: inherit; color: inherit; }
-button { cursor: pointer; }
-a { color: var(--accent); text-decoration: none; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+a { color: var(--brand); text-decoration: none; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 10px; }
 h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
 .num { font-variant-numeric: tabular-nums; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-/* demo ribbon */
-.demo { background: var(--surface-2); color: var(--muted); font-size: 12.5px; text-align: center; padding: 6px 16px; }
+.demo { background: var(--oil-soft); color: var(--oil); font-size: 12.5px; text-align: center; padding: 6px 16px; font-weight: 500; }
 
-/* nav */
+/* ---------- nav ---------- */
 .nav {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
   background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--line);
 }
-.nav .wrap { display: flex; align-items: center; gap: 20px; height: 52px; }
-.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--fg); font-size: 17px; }
-.brand svg { width: 22px; height: 22px; color: var(--accent); }
-.nav-links { display: flex; gap: 22px; font-size: 13.5px; margin-inline-start: auto; }
-.nav-links a { color: var(--fg); opacity: .8; }
+.nav .wrap { display: flex; align-items: center; gap: 18px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 9px; color: var(--fg); line-height: 1.15; }
+.brand svg { width: 30px; height: 30px; flex: none; }
+.brand b { display: block; font-size: 16px; font-weight: 700; }
+.brand small { display: block; font-size: 11px; color: var(--muted); }
+.nav-links { display: flex; gap: 24px; font-size: 14px; margin-inline-start: auto; }
+.nav-links a { color: var(--fg); opacity: .75; transition: opacity .15s; }
 .nav-links a:hover { opacity: 1; }
+.nav-actions { display: flex; gap: 4px; }
 .icon-btn {
-  position: relative; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
   border: 0; background: transparent; color: var(--fg);
 }
 .icon-btn:hover { background: var(--surface-2); }
-.icon-btn svg { width: 20px; height: 20px; }
+.icon-btn svg { width: 21px; height: 21px; }
 .count {
-  position: absolute; top: 2px; inset-inline-end: 0; min-width: 17px; height: 17px; padding: 0 4px;
-  border-radius: 9px; background: var(--accent); color: var(--accent-fg); font-size: 11px; font-weight: 600;
+  position: absolute; top: 3px; inset-inline-end: 1px; min-width: 18px; height: 18px; padding: 0 4px;
+  border-radius: 9px; background: var(--oil); color: #fff; font-size: 11px; font-weight: 700;
   display: grid; place-items: center; line-height: 1;
 }
-@media (max-width: 720px) { .nav-links { display: none; } .nav .wrap > .brand { margin-inline-end: auto; } }
+.count.bump { animation: bump .4s ease; }
+@keyframes bump { 40% { transform: scale(1.35); } }
 
-/* hero */
-.hero { text-align: center; padding-block: 64px 24px; }
-.eyebrow { color: var(--gold); font-weight: 600; font-size: 15px; }
-.hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 700; line-height: 1.12; margin-top: 8px; }
-.hero p { color: var(--muted); font-size: clamp(17px, 2.2vw, 21px); max-width: 34ch; margin: 14px auto 0; }
-.ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+/* ---------- hero ---------- */
+.hero { padding-block: 56px 8px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: center; }
+.eyebrow { color: var(--oil); font-weight: 600; font-size: 14.5px; }
+.hero h1 { font-size: clamp(40px, 6.2vw, 68px); font-weight: 700; line-height: 1.12; margin-top: 10px; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.hero p { color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 32ch; margin: 16px 0 0; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; align-items: center; }
+.trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: var(--muted); font-size: 13.5px; }
+.trust span { display: inline-flex; align-items: center; gap: 6px; }
+.trust svg { width: 16px; height: 16px; color: var(--brand); }
+.hero-stage {
+  position: relative; border-radius: var(--r-xl); overflow: hidden; min-height: 380px;
+  background:
+    radial-gradient(60% 50% at 70% 85%, color-mix(in srgb, var(--oil) 30%, transparent), transparent 70%),
+    radial-gradient(80% 70% at 30% 100%, color-mix(in srgb, var(--brand) 38%, transparent), transparent 75%),
+    var(--brand-soft);
+  display: flex; justify-content: center; align-items: flex-end; gap: clamp(6px, 2.4vw, 22px); padding: 36px 16px 0;
+}
+.hero-stage svg { height: clamp(140px, 22vw, 220px); width: auto; filter: drop-shadow(0 18px 22px rgba(0,0,0,.22)); }
+.hero-stage svg:nth-child(2) { height: clamp(180px, 29vw, 290px); }
+.hero-stage .tag {
+  position: absolute; top: 18px; inset-inline-start: 18px; background: var(--surface); color: var(--fg);
+  border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-sm);
+}
+.hero-stage .tag b { color: var(--oil); }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 36px; }
+  .hero p { margin-inline: auto; }
+  .ctas, .trust { justify-content: center; }
+  .hero-stage { min-height: 280px; }
+}
+
+/* ---------- buttons ---------- */
 .btn {
-  border: 0; border-radius: 999px; padding: 11px 22px; font-weight: 500; font-size: 16px;
-  background: var(--accent); color: var(--accent-fg); display: inline-flex; align-items: center; gap: 8px;
-  transition: transform .15s ease, filter .15s ease;
+  border: 0; border-radius: 999px; padding: 12px 24px; font-weight: 600; font-size: 16px;
+  background: var(--brand); color: var(--brand-ink); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: transform .15s ease, filter .15s ease, background .2s;
 }
 .btn:hover { filter: brightness(1.08); }
-.btn:active { transform: scale(.98); }
-.btn.ghost { background: transparent; color: var(--accent); padding-inline: 8px; }
-.btn.ghost::after { content: '‹'; font-size: 20px; line-height: 1; }
-.btn.block { width: 100%; justify-content: center; padding-block: 14px; }
+.btn:active { transform: scale(.97); }
+.btn.soft { background: var(--brand-soft); color: var(--brand); }
+.btn.ghost { background: transparent; color: var(--brand); padding-inline: 8px; }
+.btn.ghost::after { content: '‹'; font-size: 22px; line-height: 1; }
+.btn.block { width: 100%; padding-block: 15px; }
 .btn[disabled] { opacity: .5; cursor: not-allowed; }
+.btn.added { background: var(--oil); color: #fff; }
 
-.hero-stage {
-  margin: 40px auto 0; max-width: 900px; border-radius: var(--r-lg); overflow: hidden;
-  background: radial-gradient(120% 90% at 50% 100%, color-mix(in srgb, var(--accent) 22%, var(--surface)) 0%, var(--surface) 70%);
-  display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 3vw, 28px); padding: 40px 20px 0; min-height: 300px;
-}
-.hero-stage svg { height: clamp(150px, 26vw, 250px); width: auto; filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)); }
-.hero-stage svg:nth-child(2) { height: clamp(190px, 33vw, 310px); }
-
-/* sections */
-section { padding-block: 56px; }
+/* ---------- sections ---------- */
+section { padding-block: 48px; }
 .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
-.sec-head h2 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; }
 .sec-head p { color: var(--muted); margin: 4px 0 0; }
 
-/* category chips */
-.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; margin-bottom: 22px; }
+/* shop by concern */
+.concerns { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .concerns { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 132px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; margin-inline: -20px; padding-inline: 20px; } .concerns::-webkit-scrollbar { display: none; } }
+.concern {
+  border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 16px;
+  text-align: start; display: grid; gap: 10px; transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.concern:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.concern .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; }
+.concern .ic svg { width: 22px; height: 22px; }
+.concern b { font-size: 15.5px; font-weight: 600; }
+.concern span { color: var(--muted); font-size: 12.5px; margin-top: -8px; }
+
+/* toolbar: chips + search + sort */
+.toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.search {
+  display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 8px 14px; min-width: 0; flex: 1 1 260px; transition: border-color .2s;
+}
+.search:focus-within { border-color: var(--brand); }
+.search svg { width: 18px; height: 18px; color: var(--muted); flex: none; }
+.search input { border: 0; background: transparent; outline: 0; width: 100%; min-width: 0; font-size: 15.5px; }
+.sort { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 9px 14px; font-size: 14.5px; }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; margin-bottom: 18px; }
 .chips::-webkit-scrollbar { display: none; }
 .chip {
   flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
-  padding: 7px 16px; font-size: 14.5px; white-space: nowrap;
+  padding: 7px 16px; font-size: 14.5px; white-space: nowrap; transition: background .15s, color .15s;
 }
-.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.search {
-  display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line);
-  border-radius: 999px; padding: 6px 14px; min-width: 0; flex: 0 1 280px;
-}
-.search svg { width: 17px; height: 17px; color: var(--muted); flex: none; }
-.search input { border: 0; background: transparent; outline: 0; width: 100%; min-width: 0; font-size: 15px; }
+.chip[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.filter-note { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; color: var(--muted); font-size: 14.5px; }
+.filter-note b { color: var(--fg); }
+.filter-note button { border: 0; background: var(--surface-2); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
 
-/* product grid */
+/* ---------- product grid ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
 #setsGrid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } #setsGrid { grid-template-columns: 1fr; } }
 .card {
   background: var(--surface); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column;
-  border: 0; padding: 0; text-align: start; transition: transform .25s ease, box-shadow .25s ease;
+  text-align: start; transition: transform .25s ease, box-shadow .25s ease; cursor: pointer; min-width: 0;
 }
 .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.card .art { aspect-ratio: 4 / 3.4; display: grid; place-items: center; position: relative; max-width: 100%; }
-.card .art svg { height: 72%; width: auto; filter: drop-shadow(0 10px 14px rgba(0,0,0,.16)); transition: transform .35s ease; }
-.card:hover .art svg { transform: scale(1.04); }
+.card .art { aspect-ratio: 1 / .9; display: grid; place-items: center; position: relative; max-width: 100%; }
+.card .art svg { height: 70%; width: auto; max-width: 80%; filter: drop-shadow(0 10px 14px rgba(0,0,0,.16)); transition: transform .35s ease; }
+.card:hover .art svg { transform: scale(1.05); }
 .badge {
-  position: absolute; top: 12px; inset-inline-start: 12px; font-size: 12px; font-weight: 600;
-  color: var(--gold); background: var(--surface); padding: 3px 10px; border-radius: 999px;
+  position: absolute; top: 10px; inset-inline-start: 10px; font-size: 11.5px; font-weight: 700;
+  color: var(--oil); background: var(--surface); padding: 3px 10px; border-radius: 999px;
 }
-.card .info { padding: 14px 16px 16px; display: grid; gap: 4px; flex: 1; }
-.card h3 { font-size: 17px; font-weight: 600; }
-.card .short { color: var(--muted); font-size: 14px; line-height: 1.5; min-height: 3em; }
-.card .row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
-.price { font-weight: 600; }
-.price small { font-weight: 400; color: var(--muted); font-size: 12px; margin-inline-start: 2px; }
+.card .info { padding: 12px 14px 14px; display: grid; gap: 3px; flex: 1; align-content: start; }
+.card h3 { font-size: 16px; font-weight: 600; }
+.card .short { color: var(--muted); font-size: 13.5px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card .row { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 8px; gap: 8px; }
+.price { font-weight: 700; }
 .add {
-  border: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
-  display: grid; place-items: center; font-size: 22px; line-height: 1;
+  border: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); flex: none;
+  display: grid; place-items: center; transition: background .2s, color .2s, transform .15s;
 }
-.add:hover { background: var(--accent); color: var(--accent-fg); }
-.empty { color: var(--muted); text-align: center; padding: 40px 0; grid-column: 1 / -1; }
+.add svg { width: 18px; height: 18px; }
+.add:hover { background: var(--brand); color: var(--brand-ink); }
+.add:active { transform: scale(.9); }
+.add.done { background: var(--oil); color: #fff; }
+.empty { color: var(--muted); text-align: center; padding: 40px 16px; grid-column: 1 / -1; display: grid; gap: 12px; justify-items: center; }
 
-/* why */
-.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+/* ---------- why ---------- */
+.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
 .why div { background: var(--surface); border-radius: var(--r-md); padding: 22px; }
-.why b { display: block; font-size: 30px; font-weight: 700; color: var(--accent); line-height: 1.2; }
+.why b { display: block; font-size: 32px; font-weight: 700; color: var(--brand); line-height: 1.2; }
 .why span { color: var(--muted); font-size: 14.5px; }
 
-/* AI promo band */
+/* ---------- AI band ---------- */
 .ai-band {
-  border-radius: var(--r-lg); background: var(--fg); color: var(--bg); padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--r-xl); padding: clamp(28px, 5vw, 56px); color: #f4f1e8;
+  background: radial-gradient(70% 90% at 0% 100%, color-mix(in srgb, var(--oil) 35%, transparent), transparent 70%), #173f2c;
   display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;
 }
+.ai-band .eyebrow { color: #f2b766; }
 .ai-band h2 { font-size: clamp(28px, 4vw, 40px); }
-.ai-band p { opacity: .75; margin: 10px 0 20px; }
-.ai-band .btn { background: var(--bg); color: var(--fg); }
+.ai-band p { opacity: .8; margin: 10px 0 22px; }
+.ai-band .btn { background: #f4f1e8; color: #173f2c; }
 .bubbles { display: grid; gap: 10px; font-size: 14.5px; }
 .bubbles span { padding: 10px 14px; border-radius: 18px; max-width: 85%; line-height: 1.5; }
-.bubbles .u { justify-self: start; background: var(--accent); color: var(--accent-fg); }
-.bubbles .a { justify-self: end; background: color-mix(in srgb, var(--bg) 14%, var(--fg)); }
+.bubbles .u { justify-self: start; background: #f2b766; color: #2a1a06; border-end-start-radius: 6px; }
+.bubbles .a { justify-self: end; background: rgba(255,255,255,.12); border-end-end-radius: 6px; }
 @media (max-width: 760px) { .ai-band { grid-template-columns: 1fr; } }
 
-/* branches */
-.branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-.branch { background: var(--surface); border-radius: var(--r-md); padding: 22px; display: grid; gap: 6px; }
+/* ---------- branches ---------- */
+.branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.branch { background: var(--surface); border-radius: var(--r-md); padding: 22px; display: grid; gap: 4px; }
 .branch h3 { font-size: 19px; }
 .branch .meta { color: var(--muted); font-size: 14.5px; }
+.branch a { margin-top: 8px; font-weight: 600; font-size: 14.5px; }
 
-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding-block: 28px 100px; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding-block: 28px 110px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
-footer .links { display: flex; gap: 18px; }
+footer .links { display: flex; gap: 18px; flex-wrap: wrap; }
 
-/* sheets (product, cart, checkout) */
-.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 40; opacity: 0; transition: opacity .25s; }
+/* ---------- sheets ---------- */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 60; opacity: 0; transition: opacity .25s; }
 .scrim.on { opacity: 1; }
 .sheet {
-  position: fixed; z-index: 50; inset-inline: 0; bottom: 0; margin-inline: auto; max-width: 760px;
-  max-height: 92vh; overflow-y: auto; background: var(--bg); border-radius: var(--r-lg) var(--r-lg) 0 0;
-  padding: 10px 22px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1);
+  position: fixed; z-index: 70; inset-inline: 0; bottom: 0; margin-inline: auto; max-width: 720px;
+  max-height: 92vh; overflow-y: auto; overscroll-behavior: contain; background: var(--bg); border-radius: var(--r-xl) var(--r-xl) 0 0;
+  padding: 10px 22px calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); transition: transform .34s cubic-bezier(.2,.8,.2,1);
 }
 .sheet.on { transform: none; }
+@media (min-width: 760px) {
+  .sheet { bottom: auto; top: 50%; border-radius: var(--r-xl); max-height: 86vh; transform: translateY(-46%) scale(.97); opacity: 0; transition: transform .28s ease, opacity .2s; }
+  .sheet.on { transform: translateY(-50%); opacity: 1; }
+  .sheet .grab { display: none; }
+}
 .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 4px auto 12px; }
-.sheet .close { position: absolute; top: 14px; inset-inline-end: 14px; background: var(--surface-2); }
+.sheet .close { position: absolute; top: 14px; inset-inline-end: 14px; background: var(--surface-2); z-index: 2; }
 .sheet h2 { font-size: 26px; }
+.steps { display: flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; margin: 2px 0 14px; }
+.steps i { width: 24px; height: 2px; background: var(--line); }
+.steps span.on { color: var(--brand); font-weight: 600; }
 
-.pd-art { border-radius: var(--r-md); display: grid; place-items: center; height: 260px; margin-bottom: 18px; }
-.pd-art svg { height: 80%; width: auto; filter: drop-shadow(0 14px 18px rgba(0,0,0,.18)); }
+.pd-art { border-radius: var(--r-lg); display: grid; place-items: center; height: 280px; margin: 4px 0 18px; position: relative; }
+.pd-art svg { height: 78%; width: auto; filter: drop-shadow(0 14px 18px rgba(0,0,0,.18)); }
 .pd p { color: var(--muted); margin: 8px 0; }
-.pd h4 { margin: 18px 0 6px; font-size: 15px; }
-.pd ul { margin: 0; padding-inline-start: 20px; color: var(--muted); }
-.pd-buy { display: flex; gap: 12px; align-items: center; margin-top: 22px; position: sticky; bottom: 0; background: var(--bg); padding-top: 10px; }
-.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; }
-.qty button { border: 0; background: transparent; width: 36px; height: 38px; font-size: 18px; }
-.qty span { min-width: 22px; text-align: center; }
+.pd h4 { margin: 20px 0 8px; font-size: 15px; }
+.pd .ings { display: flex; flex-wrap: wrap; gap: 6px; }
+.pd .ings span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13.5px; }
+.pd .use { background: var(--brand-soft); color: var(--fg); border-radius: var(--r-sm); padding: 12px 14px; font-size: 14.5px; }
+.perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; }
+.perks div { background: var(--surface); border-radius: var(--r-sm); padding: 10px; text-align: center; font-size: 12.5px; color: var(--muted); }
+.perks b { display: block; color: var(--fg); font-size: 13.5px; }
+.related { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.pd-buy { display: flex; gap: 12px; align-items: center; margin-top: 22px; position: sticky; bottom: calc(-22px - env(safe-area-inset-bottom, 0px)); background: var(--bg); padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); flex: none; }
+.qty button { border: 0; background: transparent; width: 38px; height: 40px; font-size: 19px; }
+.qty span { min-width: 22px; text-align: center; font-weight: 600; }
 
-.line { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.line { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
 .line .thumb { width: 64px; height: 64px; border-radius: 14px; display: grid; place-items: center; }
-.line .thumb svg { height: 80%; width: auto; }
-.line .nm { font-weight: 600; min-width: 0; }
+.line .thumb svg { height: 78%; width: auto; }
+.line .nm { font-weight: 600; }
 .line .sub { color: var(--muted); font-size: 13.5px; }
+.ship { background: var(--surface); border-radius: var(--r-sm); padding: 12px 14px; margin: 14px 0 4px; font-size: 14px; }
+.ship .bar { height: 6px; border-radius: 3px; background: var(--surface-2); margin-top: 8px; overflow: hidden; }
+.ship .bar i { display: block; height: 100%; background: var(--oil); border-radius: 3px; transition: width .4s ease; }
+.ship.free { color: var(--brand); font-weight: 600; }
 .totals { display: grid; gap: 6px; margin: 16px 0; }
 .totals div { display: flex; justify-content: space-between; }
 .totals .grand { font-weight: 700; font-size: 18px; border-top: 1px solid var(--line); padding-top: 10px; }
 .hint { color: var(--muted); font-size: 13px; }
 
 .form { display: grid; gap: 12px; }
-.form label { display: grid; gap: 4px; font-size: 14px; font-weight: 500; }
+.form label { display: grid; gap: 5px; font-size: 14px; font-weight: 500; }
 .form input, .form select, .form textarea {
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 11px 14px; font-size: 16px; width: 100%;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px; font-size: 16px; width: 100%;
+  transition: border-color .2s;
 }
+.form input:focus, .form select:focus, .form textarea:focus { outline: 0; border-color: var(--brand); }
+.form input[aria-invalid="true"] { border-color: var(--danger); }
 .form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 480px) { .form .two { grid-template-columns: 1fr; } }
-.pay { display: flex; align-items: center; gap: 10px; background: var(--accent-soft); color: var(--accent); border-radius: var(--r-sm); padding: 12px 14px; font-weight: 500; }
-.err { color: #c0392b; font-size: 13.5px; }
+.pay { display: flex; align-items: center; gap: 10px; background: var(--brand-soft); color: var(--brand); border-radius: var(--r-sm); padding: 12px 14px; font-weight: 600; }
+.pay svg { width: 20px; height: 20px; flex: none; }
+.err { color: var(--danger); font-size: 13.5px; }
 
-.done { text-align: center; padding: 20px 0; display: grid; gap: 10px; justify-items: center; }
-.done .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-size: 32px; }
-.done code { background: var(--surface-2); padding: 4px 10px; border-radius: 8px; font-size: 15px; direction: ltr; }
+.done { text-align: center; padding: 16px 0; display: grid; gap: 10px; justify-items: center; }
+.done .tick { width: 72px; height: 72px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; animation: pop .45s cubic-bezier(.2,1.4,.4,1); }
+.done .tick svg { width: 34px; height: 34px; }
+@keyframes pop { from { transform: scale(.4); opacity: 0; } }
+.done code { background: var(--surface); border: 1px dashed var(--line); padding: 6px 14px; border-radius: 10px; font-size: 17px; direction: ltr; font-weight: 600; }
 
-/* assistant */
+.order { background: var(--surface); border-radius: var(--r-md); padding: 14px 16px; display: grid; gap: 6px; margin-bottom: 10px; }
+.order .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--oil-soft); color: var(--oil); }
+.pill.delivered { background: var(--brand-soft); color: var(--brand); }
+.pill.cancelled { background: var(--surface-2); color: var(--muted); }
+.track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 4px; }
+.track i { height: 4px; border-radius: 2px; background: var(--surface-2); }
+.track i.on { background: var(--brand); }
+
+/* ---------- assistant ---------- */
 .fab {
   position: fixed; z-index: 35; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 20px;
-  border: 0; border-radius: 999px; background: var(--fg); color: var(--bg); padding: 12px 18px 12px 20px;
-  display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow); font-weight: 500;
+  border: 0; border-radius: 999px; background: var(--brand); color: var(--brand-ink); padding: 13px 20px;
+  display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow); font-weight: 600;
 }
 .fab svg { width: 20px; height: 20px; }
 .chat {
   position: fixed; z-index: 55; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 20px;
-  width: min(400px, calc(100vw - 40px)); height: min(600px, calc(100vh - 100px));
-  background: var(--bg); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow);
+  width: min(410px, calc(100vw - 40px)); height: min(620px, calc(100vh - 110px));
+  background: var(--bg); border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow);
   display: flex; flex-direction: column; overflow: hidden; transform-origin: bottom right;
-  transform: scale(.92); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease;
+  transform: scale(.92) translateY(10px); opacity: 0; pointer-events: none; transition: transform .24s ease, opacity .2s ease;
 }
 .chat.on { transform: none; opacity: 1; pointer-events: auto; }
-.chat header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
-.chat header .av { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; }
-.chat header .av svg { width: 18px; height: 18px; }
+.chat header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.chat header .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.chat header .av svg { width: 36px; height: 36px; }
 .chat header b { display: block; font-size: 15px; }
-.chat header small { color: var(--muted); font-size: 12px; }
+.chat header small { color: var(--muted); font-size: 12px; display: flex; align-items: center; gap: 5px; }
+.chat header small::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #34c759; }
 .chat header .icon-btn { margin-inline-start: auto; }
-.msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.msg { flex: none; max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
-.msg.user { align-self: flex-start; background: var(--accent); color: var(--accent-fg); border-end-start-radius: 6px; }
-.msg.bot { align-self: flex-end; background: var(--surface-2); border-end-end-radius: 6px; }
-.msg.typing { color: var(--muted); }
+.msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; overscroll-behavior: contain; }
+.msg { flex: none; max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; animation: rise .25s ease; }
+@keyframes rise { from { transform: translateY(6px); opacity: 0; } }
+.msg.user { align-self: flex-start; background: var(--brand); color: var(--brand-ink); border-end-start-radius: 6px; }
+.msg.bot { align-self: flex-end; background: var(--surface); border: 1px solid var(--line); border-end-end-radius: 6px; }
+.dots { display: inline-flex; gap: 4px; padding: 4px 2px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
 .recs { flex: none; align-self: stretch; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
 .rec { flex: none; width: 150px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; display: grid; gap: 4px; text-align: start; }
-.rec .mini { height: 80px; border-radius: 10px; display: grid; place-items: center; }
-.rec .mini svg { height: 80%; width: auto; }
+.rec .mini { height: 84px; border-radius: 10px; display: grid; place-items: center; cursor: pointer; }
+.rec .mini svg { height: 78%; width: auto; }
 .rec b { font-size: 13.5px; font-weight: 600; }
 .rec .price { font-size: 13px; }
-.rec button { border: 0; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; padding: 5px 0; font-weight: 500; }
-.sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 16px 10px; }
-.sugg button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 13px; }
-.composer { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); }
-.composer input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 10px 16px; font-size: 15px; outline: 0; }
-.composer button { border: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; flex: none; }
+.rec button { border: 0; border-radius: 999px; background: var(--brand-soft); color: var(--brand); font-size: 13px; padding: 6px 0; font-weight: 600; }
+.rec button.done { background: var(--oil); color: #fff; }
+.sugg { display: flex; gap: 6px; overflow-x: auto; padding: 0 16px 10px; scrollbar-width: none; }
+.sugg button { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 13px; white-space: nowrap; }
+.sugg button:hover { border-color: var(--brand); color: var(--brand); }
+.composer { display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--surface); }
+.composer input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--bg); border-radius: 999px; padding: 11px 16px; font-size: 16px; outline: 0; }
+.composer input:focus { border-color: var(--brand); }
+.composer button { border: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; flex: none; }
 .composer button svg { width: 18px; height: 18px; transform: scaleX(-1); }
 
+/* ---------- toast ---------- */
 .toast {
-  position: fixed; z-index: 70; top: calc(64px + env(safe-area-inset-top, 0px)); left: 50%; transform: translate(-50%, -20px);
-  background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 14px; opacity: 0;
-  transition: opacity .2s, transform .2s; pointer-events: none;
+  position: fixed; z-index: 80; top: calc(68px + env(safe-area-inset-top, 0px)); left: 50%; transform: translate(-50%, -16px);
+  background: var(--fg); color: var(--bg); padding: 8px 8px 8px 18px; border-radius: 999px; font-size: 14px; opacity: 0;
+  transition: opacity .2s, transform .2s; pointer-events: none; display: flex; align-items: center; gap: 12px; white-space: nowrap; max-width: calc(100vw - 32px);
 }
-.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.toast button { border: 0; background: var(--oil); color: #fff; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; }
+.toast:not(:has(button)) { padding-inline: 18px; }
+
+/* ---------- phone: bottom tab bar ---------- */
+.tabbar { display: none; }
+@media (max-width: 720px) {
+  :root { --tabbar: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .nav-links, .nav-actions .desk { display: none; }
+  .nav .wrap > .brand { margin-inline-end: auto; }
+  .fab { display: none; }
+  .tabbar {
+    display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; z-index: 50; inset-inline: 0; bottom: 0;
+    height: var(--tabbar); padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 1px solid var(--line);
+  }
+  .tabbar button { border: 0; background: transparent; display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 11px; color: var(--muted); position: relative; }
+  .tabbar button svg { width: 23px; height: 23px; }
+  .tabbar button.on, .tabbar button:active { color: var(--brand); }
+  .tabbar .ai { color: var(--brand); }
+  .tabbar .ai span.orb { width: 42px; height: 42px; margin-top: -18px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; box-shadow: var(--shadow); border: 3px solid var(--bg); }
+  .tabbar .ai span.orb svg { width: 21px; height: 21px; }
+  .tabbar .count { top: 4px; inset-inline-end: calc(50% - 22px); }
+  .chat { inset: 0; width: 100%; height: 100%; border-radius: 0; border: 0; padding-top: env(safe-area-inset-top, 0px); }
+  footer { padding-bottom: 28px; }
+  .toast { top: auto; bottom: calc(var(--tabbar) + 12px); }
+}
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
 
 </style>
 </head>
 <body>
-<div class="demo" id="demoNote">نسخة تجريبية: المنتجات والأسعار للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" style="fill:var(--brand)"/><path d="M20 8c4.6 5.2 7.2 9.3 7.2 13a7.2 7.2 0 0 1-14.4 0c0-3.7 2.6-7.8 7.2-13Z" style="fill:var(--oil)"/><path d="M20 30.5V20m0 4.5c-2.6-.3-4-1.8-4.4-4m4.4 1.5c2-.4 3.1-1.6 3.4-3.4" style="stroke:var(--brand-ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></g></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></g></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1Z"/></g></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></g></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 7.5 12 4l8 3.5v9L12 20l-8-3.5Z"/><path d="M4 7.5 12 11l8-3.5M12 11v9"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5c.5 4.6 2.4 7 7 8-4.6 1-6.5 3.4-7 8-.5-4.6-2.4-7-7-8 4.6-1 6.5-3.4 7-8Zm6.5 12c.2 2 1 3 3 3.5-2 .4-2.8 1.4-3 3.5-.3-2.1-1-3.1-3-3.5 2-.5 2.7-1.5 3-3.5Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19 13 11"/></g></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></g></symbol>
+    <symbol id="c-hairfall" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 13c0-5 2.7-8 6-8s6 3 6 8"/><path d="M9 7c-.5 4 0 9 1 13M12 6v14M15 7c.5 4 0 9-1 13"/></g></symbol>
+    <symbol id="c-acne" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="14.5" cy="9" r=".8" fill="currentColor"/><circle cx="13" cy="14.5" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="c-dry" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4c3.4 3.8 5.3 6.8 5.3 9.5a5.3 5.3 0 0 1-10.6 0C6.7 10.8 8.6 7.8 12 4Z"/><path d="M9.8 14.5c.3 1 1 1.6 2 1.8"/></g></symbol>
+    <symbol id="c-brows" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 13c3-3.5 6-5 9-5s6 1.5 9 5"/><path d="M5 16c2 1.7 4.3 2.5 7 2.5s5-.8 7-2.5M8 15.5l-1 2.5M12 16.5V19M16 15.5l1 2.5"/></g></symbol>
+    <symbol id="c-split" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v11m0 0-4 7m4-7 4 7m-4-7v7"/></g></symbol>
+    <symbol id="c-cold" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h11v4a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5Z"/><path d="M16 11h1.5a2 2 0 0 1 0 4H16M9 4c-.6 1 .6 2 0 3M12 4c-.6 1 .6 2 0 3"/></g></symbol>
+    <symbol id="c-sleep" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
 
-<nav class="nav">
+<div class="demo">نسخة تجريبية: الأسعار والمنتجات للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+
+<nav class="nav" aria-label="القائمة الرئيسية">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="معصرة الرافدين">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/><path d="M9.5 14.5c.4 1.4 1.4 2.3 2.8 2.5"/></svg>
-      الرافدين
+    <a class="brand" href="#top" aria-label="معصرة الرافدين، الرئيسية">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>الرافدين</b><small>معصرة ومعشب</small></span>
     </a>
     <div class="nav-links">
-      <a href="#shop">المتجر</a>
+      <a href="#concerns">حسب المشكلة</a>
       <a href="#sets">الباكجات</a>
-      <a href="#assistant">المساعد الذكي</a>
+      <a href="#shop">المتجر</a>
       <a href="#branches">فروعنا</a>
     </div>
-    <button class="icon-btn" id="openSearch" aria-label="بحث">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-    </button>
-    <button class="icon-btn" id="openCart" aria-label="السلة">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-      <span class="count num" id="cartCount" hidden>0</span>
-    </button>
+    <div class="nav-actions">
+      <button class="icon-btn" id="openSearch" aria-label="بحث"><svg><use href="#i-search"/></svg></button>
+      <button class="icon-btn desk" data-orders aria-label="طلباتي"><svg><use href="#i-box"/></svg></button>
+      <button class="icon-btn desk" data-cart aria-label="السلة"><svg><use href="#i-bag"/></svg><span class="count num" hidden>0</span></button>
+    </div>
   </div>
 </nav>
 
 <main id="top">
   <header class="hero wrap">
-    <div class="eyebrow">معصرة ومعشب الرافدين · بغداد</div>
-    <h1>الطبيعة، معصورة بعناية.</h1>
-    <p>زيوت وأعشاب وخلطات للشعر والبشرة، من المعصرة لباب بيتك بكل العراق.</p>
-    <div class="ctas">
-      <a class="btn" href="#shop">تسوّق الآن</a>
-      <button class="btn ghost" data-open-chat>اسأل المساعد شنو يناسبك</button>
+    <div>
+      <div class="eyebrow">نُعيد صياغة سحر الطبيعة</div>
+      <h1>زيوت وأعشاب، <em>معصورة بعناية.</em></h1>
+      <p>خلطات طبيعية للشعر والبشرة والجسم من معصرة الرافدين، لباب بيتك بكل العراق.</p>
+      <div class="ctas">
+        <a class="btn" href="#concerns">لگيلي الأنسب إلي</a>
+        <button class="btn ghost" data-open-chat>اسأل المساعد الذكي</button>
+      </div>
+      <div class="trust">
+        <span><svg><use href="#i-leaf"/></svg>١٠٠٪ طبيعي</span>
+        <span><svg><use href="#i-cash"/></svg>الدفع عند الاستلام</span>
+        <span><svg><use href="#i-truck"/></svg>توصيل لـ ١٩ محافظة</span>
+      </div>
     </div>
     <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
   </header>
 
+  <section id="concerns" class="wrap">
+    <div class="sec-head"><div><h2>شنو تحتاج؟</h2><p>اختار مشكلتك ونطلعلك المنتجات المناسبة إلها.</p></div></div>
+    <div class="concerns" id="concernList"></div>
+  </section>
+
   <section id="sets" class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>الباكجات.</h2>
-        <p>روتين كامل بسعر أقل. ابدأ من هنا إذا ما تعرف منين تبدي.</p>
-      </div>
-    </div>
+    <div class="sec-head"><div><h2>الباكجات.</h2><p>روتين كامل بسعر أقل. إذا ما تعرف منين تبدي، ابدأ من هنا.</p></div></div>
     <div class="grid" id="setsGrid"></div>
   </section>
 
   <section id="shop" class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>المتجر.</h2>
-        <p>كل منتجات المعصرة بمكان واحد.</p>
-      </div>
-      <label class="search" for="q">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off">
-      </label>
+    <div class="sec-head"><div><h2>المتجر.</h2><p>كل منتجات المعصرة بمكان واحد.</p></div></div>
+    <div class="toolbar">
+      <label class="search" for="q"><svg><use href="#i-search"/></svg><span class="sr">بحث</span>
+        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off"></label>
+      <label class="sr" for="sort">ترتيب</label>
+      <select id="sort" class="sort">
+        <option value="">الأكثر طلباً</option>
+        <option value="asc">السعر: الأقل أولاً</option>
+        <option value="desc">السعر: الأعلى أولاً</option>
+      </select>
     </div>
     <div class="chips" id="chips" role="toolbar" aria-label="الأقسام"></div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <section class="wrap">
-    <div class="why">
-      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
-      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
-      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
-      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
-    </div>
+    <div class="filter-note" id="filterNote" hidden></div>
+    <div class="grid" id="grid" aria-live="polite"></div>
   </section>
 
   <section id="assistant" class="wrap">
@@ -369,7 +524,7 @@ footer .links { display: flex; gap: 18px; }
       <div>
         <div class="eyebrow">مساعد الرافدين الذكي</div>
         <h2>احجيله مشكلتك، يختارلك الروتين.</h2>
-        <p>تساقط؟ حبوب؟ بشرة جافة؟ المساعد يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك.</p>
+        <p>يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك. بأي وقت، وبلهجتك.</p>
         <button class="btn" data-open-chat>ابدأ المحادثة</button>
       </div>
       <div class="bubbles" aria-hidden="true">
@@ -378,6 +533,15 @@ footer .links { display: flex; gap: 18px; }
         <span class="u">بعد الصبغ</span>
         <span class="a">أنصحك بمجموعة الإنبات: الزيت ٣ مرات بالأسبوع ويه الشامبو. أضيفها للسلة؟</span>
       </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="why">
+      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
+      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
+      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
+      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
     </div>
   </section>
 
@@ -398,29 +562,35 @@ footer .links { display: flex; gap: 18px; }
   </div>
 </footer>
 
-<button class="fab" data-open-chat aria-label="افتح المساعد الذكي">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/><circle cx="12" cy="12" r="3"/></svg>
-  اسأل الرافدين
-</button>
+<button class="fab" data-open-chat aria-label="افتح المساعد الذكي"><svg><use href="#i-spark"/></svg>اسأل الرافدين</button>
+
+<nav class="tabbar" aria-label="تنقل">
+  <button data-go="top" class="on"><svg><use href="#i-home"/></svg>الرئيسية</button>
+  <button data-go="shop"><svg><use href="#i-grid"/></svg>المتجر</button>
+  <button class="ai" data-open-chat><span class="orb"><svg><use href="#i-spark"/></svg></span>المساعد</button>
+  <button data-cart><svg><use href="#i-bag"/></svg>السلة<span class="count num" hidden>0</span></button>
+  <button data-orders><svg><use href="#i-box"/></svg>طلباتي</button>
+</nav>
 
 <div class="chat" id="chat" role="dialog" aria-label="مساعد الرافدين">
   <header>
-    <div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/></svg></div>
-    <div><b>مساعد الرافدين</b><small id="agentMode">يرد فوراً</small></div>
-    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="av"><svg><use href="#logo"/></svg></div>
+    <div><b>مساعد الرافدين</b><small id="agentMode">متصل الآن</small></div>
+    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg><use href="#i-close"/></svg></button>
   </header>
   <div class="msgs" id="msgs" aria-live="polite"></div>
   <div class="sugg" id="sugg"></div>
   <form class="composer" id="composer">
-    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off">
-    <button type="submit" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <label class="sr" for="chatInput">رسالتك</label>
+    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off" enterkeyhint="send">
+    <button type="submit" aria-label="إرسال"><svg><use href="#i-send"/></svg></button>
   </form>
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden>
   <div class="grab"></div>
-  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg><use href="#i-close"/></svg></button>
   <div id="sheetBody"></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -443,6 +613,17 @@ footer .links { display: flex; gap: 18px; }
       delivery: { baghdad: 5000, provinces: 7000, freeOver: 75000 },
       governorates: ['بغداد', 'البصرة', 'نينوى', 'أربيل', 'النجف', 'كربلاء', 'بابل', 'الأنبار', 'ديالى', 'صلاح الدين', 'كركوك', 'واسط', 'ذي قار', 'ميسان', 'المثنى', 'القادسية', 'دهوك', 'السليمانية', 'حلبجة']
     },
+
+    // "تسوّق حسب المشكلة": مدخل سريع للزبون اللي يعرف مشكلته بس ما يعرف المنتج
+    concerns: [
+      { id: 'hairfall', name: 'تساقط وفراغات', ids: ['growth-set', 'growth-oil', 'anti-fall-oil', 'growth-shampoo', 'sheikh-blend'] },
+      { id: 'acne', name: 'حبوب ودهون', ids: ['skin-routine', 'charcoal-soap', 'clay-mask'] },
+      { id: 'dry', name: 'جفاف ونضارة', ids: ['face-cream', 'rose-oil', 'almond-oil', 'shea-butter'] },
+      { id: 'brows', name: 'رموش ولحية', ids: ['castor-oil', 'growth-oil'] },
+      { id: 'split', name: 'تقصف وهيشان', ids: ['hair-serum', 'henna-mask', 'coconut-oil'] },
+      { id: 'cold', name: 'برد وكحة', ids: ['zahourat', 'mountain-honey', 'sidr-honey'] },
+      { id: 'sleep', name: 'نوم وهدوء', ids: ['chamomile'] }
+    ],
 
     categories: [
       { id: 'all', name: 'الكل' },
@@ -639,10 +820,14 @@ footer .links { display: flex; gap: 18px; }
 <script>
 (function () {
   const C = window.CATALOG;
+  const S = C.store;
   const byId = Object.fromEntries(C.products.map(p => [p.id, p]));
   const $ = s => document.querySelector(s);
-  const fmt = n => n.toLocaleString('ar-IQ') + ' د.ع';
+  const $$ = s => document.querySelectorAll(s);
+  const ar = n => n.toLocaleString('ar-IQ');
+  const fmt = n => ar(n) + ' د.ع';
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const icon = id => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } }
@@ -665,243 +850,338 @@ footer .links { display: flex; gap: 18px; }
     };
     return shapes[p.shape] || shapes.bottle;
   }
-  const tileBg = p => `background: color-mix(in srgb, ${p.tint} 14%, var(--surface-2))`;
+  const tileBg = p => `background: color-mix(in srgb, ${p.tint} 15%, var(--surface-2))`;
 
-  /* ---------- catalog rendering ---------- */
-  let activeCat = 'all', query = '';
-  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
+  /* ---------- catalog ---------- */
+  let activeCat = 'all', activeConcern = null, query = '', sort = '';
+  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/گ/g, 'ك').toLowerCase();
+  const concernOf = id => C.concerns.find(c => c.ids.includes(id));
 
   function card(p) {
-    return `<article class="card" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}">
+    return `<article class="card" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}، ${fmt(p.price)}">
       <div class="art" style="${tileBg(p)}">${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}${art(p)}</div>
       <div class="info"><h3>${esc(p.name)}</h3><div class="short">${esc(p.short)}</div>
-        <div class="row"><span class="price num">${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="أضف ${esc(p.name)} للسلة">+</button></div>
+        <div class="row"><span class="price num">${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="أضف ${esc(p.name)} للسلة">${icon('i-plus')}</button></div>
       </div></article>`;
   }
   function renderGrid() {
     const q = norm(query.trim());
-    const list = C.products.filter(p =>
-      (activeCat === 'all' || p.cat === activeCat) &&
+    let list = activeConcern ? activeConcern.ids.map(id => byId[id]) : C.products;
+    list = list.filter(p => (activeCat === 'all' || p.cat === activeCat) &&
       (!q || norm([p.name, p.short, p.desc, ...p.tags].join(' ')).includes(q)));
-    $('#grid').innerHTML = list.map(card).join('') || `<div class="empty">ما لقينا شي بهالاسم. جرّب تسأل المساعد الذكي.</div>`;
+    if (sort) list = [...list].sort((a, b) => sort === 'asc' ? a.price - b.price : b.price - a.price);
+    $('#grid').innerHTML = list.map(card).join('') ||
+      `<div class="empty"><div>ما لقينا شي يطابق «${esc(query || 'هذا الاختيار')}».</div><button class="btn soft" data-open-chat>اسأل المساعد الذكي</button></div>`;
+    const note = $('#filterNote');
+    note.hidden = !activeConcern;
+    if (activeConcern) note.innerHTML = `<span>منتجات تناسب <b>${esc(activeConcern.name)}</b> · ${ar(list.length)} منتج</span><button data-clear>عرض الكل</button>`;
   }
   $('#chips').innerHTML = C.categories.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${c.id === 'all'}">${esc(c.name)}</button>`).join('');
   $('#chips').addEventListener('click', e => {
     const b = e.target.closest('[data-cat]'); if (!b) return;
-    activeCat = b.dataset.cat;
-    document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+    activeCat = b.dataset.cat; activeConcern = null;
+    $$('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
     renderGrid();
   });
   $('#q').addEventListener('input', e => { query = e.target.value; renderGrid(); });
-  $('#openSearch').addEventListener('click', () => { $('#shop').scrollIntoView(); setTimeout(() => $('#q').focus(), 300); });
+  $('#sort').addEventListener('change', e => { sort = e.target.value; renderGrid(); });
+  $('#filterNote').addEventListener('click', e => { if (e.target.closest('[data-clear]')) { activeConcern = null; renderGrid(); } });
+  $('#openSearch').addEventListener('click', () => { $('#shop').scrollIntoView(); setTimeout(() => $('#q').focus({ preventScroll: true }), 350); });
+
+  $('#concernList').innerHTML = C.concerns.map(c => `<button class="concern" data-concern="${c.id}">
+      <span class="ic">${icon('c-' + c.id)}</span><b>${esc(c.name)}</b><span>${ar(c.ids.length)} منتجات</span></button>`).join('');
+  $('#concernList').addEventListener('click', e => {
+    const b = e.target.closest('[data-concern]'); if (!b) return;
+    activeConcern = C.concerns.find(c => c.id === b.dataset.concern); activeCat = 'all'; query = ''; $('#q').value = '';
+    $$('.chip').forEach(x => x.setAttribute('aria-pressed', x.dataset.cat === 'all'));
+    renderGrid(); $('#shop').scrollIntoView();
+  });
 
   $('#setsGrid').innerHTML = C.products.filter(p => p.cat === 'sets').map(card).join('');
-  $('#heroStage').innerHTML = ['growth-oil', 'growth-set', 'face-cream'].map(id => art(byId[id])).join('');
-  $('#branchList').innerHTML = C.store.branches.map(b => `<div class="branch"><h3>${esc(b.name)}</h3><div>${esc(b.area)}</div><div class="meta">${esc(b.address)}</div><div class="meta">${esc(b.hours)}</div></div>`).join('');
+  $('#heroStage').innerHTML = `<span class="tag">الأكثر طلباً: <b>مجموعة الإنبات</b></span>` + ['growth-oil', 'growth-set', 'face-cream'].map(id => art(byId[id])).join('');
+  $('#branchList').innerHTML = S.branches.map(b => `<div class="branch"><h3>${esc(b.name)}</h3><div>${esc(b.area)}</div><div class="meta">${esc(b.address)}</div><div class="meta">${esc(b.hours)}</div>
+    <a href="https://www.google.com/maps/search/${encodeURIComponent('معصرة الرافدين ' + b.area)}" target="_blank" rel="noopener">افتح بالخريطة ‹</a></div>`).join('');
   renderGrid();
 
+  /* ---------- global clicks ---------- */
   document.addEventListener('click', e => {
-    const add = e.target.closest('[data-add]');
-    if (add) { e.stopPropagation(); addToCart(add.dataset.add, 1); return; }
-    const c = e.target.closest('.card');
-    if (c) openProduct(c.dataset.id);
+    const t = e.target;
+    const add = t.closest('[data-add]');
+    if (add) { e.stopPropagation(); addToCart(add.dataset.add, 1); flash(add); return; }
+    if (t.closest('[data-open-chat]')) { toggleChat(true); return; }
+    if (t.closest('[data-cart]')) { openCart(); return; }
+    if (t.closest('[data-orders]')) { openOrders(); return; }
+    const go = t.closest('[data-go]');
+    if (go) { document.getElementById(go.dataset.go).scrollIntoView(); return; }
+    const c = t.closest('.card, [data-open]');
+    if (c) openProduct(c.dataset.id || c.dataset.open);
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.classList?.contains('card')) openProduct(e.target.dataset.id);
     if (e.key === 'Escape') { closeSheet(); toggleChat(false); }
   });
+  function flash(btn) {
+    btn.classList.add('done'); const was = btn.innerHTML;
+    if (btn.classList.contains('add')) btn.innerHTML = icon('i-check'); else btn.textContent = 'انضاف ✓';
+    setTimeout(() => { btn.classList.remove('done'); btn.innerHTML = was; }, 1200);
+  }
+
+  // tab bar highlights the section in view
+  const tabs = $$('.tabbar [data-go]');
+  const io = 'IntersectionObserver' in window && new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) tabs.forEach(b => b.classList.toggle('on', b.dataset.go === (en.target.id === 'shop' ? 'shop' : 'top')));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  if (io) ['top', 'shop', 'assistant'].forEach(id => io.observe(document.getElementById(id)));
 
   /* ---------- sheet ---------- */
+  let lastFocus;
   function openSheet(html) {
+    lastFocus = document.activeElement;
+    $('#toast').classList.remove('on');
     $('#sheetBody').innerHTML = html;
     $('#sheet').hidden = false; $('#scrim').hidden = false;
-    requestAnimationFrame(() => { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); });
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#closeSheet').focus({ preventScroll: true }); });
     $('#sheet').scrollTop = 0;
   }
   function closeSheet() {
+    if ($('#sheet').hidden) return;
     $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on');
-    setTimeout(() => { if (!$('#sheet').classList.contains('on')) { $('#sheet').hidden = true; $('#scrim').hidden = true; } }, 320);
+    document.body.style.overflow = '';
+    setTimeout(() => { if (!$('#sheet').classList.contains('on')) { $('#sheet').hidden = true; $('#scrim').hidden = true; } }, 340);
+    lastFocus?.focus?.({ preventScroll: true });
   }
   $('#closeSheet').addEventListener('click', closeSheet);
   $('#scrim').addEventListener('click', closeSheet);
 
+  function miniCard(p) {
+    return `<div class="rec"><div class="mini" data-open="${p.id}" style="${tileBg(p)}">${art(p)}</div><b>${esc(p.name)}</b><span class="price num">${fmt(p.price)}</span><button data-add="${p.id}">أضف للسلة</button></div>`;
+  }
+
   function openProduct(id) {
     const p = byId[id]; if (!p) return;
+    toggleChat(false);
     let qty = 1;
+    const cn = concernOf(id);
+    const related = (cn ? cn.ids : C.products.filter(x => x.cat === p.cat).map(x => x.id)).filter(x => x !== id).slice(0, 4).map(x => byId[x]);
     openSheet(`<div class="pd">
-      <div class="pd-art" style="${tileBg(p)}">${art(p)}</div>
-      ${p.badge ? `<div class="eyebrow">${esc(p.badge)}</div>` : ''}
+      <div class="pd-art" style="${tileBg(p)}">${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}${art(p)}</div>
+      ${cn ? `<div class="eyebrow">يناسب: ${esc(cn.name)}</div>` : ''}
       <h2>${esc(p.name)}</h2>
-      <div class="price num" style="font-size:20px;margin-top:4px">${fmt(p.price)}</div>
+      <div class="price num" style="font-size:21px;margin-top:2px">${fmt(p.price)}</div>
       <p>${esc(p.desc)}</p>
-      <h4>المكونات</h4><ul>${p.ingredients.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
-      <h4>طريقة الاستخدام</h4><p>${esc(p.usage)}</p>
+      <h4>المكونات</h4><div class="ings">${p.ingredients.map(i => `<span>${esc(i)}</span>`).join('')}</div>
+      <h4>طريقة الاستخدام</h4><div class="use">${esc(p.usage)}</div>
+      <div class="perks"><div><b>طبيعي</b>بدون حافظات</div><div><b>الدفع</b>عند الاستلام</div><div><b>التوصيل</b>٢٤–٤٨ ساعة</div></div>
+      ${related.length ? `<h4>يكمّل روتينك</h4><div class="related">${related.map(miniCard).join('')}</div>` : ''}
       <div class="pd-buy">
         <div class="qty"><button data-q="1" aria-label="زيادة">+</button><span class="num" id="pq">١</span><button data-q="-1" aria-label="نقصان">−</button></div>
-        <button class="btn block" id="pdAdd">أضف للسلة</button>
+        <button class="btn block" id="pdAdd">أضف للسلة · <span class="num" id="pdTotal">${fmt(p.price)}</span></button>
       </div></div>`);
     $('#sheetBody').querySelectorAll('[data-q]').forEach(b => b.onclick = () => {
-      qty = Math.max(1, qty + Number(b.dataset.q)); $('#pq').textContent = qty.toLocaleString('ar-IQ');
+      qty = Math.min(20, Math.max(1, qty + Number(b.dataset.q)));
+      $('#pq').textContent = ar(qty); $('#pdTotal').textContent = fmt(p.price * qty);
     });
     $('#pdAdd').onclick = () => { addToCart(id, qty); closeSheet(); };
   }
 
   /* ---------- cart ---------- */
-  let cart = store.get('rafidain.cart', []);
+  let cart = store.get('rafidain.cart', []).filter(l => byId[l.id]);
   const saveCart = () => { store.set('rafidain.cart', cart); renderCount(); };
-  function renderCount() {
+  function renderCount(bump) {
     const n = cart.reduce((a, l) => a + l.qty, 0);
-    $('#cartCount').hidden = n === 0; $('#cartCount').textContent = n.toLocaleString('ar-IQ');
+    $$('.count').forEach(c => { c.hidden = n === 0; c.textContent = ar(n); if (bump) { c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump'); } });
   }
-  function addToCart(id, qty = 1, silent) {
+  function addToCart(id, qty = 1) {
     if (!byId[id]) return;
     const l = cart.find(x => x.id === id);
-    if (l) l.qty += qty; else cart.push({ id, qty });
-    saveCart();
-    if (!silent) toast(`انضاف ${byId[id].name} للسلة`);
+    if (l) l.qty = Math.min(20, l.qty + qty); else cart.push({ id, qty });
+    saveCart(); renderCount(true);
+    toast(`انضاف ${byId[id].name}`, 'عرض السلة', openCart);
   }
   function totals(gov) {
     const sub = cart.reduce((a, l) => a + byId[l.id].price * l.qty, 0);
-    const d = C.store.delivery;
+    const d = S.delivery;
     const fee = sub === 0 || sub >= d.freeOver ? 0 : (gov && gov !== 'بغداد' ? d.provinces : d.baghdad);
     return { sub, fee, total: sub + fee };
   }
+  function shipBar(sub) {
+    const left = S.delivery.freeOver - sub;
+    if (left <= 0) return `<div class="ship free">${icon('i-check').replace('<svg', '<svg style="width:16px;height:16px;vertical-align:-3px"')} صار توصيلك مجاني</div>`;
+    return `<div class="ship">باقي <b class="num">${fmt(left)}</b> وتحصل توصيل مجاني<div class="bar"><i style="width:${Math.round(sub / S.delivery.freeOver * 100)}%"></i></div></div>`;
+  }
+  const steps = n => `<div class="steps">${['السلة', 'التوصيل', 'تم'].map((s, i) => `<span class="${i <= n ? 'on' : ''}">${s}</span>`).join('<i></i>')}</div>`;
+
   function openCart() {
+    toggleChat(false);
     if (!cart.length) {
-      openSheet(`<div class="done"><h2>السلة فارغة</h2><p class="hint">تصفح المتجر، أو خلّي المساعد يختارلك.</p><button class="btn" id="goShop">تسوّق الآن</button></div>`);
+      openSheet(`<div class="done"><h2>السلة فارغة</h2><p class="hint">تصفح المتجر، أو خلّي المساعد يختارلك.</p>
+        <div class="ctas"><button class="btn" id="goShop">تسوّق الآن</button><button class="btn soft" data-open-chat>اسأل المساعد</button></div></div>`);
       $('#goShop').onclick = () => { closeSheet(); $('#shop').scrollIntoView(); };
       return;
     }
     const t = totals('بغداد');
-    openSheet(`<h2>سلتك</h2>
+    const ids = cart.map(l => l.id);
+    const upsell = C.products.filter(p => !ids.includes(p.id) && ids.some(i => concernOf(i)?.ids.includes(p.id))).slice(0, 4);
+    openSheet(`<h2>سلتك</h2>${steps(0)}
       <div>${cart.map(l => { const p = byId[l.id]; return `<div class="line">
-        <div class="thumb" style="${tileBg(p)}">${art(p)}</div>
-        <div style="min-width:0"><div class="nm">${esc(p.name)}</div><div class="sub num">${fmt(p.price)}</div></div>
-        <div class="qty"><button data-inc="${p.id}" aria-label="زيادة">+</button><span class="num">${l.qty.toLocaleString('ar-IQ')}</span><button data-dec="${p.id}" aria-label="نقصان">−</button></div>
+        <div class="thumb" data-open="${p.id}" style="${tileBg(p)}">${art(p)}</div>
+        <div style="min-width:0"><div class="nm">${esc(p.name)}</div><div class="sub num">${fmt(p.price * l.qty)}</div></div>
+        <div class="qty"><button data-inc="${p.id}" aria-label="زيادة">+</button><span class="num">${ar(l.qty)}</span><button data-dec="${p.id}" aria-label="${l.qty === 1 ? 'حذف' : 'نقصان'}">${l.qty === 1 ? '×' : '−'}</button></div>
       </div>`; }).join('')}</div>
+      ${shipBar(t.sub)}
       <div class="totals num">
         <div><span>المجموع</span><span>${fmt(t.sub)}</span></div>
-        <div><span>التوصيل (بغداد)</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div>
-        <div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>
+        <div><span>التوصيل</span><span>${t.fee ? 'من ' + fmt(t.fee) : 'مجاني'}</span></div>
+        <div class="grand"><span>الكلي التقريبي</span><span>${fmt(t.total)}</span></div>
       </div>
-      <p class="hint">التوصيل مجاني للطلبات فوق ${fmt(C.store.delivery.freeOver)}. المحافظات ${fmt(C.store.delivery.provinces)}.</p>
-      <button class="btn block" id="toCheckout">أكمل الطلب</button>`);
+      <button class="btn block" id="toCheckout">أكمل الطلب</button>
+      ${upsell.length ? `<h4 style="margin:22px 0 8px">ناس طلبوا ويّاها هم</h4><div class="related">${upsell.map(miniCard).join('')}</div>` : ''}`);
     $('#sheetBody').querySelectorAll('[data-inc],[data-dec]').forEach(b => b.onclick = () => {
       const id = b.dataset.inc || b.dataset.dec, l = cart.find(x => x.id === id);
-      l.qty += b.dataset.inc ? 1 : -1;
+      l.qty = Math.min(20, l.qty + (b.dataset.inc ? 1 : -1));
       if (l.qty <= 0) cart = cart.filter(x => x !== l);
-      saveCart(); openCart();
+      saveCart(); const y = $('#sheet').scrollTop; openCart(); $('#sheet').scrollTop = y;
     });
     $('#toCheckout').onclick = openCheckout;
   }
-  $('#openCart').addEventListener('click', openCart);
 
   function openCheckout() {
+    toggleChat(false);
     const prev = store.get('rafidain.customer', {});
-    openSheet(`<h2>معلومات التوصيل</h2>
-      <form class="form" id="checkout" novalidate style="margin-top:14px">
+    openSheet(`<h2>معلومات التوصيل</h2>${steps(1)}
+      <form class="form" id="checkout" novalidate>
         <div class="two">
           <label for="cName">الاسم<input id="cName" required value="${esc(prev.name || '')}" autocomplete="name"></label>
-          <label for="cPhone">رقم الهاتف<input id="cPhone" required inputmode="tel" dir="ltr" placeholder="07XX XXX XXXX" value="${esc(prev.phone || '')}" autocomplete="tel"></label>
+          <label for="cPhone">رقم الهاتف<input id="cPhone" required type="tel" inputmode="tel" dir="ltr" placeholder="07XX XXX XXXX" value="${esc(prev.phone || '')}" autocomplete="tel"></label>
         </div>
         <div class="two">
-          <label for="cGov">المحافظة<select id="cGov">${C.store.governorates.map(g => `<option ${g === (prev.gov || 'بغداد') ? 'selected' : ''}>${g}</option>`).join('')}</select></label>
-          <label for="cArea">المنطقة<input id="cArea" required placeholder="مثال: المنصور" value="${esc(prev.area || '')}"></label>
+          <label for="cGov">المحافظة<select id="cGov">${S.governorates.map(g => `<option ${g === (prev.gov || 'بغداد') ? 'selected' : ''}>${g}</option>`).join('')}</select></label>
+          <label for="cArea">المنطقة<input id="cArea" required placeholder="مثال: المنصور" value="${esc(prev.area || '')}" autocomplete="address-level3"></label>
         </div>
         <label for="cAddr">أقرب نقطة دالة<input id="cAddr" placeholder="مثال: قرب جامع…" value="${esc(prev.addr || '')}"></label>
         <label for="cNote">ملاحظات<textarea id="cNote" rows="2" placeholder="اختياري"></textarea></label>
-        <div class="pay">الدفع نقداً عند الاستلام</div>
+        <div class="pay">${icon('i-cash')}الدفع نقداً عند الاستلام</div>
         <div class="totals num" id="coTotals"></div>
-        <div class="err" id="coErr" hidden></div>
+        <div class="err" id="coErr" role="alert" hidden></div>
         <button class="btn block" id="placeOrder" type="submit">تأكيد الطلب</button>
+        <button class="btn ghost" type="button" id="backCart" style="justify-self:center">رجوع للسلة</button>
       </form>`);
     const upd = () => {
       const t = totals($('#cGov').value);
-      $('#coTotals').innerHTML = `<div><span>المنتجات</span><span>${fmt(t.sub)}</span></div><div><span>التوصيل</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div><div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>`;
+      $('#coTotals').innerHTML = `<div><span>المنتجات (${ar(cart.reduce((a, l) => a + l.qty, 0))})</span><span>${fmt(t.sub)}</span></div><div><span>التوصيل لـ${esc($('#cGov').value)}</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div><div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>`;
+      $('#placeOrder').textContent = `تأكيد الطلب · ${fmt(t.total)}`;
     };
     $('#cGov').onchange = upd; upd();
+    $('#backCart').onclick = openCart;
     $('#checkout').onsubmit = async e => {
       e.preventDefault();
-      const c = { name: $('#cName').value.trim(), phone: $('#cPhone').value.replace(/\s/g, ''), gov: $('#cGov').value, area: $('#cArea').value.trim(), addr: $('#cAddr').value.trim(), note: $('#cNote').value.trim() };
-      const err = !c.name ? 'اكتب الاسم.' : !/^(\+?964|0)7\d{9}$/.test(c.phone) ? 'رقم الهاتف لازم يبدي بـ 07 ويكون ١١ رقم.' : !c.area ? 'اكتب المنطقة.' : '';
-      if (err) { $('#coErr').textContent = err; $('#coErr').hidden = false; return; }
+      const c = { name: $('#cName').value.trim(), phone: $('#cPhone').value.replace(/[\s-]/g, '').replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)), gov: $('#cGov').value, area: $('#cArea').value.trim(), addr: $('#cAddr').value.trim(), note: $('#cNote').value.trim() };
+      const checks = [['cName', !c.name, 'اكتب الاسم.'], ['cPhone', !/^(\+?964|0)7\d{9}$/.test(c.phone), 'رقم الهاتف لازم يبدي بـ 07 ويكون ١١ رقم.'], ['cArea', !c.area, 'اكتب المنطقة.']];
+      checks.forEach(([id, bad]) => $('#' + id).setAttribute('aria-invalid', bad));
+      const bad = checks.find(x => x[1]);
+      if (bad) { $('#coErr').textContent = bad[2]; $('#coErr').hidden = false; $('#' + bad[0]).focus(); return; }
       store.set('rafidain.customer', c);
       $('#placeOrder').disabled = true; $('#placeOrder').textContent = 'جاري الإرسال…';
       const t = totals(c.gov);
-      const order = { customer: c, items: cart.map(l => ({ id: l.id, name: byId[l.id].name, qty: l.qty, price: byId[l.id].price })), ...t };
+      const order = { customer: c, items: cart.map(l => ({ id: l.id, qty: l.qty })) };
       let id;
       try {
         const r = await fetch('api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(order) });
         if (!r.ok) throw 0; id = (await r.json()).id;
-      } catch { id = 'RF-' + Date.now().toString().slice(-6); }  // preview mode: no server
-      const orders = store.get('rafidain.orders', []); orders.unshift({ id, at: Date.now(), total: t.total }); store.set('rafidain.orders', orders.slice(0, 20));
+      } catch { id = 'RF-' + String(Date.now()).slice(-6); }  // preview mode: no server
+      const orders = store.get('rafidain.orders', []);
+      orders.unshift({ id, at: Date.now(), total: t.total, phone: c.phone, items: cart.map(l => `${byId[l.id].name} × ${l.qty}`) });
+      store.set('rafidain.orders', orders.slice(0, 20));
       cart = []; saveCart();
-      openSheet(`<div class="done"><div class="tick">✓</div><h2>وصلنا طلبك</h2>
+      openSheet(`${steps(2)}<div class="done"><div class="tick">${icon('i-check')}</div><h2>وصلنا طلبك، شكراً إلك</h2>
         <p class="hint">رقم الطلب</p><code>${esc(id)}</code>
         <p class="hint" style="max-width:34ch">راح نتصل بيك على <span dir="ltr">${esc(c.phone)}</span> حتى نأكد الطلب. التوصيل خلال ٢٤–٤٨ ساعة.</p>
-        <button class="btn" id="doneBtn">تمام</button></div>`);
+        <div class="ctas"><button class="btn" id="doneBtn">تمام</button><button class="btn soft" data-orders>تابع طلبك</button></div></div>`);
       $('#doneBtn').onclick = closeSheet;
     };
   }
 
+  /* ---------- my orders ---------- */
+  const STAGES = ['new', 'confirmed', 'shipped', 'delivered'];
+  const STATUS = { new: 'استلمنا الطلب', confirmed: 'تم التأكيد', shipped: 'ويّه المندوب', delivered: 'تم التوصيل', cancelled: 'ملغي' };
+  async function openOrders() {
+    toggleChat(false);
+    const orders = store.get('rafidain.orders', []);
+    if (!orders.length) {
+      openSheet(`<div class="done"><h2>ما عندك طلبات بعد</h2><p class="hint">لما تطلب، تكدر تتابع طلبك من هنا.</p><button class="btn" id="goShop">تسوّق الآن</button></div>`);
+      $('#goShop').onclick = () => { closeSheet(); $('#shop').scrollIntoView(); };
+      return;
+    }
+    const row = (o, st) => `<div class="order"><div class="top"><b class="num" dir="ltr">${esc(o.id)}</b><span class="pill ${st}">${STATUS[st]}</span></div>
+      <div class="hint">${new Date(o.at).toLocaleDateString('ar-IQ', { day: 'numeric', month: 'long' })} · ${fmt(o.total)}</div>
+      ${o.items ? `<div class="hint">${o.items.map(esc).join('، ')}</div>` : ''}
+      ${st !== 'cancelled' ? `<div class="track">${STAGES.map((s, i) => `<i class="${i <= STAGES.indexOf(st) ? 'on' : ''}"></i>`).join('')}</div>` : ''}</div>`;
+    openSheet(`<h2>طلباتي</h2><p class="hint" style="margin:4px 0 14px">للاستفسار اتصل على <span dir="ltr" class="num">${esc(S.phone)}</span></p><div id="orderList">${orders.map(o => row(o, 'new')).join('')}</div>`);
+    const live = await Promise.all(orders.map(async o => {
+      try { const r = await fetch(`api/orders/${encodeURIComponent(o.id)}?phone=${encodeURIComponent(o.phone || '')}`); if (r.ok) return (await r.json()).status; } catch { /* preview mode */ }
+      return 'new';
+    }));
+    if ($('#orderList')) $('#orderList').innerHTML = orders.map((o, i) => row(o, STATUS[live[i]] ? live[i] : 'new')).join('');
+  }
+
   let toastT;
-  function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 1800); }
+  function toast(msg, action, fn) {
+    const t = $('#toast');
+    t.innerHTML = `<span>${esc(msg)}</span>${action ? `<button type="button">${esc(action)}</button>` : ''}`;
+    if (action) t.querySelector('button').onclick = () => { t.classList.remove('on'); fn(); };
+    t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600);
+  }
   renderCount();
 
   /* ---------- AI assistant ---------- */
   const history = [];
   const msgs = $('#msgs');
   function toggleChat(on) {
-    $('#chat').classList.toggle('on', on);
-    if (on) { if (!msgs.children.length) greet(); setTimeout(() => $('#chatInput').focus(), 200); }
+    const chat = $('#chat');
+    if (on === chat.classList.contains('on')) return;
+    chat.classList.toggle('on', on);
+    if (on) { closeSheet(); if (!msgs.children.length) greet(); if (matchMedia('(min-width: 721px)').matches) setTimeout(() => $('#chatInput').focus(), 200); }
   }
-  document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => toggleChat(true)));
   $('#closeChat').addEventListener('click', () => toggleChat(false));
 
-  function bubble(text, who) {
-    const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = text; msgs.appendChild(d);
+  function bubble(html, who) {
+    const d = document.createElement('div'); d.className = 'msg ' + who; d.innerHTML = html; msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight; return d;
   }
   function recs(ids) {
     const list = ids.map(id => byId[id]).filter(Boolean); if (!list.length) return;
-    const d = document.createElement('div'); d.className = 'recs';
-    d.innerHTML = list.map(p => `<div class="rec"><div class="mini" style="${tileBg(p)}">${art(p)}</div><b>${esc(p.name)}</b><span class="price num">${fmt(p.price)}</span><button data-add="${p.id}">أضف للسلة</button></div>`).join('');
+    const d = document.createElement('div'); d.className = 'recs'; d.innerHTML = list.map(miniCard).join('');
     msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   }
-  function suggestions(list) {
-    $('#sugg').innerHTML = list.map(s => `<button type="button">${esc(s)}</button>`).join('');
-  }
+  function suggestions(list) { $('#sugg').innerHTML = list.map(s => `<button type="button">${esc(s)}</button>`).join(''); }
   $('#sugg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) send(b.textContent); });
   function greet() {
-    bubble('هلا بيك بمعصرة الرافدين. آني مساعدك الذكي.\nاحجيلي شنو تحتاج: مشكلة بالشعر، البشرة، أعشاب، لو تريد تطلب مباشرة.', 'bot');
-    suggestions(['شعري يتساقط', 'عندي حبوب بالوجه', 'شنو أفضل باكج؟', 'وين فروعكم؟']);
+    bubble(esc('هلا بيك بمعصرة الرافدين 🌿\nآني مساعدك الذكي. احجيلي شنو تحتاج: مشكلة بالشعر أو البشرة، أعشاب، أو تريد تطلب مباشرة.'), 'bot');
+    suggestions(['شعري يتساقط', 'عندي حبوب بالوجه', 'بشرتي جافة', 'شنو أفضل باكج؟', 'وين فروعكم؟']);
   }
 
   let lastRecs = [];
   async function send(text) {
     text = text.trim(); if (!text) return;
-    bubble(text, 'user'); suggestions([]);
+    bubble(esc(text), 'user'); suggestions([]);
     history.push({ role: 'user', content: text });
-    const typing = bubble('يكتب…', 'bot typing');
+    const typing = bubble('<span class="dots" aria-label="يكتب"><i></i><i></i><i></i></span>', 'bot');
     let res;
     try {
-      const r = await fetch('api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history.slice(-16), cart }) });
+      const r = await fetch('api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history.slice(-16), cart }) });
       if (!r.ok) throw 0; res = await r.json();
-      $('#agentMode').textContent = 'مدعوم بالذكاء الاصطناعي';
     } catch {
-      await new Promise(r => setTimeout(r, 450));
+      await new Promise(r => setTimeout(r, 500));
       res = localAgent(text);  // preview mode: no server, use the built-in rules
-      $('#agentMode').textContent = 'وضع تجريبي';
     }
     typing.remove();
-    bubble(res.reply, 'bot');
+    bubble(esc(res.reply), 'bot');
     history.push({ role: 'assistant', content: res.reply });
     if (res.products?.length) { recs(res.products); lastRecs = res.products; }
     (res.actions || []).forEach(a => {
       if (a.type === 'add') addToCart(a.id, a.qty || 1);
-      if (a.type === 'open_cart') { toggleChat(false); openCart(); }
-      if (a.type === 'checkout') { toggleChat(false); cart.length ? openCheckout() : openCart(); }
+      if (a.type === 'checkout') cart.length ? openCheckout() : openCart();
     });
     if (res.suggestions?.length) suggestions(res.suggestions);
   }
@@ -910,8 +1190,7 @@ footer .links { display: flex; gap: 18px; }
   // Rule-based fallback so the assistant still works without the AI server (preview / offline).
   function localAgent(raw) {
     const t = norm(raw), has = (...w) => w.some(x => t.includes(norm(x)));
-    const S = C.store;
-    if (has('اي', 'نعم', 'ضيف', 'اضيف', 'أضف', 'زين', 'تمام', 'اوكي') && lastRecs.length && t.length < 20)
+    if (has('نعم', 'ضيف', 'اضيف', 'أضف', 'زين', 'تمام', 'اوكي', 'موافق') && lastRecs.length && t.length < 24)
       return { reply: `ضفت ${byId[lastRecs[0]].name} للسلة. تريد تكمل الطلب هسه؟`, actions: [{ type: 'add', id: lastRecs[0] }], suggestions: ['أكمل الطلب', 'أريد شي ثاني'] };
     if (has('اكمل', 'أكمل', 'اطلب', 'الطلب', 'السله', 'سلة'))
       return { reply: 'تمام، فتحتلك صفحة الطلب. الدفع عند الاستلام والتوصيل خلال ٢٤–٤٨ ساعة.', actions: [{ type: 'checkout' }] };
@@ -932,8 +1211,10 @@ footer .links { display: flex; gap: 18px; }
     if (has('نوم', 'ارق', 'توتر', 'هدوء'))
       return { reply: 'للنوم والهدوء: كوب بابونج قبل النوم بنص ساعة.', products: ['chamomile'] };
     if (has('عسل')) return { reply: 'عدنا عسل السدر وعسل جبلي من كردستان.', products: ['sidr-honey', 'mountain-honey'] };
-    if (has('باكج', 'مجموعه', 'افضل', 'أفضل', 'عرض'))
+    if (has('باكج', 'مجموعه', 'افضل', 'عرض'))
       return { reply: 'أكثر شي ينطلب عدنا مجموعة الإنبات للشعر. وإذا مهتم بالبشرة، روتين البشرة الطبيعي. وخلطة شيخ العطارين هي خلطتنا الأصلية.', products: ['growth-set', 'skin-routine', 'sheikh-blend'] };
+    if (has('طلبي', 'تتبع', 'وين وصل'))
+      return { reply: 'تكدر تتابع طلباتك من «طلباتي». وإذا تأخر الطلب، اتصل بينا على ' + S.phone + '.' };
     if (has('وين', 'فرع', 'عنوان', 'موقع', 'مكان'))
       return { reply: S.branches.map(b => `${b.name}: ${b.area}، ${b.address}`).join('\n') + `\nللتواصل: ${S.phone}`, suggestions: ['شكد التوصيل؟'] };
     if (has('توصيل', 'شكد', 'سعر', 'محافظ'))
@@ -942,7 +1223,7 @@ footer .links { display: flex; gap: 18px; }
       return { reply: 'هلا بيك وعليكم السلام. شلون أكدر أساعدك اليوم؟', suggestions: ['شعري يتساقط', 'عندي حبوب بالوجه', 'وين فروعكم؟'] };
     const hits = C.products.filter(p => norm([p.name, ...p.tags].join(' ')).split(/\s+/).some(w => w.length > 2 && t.includes(w))).slice(0, 3);
     if (hits.length) return { reply: 'هاي المنتجات اللي تناسب سؤالك:', products: hits.map(p => p.id) };
-    return { reply: `ما فهمت عليك زين. تكدر تحجيلي عن مشكلة بالشعر أو البشرة، أو تسأل عن منتج، أو تتصل بينا على ${S.phone}.`, suggestions: ['شعري يتساقط', 'بشرتي جافة', 'شنو أفضل باكج؟'] };
+    return { reply: `ما فهمت عليك زين. احجيلي عن مشكلة بالشعر أو البشرة، أو اسأل عن منتج، أو اتصل بينا على ${S.phone}.`, suggestions: ['شعري يتساقط', 'بشرتي جافة', 'شنو أفضل باكج؟'] };
   }
 })();
 

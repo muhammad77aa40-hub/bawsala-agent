@@ -49,6 +49,13 @@ app.post('/api/orders', async (req, res) => {
   res.json({ id: order.id, total: order.total });
 });
 
+// Order status for "طلباتي". The customer's phone number acts as the key, so order ids alone can't be enumerated.
+app.get('/api/orders/:id', (req, res) => {
+  const o = readOrders().find(x => x.id === req.params.id && x.customer.phone === String(req.query.phone || ''));
+  if (!o) return res.sendStatus(404);
+  res.json({ id: o.id, status: o.status, total: o.total, createdAt: o.createdAt });
+});
+
 // Tells the shop owner on WhatsApp about each new order (optional).
 async function notifyOwner(o) {
   const { WHATSAPP_TOKEN, PHONE_NUMBER_ID, OWNER_WHATSAPP } = process.env;

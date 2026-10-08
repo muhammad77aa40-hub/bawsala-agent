@@ -16,6 +16,17 @@
       governorates: ['بغداد', 'البصرة', 'نينوى', 'أربيل', 'النجف', 'كربلاء', 'بابل', 'الأنبار', 'ديالى', 'صلاح الدين', 'كركوك', 'واسط', 'ذي قار', 'ميسان', 'المثنى', 'القادسية', 'دهوك', 'السليمانية', 'حلبجة']
     },
 
+    // "تسوّق حسب المشكلة": مدخل سريع للزبون اللي يعرف مشكلته بس ما يعرف المنتج
+    concerns: [
+      { id: 'hairfall', name: 'تساقط وفراغات', ids: ['growth-set', 'growth-oil', 'anti-fall-oil', 'growth-shampoo', 'sheikh-blend'] },
+      { id: 'acne', name: 'حبوب ودهون', ids: ['skin-routine', 'charcoal-soap', 'clay-mask'] },
+      { id: 'dry', name: 'جفاف ونضارة', ids: ['face-cream', 'rose-oil', 'almond-oil', 'shea-butter'] },
+      { id: 'brows', name: 'رموش ولحية', ids: ['castor-oil', 'growth-oil'] },
+      { id: 'split', name: 'تقصف وهيشان', ids: ['hair-serum', 'henna-mask', 'coconut-oil'] },
+      { id: 'cold', name: 'برد وكحة', ids: ['zahourat', 'mountain-honey', 'sidr-honey'] },
+      { id: 'sleep', name: 'نوم وهدوء', ids: ['chamomile'] }
+    ],
+
     categories: [
       { id: 'all', name: 'الكل' },
       { id: 'sets', name: 'الباكجات' },

@@ -5,80 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>معصرة الرافدين</title>
 <meta name="description" content="زيوت طبيعية، أعشاب، وعناية بالشعر والبشرة من معصرة الرافدين في بغداد. اطلب أونلاين والتوصيل لكل العراق.">
+<meta name="theme-color" content="#1f5a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="demo" id="demoNote">نسخة تجريبية: المنتجات والأسعار للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" style="fill:var(--brand)"/><path d="M20 8c4.6 5.2 7.2 9.3 7.2 13a7.2 7.2 0 0 1-14.4 0c0-3.7 2.6-7.8 7.2-13Z" style="fill:var(--oil)"/><path d="M20 30.5V20m0 4.5c-2.6-.3-4-1.8-4.4-4m4.4 1.5c2-.4 3.1-1.6 3.4-3.4" style="stroke:var(--brand-ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></g></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></g></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1Z"/></g></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></g></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 7.5 12 4l8 3.5v9L12 20l-8-3.5Z"/><path d="M4 7.5 12 11l8-3.5M12 11v9"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5c.5 4.6 2.4 7 7 8-4.6 1-6.5 3.4-7 8-.5-4.6-2.4-7-7-8 4.6-1 6.5-3.4 7-8Zm6.5 12c.2 2 1 3 3 3.5-2 .4-2.8 1.4-3 3.5-.3-2.1-1-3.1-3-3.5 2-.5 2.7-1.5 3-3.5Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19 13 11"/></g></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></g></symbol>
+    <symbol id="c-hairfall" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 13c0-5 2.7-8 6-8s6 3 6 8"/><path d="M9 7c-.5 4 0 9 1 13M12 6v14M15 7c.5 4 0 9-1 13"/></g></symbol>
+    <symbol id="c-acne" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="14.5" cy="9" r=".8" fill="currentColor"/><circle cx="13" cy="14.5" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="c-dry" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4c3.4 3.8 5.3 6.8 5.3 9.5a5.3 5.3 0 0 1-10.6 0C6.7 10.8 8.6 7.8 12 4Z"/><path d="M9.8 14.5c.3 1 1 1.6 2 1.8"/></g></symbol>
+    <symbol id="c-brows" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 13c3-3.5 6-5 9-5s6 1.5 9 5"/><path d="M5 16c2 1.7 4.3 2.5 7 2.5s5-.8 7-2.5M8 15.5l-1 2.5M12 16.5V19M16 15.5l1 2.5"/></g></symbol>
+    <symbol id="c-split" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v11m0 0-4 7m4-7 4 7m-4-7v7"/></g></symbol>
+    <symbol id="c-cold" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h11v4a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5Z"/><path d="M16 11h1.5a2 2 0 0 1 0 4H16M9 4c-.6 1 .6 2 0 3M12 4c-.6 1 .6 2 0 3"/></g></symbol>
+    <symbol id="c-sleep" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
 
-<nav class="nav">
+<div class="demo">نسخة تجريبية: الأسعار والمنتجات للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+
+<nav class="nav" aria-label="القائمة الرئيسية">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="معصرة الرافدين">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/><path d="M9.5 14.5c.4 1.4 1.4 2.3 2.8 2.5"/></svg>
-      الرافدين
+    <a class="brand" href="#top" aria-label="معصرة الرافدين، الرئيسية">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>الرافدين</b><small>معصرة ومعشب</small></span>
     </a>
     <div class="nav-links">
-      <a href="#shop">المتجر</a>
+      <a href="#concerns">حسب المشكلة</a>
       <a href="#sets">الباكجات</a>
-      <a href="#assistant">المساعد الذكي</a>
+      <a href="#shop">المتجر</a>
       <a href="#branches">فروعنا</a>
     </div>
-    <button class="icon-btn" id="openSearch" aria-label="بحث">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-    </button>
-    <button class="icon-btn" id="openCart" aria-label="السلة">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-      <span class="count num" id="cartCount" hidden>0</span>
-    </button>
+    <div class="nav-actions">
+      <button class="icon-btn" id="openSearch" aria-label="بحث"><svg><use href="#i-search"/></svg></button>
+      <button class="icon-btn desk" data-orders aria-label="طلباتي"><svg><use href="#i-box"/></svg></button>
+      <button class="icon-btn desk" data-cart aria-label="السلة"><svg><use href="#i-bag"/></svg><span class="count num" hidden>0</span></button>
+    </div>
   </div>
 </nav>
 
 <main id="top">
   <header class="hero wrap">
-    <div class="eyebrow">معصرة ومعشب الرافدين · بغداد</div>
-    <h1>الطبيعة، معصورة بعناية.</h1>
-    <p>زيوت وأعشاب وخلطات للشعر والبشرة، من المعصرة لباب بيتك بكل العراق.</p>
-    <div class="ctas">
-      <a class="btn" href="#shop">تسوّق الآن</a>
-      <button class="btn ghost" data-open-chat>اسأل المساعد شنو يناسبك</button>
+    <div>
+      <div class="eyebrow">نُعيد صياغة سحر الطبيعة</div>
+      <h1>زيوت وأعشاب، <em>معصورة بعناية.</em></h1>
+      <p>خلطات طبيعية للشعر والبشرة والجسم من معصرة الرافدين، لباب بيتك بكل العراق.</p>
+      <div class="ctas">
+        <a class="btn" href="#concerns">لگيلي الأنسب إلي</a>
+        <button class="btn ghost" data-open-chat>اسأل المساعد الذكي</button>
+      </div>
+      <div class="trust">
+        <span><svg><use href="#i-leaf"/></svg>١٠٠٪ طبيعي</span>
+        <span><svg><use href="#i-cash"/></svg>الدفع عند الاستلام</span>
+        <span><svg><use href="#i-truck"/></svg>توصيل لـ ١٩ محافظة</span>
+      </div>
     </div>
     <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
   </header>
 
+  <section id="concerns" class="wrap">
+    <div class="sec-head"><div><h2>شنو تحتاج؟</h2><p>اختار مشكلتك ونطلعلك المنتجات المناسبة إلها.</p></div></div>
+    <div class="concerns" id="concernList"></div>
+  </section>
+
   <section id="sets" class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>الباكجات.</h2>
-        <p>روتين كامل بسعر أقل. ابدأ من هنا إذا ما تعرف منين تبدي.</p>
-      </div>
-    </div>
+    <div class="sec-head"><div><h2>الباكجات.</h2><p>روتين كامل بسعر أقل. إذا ما تعرف منين تبدي، ابدأ من هنا.</p></div></div>
     <div class="grid" id="setsGrid"></div>
   </section>
 
   <section id="shop" class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>المتجر.</h2>
-        <p>كل منتجات المعصرة بمكان واحد.</p>
-      </div>
-      <label class="search" for="q">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off">
-      </label>
+    <div class="sec-head"><div><h2>المتجر.</h2><p>كل منتجات المعصرة بمكان واحد.</p></div></div>
+    <div class="toolbar">
+      <label class="search" for="q"><svg><use href="#i-search"/></svg><span class="sr">بحث</span>
+        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off"></label>
+      <label class="sr" for="sort">ترتيب</label>
+      <select id="sort" class="sort">
+        <option value="">الأكثر طلباً</option>
+        <option value="asc">السعر: الأقل أولاً</option>
+        <option value="desc">السعر: الأعلى أولاً</option>
+      </select>
     </div>
     <div class="chips" id="chips" role="toolbar" aria-label="الأقسام"></div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <section class="wrap">
-    <div class="why">
-      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
-      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
-      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
-      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
-    </div>
+    <div class="filter-note" id="filterNote" hidden></div>
+    <div class="grid" id="grid" aria-live="polite"></div>
   </section>
 
   <section id="assistant" class="wrap">
@@ -86,7 +112,7 @@
       <div>
         <div class="eyebrow">مساعد الرافدين الذكي</div>
         <h2>احجيله مشكلتك، يختارلك الروتين.</h2>
-        <p>تساقط؟ حبوب؟ بشرة جافة؟ المساعد يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك.</p>
+        <p>يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك. بأي وقت، وبلهجتك.</p>
         <button class="btn" data-open-chat>ابدأ المحادثة</button>
       </div>
       <div class="bubbles" aria-hidden="true">
@@ -95,6 +121,15 @@
         <span class="u">بعد الصبغ</span>
         <span class="a">أنصحك بمجموعة الإنبات: الزيت ٣ مرات بالأسبوع ويه الشامبو. أضيفها للسلة؟</span>
       </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="why">
+      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
+      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
+      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
+      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
     </div>
   </section>
 
@@ -115,29 +150,35 @@
   </div>
 </footer>
 
-<button class="fab" data-open-chat aria-label="افتح المساعد الذكي">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/><circle cx="12" cy="12" r="3"/></svg>
-  اسأل الرافدين
-</button>
+<button class="fab" data-open-chat aria-label="افتح المساعد الذكي"><svg><use href="#i-spark"/></svg>اسأل الرافدين</button>
+
+<nav class="tabbar" aria-label="تنقل">
+  <button data-go="top" class="on"><svg><use href="#i-home"/></svg>الرئيسية</button>
+  <button data-go="shop"><svg><use href="#i-grid"/></svg>المتجر</button>
+  <button class="ai" data-open-chat><span class="orb"><svg><use href="#i-spark"/></svg></span>المساعد</button>
+  <button data-cart><svg><use href="#i-bag"/></svg>السلة<span class="count num" hidden>0</span></button>
+  <button data-orders><svg><use href="#i-box"/></svg>طلباتي</button>
+</nav>
 
 <div class="chat" id="chat" role="dialog" aria-label="مساعد الرافدين">
   <header>
-    <div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/></svg></div>
-    <div><b>مساعد الرافدين</b><small id="agentMode">يرد فوراً</small></div>
-    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="av"><svg><use href="#logo"/></svg></div>
+    <div><b>مساعد الرافدين</b><small id="agentMode">متصل الآن</small></div>
+    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg><use href="#i-close"/></svg></button>
   </header>
   <div class="msgs" id="msgs" aria-live="polite"></div>
   <div class="sugg" id="sugg"></div>
   <form class="composer" id="composer">
-    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off">
-    <button type="submit" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <label class="sr" for="chatInput">رسالتك</label>
+    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off" enterkeyhint="send">
+    <button type="submit" aria-label="إرسال"><svg><use href="#i-send"/></svg></button>
   </form>
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden>
   <div class="grab"></div>
-  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg><use href="#i-close"/></svg></button>
   <div id="sheetBody"></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
