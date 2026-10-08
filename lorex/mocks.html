@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root { --navy:#1e305a; --navy2:#2b4278; --gold:#b8913f; --gold-soft:#f6efe0; --bg:#f5f6f9; --ink:#141a2b; --muted:#6b7285; --line:#e6e8ef; --soft:#eaeef7;
+  --green:#1f8a4c; --green-bg:#e3f4e9; --red:#d7263d; --red-bg:#fde8eb; --amber:#b46900; --amber-bg:#fdf1df; --violet:#5b3fc4; --violet-bg:#efebfc; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:'Inter','IBM Plex Sans Arabic',sans-serif; color:var(--ink); background:#ccc; }
+.ar, body { font-family:'IBM Plex Sans Arabic','Inter',sans-serif; }
+.num { font-family:'Inter',sans-serif; font-variant-numeric:tabular-nums; }
+.screen { background:var(--bg); margin:0 0 40px; overflow:hidden; position:relative; }
+.desk { width:1280px; }
+.phone { width:390px; height:844px; }
+
+/* app shell */
+.app { display:grid; grid-template-columns:220px 1fr; }
+aside { background:#fff; border-inline-end:1px solid var(--line); padding:18px 14px; display:flex; flex-direction:column; gap:3px; }
+.logo { display:flex; gap:10px; align-items:center; margin-bottom:18px; } .logo img { width:36px; height:36px; }
+.logo b { display:block; font-size:14px; } .logo small { color:var(--muted); font-size:11px; }
+.nav { padding:8px 10px; border-radius:9px; display:flex; gap:9px; align-items:center; font-size:13px; }
+.nav i { width:14px; height:14px; border:1.5px solid currentColor; border-radius:4px; opacity:.55; }
+.nav.on { background:var(--navy); color:#fff; } .nav.on i { opacity:1; }
+.nav em { margin-inline-start:auto; font-style:normal; background:var(--red); color:#fff; font-size:10px; padding:1px 7px; border-radius:99px; }
+.sec { margin:14px 0 4px; font-size:10.5px; color:var(--muted); padding:0 10px; }
+main { padding:22px 26px; display:grid; gap:14px; align-content:start; }
+.top { display:flex; justify-content:space-between; align-items:center; }
+.top h1 { margin:0; font-size:22px; } .top p { margin:2px 0 0; color:var(--muted); font-size:12px; }
+.pills { display:flex; gap:8px; } .pill { border:1px solid var(--line); background:#fff; border-radius:99px; padding:6px 12px; font-size:12px; }
+.pill.p { background:var(--navy); color:#fff; border-color:var(--navy); }
+.kpis { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.k { background:#fff; border-radius:14px; padding:14px; } .k span { color:var(--muted); font-size:11.5px; }
+.k b { display:block; font-size:24px; margin:4px 0 2px; } .k small { font-size:11px; color:var(--green); } .k small.bad { color:var(--red); }
+.card { background:#fff; border-radius:14px; padding:14px 16px; }
+.card h3 { margin:0 0 10px; font-size:13.5px; display:flex; justify-content:space-between; } .card h3 span { color:var(--muted); font-weight:400; font-size:11.5px; }
+table { width:100%; border-collapse:collapse; } th { text-align:start; color:var(--muted); font-weight:500; font-size:11px; padding:6px 4px; border-bottom:1px solid var(--line); }
+td { padding:8px 4px; border-bottom:1px solid #f0f1f5; font-size:12px; }
+.st { font-size:10.5px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.sg { background:var(--green-bg); color:var(--green); } .sr { background:var(--red-bg); color:var(--red); } .sa { background:var(--amber-bg); color:var(--amber); }
+.sb { background:var(--soft); color:var(--navy2); } .sv { background:var(--violet-bg); color:var(--violet); } .sy { background:var(--gold-soft); color:var(--gold); }
+.bars { display:grid; gap:9px; } .bars p { margin:0 0 3px; display:flex; justify-content:space-between; font-size:12px; }
+.bars em { display:block; height:7px; border-radius:4px; background:#eef0f5; } .bars i { display:block; height:7px; border-radius:4px; background:var(--navy); }
+.bars i.g { background:var(--gold); }
+.dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-inline-end:6px; }
+.note { font-size:10.5px; color:var(--muted); }
+
+/* booking page (public) */
+.site { background:#fff; }
+.site header { display:flex; align-items:center; gap:14px; padding:14px 40px; border-bottom:1px solid var(--line); }
+.site header img { width:40px; height:40px; } .site header b { font-size:15px; } .site header small { display:block; color:var(--muted); font-size:11px; }
+.lang { margin-inline-start:auto; display:flex; gap:4px; background:var(--bg); padding:4px; border-radius:99px; font-size:12px; }
+.lang span { padding:4px 12px; border-radius:99px; } .lang .on { background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.08); font-weight:600; }
+.bk { display:grid; grid-template-columns:1fr 330px; gap:28px; padding:26px 40px 34px; }
+.steps { display:flex; gap:10px; align-items:center; font-size:12.5px; color:var(--muted); margin-bottom:16px; }
+.steps span.on { color:var(--navy); font-weight:700; } .steps span.done { color:var(--green); } .steps i { width:30px; height:2px; background:var(--line); }
+.bk h2 { margin:0 0 12px; font-size:17px; }
+.svc { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:22px; }
+.svc div { border:1px solid var(--line); border-radius:12px; padding:12px; display:grid; gap:3px; }
+.svc div.on { border:2px solid var(--navy); background:#f7f9fd; }
+.svc b { font-size:13.5px; } .svc span { font-size:11.5px; color:var(--muted); }
+.row2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+.opt { border:1px solid var(--line); border-radius:12px; padding:10px 12px; font-size:13px; display:flex; justify-content:space-between; align-items:center; }
+.opt.on { border:2px solid var(--navy); } .opt small { color:var(--muted); font-size:11px; display:block; }
+.days { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:14px; }
+.days div { border:1px solid var(--line); border-radius:12px; text-align:center; padding:8px 0; font-size:11.5px; color:var(--muted); }
+.days b { display:block; font-size:17px; color:var(--ink); } .days .on { background:var(--navy); border-color:var(--navy); color:#cdd6ee; } .days .on b { color:#fff; }
+.days .off { opacity:.4; }
+.slots { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+.slots span { border:1px solid var(--line); border-radius:10px; text-align:center; padding:8px 0; font-size:13px; }
+.slots .on { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:600; }
+.slots .x { color:#b9bdc9; text-decoration:line-through; background:#f7f8fa; }
+.sum { background:var(--bg); border-radius:16px; padding:18px; align-self:start; display:grid; gap:10px; }
+.sum h3 { margin:0; font-size:15px; } .sum p { margin:0; display:flex; justify-content:space-between; font-size:13px; } .sum p span { color:var(--muted); }
+.sum hr { border:0; border-top:1px solid var(--line); margin:2px 0; }
+.btn { background:var(--navy); color:#fff; border-radius:99px; padding:12px; text-align:center; font-weight:600; font-size:14px; }
+.btn.gold { background:var(--gold); }
+.wa { display:flex; gap:8px; align-items:center; justify-content:center; font-size:12px; color:var(--green); }
+
+/* phone screens */
+.ph { background:#fff; height:100%; display:flex; flex-direction:column; }
+.sbar { height:44px; display:flex; justify-content:space-between; align-items:center; padding:0 26px; font-size:14px; font-weight:600; font-family:Inter; direction:ltr; }
+.ph .hd { padding:6px 18px 12px; } .ph .hd small { color:var(--muted); font-size:12px; } .ph .hd h2 { margin:2px 0 0; font-size:22px; }
+.list { padding:0 16px; display:grid; gap:10px; }
+.it { border:1px solid var(--line); border-radius:14px; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; }
+.it.on { border:2px solid var(--navy); background:#f7f9fd; } .it b { font-size:14px; display:block; } .it span { font-size:11.5px; color:var(--muted); }
+.ic { width:38px; height:38px; border-radius:11px; background:var(--soft); margin-inline-end:10px; flex:none; display:grid; place-items:center; color:var(--navy); font-weight:700; }
+.it .l { display:flex; align-items:center; }
+.foot { margin-top:auto; padding:14px 16px 30px; }
+.ok { width:72px; height:72px; border-radius:50%; background:var(--green); color:#fff; display:grid; place-items:center; font-size:34px; margin:30px auto 12px; }
+
+/* chat (messaging) */
+.chat { background:#efe7dc; height:100%; display:flex; flex-direction:column; }
+.chat .ch { background:#f6f6f6; display:flex; align-items:center; gap:10px; padding:4px 14px 10px; border-bottom:1px solid #ddd; }
+.chat .ch img { width:36px; height:36px; } .chat .ch b { font-size:14px; display:block; } .chat .ch small { font-size:11px; color:var(--muted); }
+.msgs { padding:12px 12px; display:flex; flex-direction:column; gap:7px; flex:1; overflow:hidden; }
+.m { max-width:82%; padding:7px 10px 5px; border-radius:10px; font-size:12.5px; line-height:1.55; background:#fff; box-shadow:0 1px .5px rgba(0,0,0,.12); align-self:flex-end; }
+.m.me { background:#d9fdd3; align-self:flex-start; }
+.m small { display:block; text-align:left; font-size:9.5px; color:#8a8f99; font-family:Inter; }
+.m .tag { font-size:10px; color:var(--violet); font-weight:600; display:block; margin-bottom:2px; }
+.m ul { margin:3px 0; padding-inline-start:16px; } .m li { margin:1px 0; }
+.qb { display:flex; gap:5px; flex-wrap:wrap; margin-top:5px; } .qb span { border:1px solid #c9d3e6; color:var(--navy2); border-radius:8px; padding:3px 9px; font-size:11.5px; background:#f7f9fd; }
+.sys { align-self:center; background:#fff8d6; font-size:10.5px; color:#6b6248; padding:3px 10px; border-radius:7px; }
+.cb { background:#f6f6f6; padding:8px 10px 26px; display:flex; gap:8px; } .cb span { flex:1; background:#fff; border-radius:20px; padding:9px 14px; font-size:12px; color:#9aa; }
+
+/* client profile */
+.prof { display:grid; grid-template-columns:300px 1fr; gap:14px; }
+.pc { display:grid; gap:10px; justify-items:start; }
+.av { width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#c9a55c,#1e305a); }
+.tags { display:flex; flex-wrap:wrap; gap:6px; }
+.kv { display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:12px; width:100%; } .kv span { color:var(--muted); }
+.tl { display:grid; gap:0; } .tl div { display:grid; grid-template-columns:20px 1fr auto; gap:10px; padding:9px 0; border-bottom:1px solid #f0f1f5; font-size:12px; align-items:center; }
+.tl i { width:10px; height:10px; border-radius:50%; background:var(--navy); justify-self:center; } .tl i.up { background:#fff; border:2px solid var(--gold); }
+.prog { height:8px; border-radius:4px; background:#eef0f5; overflow:hidden; margin:6px 0 4px; } .prog i { display:block; height:100%; background:var(--gold); }
+
+/* automations */
+.auto { display:grid; gap:10px; }
+.au { background:#fff; border-radius:14px; padding:14px 16px; display:grid; grid-template-columns:120px 1fr 260px 50px; gap:16px; align-items:center; }
+.au .when { font-size:12px; color:var(--navy2); font-weight:700; } .au b { font-size:13.5px; display:block; } .au span { font-size:11.5px; color:var(--muted); }
+.au .prev { background:#d9fdd3; border-radius:10px; padding:7px 10px; font-size:11px; line-height:1.5; }
+.tg { width:40px; height:24px; border-radius:99px; background:var(--green); position:relative; } .tg::after { content:''; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; }
+</style>
+</head>
+<body>
+
+<!-- ========== DESKTOP BOOKING PAGE ========== -->
+<section class="screen desk site" id="booking">
+  <header>
+    <img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>مركز لوريكس للتجميل · أربيل</small></div>
+    <div class="lang"><span class="on">عربي</span><span>کوردی</span><span class="num">EN</span></div>
+  </header>
+  <div class="bk">
+    <div>
+      <div class="steps"><span class="done">✓ الخدمة</span><i></i><span class="on">٢ الفرع والموعد</span><i></i><span>٣ التأكيد</span></div>
+      <h2>اختاري الخدمة</h2>
+      <div class="svc">
+        <div class="on"><b>ليزر إزالة الشعر</b><span>الوجه · الجسم · مناطق محددة</span></div>
+        <div><b>Hydrafacial</b><span>تنظيف عميق ونضارة · ٦٠ دقيقة</span></div>
+        <div><b>عناية بالبشرة</b><span>جلسات حسب نوع البشرة</span></div>
+        <div><b>Botox</b><span>بعد استشارة الطبيبة</span></div>
+        <div><b>Filler</b><span>شفاه · خدود · فك</span></div>
+        <div><b>استشارة</b><span>مجانية · ١٥ دقيقة</span></div>
+      </div>
+      <h2>الفرع والأخصائية</h2>
+      <div class="row2">
+        <div class="opt on"><div>فرع بختياري<small>أربيل · سايدين بختياري</small></div>✓</div>
+        <div class="opt"><div>فرع وزيران<small>أربيل · وزيران</small></div></div>
+      </div>
+      <h2>اليوم والوقت</h2>
+      <div class="days">
+        <div class="off">الجمعة<b class="num">10</b></div><div>السبت<b class="num">11</b></div><div>الأحد<b class="num">12</b></div><div>الاثنين<b class="num">13</b></div><div class="on">الثلاثاء<b class="num">14</b></div><div>الأربعاء<b class="num">15</b></div><div>الخميس<b class="num">16</b></div>
+      </div>
+      <div class="slots num">
+        <span class="x">10:00</span><span>10:45</span><span class="x">11:30</span><span>12:15</span><span class="x">1:00</span><span>1:45</span>
+        <span>2:30</span><span class="x">3:15</span><span class="on">4:00</span><span>4:45</span><span class="x">5:30</span><span>6:15</span>
+      </div>
+      <p class="note" style="margin-top:10px">الأوقات المشطوبة محجوزة. النظام يمنع الحجز المزدوج تلقائياً.</p>
+    </div>
+    <div class="sum">
+      <h3>ملخص الحجز</h3>
+      <p><span>الخدمة</span>ليزر · الإبطين والساقين</p>
+      <p><span>الفرع</span>بختياري</p>
+      <p><span>الأخصائية</span>د. ريزان</p>
+      <p><span>الموعد</span>الثلاثاء 14 تشرين الأول · 4:00</p>
+      <p><span>المدة</span>٤٥ دقيقة</p>
+      <hr>
+      <p><span>الاسم</span>شيلان عمر</p>
+      <p><span>الهاتف</span><span class="num" style="color:var(--ink)" dir="ltr">0750 *** 4412</span></p>
+      <div class="btn">تأكيد الحجز</div>
+      <div class="wa">✓ يصلك التأكيد والتذكير على واتساب</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHONE: services ========== -->
+<section class="screen phone" id="m-services"><div class="ph">
+  <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="hd"><small>Lorex Complex · أربيل</small><h2>شنو تحتاجين اليوم؟</h2></div>
+  <div class="list">
+    <div class="it on"><div class="l"><span class="ic">L</span><div><b>ليزر إزالة الشعر</b><span>جلسة أو باقة ٦ جلسات</span></div></div>✓</div>
+    <div class="it"><div class="l"><span class="ic">H</span><div><b>Hydrafacial</b><span>٦٠ دقيقة</span></div></div></div>
+    <div class="it"><div class="l"><span class="ic">S</span><div><b>عناية بالبشرة</b><span>تنظيف · تقشير · ترطيب</span></div></div></div>
+    <div class="it"><div class="l"><span class="ic">B</span><div><b>Botox</b><span>بعد استشارة</span></div></div></div>
+    <div class="it"><div class="l"><span class="ic">F</span><div><b>Filler</b><span>شفاه · خدود · فك</span></div></div></div>
+    <div class="it"><div class="l"><span class="ic">?</span><div><b>استشارة مجانية</b><span>١٥ دقيقة</span></div></div></div>
+  </div>
+  <div class="foot"><div class="btn">التالي: الفرع والموعد</div></div>
+</div></section>
+
+<!-- ========== PHONE: slots ========== -->
+<section class="screen phone" id="m-slots"><div class="ph">
+  <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="hd"><small>ليزر · فرع بختياري</small><h2>اختاري الموعد</h2></div>
+  <div class="list">
+    <div class="days" style="grid-template-columns:repeat(5,1fr)"><div>الأحد<b class="num">12</b></div><div>الاثنين<b class="num">13</b></div><div class="on">الثلاثاء<b class="num">14</b></div><div>الأربعاء<b class="num">15</b></div><div>الخميس<b class="num">16</b></div></div>
+    <div class="slots num" style="grid-template-columns:repeat(3,1fr)">
+      <span class="x">10:00</span><span>10:45</span><span class="x">11:30</span><span>12:15</span><span class="x">1:00</span><span>1:45</span><span>2:30</span><span class="x">3:15</span><span class="on">4:00</span><span>4:45</span><span class="x">5:30</span><span>6:15</span>
+    </div>
+    <div class="opt" style="margin-top:6px"><div>الأخصائية<small>د. ريزان · ليزر</small></div>تغيير</div>
+  </div>
+  <div class="foot"><div class="btn">التالي: التأكيد</div></div>
+</div></section>
+
+<!-- ========== PHONE: confirmed ========== -->
+<section class="screen phone" id="m-done"><div class="ph">
+  <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="ok">✓</div>
+  <div style="text-align:center;padding:0 24px"><h2 style="margin:0 0 6px;font-size:22px">تم تأكيد حجزك</h2><p style="margin:0;color:var(--muted);font-size:13px">أرسلنا التفاصيل على واتساب، وراح نذكّرك قبل الموعد بيوم.</p></div>
+  <div class="list" style="margin-top:20px">
+    <div class="sum" style="background:var(--bg)">
+      <p><span>الخدمة</span>ليزر · الإبطين والساقين</p><p><span>الفرع</span>بختياري</p><p><span>الموعد</span>الثلاثاء 14 · <b class="num">4:00</b></p><p><span>رقم الحجز</span><b class="num">LX-2417</b></p>
+    </div>
+    <div class="row2" style="margin:4px 0 0"><div class="opt" style="justify-content:center">تعديل الموعد</div><div class="opt" style="justify-content:center;color:var(--red)">إلغاء</div></div>
+  </div>
+  <div class="foot"><div class="btn gold">فتح الموقع بالخريطة</div></div>
+</div></section>
+
+<!-- ========== PHONE: messaging — inquiry to booking ========== -->
+<section class="screen phone" id="wa-book"><div class="chat">
+  <div class="sbar" style="background:#f6f6f6"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="ch"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>مساعد الحجز · يرد فوراً</small></div></div>
+  <div class="msgs">
+    <div class="m me">مرحبا، شكد سعر الليزر للإبطين والساقين؟ وين مكانكم؟<small>16:02</small></div>
+    <div class="m"><span class="tag">✦ رد تلقائي</span>أهلاً بيج بمركز لوريكس 🌸<ul><li>ليزر الإبطين: ٣٥٬٠٠٠ د.ع</li><li>ليزر الساقين كاملة: ٧٥٬٠٠٠ د.ع</li><li>باقة ٦ جلسات: خصم ٢٠٪</li></ul>📍 فرع بختياري · فرع وزيران، أربيل<div class="qb"><span>احجزي موعد</span><span>الموقع على الخريطة</span><span>كل الأسعار</span></div><small>16:02</small></div>
+    <div class="m me">اريد يوم الثلاثاء العصر بفرع بختياري<small>16:04</small></div>
+    <div class="m"><span class="tag">✦ رد تلقائي</span>متوفر الثلاثاء ١٤ تشرين الأول بفرع بختياري:<div class="qb num"><span>2:30</span><span>4:00</span><span>4:45</span><span>6:15</span></div><small>16:04</small></div>
+    <div class="m me num">4:00<small>16:05</small></div>
+    <div class="m"><span class="tag">✦ تم الحجز</span>✅ تم حجز موعدج<br>ليزر · الإبطين والساقين<br>الثلاثاء ١٤ · الساعة 4:00 · فرع بختياري<br>رقم الحجز: <b class="num">LX-2417</b><div class="qb"><span>تعديل</span><span>إلغاء</span></div><small>16:05</small></div>
+  </div>
+  <div class="cb"><span>اكتبي رسالة</span></div>
+</div></section>
+
+<!-- ========== PHONE: messaging — reminder ========== -->
+<section class="screen phone" id="wa-remind"><div class="chat">
+  <div class="sbar" style="background:#f6f6f6"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="ch"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>مساعد الحجز · يرد فوراً</small></div></div>
+  <div class="msgs">
+    <div class="sys">الإثنين ١٣ تشرين الأول</div>
+    <div class="m"><span class="tag">⏰ تذكير قبل يوم</span>مرحبا شيلان 🌸 نذكّرج بموعدج باچر:<br>ليزر · الثلاثاء ١٤ · الساعة 4:00<br>فرع بختياري<br><br>قبل الجلسة: لا تستخدمين كريمات أو مزيل عرق على المنطقة، وحلاقة قبلها بيوم.<div class="qb"><span>تأكيد الحضور</span><span>تغيير الموعد</span><span>إلغاء</span></div><small>12:00</small></div>
+    <div class="m me">تأكيد الحضور<small>12:20</small></div>
+    <div class="m">تمام، ننتظرج 💙<small>12:20</small></div>
+    <div class="sys">الثلاثاء ١٤ تشرين الأول</div>
+    <div class="m"><span class="tag">📍 قبل ساعتين</span>موعدج اليوم 4:00. هذا موقع فرع بختياري على الخريطة 👇<div class="qb"><span>فتح الموقع</span></div><small>14:00</small></div>
+  </div>
+  <div class="cb"><span>اكتبي رسالة</span></div>
+</div></section>
+
+<!-- ========== PHONE: messaging — aftercare & rebook ========== -->
+<section class="screen phone" id="wa-after"><div class="chat">
+  <div class="sbar" style="background:#f6f6f6"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="ch"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>مساعد الحجز · يرد فوراً</small></div></div>
+  <div class="msgs">
+    <div class="sys">الثلاثاء ١٤ تشرين الأول</div>
+    <div class="m"><span class="tag">💙 بعد الجلسة</span>نتمنى الجلسة كانت مريحة 🌸 تعليمات العناية:<ul><li>تجنبي الشمس ٤٨ ساعة</li><li>لا حمام ساخن أو ساونا يومين</li><li>استخدمي الكريم المهدئ مرتين يومياً</li></ul><small>17:00</small></div>
+    <div class="sys">الجمعة ١٧ تشرين الأول</div>
+    <div class="m"><span class="tag">⭐ طلب تقييم</span>شلون تقيّمين تجربتج ويه د. ريزان؟<div class="qb"><span>⭐⭐⭐⭐⭐</span><span>⭐⭐⭐⭐</span><span>أقل</span></div><small>11:00</small></div>
+    <div class="m me">⭐⭐⭐⭐⭐<small>11:30</small></div>
+    <div class="sys">الثلاثاء ١١ تشرين الثاني</div>
+    <div class="m"><span class="tag">🔁 الجلسة القادمة</span>صار وقت جلستج الثانية من باقة الليزر (٢ من ٦). نحجزلج نفس الوقت الثلاثاء 4:00؟<div class="qb"><span>نعم، احجزي</span><span>وقت ثاني</span></div><small>10:00</small></div>
+  </div>
+  <div class="cb"><span>اكتبي رسالة</span></div>
+</div></section>
+
+<!-- ========== DESKTOP: client profile ========== -->
+<section class="screen desk" id="client"><div class="app">
+  <aside>
+    <div class="logo"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>نظام الحجز</small></div></div>
+    <div class="nav"><i></i>نظرة عامة</div><div class="nav"><i></i>الحجوزات</div><div class="nav"><i></i>التقويم</div><div class="nav on"><i></i>العميلات</div><div class="nav"><i></i>المحادثات<em class="num">4</em></div><div class="nav"><i></i>التذكيرات</div>
+    <div class="sec">الإعدادات</div><div class="nav"><i></i>الخدمات والأسعار</div><div class="nav"><i></i>الأسئلة الشائعة</div>
+  </aside>
+  <main>
+    <div class="top"><div><h1>ملف العميلة</h1><p>كل الزيارات والجلسات والمدفوعات بمكان واحد</p></div><div class="pills"><span class="pill">إرسال رسالة</span><span class="pill p">+ حجز جديد</span></div></div>
+    <div class="prof">
+      <div class="card pc">
+        <div class="av"></div>
+        <div><b style="font-size:17px">شيلان عمر</b><div class="note">عميلة منذ آذار 2025</div></div>
+        <div class="tags"><span class="st sy">باقة ليزر</span><span class="st sv">بشرة حساسة</span><span class="st sb">Instagram</span></div>
+        <div class="kv"><span>الهاتف</span><b class="num" dir="ltr" style="text-align:right">0750 123 4412</b><span>الفرع</span><b>بختياري</b><span>اللغة</span><b>کوردی</b><span>الأخصائية</span><b>د. ريزان</b><span>مصدر أول حجز</span><b>إعلان Instagram</b></div>
+        <div style="width:100%"><span class="note">ملاحظات</span><p style="margin:4px 0 0;font-size:12px">بشرة حساسة، تفضّل المواعيد بعد العصر. تحسس خفيف من الكريم المخدّر.</p></div>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+          <div class="k"><span>الزيارات</span><b class="num">7</b><small>آخرها 14 تشرين الأول</small></div>
+          <div class="k"><span>باقة الليزر</span><b class="num" dir="ltr" style="text-align:right">2 / 6</b><div class="prog"><i style="width:33%"></i></div></div>
+          <div class="k"><span>المدفوع</span><b class="num">540,000</b><small>د.ع</small></div>
+          <div class="k"><span>المتبقي</span><b class="num">120,000</b><small class="bad">قسط قادم 11 تشرين الثاني</small></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:14px">
+          <div class="card"><h3>الجلسات <span>السابقة والقادمة</span></h3>
+            <div class="tl">
+              <div><i class="up"></i><span>ليزر · جلسة 3 من 6 · د. ريزان</span><span class="st sy">11 تشرين الثاني · قادمة</span></div>
+              <div><i></i><span>ليزر · جلسة 2 من 6 · د. ريزان</span><span class="st sg">14 تشرين الأول · ⭐ 5</span></div>
+              <div><i></i><span>ليزر · جلسة 1 من 6 · د. ريزان</span><span class="st sg">16 أيلول</span></div>
+              <div><i></i><span>Hydrafacial · سولين</span><span class="st sg">2 آب</span></div>
+              <div><i></i><span>عناية بالبشرة · سولين</span><span class="st sr">10 تموز · لم تحضر</span></div>
+              <div><i></i><span>استشارة مجانية</span><span class="st sg">3 آذار</span></div>
+            </div></div>
+          <div class="card"><h3>الباقات والمدفوعات</h3>
+            <table><tr><th>البند</th><th>المبلغ</th><th>الحالة</th></tr>
+              <tr><td>باقة ليزر ٦ جلسات</td><td class="num">480,000</td><td><span class="st sa">قسط متبقي</span></td></tr>
+              <tr><td>Hydrafacial</td><td class="num">90,000</td><td><span class="st sg">مدفوع</span></td></tr>
+              <tr><td>عناية بالبشرة</td><td class="num">60,000</td><td><span class="st sg">مدفوع</span></td></tr>
+              <tr><td>كريم مهدئ</td><td class="num">30,000</td><td><span class="st sg">مدفوع</span></td></tr>
+            </table><p class="note" style="margin:10px 0 0">بيانات وأسعار توضيحية</p></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div></section>
+
+<!-- ========== DESKTOP: automations ========== -->
+<section class="screen desk" id="auto"><div class="app">
+  <aside>
+    <div class="logo"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>نظام الحجز</small></div></div>
+    <div class="nav"><i></i>نظرة عامة</div><div class="nav"><i></i>الحجوزات</div><div class="nav"><i></i>التقويم</div><div class="nav"><i></i>العميلات</div><div class="nav"><i></i>المحادثات<em class="num">4</em></div><div class="nav on"><i></i>التذكيرات</div>
+    <div class="sec">الإعدادات</div><div class="nav"><i></i>الخدمات والأسعار</div><div class="nav"><i></i>الأسئلة الشائعة</div>
+  </aside>
+  <main>
+    <div class="top"><div><h1>التذكير والمتابعة</h1><p>رسائل تلقائية على واتساب حسب كل خدمة · بالعربية والكردية والإنجليزية</p></div><div class="pills"><span class="pill">الخدمة: ليزر ▾</span><span class="pill p">+ رسالة جديدة</span></div></div>
+    <div class="auto">
+      <div class="au"><div class="when">قبل الموعد بيوم</div><div><b>تذكير وتأكيد الحضور</b><span>مع أزرار: تأكيد · تغيير الموعد · إلغاء</span></div><div class="prev">نذكّرج بموعدج باچر الساعة 4:00 بفرع بختياري…</div><div class="tg"></div></div>
+      <div class="au"><div class="when">قبل الموعد بساعتين</div><div><b>الموقع على الخريطة</b><span>رابط موقع الفرع ورقم الاستقبال</span></div><div class="prev">موعدج اليوم 4:00. هذا موقع الفرع 👇</div><div class="tg"></div></div>
+      <div class="au"><div class="when">بعد الجلسة بساعة</div><div><b>تعليمات العناية بعد العلاج</b><span>نص مختلف لكل خدمة: ليزر، فلر، بوتوكس…</span></div><div class="prev">تجنبي الشمس ٤٨ ساعة، لا حمام ساخن يومين…</div><div class="tg"></div></div>
+      <div class="au"><div class="when">بعد ٣ أيام</div><div><b>طلب تقييم</b><span>تقييم الجلسة والأخصائية</span></div><div class="prev">شلون تقيّمين تجربتج ويه د. ريزان؟ ⭐</div><div class="tg"></div></div>
+      <div class="au"><div class="when">موعد الجلسة القادمة</div><div><b>إعادة الحجز</b><span>حسب الفترة بين جلسات الباقة</span></div><div class="prev">صار وقت جلستج الثانية. نحجزلج نفس الوقت؟</div><div class="tg"></div></div>
+      <div class="au"><div class="when">عند عدم الحضور</div><div><b>متابعة الغياب</b><span>عرض موعد بديل خلال نفس الأسبوع</span></div><div class="prev">افتقدناج اليوم 💙 تحبين نحجزلج موعد ثاني؟</div><div class="tg"></div></div>
+    </div>
+  </main>
+</div></section>
+
+<!-- ========== DESKTOP: dashboard ========== -->
+<section class="screen desk" id="dash"><div class="app">
+  <aside>
+    <div class="logo"><img src="img/logo.png" alt=""><div><b>Lorex Complex</b><small>نظام الحجز</small></div></div>
+    <div class="nav on"><i></i>نظرة عامة</div><div class="nav"><i></i>الحجوزات</div><div class="nav"><i></i>التقويم</div><div class="nav"><i></i>العميلات</div><div class="nav"><i></i>المحادثات<em class="num">4</em></div><div class="nav"><i></i>التذكيرات</div>
+    <div class="sec">الإعدادات</div><div class="nav"><i></i>الخدمات والأسعار</div><div class="nav"><i></i>الأسئلة الشائعة</div>
+  </aside>
+  <main>
+    <div class="top"><div><h1>نظرة عامة</h1><p>تشرين الأول · كل الفروع</p></div><div class="pills"><span class="pill">هذا الشهر ▾</span><span class="pill">كل الفروع ▾</span><span class="pill p">تصدير</span></div></div>
+    <div class="kpis">
+      <div class="k"><span>الاستفسارات</span><b class="num">1,284</b><small>Instagram · WhatsApp · Facebook</small></div>
+      <div class="k"><span>الحجوزات</span><b class="num">412</b><small>+18% عن أيلول</small></div>
+      <div class="k"><span>تحويل الرسائل لحجز</span><b class="num">32%</b><small>كان 19% قبل النظام</small></div>
+      <div class="k"><span>الإلغاءات</span><b class="num">27</b><small class="bad">6.5% من الحجوزات</small></div>
+      <div class="k"><span>عدم الحضور</span><b class="num">3.4%</b><small>كان 12% قبل التذكير</small></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:14px">
+      <div class="card"><h3>أكثر الخدمات طلباً</h3><div class="bars">
+        <div><p><span>ليزر إزالة الشعر</span><b class="num">168</b></p><em><i style="width:100%"></i></em></div>
+        <div><p><span>Hydrafacial</span><b class="num">94</b></p><em><i style="width:56%"></i></em></div>
+        <div><p><span>Filler</span><b class="num">61</b></p><em><i style="width:36%"></i></em></div>
+        <div><p><span>Botox</span><b class="num">48</b></p><em><i style="width:29%"></i></em></div>
+        <div><p><span>عناية بالبشرة</span><b class="num">41</b></p><em><i style="width:24%"></i></em></div></div></div>
+      <div class="card"><h3>مصدر العميلات</h3><div class="bars">
+        <div><p><span><span class="dot" style="background:#c13584"></span>Instagram</span><b class="num">46%</b></p><em><i class="g" style="width:46%"></i></em></div>
+        <div><p><span><span class="dot" style="background:#25a35a"></span>WhatsApp مباشر</span><b class="num">21%</b></p><em><i class="g" style="width:21%"></i></em></div>
+        <div><p><span><span class="dot" style="background:#e08a00"></span>إعلان ممول</span><b class="num">17%</b></p><em><i class="g" style="width:17%"></i></em></div>
+        <div><p><span><span class="dot" style="background:#3b5bdb"></span>Facebook</span><b class="num">9%</b></p><em><i class="g" style="width:9%"></i></em></div>
+        <div><p><span><span class="dot" style="background:#7a7f8e"></span>توصية</span><b class="num">7%</b></p><em><i class="g" style="width:7%"></i></em></div></div></div>
+      <div class="card"><h3>الفروع والموظفات <span>هذا الشهر</span></h3>
+        <table><tr><th>الاسم</th><th>الفرع</th><th>جلسات</th><th>تقييم</th><th>غياب</th></tr>
+          <tr><td>د. ريزان</td><td>بختياري</td><td class="num">96</td><td class="num">4.9</td><td><span class="st sg num">2%</span></td></tr>
+          <tr><td>د. هيرو</td><td>وزيران</td><td class="num">81</td><td class="num">4.8</td><td><span class="st sg num">3%</span></td></tr>
+          <tr><td>سولين</td><td>بختياري</td><td class="num">74</td><td class="num">4.7</td><td><span class="st sa num">6%</span></td></tr>
+          <tr><td>ناز</td><td>وزيران</td><td class="num">63</td><td class="num">4.8</td><td><span class="st sg num">3%</span></td></tr>
+        </table>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+          <div style="background:var(--bg);border-radius:10px;padding:8px 10px;font-size:12px">فرع بختياري<b class="num" style="display:block;font-size:17px">238 حجز</b></div>
+          <div style="background:var(--bg);border-radius:10px;padding:8px 10px;font-size:12px">فرع وزيران<b class="num" style="display:block;font-size:17px">174 حجز</b></div>
+        </div></div>
+    </div>
+    <div class="card"><h3>حجوزات اليوم <span>تحديث مباشر</span></h3>
+      <table><tr><th>الوقت</th><th>العميلة</th><th>الخدمة</th><th>الفرع</th><th>الأخصائية</th><th>المصدر</th><th>الحالة</th></tr>
+        <tr><td class="num">10:45</td><td>روژان كريم</td><td>Hydrafacial</td><td>وزيران</td><td>ناز</td><td>Instagram</td><td><span class="st sg">حضرت</span></td></tr>
+        <tr><td class="num">12:15</td><td>دلنيا أحمد</td><td>Filler · شفاه</td><td>بختياري</td><td>د. ريزان</td><td>إعلان ممول</td><td><span class="st sb">في الجلسة</span></td></tr>
+        <tr><td class="num">4:00</td><td>شيلان عمر</td><td>ليزر · جلسة 2</td><td>بختياري</td><td>د. ريزان</td><td>Instagram</td><td><span class="st sy">أكدت الحضور</span></td></tr>
+      </table><p class="note" style="margin:8px 0 0">بيانات توضيحية للعرض</p></div>
+  </main>
+</div></section>
+
+</body>
+</html>

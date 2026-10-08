@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Lorex Booking · عرض فني ومالي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --blue: #0071e3; --ink: #1d1d1f; --gray: #6e6e73; --card: #f5f5f7; --lav: #efedfc; --line: #e3e3e8;
+    --g-green: #1f8a4c; --g-green-bg: #e3f4e9; --g-blue-bg: #e5f0fd; --g-red: #d70015; --g-red-bg: #fde8ea; --g-orange: #c25e00; --g-orange-bg: #fdf0e1;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :lang(ar), body { font-family: 'Inter', 'Noto Sans Arabic', 'Helvetica Neue', sans-serif; }
+  .page { width: 210mm; height: 297mm; padding: 20mm 18mm 18mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .foot { position: absolute; bottom: 9mm; inset-inline: 18mm; display: flex; justify-content: space-between; font-size: 8pt; color: #8e8e93; }
+
+  .eyebrow { color: var(--blue); font-weight: 700; font-size: 9.5pt; margin-bottom: 4mm; }
+  h1 { font-size: 33pt; font-weight: 800; line-height: 1.28; margin: 0 0 5mm; letter-spacing: -.01em; text-wrap: balance; }
+  h1.blue { color: var(--blue); }
+  .lede { font-size: 12.5pt; color: var(--gray); line-height: 1.85; margin: 0 0 7mm; }
+  .lede b { color: var(--ink); }
+  p { font-size: 10.5pt; line-height: 1.85; margin: 0 0 4mm; }
+  h3 { font-size: 14pt; font-weight: 800; margin: 8mm 0 4mm; }
+
+  .shot { border: 1px solid #d6d6db; border-radius: 4mm; overflow: hidden; margin: 0 0 7mm; background: #fff; }
+  .shot img { display: block; width: 100%; }
+  .caption { font-size: 8.5pt; color: #8e8e93; margin: -5mm 0 6mm; }
+
+  ul.dots { list-style: none; padding: 0; margin: 0; display: grid; gap: 3.2mm; }
+  ul.dots li { position: relative; padding-inline-start: 7mm; font-size: 10.5pt; line-height: 1.75; }
+  ul.dots li::before { content: ''; position: absolute; inset-inline-start: 0; top: 2.3mm; width: 2.6mm; height: 2.6mm; border-radius: 50%; background: var(--blue); }
+
+  .cards { display: grid; gap: 4mm; margin-bottom: 4mm; }
+  .c2 { grid-template-columns: 1fr 1fr; } .c3 { grid-template-columns: 1fr 1fr 1fr; } .c4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--card); border-radius: 4mm; padding: 5.5mm 6mm; }
+  .card h4 { margin: 0 0 2.5mm; font-size: 11.5pt; font-weight: 800; }
+  .card p { margin: 0; font-size: 9.5pt; color: var(--gray); line-height: 1.8; }
+  .card.blue { background: var(--blue); color: #fff; } .card.blue p { color: rgba(255,255,255,.88); }
+  .card.lav { background: var(--lav); }
+  .card.wide { grid-column: 1 / -1; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 8mm; }
+  .stats b { display: block; font-size: 25pt; font-weight: 800; line-height: 1.2; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+  .stats b.tbd { color: #c7c7cc; }
+  .stats span { font-size: 8.5pt; color: var(--gray); }
+
+  .pill { display: inline-block; font-size: 9pt; font-weight: 700; padding: 1mm 3.2mm; border-radius: 99px; margin-bottom: 2mm; }
+  .pg { background: var(--g-green-bg); color: var(--g-green); } .pb { background: var(--g-blue-bg); color: var(--blue); }
+  .po { background: var(--g-orange-bg); color: var(--g-orange); } .pl { background: var(--lav); color: #5b3fc4; }
+
+  table.cmp { width: 100%; border-collapse: collapse; margin: 4mm 0 5mm; font-size: 10pt; }
+  .cmp th { text-align: start; color: var(--gray); font-weight: 500; font-size: 9pt; padding: 0 0 3mm; border-bottom: 1px solid var(--line); }
+  .cmp td { padding: 3mm 0; border-bottom: 1px solid var(--line); }
+  .cmp td:nth-child(2) { color: var(--gray); }
+  .cmp td:nth-child(3) { font-weight: 800; }
+
+  .banner { background: var(--blue); color: #fff; border-radius: 4mm; padding: 5.5mm 6mm; }
+  .banner h4 { margin: 0 0 2mm; font-size: 12pt; font-weight: 800; }
+  .banner p { margin: 0; font-size: 9.5pt; opacity: .9; }
+
+  table.plan { width: 100%; border-collapse: collapse; margin: 0 0 8mm; font-size: 10pt; }
+  .plan th { text-align: start; color: var(--gray); font-weight: 500; font-size: 9pt; padding: 0 0 3mm; border-bottom: 1px solid var(--line); }
+  .plan td { padding: 3.8mm 0; border-bottom: 1px solid var(--line); }
+  .plan td:first-child { color: var(--blue); font-weight: 800; width: 26mm; }
+
+  .price { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .price > div { background: var(--card); border-radius: 4mm; padding: 6mm; display: flex; flex-direction: column; }
+  .price .hot { background: var(--blue); color: #fff; }
+  .price small { font-size: 9pt; color: var(--gray); } .price .hot small { color: rgba(255,255,255,.85); }
+  .price b { font-size: 24pt; font-weight: 800; margin: 3mm 0 4mm; color: #b8b8be; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+  .price .hot b { color: rgba(255,255,255,.6); }
+  .price ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.4mm; font-size: 9.2pt; line-height: 1.6; }
+  .price li { position: relative; padding-inline-start: 5mm; }
+  .price li::before { content: ''; position: absolute; inset-inline-start: 0; top: 1.9mm; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--blue); }
+  .price .hot li::before { background: #fff; }
+  .fine { font-size: 8.5pt; color: var(--gray); margin-top: 4mm; }
+
+  /* cover */
+  .brandrow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26mm; }
+  .studio { display: flex; align-items: center; gap: 3mm; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13pt; }
+  .studio i { width: 10mm; height: 10mm; border-radius: 2.6mm; background: var(--ink); color: #fff; display: grid; place-items: center; font-style: normal; font-size: 12pt; }
+  .brandrow span:last-child { font-size: 9.5pt; color: var(--gray); }
+  .cover h1 { font-size: 46pt; line-height: 1.2; margin-bottom: 6mm; }
+  .cover .en { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; display: block; direction: ltr; text-align: right; }
+  .cover .ar { color: var(--blue); display: block; }
+
+  .client { display: flex; align-items: center; gap: 3.5mm; margin-bottom: 5mm; }
+  .client img { width: 15mm; height: 15mm; border-radius: 50%; box-shadow: 0 0 0 1px #e3e3e8; }
+  .closing .partners { display: flex; align-items: center; gap: 6mm; margin-bottom: 10mm; }
+  .closing .partners img { width: 18mm; height: 18mm; border-radius: 50%; box-shadow: 0 0 0 1px #e3e3e8; }
+  .closing .partners em { font-style: normal; color: #c7c7cc; font-size: 16pt; }
+
+  /* how it works panel */
+  .panel { background: var(--card); border: 1px solid #e5e5ea; border-radius: 4mm; padding: 9mm 7mm 7mm; margin-bottom: 7mm; }
+  .panel .k { text-align: center; font-size: 8.5pt; color: var(--gray); }
+  .panel .t { text-align: center; font-size: 17pt; font-weight: 800; margin: 1mm 0 8mm; }
+  .panel .t em { font-style: normal; color: var(--blue); }
+  .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2.5mm; margin-bottom: 8mm; }
+  .steps div { background: #fff; border-radius: 2.6mm; padding: 3mm; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .steps div.on { background: var(--blue); color: #fff; }
+  .steps small { display: block; font-size: 7pt; color: var(--blue); font-weight: 700; font-family: 'Inter'; }
+  .steps .on small { color: rgba(255,255,255,.8); }
+  .steps b { display: block; font-size: 8.8pt; margin: 1mm 0; }
+  .steps span { font-size: 7.2pt; color: var(--gray); line-height: 1.5; display: block; }
+  .steps .on span { color: rgba(255,255,255,.85); }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .duo div { background: #fff; border-radius: 2.6mm; padding: 3.5mm 4mm; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .duo div.ai { background: linear-gradient(90deg, #f3f6fe, #ece9fc); }
+  .duo b { font-size: 9pt; display: block; } .duo span { font-size: 7.5pt; color: var(--gray); }
+
+  /* phones */
+  .phones { background: var(--card); border: 1px solid #e5e5ea; border-radius: 4mm; padding: 8mm 7mm; display: grid; grid-template-columns: 1.05fr 1fr 1fr 1fr; gap: 4mm; align-items: center; margin-bottom: 6mm; }
+  .phones .txt { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
+  .phones .txt small { font-size: 7.5pt; color: var(--gray); }
+  .phones .txt h5 { font-size: 17pt; font-weight: 800; margin: 1mm 0 2mm; line-height: 1.15; }
+  .phones .txt h5 em { font-style: normal; color: var(--blue); }
+  .phones .txt p { font-size: 7.5pt; color: var(--gray); line-height: 1.6; margin: 0; }
+  .phone { border: 2.2mm solid #1d1d1f; border-radius: 7mm; overflow: hidden; background: #fff; aspect-ratio: 390 / 844; }
+  .phone img { width: 100%; display: block; }
+
+  .closing { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding-bottom: 20mm; }
+  .closing .studio { margin-bottom: 10mm; }
+  .closing h1 { font-size: 36pt; }
+  .closing .lede { max-width: 140mm; }
+  .closing h4 { font-size: 12pt; font-weight: 800; margin: 6mm 0 3mm; }
+  .closing .steps-line { display: flex; gap: 7mm; font-size: 9.5pt; color: var(--gray); }
+  .need { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5mm; max-width: 160mm; margin-top: 3mm; }
+  .need span { background: var(--card); border-radius: 99px; padding: 1.5mm 4mm; font-size: 9pt; }
+  .split { display: grid; grid-template-columns: 64mm 1fr; gap: 9mm; align-items: center; margin-bottom: 6mm; }
+  .split .phone { border-width: 2.4mm; }
+  .twophones { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; background: var(--card); border: 1px solid #e5e5ea; border-radius: 4mm; padding: 7mm 14mm; margin-bottom: 6mm; }
+  .langs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .langs div { background: var(--card); border-radius: 4mm; padding: 5mm 6mm; }
+  .langs b { display: block; font-size: 18pt; font-weight: 800; margin-bottom: 1mm; }
+  .langs span { font-size: 9.5pt; color: var(--gray); line-height: 1.7; display: block; }
+  .stats b { font-size: 21pt; white-space: nowrap; }
+  .twophones { padding: 6mm 26mm; }
+</style>
+</head>
+<body>
+
+<!-- 1 cover -->
+<div class="page cover">
+  <div class="brandrow"><span class="studio"><i>A</i>Aivora Studio</span><span>عرض فني ومالي · تشرين الأول 2026</span></div>
+  <div class="client"><img src="img/logo.png" alt="Lorex Complex"><span class="eyebrow" style="margin:0">مقدَّم إلى مركز لوريكس للتجميل – أربيل</span></div>
+  <h1><span class="en">Lorex Booking.</span><span class="ar">حجزٌ أسرع.<br>وعميلاتٌ يعُدن.</span></h1>
+  <p class="lede">نظام حجز إلكتروني متكامل، مربوط بواتساب، مع ملف لكل عميلة، وتذكير ومتابعة تلقائية، ولوحة تحكم للإدارة.</p>
+  <div class="shot" style="margin-top:10mm"><img src="shots/dash.png" alt=""></div>
+</div>
+
+<!-- 2 summary -->
+<div class="page">
+  <div class="eyebrow">الملخص التنفيذي</div>
+  <h1>نظام واحد للحجز والرسائل والعميلات.</h1>
+  <p class="lede">تقترح Aivora Studio نظام <b>Lorex Booking</b>: نظام مصمَّم خصيصاً لمركز لوريكس، يحوّل الرسائل إلى حجوزات، وينظّم المواعيد في الفرعين، ويتابع كل عميلة من أول رسالة حتى جلستها القادمة.</p>
+  <p>اليوم تصل الاستفسارات عبر Instagram وWhatsApp وFacebook، ويُنسَّق كل موعد يدوياً. يستبدل Lorex Booking ذلك بمسار واحد: ترد العميلة على رسالة، تختار الخدمة والفرع والموعد، يصلها التأكيد والتذكير على واتساب، وترى الإدارة كل شيء في لوحة واحدة.</p>
+  <div class="cards c3" style="margin-top:6mm">
+    <div class="card"><h4>٠١ الحجز الإلكتروني</h4><p>اختيار الخدمة والفرع والموعد، مع التأكيد والتعديل والإلغاء، ومنع الحجز المزدوج.</p></div>
+    <div class="card blue"><h4>٠٢ واتساب والرد الآلي</h4><p>ردود فورية على الأسئلة المتكررة، وإرسال الأسعار والموقع، وتحويل المحادثة إلى حجز.</p></div>
+    <div class="card"><h4>٠٣ لوحة تحكم الإدارة</h4><p>الاستفسارات والحجوزات ونسبة التحويل، والإلغاءات، ومصدر كل عميلة، وأداء الفروع.</p></div>
+    <div class="card lav wide"><h4>إضافةً إلى: ملف لكل عميلة، وتذكير ومتابعة بعد الجلسة</h4><p>تاريخ الزيارات والجلسات والباقات والمدفوعات، ورسائل تلقائية قبل الموعد وبعده لتقليل الغياب وزيادة إعادة الحجز.</p></div>
+  </div>
+  <div class="stats">
+    <div><b>٢–٤ أسابيع</b><span>المرحلة الأولى</span></div>
+    <div><b class="tbd">يُحدد</b><span>تكلفة لمرة واحدة</span></div>
+    <div><b>AR · KU · EN</b><span>لغات الواجهة والرسائل</span></div>
+    <div><b>٢٤/٧</b><span>رد وحجز تلقائي</span></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٢</span></div>
+</div>
+
+<!-- 3 problem -->
+<div class="page">
+  <div class="eyebrow">بيان المشكلة</div>
+  <h1>رسائل كثيرة، وحجوزات تضيع بينها.</h1>
+  <p class="lede">مركز لوريكس في أربيل متخصص بالتجميل وإزالة الشعر بالليزر وHydrafacial والفلر والبوتوكس، بفرعين في سايدين بختياري ووزيران، ومتابَع من أكثر من ٢٢ ألف شخص على Instagram.</p>
+  <h3>التحديات الحالية</h3>
+  <div class="cards c2">
+    <div class="card"><h4>رسائل تضيع قبل الحجز</h4><p>نفس الأسئلة عن السعر والموقع تتكرر يومياً، وكل تأخير بالرد يعني عميلة تحجز في مكان آخر.</p></div>
+    <div class="card"><h4>تنسيق المواعيد يدوياً</h4><p>فرعان وعدة أخصائيات، مع خطر الحجز المزدوج أو ترك فراغات في الجدول.</p></div>
+    <div class="card"><h4>الغياب والإلغاء المتأخر</h4><p>بدون تذكير منظم، تضيع مواعيد كان يمكن إعطاؤها لعميلة أخرى.</p></div>
+    <div class="card"><h4>لا نعرف من أين تأتي العميلة</h4><p>بدون مصدر لكل حجز، لا يمكن قياس العائد الحقيقي من الإعلانات.</p></div>
+  </div>
+  <h3>ماذا يقدّم Lorex Booking</h3>
+  <ul class="dots">
+    <li>مسار واحد للعميلة: <b>رسالة ← رد فوري ← حجز ← تذكير ← جلسة ← متابعة</b>.</li>
+    <li>ردود آلية على واتساب ترسل الأسعار والخدمات والموقع، وتحوّل المحادثة إلى حجز مباشر.</li>
+    <li>ملف كامل لكل عميلة: الزيارات، الجلسات، الباقات، والمدفوعات.</li>
+    <li>لوحة للإدارة تُظهر الحجوزات ونسبة التحويل والغياب ومصدر كل عميلة.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٣</span></div>
+</div>
+
+<!-- 4 how it works -->
+<div class="page">
+  <div class="eyebrow">كيف يعمل النظام</div>
+  <h1>من أول رسالة حتى الجلسة القادمة.</h1>
+  <p class="lede">كل خطوة تُسجَّل مرة واحدة، وترتبط تلقائياً بما بعدها، وتُحتسب في التقارير.</p>
+  <div class="panel">
+    <div class="k">كيف يعمل</div>
+    <div class="t">من الرسالة <em>إلى العميلة الدائمة.</em></div>
+    <div class="steps">
+      <div><small>01</small><b>الرسالة</b><span>من Instagram أو WhatsApp أو إعلان.</span></div>
+      <div><small>02</small><b>رد فوري</b><span>الأسعار والخدمات والموقع.</span></div>
+      <div class="on"><small>03</small><b>الحجز</b><span>خدمة، فرع، موعد، بدون تعارض.</span></div>
+      <div><small>04</small><b>التذكير</b><span>قبل يوم، مع تأكيد الحضور.</span></div>
+      <div><small>05</small><b>الجلسة</b><span>تُسجَّل في ملف العميلة.</span></div>
+      <div><small>06</small><b>المتابعة</b><span>عناية، تقييم، وإعادة حجز.</span></div>
+    </div>
+    <div class="duo">
+      <div><b>الإدارة ترى كل شيء</b><span>الحجوزات، التحويل، الغياب، والمصدر، لكل فرع.</span></div>
+      <div class="ai"><b>✦ ردود ذكية على واتساب</b><span>تجيب وتقترح الموعد وتحجز مباشرة.</span></div>
+    </div>
+  </div>
+  <div class="cards c3">
+    <div class="card"><h4>العميلة</h4><p>تسأل، تحجز، تؤكد أو تعدّل موعدها، وتستلم تعليمات العناية.</p></div>
+    <div class="card"><h4>الاستقبال</h4><p>جدول الفرعين أمامها، وكل حجز يصل كاملاً بلا تنسيق يدوي.</p></div>
+    <div class="card"><h4>الإدارة</h4><p>تقارير الحجوزات والإيرادات ومصادر العميلات وأداء الموظفات.</p></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٤</span></div>
+</div>
+
+<!-- 5 booking page -->
+<div class="page">
+  <div class="eyebrow">الحجز الإلكتروني</div>
+  <h1>الحجز بثلاث خطوات، دون انتظار رد.</h1>
+  <p class="lede">صفحة حجز باسم المركز، تُضاف كرابط في البايو وفي كل رد على واتساب.</p>
+  <div class="shot"><img src="shots/booking.png" alt=""></div>
+  <ul class="dots">
+    <li><b>اختيار الخدمة:</b> ليزر، Hydrafacial، عناية بالبشرة، Botox، Filler، واستشارة.</li>
+    <li><b>اختيار الفرع والموعد والأخصائية</b>، مع إظهار الأوقات المتاحة فقط.</li>
+    <li><b>منع الحجز المزدوج:</b> الوقت المحجوز يُقفل فوراً في الفرعين.</li>
+    <li><b>تأكيد وتعديل وإلغاء</b> الحجز من الصفحة أو من رسالة واتساب.</li>
+    <li>كل حجز يُسجَّل مع <b>مصدره</b>: Instagram، Facebook، إعلان، أو توصية.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٥</span></div>
+</div>
+
+<!-- 6 mobile -->
+<div class="page">
+  <div class="eyebrow">الموبايل</div>
+  <h1>على الموبايل، مثل التطبيق.</h1>
+  <p class="lede">أغلب العميلات يصلن من Instagram على الهاتف، لذلك صُمّمت صفحة الحجز للموبايل أولاً.</p>
+  <div class="phones">
+    <div class="txt"><small>On the go</small><h5>Lorex<br><em>in your pocket.</em></h5><p>Clients pick a service, a branch and a free slot in under a minute, right from Instagram.</p></div>
+    <div class="phone"><img src="shots/m-services.png" alt=""></div>
+    <div class="phone"><img src="shots/m-slots.png" alt=""></div>
+    <div class="phone"><img src="shots/m-done.png" alt=""></div>
+  </div>
+  <ul class="dots">
+    <li>ثلاث شاشات فقط: الخدمة، الموعد، والتأكيد.</li>
+    <li>بعد الحجز: تعديل الموعد، الإلغاء، وفتح موقع الفرع على الخريطة بلمسة.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٦</span></div>
+</div>
+
+<!-- 7 whatsapp -->
+<div class="page">
+  <div class="eyebrow">واتساب والردود الآلية</div>
+  <h1 class="blue">من رسالة إلى حجز، خلال دقيقة.</h1>
+  <p class="lede">ربط رسمي مع WhatsApp Business. المساعد يرد على الأسئلة المتكررة، ويرسل الأسعار والموقع، ويحجز الموعد داخل المحادثة نفسها.</p>
+  <div class="split">
+    <div class="phone"><img src="shots/wa-book.png" alt=""></div>
+    <ul class="dots">
+      <li><b>ردود آلية</b> على الأسئلة المتكررة: الأسعار، الخدمات، الباقات، الموقع، وأوقات الدوام.</li>
+      <li><b>تحويل المحادثة إلى حجز مباشر:</b> يعرض الأوقات المتاحة كأزرار، ويثبّت الحجز فوراً.</li>
+      <li><b>تحويل للاستقبال</b> عند الأسئلة الطبية أو الحالات الخاصة، مع إظهار المحادثة في لوحة التحكم.</li>
+      <li><b>بثلاث لغات:</b> يفهم ويرد بالعربية والكردية والإنجليزية، حسب لغة العميلة.</li>
+      <li>رسائل Instagram وFacebook تُوجَّه إلى نفس المسار، ويُحفظ مصدر كل حجز.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٧</span></div>
+</div>
+
+<!-- 8 clients -->
+<div class="page">
+  <div class="eyebrow">إدارة العميلات</div>
+  <h1>ملف كامل لكل عميلة.</h1>
+  <p class="lede">كل زيارة وجلسة ودفعة تُسجَّل تلقائياً، فتعرف الأخصائية تاريخ العميلة قبل أن تبدأ.</p>
+  <div class="shot"><img src="shots/client.png" alt=""></div>
+  <div class="cards c2">
+    <div class="card"><h4>بيانات العميلة وتاريخ الزيارات</h4><p>الهاتف، الفرع، اللغة، مصدر أول حجز، وملاحظات مثل نوع البشرة والحساسية.</p></div>
+    <div class="card"><h4>الجلسات السابقة والقادمة</h4><p>كل جلسة مع الأخصائية والتقييم، وتمييز الغياب والإلغاء.</p></div>
+    <div class="card"><h4>الباقات</h4><p>عدد الجلسات المستخدمة والمتبقية لكل باقة، مثل ليزر ٦ جلسات.</p></div>
+    <div class="card"><h4>المدفوعات</h4><p>المدفوع والمتبقي والأقساط القادمة، لكل عميلة.</p></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٨</span></div>
+</div>
+
+<!-- 9 reminders -->
+<div class="page">
+  <div class="eyebrow">التذكير والمتابعة</div>
+  <h1>تذكير قبل الموعد، ومتابعة بعد كل جلسة.</h1>
+  <p class="lede">رسائل تلقائية على واتساب، بنص مختلف لكل خدمة، تقلّل الغياب وتعيد العميلة لجلستها القادمة.</p>
+  <div class="shot"><img src="shots/auto.png" alt=""></div>
+  <ul class="dots">
+    <li><b>تذكير قبل الموعد</b> مع أزرار تأكيد الحضور أو تغيير الموعد أو الإلغاء، والوقت المُلغى يعود متاحاً فوراً.</li>
+    <li><b>رسالة بعد الجلسة</b> بتعليمات العناية الخاصة بالعلاج: ليزر، فلر، بوتوكس، أو Hydrafacial.</li>
+    <li><b>طلب تقييم</b> للجلسة والأخصائية، و<b>إعادة حجز</b> الجلسة القادمة من الباقة في وقتها.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>٩</span></div>
+</div>
+
+<!-- 10 messages + languages -->
+<div class="page">
+  <div class="eyebrow">رسائل العميلة</div>
+  <h1>رسائل تصل بلغة العميلة.</h1>
+  <p class="lede">هكذا تبدو الرسائل عند العميلة: تذكير قبل الموعد، ثم تعليمات العناية، وطلب التقييم، وموعد الجلسة القادمة.</p>
+  <div class="twophones">
+    <div class="phone"><img src="shots/wa-remind.png" alt=""></div>
+    <div class="phone"><img src="shots/wa-after.png" alt=""></div>
+  </div>
+  <div class="langs">
+    <div><b>عربي</b><span>صفحة الحجز، الرسائل، والردود الآلية.</span></div>
+    <div><b>کوردی</b><span>نفس التجربة بالكردية لعميلات أربيل.</span></div>
+    <div><b>English</b><span>للعميلات من خارج الإقليم والأجانب.</span></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١٠</span></div>
+</div>
+
+<!-- 11 dashboard -->
+<div class="page">
+  <div class="eyebrow">لوحة تحكم الإدارة</div>
+  <h1>ترى كل شيء، دون أن تسأل أحداً.</h1>
+  <p class="lede">في أي وقت، تفتح الإدارة شاشة واحدة وترى ما يحدث في الفرعين.</p>
+  <div class="shot"><img src="shots/dash.png" alt=""></div>
+  <p class="caption">الأرقام في الصورة توضيحية.</p>
+  <ul class="dots">
+    <li>عدد <b>الاستفسارات والحجوزات</b>، و<b>نسبة تحويل الرسائل إلى حجوزات</b>.</li>
+    <li><b>الإلغاءات وعدم الحضور</b>، وأكثر الخدمات طلباً.</li>
+    <li><b>مصدر العميلة:</b> Instagram، Facebook، إعلان، أو توصية، لمعرفة العائد الحقيقي من الإعلانات.</li>
+    <li><b>أداء الفروع والموظفات:</b> الجلسات، التقييم، ونسبة الغياب.</li>
+    <li>إدارة <b>الخدمات والأسعار والباقات</b>، و<b>الموقع وأرقام التواصل</b>، و<b>الأسئلة الشائعة</b> التي يعتمد عليها الرد الآلي.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١١</span></div>
+</div>
+
+<!-- 12 value -->
+<div class="page">
+  <div class="eyebrow">القيمة للمركز</div>
+  <h1>رد أسرع، غياب أقل، وعميلات يعُدن.</h1>
+  <p class="lede">يسترد Lorex Booking تكلفته من الحجوزات التي كانت تضيع في الرسائل، ومن المواعيد التي كانت تفرغ بسبب الغياب.</p>
+  <div class="cards c3">
+    <div class="card"><h4>رسائل أقل ضياعاً</h4><p>كل رسالة تُجاب فوراً وتُسجَّل، حتى خارج أوقات الدوام.</p></div>
+    <div class="card"><h4>رد وحجز أسرع</h4><p>من السؤال إلى الموعد المؤكد خلال دقيقة.</p></div>
+    <div class="card"><h4>غياب أقل</h4><p>تذكير وتأكيد قبل الموعد، والوقت المُلغى يعود متاحاً.</p></div>
+    <div class="card"><h4>إعادة حجز وباقات أكثر</h4><p>متابعة بعد الجلسة وتذكير بالجلسة القادمة من الباقة.</p></div>
+    <div class="card"><h4>عائد الإعلانات الحقيقي</h4><p>كل حجز مرتبط بمصدره، فتعرف أي إعلان يجلب عميلات.</p></div>
+    <div class="card"><h4>فروع وموظفات منظَّمات</h4><p>جدول واحد للفرعين، وأداء واضح لكل أخصائية.</p></div>
+  </div>
+  <table class="cmp">
+    <tr><th>المهمة</th><th>اليوم</th><th>مع Lorex Booking</th></tr>
+    <tr><td>الرد على سؤال السعر</td><td>انتظار رد الموظفة</td><td>فوراً، على مدار الساعة</td></tr>
+    <tr><td>تنسيق الموعد</td><td>رسائل ذهاباً وإياباً</td><td>اختيار وقت متاح بلمسة</td></tr>
+    <tr><td>تذكير العميلة</td><td>اتصال يدوي أو لا شيء</td><td>تلقائي مع تأكيد الحضور</td></tr>
+    <tr><td>معرفة مصدر العميلة</td><td>غير معروف</td><td>مسجَّل مع كل حجز</td></tr>
+  </table>
+  <div class="banner"><h4>العائد على الاستثمار</h4><p>موعد واحد يُنقَذ من الغياب، أو حجز واحد لا يضيع في الرسائل يومياً، يغطي تكلفة النظام خلال فترة قصيرة، خصوصاً مع باقات الليزر متعددة الجلسات.</p></div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١٢</span></div>
+</div>
+
+<!-- 13 add-ons -->
+<div class="page">
+  <div class="eyebrow">إضافات مستقبلية · برسوم إضافية</div>
+  <h1>جاهز للنمو مع لوريكس.</h1>
+  <p class="lede">ميزات ليست ضمن النطاق الحالي، ويمكن إضافة أي منها لاحقاً عند الطلب، دون تغيير ما تم بناؤه.</p>
+  <div class="cards c2">
+    <div class="card"><h4>عربون إلكتروني للحجز</h4><p>دفعة مقدّمة بسيطة تقلّل الغياب للخدمات الطويلة.</p></div>
+    <div class="card"><h4>برنامج ولاء ونقاط</h4><p>نقاط على كل جلسة، وهدايا عند إكمال الباقة.</p></div>
+    <div class="card lav"><h4>✦ توقّع الغياب بالذكاء الاصطناعي</h4><p>يتعلّم النظام من سجل كل عميلة ويرسل تأكيداً إضافياً لمن يُرجَّح غيابها.</p></div>
+    <div class="card"><h4>إحالة صديقة</h4><p>رابط خاص لكل عميلة، وخصم عند حجز صديقتها.</p></div>
+    <div class="card"><h4>صور قبل وبعد في الملف</h4><p>حفظ صور الجلسات بأمان في ملف العميلة لمتابعة النتائج.</p></div>
+    <div class="card"><h4>ربط إعلانات Meta</h4><p>قياس تكلفة كل حجز لكل حملة إعلانية تلقائياً.</p></div>
+    <div class="card"><h4>تطبيق للموظفات</h4><p>جدول اليوم وملف العميلة على هاتف كل أخصائية.</p></div>
+    <div class="card"><h4>فرع ثالث وأكثر</h4><p>إضافة فروع جديدة بنفس النظام والتقارير.</p></div>
+  </div>
+  <p class="fine">جميع الإضافات اختيارية وتُسعَّر بشكل منفصل عند طلبها.</p>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١٣</span></div>
+</div>
+
+<!-- 14 phase 1 & pricing -->
+<div class="page">
+  <div class="eyebrow">المرحلة الأولى والتكلفة</div>
+  <h1>المرحلة الأولى خلال ٢–٤ أسابيع.</h1>
+  <table class="plan">
+    <tr><th>الأسبوع</th><th>ما يتم تسليمه</th></tr>
+    <tr><td>١</td><td>اجتماع الانطلاق، إدخال الخدمات والأسعار والفروع والأخصائيات وأوقات الدوام، وصفحة الحجز.</td></tr>
+    <tr><td>٢</td><td>ربط WhatsApp، رسائل التأكيد والتذكير، ومنع الحجز المزدوج.</td></tr>
+    <tr><td>٣</td><td>قاعدة بيانات العميلات، لوحة التحكم الأساسية، وربط مصدر الحجز من Instagram.</td></tr>
+    <tr><td>٤</td><td>الاختبار مع فريق الاستقبال، التدريب، والتشغيل الرسمي.</td></tr>
+  </table>
+  <div class="price">
+    <div><small>المرحلة الأولى · ٢–٤ أسابيع</small><b>يُحدد</b><ul><li>صفحة الحجز بثلاث لغات</li><li>ربط WhatsApp</li><li>قاعدة بيانات العميلات</li><li>التأكيد والتذكير</li><li>لوحة تحكم أساسية</li><li>مصدر الحجز من Instagram</li></ul></div>
+    <div class="hot"><small>الاشتراك الشهري</small><b>يُحدد</b><ul><li>استضافة سحابية آمنة</li><li>دعم فني وتحديثات</li><li>نسخ احتياطي يومي</li><li>صلاحيات لكل موظفة</li></ul></div>
+    <div><small>المرحلة الثانية</small><b>يُحدد</b><ul><li>الردود الآلية الذكية الكاملة</li><li>الباقات والمدفوعات</li><li>رسائل ما بعد الجلسة والتقييم</li><li>تقارير الفروع والموظفات</li></ul></div>
+  </div>
+  <p class="fine">رسوم رسائل WhatsApp Business تُحتسب من Meta حسب الاستخدام. الدفع: ٥٠٪ عند الاتفاق و٥٠٪ عند التشغيل.</p>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١٤</span></div>
+</div>
+
+<!-- 15 closing -->
+<div class="page">
+  <div class="closing">
+    <div class="partners"><span class="studio" style="margin:0"><i>A</i>Aivora Studio</span><em>×</em><img src="img/logo.png" alt="Lorex Complex"></div>
+    <h1>لنبنِ <span style="font-family:Inter;font-weight:800">Lorex Booking</span> معاً.</h1>
+    <p class="lede">حجز إلكتروني، وواتساب يرد ويحجز، وملف لكل عميلة، ولوحة تُظهر كل شيء. سهل الاستخدام وواضح من اليوم الأول.</p>
+    <h4>الخطوات القادمة</h4>
+    <div class="steps-line"><span>٠١ الموافقة على العرض</span><span>٠٢ اجتماع الانطلاق</span><span>٠٣ التشغيل خلال ٢–٤ أسابيع</span></div>
+    <h4>ما نحتاجه من المركز</h4>
+    <div class="need"><span>الخدمات والأسعار والباقات</span><span>الفروع وأوقات الدوام</span><span>الأخصائيات وجداولهن</span><span>رقم WhatsApp Business</span><span>الأسئلة الشائعة الحالية</span><span>تعليمات العناية لكل خدمة</span><span>الشعار بدقة عالية</span></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Lorex Booking</span><span>١٥</span></div>
+</div>
+
+</body>
+</html>
