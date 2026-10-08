@@ -5,20 +5,20 @@
    كل ألوان الموقع تطلع من هالبلوك. لتبديلها بألوان الشعار الحقيقية بدّل --brand و --oil
    (وأخواتهن بالوضع الداكن تحت). الباقي (خلفيات، نصوص) محايد دافئ يمشي ويه أي لون. */
 :root {
-  --brand: #1f5a3d;        /* أخضر الأعشاب: الأزرار، الروابط، الشعار */
-  --brand-ink: #ffffff;    /* لون النص فوق الأخضر */
-  --brand-soft: #e2ede5;   /* خلفيات خفيفة للأخضر */
-  --oil: #c46d16;          /* كهرماني الزيت: الشارات، الأسعار المميزة، التنبيهات */
-  --oil-soft: #f8ead8;
+  --brand: #31491d;        /* أخضر زيتوني غامق: لون الشعار */
+  --brand-ink: #ffffff;
+  --brand-soft: #e7eadb;
+  --oil: #7a8236;          /* زيتوني فاتح (ظلال الشعار)، أغمق شوية حتى يُقرأ */
+  --oil-soft: #eef0dc;
 
-  --bg: #f7f5ef;           /* كريمي دافئ بدل الأبيض الصافي */
+  --bg: #f4f4ec;           /* كريمي دافئ بدل الأبيض الصافي */
   --surface: #ffffff;
-  --surface-2: #efece4;
+  --surface-2: #ebebe0;
   --fg: #1b211c;
   --muted: #676c62;
-  --line: #e1ddd2;
+  --line: #dfdfd2;
   --danger: #b3261e;
-  --nav: rgba(247, 245, 239, 0.8);
+  --nav: rgba(244, 244, 236, 0.82);
   --shadow: 0 12px 40px rgba(27, 45, 32, 0.12);
   --shadow-sm: 0 2px 10px rgba(27, 45, 32, 0.06);
   --scrim: rgba(16, 22, 18, 0.42);
@@ -30,7 +30,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --brand: #6cc493; --brand-ink: #08170f; --brand-soft: #18291f; --oil: #eda552; --oil-soft: #2d2215;
+    --brand: #a9b86a; --brand-ink: #141c0b; --brand-soft: #222a17; --oil: #c9d08a; --oil-soft: #2a2e1a;
     --bg: #0c100d; --surface: #151a16; --surface-2: #1d241f; --fg: #f0eee6; --muted: #a2a79b; --line: #283029;
     --danger: #ff8a80; --nav: rgba(12, 16, 13, 0.78); --shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3); --scrim: rgba(0, 0, 0, 0.62);
@@ -38,7 +38,7 @@
   }
 }
 :root[data-theme="dark"] {
-  --brand: #6cc493; --brand-ink: #08170f; --brand-soft: #18291f; --oil: #eda552; --oil-soft: #2d2215;
+  --brand: #a9b86a; --brand-ink: #141c0b; --brand-soft: #222a17; --oil: #c9d08a; --oil-soft: #2a2e1a;
   --bg: #0c100d; --surface: #151a16; --surface-2: #1d241f; --fg: #f0eee6; --muted: #a2a79b; --line: #283029;
   --danger: #ff8a80; --nav: rgba(12, 16, 13, 0.78); --shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
   --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3); --scrim: rgba(0, 0, 0, 0.62);
@@ -72,7 +72,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
 }
 .nav .wrap { display: flex; align-items: center; gap: 18px; height: 56px; }
 .brand { display: flex; align-items: center; gap: 9px; color: var(--fg); line-height: 1.15; }
-.brand svg { width: 30px; height: 30px; flex: none; }
+.brand svg { width: 42px; height: 42px; flex: none; }
 .brand b { display: block; font-size: 16px; font-weight: 700; }
 .brand small { display: block; font-size: 11px; color: var(--muted); }
 .nav-links { display: flex; gap: 24px; font-size: 14px; margin-inline-start: auto; }
@@ -220,16 +220,16 @@ section { padding-block: 48px; }
 /* ---------- AI band ---------- */
 .ai-band {
   border-radius: var(--r-xl); padding: clamp(28px, 5vw, 56px); color: #f4f1e8;
-  background: radial-gradient(70% 90% at 0% 100%, color-mix(in srgb, var(--oil) 35%, transparent), transparent 70%), #173f2c;
+  background: radial-gradient(70% 90% at 0% 100%, rgba(152,158,79,.45), transparent 70%), #2a3f18;
   display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;
 }
-.ai-band .eyebrow { color: #f2b766; }
+.ai-band .eyebrow { color: #c9cf8a; }
 .ai-band h2 { font-size: clamp(28px, 4vw, 40px); }
 .ai-band p { opacity: .8; margin: 10px 0 22px; }
-.ai-band .btn { background: #f4f1e8; color: #173f2c; }
+.ai-band .btn { background: #f0f0e5; color: #2a3f18; }
 .bubbles { display: grid; gap: 10px; font-size: 14.5px; }
 .bubbles span { padding: 10px 14px; border-radius: 18px; max-width: 85%; line-height: 1.5; }
-.bubbles .u { justify-self: start; background: #f2b766; color: #2a1a06; border-end-start-radius: 6px; }
+.bubbles .u { justify-self: start; background: #c9cf8a; color: #1f2b10; border-end-start-radius: 6px; }
 .bubbles .a { justify-self: end; background: rgba(255,255,255,.12); border-end-end-radius: 6px; }
 @media (max-width: 760px) { .ai-band { grid-template-columns: 1fr; } }
 
