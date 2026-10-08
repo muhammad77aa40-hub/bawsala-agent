@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>معصرة الرافدين</title>
+<meta name="description" content="زيوت طبيعية، أعشاب، وعناية بالشعر والبشرة من معصرة الرافدين في بغداد. اطلب أونلاين والتوصيل لكل العراق.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Apple-style store. Single centered column (max 1080px), glass nav, big quiet headlines,
+   soft tinted product tiles, sheets that slide up from the bottom, one herb-green accent. */
+:root {
+  --bg: #fbfbf9;
+  --surface: #ffffff;
+  --surface-2: #f2f2ee;
+  --fg: #1d1d1f;
+  --muted: #6e6e69;
+  --line: #e3e3de;
+  --accent: #2f6b4f;
+  --accent-fg: #ffffff;
+  --accent-soft: #e6efe9;
+  --gold: #a8741e;
+  --nav: rgba(251, 251, 249, 0.78);
+  --shadow: 0 10px 40px rgba(30, 40, 30, 0.10);
+  --scrim: rgba(20, 22, 20, 0.38);
+
+  --font: 'IBM Plex Sans Arabic', 'SF Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, sans-serif;
+  --r-lg: 28px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --wrap: 1080px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0c0b; --surface: #161816; --surface-2: #1e211f; --fg: #f3f3ef; --muted: #a2a59f;
+    --line: #2b2e2b; --accent: #6fc496; --accent-fg: #0b1a12; --accent-soft: #1b2b22; --gold: #d9a54a;
+    --nav: rgba(11, 12, 11, 0.72); --shadow: 0 10px 40px rgba(0, 0, 0, 0.5); --scrim: rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c0b; --surface: #161816; --surface-2: #1e211f; --fg: #f3f3ef; --muted: #a2a59f;
+  --line: #2b2e2b; --accent: #6fc496; --accent-fg: #0b1a12; --accent-soft: #1b2b22; --gold: #d9a54a;
+  --nav: rgba(11, 12, 11, 0.72); --shadow: 0 10px 40px rgba(0, 0, 0, 0.5); --scrim: rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font);
+  font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--accent); text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* demo ribbon */
+.demo { background: var(--surface-2); color: var(--muted); font-size: 12.5px; text-align: center; padding: 6px 16px; }
+
+/* nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; gap: 20px; height: 52px; }
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--fg); font-size: 17px; }
+.brand svg { width: 22px; height: 22px; color: var(--accent); }
+.nav-links { display: flex; gap: 22px; font-size: 13.5px; margin-inline-start: auto; }
+.nav-links a { color: var(--fg); opacity: .8; }
+.nav-links a:hover { opacity: 1; }
+.icon-btn {
+  position: relative; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  border: 0; background: transparent; color: var(--fg);
+}
+.icon-btn:hover { background: var(--surface-2); }
+.icon-btn svg { width: 20px; height: 20px; }
+.count {
+  position: absolute; top: 2px; inset-inline-end: 0; min-width: 17px; height: 17px; padding: 0 4px;
+  border-radius: 9px; background: var(--accent); color: var(--accent-fg); font-size: 11px; font-weight: 600;
+  display: grid; place-items: center; line-height: 1;
+}
+@media (max-width: 720px) { .nav-links { display: none; } .nav .wrap > .brand { margin-inline-end: auto; } }
+
+/* hero */
+.hero { text-align: center; padding-block: 64px 24px; }
+.eyebrow { color: var(--gold); font-weight: 600; font-size: 15px; }
+.hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 700; line-height: 1.12; margin-top: 8px; }
+.hero p { color: var(--muted); font-size: clamp(17px, 2.2vw, 21px); max-width: 34ch; margin: 14px auto 0; }
+.ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+.btn {
+  border: 0; border-radius: 999px; padding: 11px 22px; font-weight: 500; font-size: 16px;
+  background: var(--accent); color: var(--accent-fg); display: inline-flex; align-items: center; gap: 8px;
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: scale(.98); }
+.btn.ghost { background: transparent; color: var(--accent); padding-inline: 8px; }
+.btn.ghost::after { content: '‹'; font-size: 20px; line-height: 1; }
+.btn.block { width: 100%; justify-content: center; padding-block: 14px; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+.hero-stage {
+  margin: 40px auto 0; max-width: 900px; border-radius: var(--r-lg); overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 100%, color-mix(in srgb, var(--accent) 22%, var(--surface)) 0%, var(--surface) 70%);
+  display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 3vw, 28px); padding: 40px 20px 0; min-height: 300px;
+}
+.hero-stage svg { height: clamp(150px, 26vw, 250px); width: auto; filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)); }
+.hero-stage svg:nth-child(2) { height: clamp(190px, 33vw, 310px); }
+
+/* sections */
+section { padding-block: 56px; }
+.sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.sec-head h2 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+.sec-head p { color: var(--muted); margin: 4px 0 0; }
+
+/* category chips */
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; margin-bottom: 22px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
+  padding: 7px 16px; font-size: 14.5px; white-space: nowrap;
+}
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.search {
+  display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 14px; min-width: 0; flex: 0 1 280px;
+}
+.search svg { width: 17px; height: 17px; color: var(--muted); flex: none; }
+.search input { border: 0; background: transparent; outline: 0; width: 100%; min-width: 0; font-size: 15px; }
+
+/* product grid */
+#setsGrid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.card {
+  background: var(--surface); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column;
+  border: 0; padding: 0; text-align: start; transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.card .art { aspect-ratio: 4 / 3.4; display: grid; place-items: center; position: relative; max-width: 100%; }
+.card .art svg { height: 72%; width: auto; filter: drop-shadow(0 10px 14px rgba(0,0,0,.16)); transition: transform .35s ease; }
+.card:hover .art svg { transform: scale(1.04); }
+.badge {
+  position: absolute; top: 12px; inset-inline-start: 12px; font-size: 12px; font-weight: 600;
+  color: var(--gold); background: var(--surface); padding: 3px 10px; border-radius: 999px;
+}
+.card .info { padding: 14px 16px 16px; display: grid; gap: 4px; flex: 1; }
+.card h3 { font-size: 17px; font-weight: 600; }
+.card .short { color: var(--muted); font-size: 14px; line-height: 1.5; min-height: 3em; }
+.card .row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.price { font-weight: 600; }
+.price small { font-weight: 400; color: var(--muted); font-size: 12px; margin-inline-start: 2px; }
+.add {
+  border: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+  display: grid; place-items: center; font-size: 22px; line-height: 1;
+}
+.add:hover { background: var(--accent); color: var(--accent-fg); }
+.empty { color: var(--muted); text-align: center; padding: 40px 0; grid-column: 1 / -1; }
+
+/* why */
+.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.why div { background: var(--surface); border-radius: var(--r-md); padding: 22px; }
+.why b { display: block; font-size: 30px; font-weight: 700; color: var(--accent); line-height: 1.2; }
+.why span { color: var(--muted); font-size: 14.5px; }
+
+/* AI promo band */
+.ai-band {
+  border-radius: var(--r-lg); background: var(--fg); color: var(--bg); padding: clamp(28px, 5vw, 56px);
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;
+}
+.ai-band h2 { font-size: clamp(28px, 4vw, 40px); }
+.ai-band p { opacity: .75; margin: 10px 0 20px; }
+.ai-band .btn { background: var(--bg); color: var(--fg); }
+.bubbles { display: grid; gap: 10px; font-size: 14.5px; }
+.bubbles span { padding: 10px 14px; border-radius: 18px; max-width: 85%; line-height: 1.5; }
+.bubbles .u { justify-self: start; background: var(--accent); color: var(--accent-fg); }
+.bubbles .a { justify-self: end; background: color-mix(in srgb, var(--bg) 14%, var(--fg)); }
+@media (max-width: 760px) { .ai-band { grid-template-columns: 1fr; } }
+
+/* branches */
+.branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.branch { background: var(--surface); border-radius: var(--r-md); padding: 22px; display: grid; gap: 6px; }
+.branch h3 { font-size: 19px; }
+.branch .meta { color: var(--muted); font-size: 14.5px; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding-block: 28px 100px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+footer .links { display: flex; gap: 18px; }
+
+/* sheets (product, cart, checkout) */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 40; opacity: 0; transition: opacity .25s; }
+.scrim.on { opacity: 1; }
+.sheet {
+  position: fixed; z-index: 50; inset-inline: 0; bottom: 0; margin-inline: auto; max-width: 760px;
+  max-height: 92vh; overflow-y: auto; background: var(--bg); border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 10px 22px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1);
+}
+.sheet.on { transform: none; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 4px auto 12px; }
+.sheet .close { position: absolute; top: 14px; inset-inline-end: 14px; background: var(--surface-2); }
+.sheet h2 { font-size: 26px; }
+
+.pd-art { border-radius: var(--r-md); display: grid; place-items: center; height: 260px; margin-bottom: 18px; }
+.pd-art svg { height: 80%; width: auto; filter: drop-shadow(0 14px 18px rgba(0,0,0,.18)); }
+.pd p { color: var(--muted); margin: 8px 0; }
+.pd h4 { margin: 18px 0 6px; font-size: 15px; }
+.pd ul { margin: 0; padding-inline-start: 20px; color: var(--muted); }
+.pd-buy { display: flex; gap: 12px; align-items: center; margin-top: 22px; position: sticky; bottom: 0; background: var(--bg); padding-top: 10px; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; }
+.qty button { border: 0; background: transparent; width: 36px; height: 38px; font-size: 18px; }
+.qty span { min-width: 22px; text-align: center; }
+
+.line { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.line .thumb { width: 64px; height: 64px; border-radius: 14px; display: grid; place-items: center; }
+.line .thumb svg { height: 80%; width: auto; }
+.line .nm { font-weight: 600; min-width: 0; }
+.line .sub { color: var(--muted); font-size: 13.5px; }
+.totals { display: grid; gap: 6px; margin: 16px 0; }
+.totals div { display: flex; justify-content: space-between; }
+.totals .grand { font-weight: 700; font-size: 18px; border-top: 1px solid var(--line); padding-top: 10px; }
+.hint { color: var(--muted); font-size: 13px; }
+
+.form { display: grid; gap: 12px; }
+.form label { display: grid; gap: 4px; font-size: 14px; font-weight: 500; }
+.form input, .form select, .form textarea {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 11px 14px; font-size: 16px; width: 100%;
+}
+.form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form .two { grid-template-columns: 1fr; } }
+.pay { display: flex; align-items: center; gap: 10px; background: var(--accent-soft); color: var(--accent); border-radius: var(--r-sm); padding: 12px 14px; font-weight: 500; }
+.err { color: #c0392b; font-size: 13.5px; }
+
+.done { text-align: center; padding: 20px 0; display: grid; gap: 10px; justify-items: center; }
+.done .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-size: 32px; }
+.done code { background: var(--surface-2); padding: 4px 10px; border-radius: 8px; font-size: 15px; direction: ltr; }
+
+/* assistant */
+.fab {
+  position: fixed; z-index: 35; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 20px;
+  border: 0; border-radius: 999px; background: var(--fg); color: var(--bg); padding: 12px 18px 12px 20px;
+  display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow); font-weight: 500;
+}
+.fab svg { width: 20px; height: 20px; }
+.chat {
+  position: fixed; z-index: 55; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 20px;
+  width: min(400px, calc(100vw - 40px)); height: min(600px, calc(100vh - 100px));
+  background: var(--bg); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; overflow: hidden; transform-origin: bottom right;
+  transform: scale(.92); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease;
+}
+.chat.on { transform: none; opacity: 1; pointer-events: auto; }
+.chat header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.chat header .av { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; }
+.chat header .av svg { width: 18px; height: 18px; }
+.chat header b { display: block; font-size: 15px; }
+.chat header small { color: var(--muted); font-size: 12px; }
+.chat header .icon-btn { margin-inline-start: auto; }
+.msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg { flex: none; max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.user { align-self: flex-start; background: var(--accent); color: var(--accent-fg); border-end-start-radius: 6px; }
+.msg.bot { align-self: flex-end; background: var(--surface-2); border-end-end-radius: 6px; }
+.msg.typing { color: var(--muted); }
+.recs { flex: none; align-self: stretch; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.rec { flex: none; width: 150px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; display: grid; gap: 4px; text-align: start; }
+.rec .mini { height: 80px; border-radius: 10px; display: grid; place-items: center; }
+.rec .mini svg { height: 80%; width: auto; }
+.rec b { font-size: 13.5px; font-weight: 600; }
+.rec .price { font-size: 13px; }
+.rec button { border: 0; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; padding: 5px 0; font-weight: 500; }
+.sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 16px 10px; }
+.sugg button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 13px; }
+.composer { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); }
+.composer input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 10px 16px; font-size: 15px; outline: 0; }
+.composer button { border: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; flex: none; }
+.composer button svg { width: 18px; height: 18px; transform: scaleX(-1); }
+
+.toast {
+  position: fixed; z-index: 70; top: calc(64px + env(safe-area-inset-top, 0px)); left: 50%; transform: translate(-50%, -20px);
+  background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 14px; opacity: 0;
+  transition: opacity .2s, transform .2s; pointer-events: none;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+
+</style>
+</head>
+<body>
+<div class="demo" id="demoNote">نسخة تجريبية: المنتجات والأسعار للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="معصرة الرافدين">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/><path d="M9.5 14.5c.4 1.4 1.4 2.3 2.8 2.5"/></svg>
+      الرافدين
+    </a>
+    <div class="nav-links">
+      <a href="#shop">المتجر</a>
+      <a href="#sets">الباكجات</a>
+      <a href="#assistant">المساعد الذكي</a>
+      <a href="#branches">فروعنا</a>
+    </div>
+    <button class="icon-btn" id="openSearch" aria-label="بحث">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+    </button>
+    <button class="icon-btn" id="openCart" aria-label="السلة">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+      <span class="count num" id="cartCount" hidden>0</span>
+    </button>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero wrap">
+    <div class="eyebrow">معصرة ومعشب الرافدين · بغداد</div>
+    <h1>الطبيعة، معصورة بعناية.</h1>
+    <p>زيوت وأعشاب وخلطات للشعر والبشرة، من المعصرة لباب بيتك بكل العراق.</p>
+    <div class="ctas">
+      <a class="btn" href="#shop">تسوّق الآن</a>
+      <button class="btn ghost" data-open-chat>اسأل المساعد شنو يناسبك</button>
+    </div>
+    <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
+  </header>
+
+  <section id="sets" class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>الباكجات.</h2>
+        <p>روتين كامل بسعر أقل. ابدأ من هنا إذا ما تعرف منين تبدي.</p>
+      </div>
+    </div>
+    <div class="grid" id="setsGrid"></div>
+  </section>
+
+  <section id="shop" class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>المتجر.</h2>
+        <p>كل منتجات المعصرة بمكان واحد.</p>
+      </div>
+      <label class="search" for="q">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off">
+      </label>
+    </div>
+    <div class="chips" id="chips" role="toolbar" aria-label="الأقسام"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="wrap">
+    <div class="why">
+      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
+      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
+      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
+      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
+    </div>
+  </section>
+
+  <section id="assistant" class="wrap">
+    <div class="ai-band">
+      <div>
+        <div class="eyebrow">مساعد الرافدين الذكي</div>
+        <h2>احجيله مشكلتك، يختارلك الروتين.</h2>
+        <p>تساقط؟ حبوب؟ بشرة جافة؟ المساعد يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك.</p>
+        <button class="btn" data-open-chat>ابدأ المحادثة</button>
+      </div>
+      <div class="bubbles" aria-hidden="true">
+        <span class="u">شعري يتساقط وعندي فراغات بالمقدمة</span>
+        <span class="a">من شنو صار التساقط؟ بعد ولادة، صبغ، لو موسمي؟ حتى أختارلك الأنسب.</span>
+        <span class="u">بعد الصبغ</span>
+        <span class="a">أنصحك بمجموعة الإنبات: الزيت ٣ مرات بالأسبوع ويه الشامبو. أضيفها للسلة؟</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches" class="wrap">
+    <div class="sec-head"><div><h2>فروعنا.</h2><p>تفضلوا زورونا، أو اطلبوا وإحنا نوصلكم.</p></div></div>
+    <div class="branches" id="branchList"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© معصرة الرافدين. نُعيد صياغة سحر الطبيعة في منتجاتنا.</span>
+    <span class="links">
+      <a href="https://www.instagram.com/alr.afidayn" target="_blank" rel="noopener">انستغرام</a>
+      <a href="https://www.facebook.com/alrafidaynn" target="_blank" rel="noopener">فيسبوك</a>
+      <span class="num" dir="ltr">+964 771 900 0650</span>
+    </span>
+  </div>
+</footer>
+
+<button class="fab" data-open-chat aria-label="افتح المساعد الذكي">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/><circle cx="12" cy="12" r="3"/></svg>
+  اسأل الرافدين
+</button>
+
+<div class="chat" id="chat" role="dialog" aria-label="مساعد الرافدين">
+  <header>
+    <div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/></svg></div>
+    <div><b>مساعد الرافدين</b><small id="agentMode">يرد فوراً</small></div>
+    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </header>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="sugg" id="sugg"></div>
+  <form class="composer" id="composer">
+    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off">
+    <button type="submit" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden>
+  <div class="grab"></div>
+  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="sheetBody"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// كتالوج معصرة الرافدين — يشتغل بالمتصفح (window.CATALOG) وبالسيرفر (require)
+// ملاحظة: الأسعار والمنتجات هنا تجريبية، تتبدّل بالأسعار الحقيقية من المعصرة.
+(function (root) {
+  const CATALOG = {
+    store: {
+      name: 'معصرة الرافدين',
+      tagline: 'نُعيد صياغة سحر الطبيعة في منتجاتنا',
+      phone: '+964 771 900 0650',
+      instagram: 'https://www.instagram.com/alr.afidayn',
+      facebook: 'https://www.facebook.com/alrafidaynn',
+      branches: [
+        { name: 'فرع البلديات', area: 'بغداد – البلديات', address: 'تقاطع الأمن العام، حي التجار، مجاور الأمير ماركت', hours: 'يومياً ١٠ صباحاً – ١١ مساءً' },
+        { name: 'فرع السيدية', area: 'بغداد – السيدية', address: 'الشارع التجاري، مجاور الكوخ', hours: 'يومياً ١٠ صباحاً – ١١ مساءً' }
+      ],
+      delivery: { baghdad: 5000, provinces: 7000, freeOver: 75000 },
+      governorates: ['بغداد', 'البصرة', 'نينوى', 'أربيل', 'النجف', 'كربلاء', 'بابل', 'الأنبار', 'ديالى', 'صلاح الدين', 'كركوك', 'واسط', 'ذي قار', 'ميسان', 'المثنى', 'القادسية', 'دهوك', 'السليمانية', 'حلبجة']
+    },
+
+    categories: [
+      { id: 'all', name: 'الكل' },
+      { id: 'sets', name: 'الباكجات' },
+      { id: 'hair-oil', name: 'زيوت الشعر' },
+      { id: 'hair-care', name: 'شامبو وعناية' },
+      { id: 'skin', name: 'البشرة' },
+      { id: 'body', name: 'الجسم' },
+      { id: 'herbs', name: 'الأعشاب' },
+      { id: 'pantry', name: 'العسل والزيوت الغذائية' }
+    ],
+
+    // shape: bottle | dropper | jar | soap | pouch | box | honey
+    products: [
+      {
+        id: 'growth-set', cat: 'sets', name: 'مجموعة الإنبات', shape: 'box', tint: '#2f6b4f',
+        price: 45000, badge: 'الأكثر طلباً',
+        short: 'زيت الإنبات + شامبو الإنبات. روتين كامل للتساقط والفراغات.',
+        desc: 'المجموعة اللي عرفنا بيها الناس. زيت الإنبات المكوّن من ١٥ عشبة وزيت طبيعي، ويه شامبو الإنبات الخالي من الكبريتات. نتائج واضحة ويه الاستمرار: تساقط أقل وفراغات أخف.',
+        ingredients: ['زيت الإنبات ١٢٠ مل', 'شامبو الإنبات ٢٥٠ مل', 'دليل الاستخدام'],
+        usage: 'الزيت ٣ مرات بالأسبوع على فروة الرأس ويترك ساعتين على الأقل، بعدين يغسل بالشامبو.',
+        tags: ['تساقط', 'فراغات', 'إنبات', 'شعر', 'صلع', 'تكثيف', 'قشرة']
+      },
+      {
+        id: 'skin-routine', cat: 'sets', name: 'روتين البشرة الطبيعي', shape: 'box', tint: '#b5654a',
+        price: 38000, badge: 'جديد',
+        short: 'صابونة + كريم + زيت الورد. ثلاث خطوات لبشرة صافية.',
+        desc: 'روتين يومي بسيط من ثلاث خطوات: تنظيف بالصابونة الطبيعية، ترطيب بكريم الرافدين، وزيت الورد للمساء. مناسب لأغلب أنواع البشرة.',
+        ingredients: ['صابونة الفحم والعسل', 'كريم الرافدين للبشرة ٥٠ غم', 'زيت الورد ٣٠ مل'],
+        usage: 'الصابونة صباح ومساء، الكريم بعد الغسل، وزيت الورد قطرتين قبل النوم.',
+        tags: ['بشرة', 'حبوب', 'بقع', 'تصبغات', 'ترطيب', 'جفاف', 'دهنية']
+      },
+      {
+        id: 'sheikh-blend', cat: 'sets', name: 'خلطة شيخ العطارين', shape: 'bottle', tint: '#7a4a1e',
+        price: 30000,
+        short: 'أكثر من ٤٠ زيت طبيعي و٣٠ عشبة. خلطة الرافدين الأصلية.',
+        desc: 'خلطتنا الخاصة للشعر: أكثر من ٤٠ نوع زيت طبيعي ١٠٠٪ وأكثر من ٣٠ نوع أعشاب، معصورة ومنقوعة على الطريقة التقليدية.',
+        ingredients: ['أكثر من ٤٠ زيت طبيعي', 'أكثر من ٣٠ عشبة'],
+        usage: 'مساج لفروة الرأس مرتين بالأسبوع ويترك طول الليل.',
+        tags: ['شعر', 'تساقط', 'تقوية', 'تطويل', 'خلطة']
+      },
+
+      { id: 'growth-oil', cat: 'hair-oil', name: 'زيت الإنبات', shape: 'dropper', tint: '#3d7a57', price: 25000, badge: '١٥ عشبة',
+        short: 'باكج من ١٥ عشبة وزيت طبيعي للفراغات والتساقط.',
+        desc: 'زيت الإنبات من معصرة الرافدين، مكوّن من ١٥ عشبة وزيت طبيعي. يغذّي البصيلات ويحفّز نمو الشعر بالفراغات.',
+        ingredients: ['إكليل الجبل', 'الحبة السوداء', 'الجرجير', 'الخروع', 'الحلبة', 'وأعشاب أخرى'],
+        usage: '٣ مرات بالأسبوع، مساج ٥ دقائق ويترك ساعتين أو طول الليل.',
+        tags: ['إنبات', 'فراغات', 'تساقط', 'شعر', 'صلع', 'لحية'] },
+      { id: 'anti-fall-oil', cat: 'hair-oil', name: 'زيت التساقط', shape: 'bottle', tint: '#4f6b2f', price: 20000,
+        short: 'يقلل التساقط ويقوّي الشعر من الجذور.',
+        desc: 'تركيبة مركّزة للتساقط الموسمي والتساقط الناتج عن الصبغ والسشوار.',
+        ingredients: ['زيت الخروع', 'زيت إكليل الجبل', 'زيت النعناع', 'زيت الحبة السوداء'],
+        usage: 'مرتين لثلاث بالأسبوع على فروة الرأس.',
+        tags: ['تساقط', 'تقوية', 'شعر', 'تقصف'] },
+      { id: 'rosemary-oil', cat: 'hair-oil', name: 'زيت إكليل الجبل', shape: 'dropper', tint: '#5b7f3a', price: 12000,
+        short: 'معصور على البارد. منشّط لفروة الرأس.',
+        desc: 'زيت إكليل الجبل (الروزماري) النقي، منشّط للدورة الدموية بفروة الرأس.',
+        ingredients: ['إكليل الجبل ١٠٠٪'],
+        usage: 'ينخلط ويه زيت حامل مثل اللوز أو جوز الهند.',
+        tags: ['روزماري', 'إكليل', 'شعر', 'تساقط', 'إنبات'] },
+      { id: 'blackseed-oil', cat: 'hair-oil', name: 'زيت الحبة السوداء', shape: 'bottle', tint: '#2b2b2b', price: 10000,
+        short: 'معصور بالمعصرة. للشعر والبشرة والاستعمال اليومي.',
+        desc: 'زيت حبة البركة معصور طازج بالمعصرة، بدون إضافات.',
+        ingredients: ['حبة سوداء ١٠٠٪'],
+        usage: 'للشعر: مساج لفروة الرأس. للبشرة: قطرات قليلة.',
+        tags: ['حبة سوداء', 'حبة البركة', 'شعر', 'مناعة'] },
+      { id: 'castor-oil', cat: 'hair-oil', name: 'زيت الخروع', shape: 'bottle', tint: '#b08a3e', price: 8000,
+        short: 'للرموش والحواجب واللحية والشعر.',
+        desc: 'زيت خروع نقي، كثيف ومغذّي، معروف لتكثيف الرموش والحواجب.',
+        ingredients: ['خروع ١٠٠٪'],
+        usage: 'بفرشاة نظيفة على الرموش والحواجب قبل النوم.',
+        tags: ['رموش', 'حواجب', 'لحية', 'تكثيف'] },
+
+      { id: 'growth-shampoo', cat: 'hair-care', name: 'شامبو الإنبات', shape: 'bottle', tint: '#6a8f72', price: 18000,
+        short: 'خالي من الكبريتات. يكمّل زيت الإنبات.',
+        desc: 'شامبو طبيعي لطيف ينظّف بدون ما يجفف، ويساعد على تقليل التساقط.',
+        ingredients: ['خلاصة الأعشاب', 'صبار', 'زيت الأرغان'],
+        usage: 'يوم بعد يوم، يترك دقيقتين قبل الشطف.',
+        tags: ['شامبو', 'تساقط', 'إنبات', 'قشرة'] },
+      { id: 'henna-mask', cat: 'hair-care', name: 'ماسك الحناء والأعشاب', shape: 'pouch', tint: '#8a5a2b', price: 9000,
+        short: 'تقوية ولمعان طبيعي بدون صبغ.',
+        desc: 'خليط حناء محايدة وأعشاب مطحونة، يقوّي الشعرة ويعطي لمعان.',
+        ingredients: ['حناء', 'سدر', 'آملا', 'حلبة'],
+        usage: 'يخلط ويه ماء دافي ويترك ساعة.',
+        tags: ['حناء', 'تقوية', 'لمعان', 'تقصف'] },
+      { id: 'hair-serum', cat: 'hair-care', name: 'سيروم الأطراف', shape: 'dropper', tint: '#c49a5a', price: 11000,
+        short: 'للتقصف والهيشان. خفيف وما يدهّن.',
+        desc: 'سيروم زيوت خفيف للأطراف المتقصفة والشعر الهايش.',
+        ingredients: ['أرغان', 'جوجوبا', 'لوز حلو'],
+        usage: 'قطرتين على الأطراف بعد الغسل.',
+        tags: ['تقصف', 'هيشان', 'أطراف', 'لمعان'] },
+
+      { id: 'face-cream', cat: 'skin', name: 'كريم الرافدين للبشرة', shape: 'jar', tint: '#d9a48f', price: 15000, badge: 'تجارب حقيقية',
+        short: 'ترطيب وتوحيد لون. خفيف ويمتص بسرعة.',
+        desc: 'كريم طبيعي يرطّب ويوحّد لون البشرة ويخفف آثار الحبوب.',
+        ingredients: ['زبدة الشيا', 'زيت الورد', 'صبار', 'فيتامين E'],
+        usage: 'صباح ومساء على بشرة نظيفة.',
+        tags: ['بشرة', 'ترطيب', 'بقع', 'تصبغات', 'آثار حبوب'] },
+      { id: 'charcoal-soap', cat: 'skin', name: 'صابونة الفحم والعسل', shape: 'soap', tint: '#3a3a3a', price: 6000,
+        short: 'للبشرة الدهنية والحبوب والرؤوس السوداء.',
+        desc: 'صابونة مصنوعة يدوياً بالفحم النشط والعسل الطبيعي، تنظّف المسامات بعمق.',
+        ingredients: ['فحم نشط', 'عسل', 'زيت زيتون', 'زيت جوز الهند'],
+        usage: 'رغوة على البشرة المبللة دقيقة وتشطف.',
+        tags: ['حبوب', 'دهنية', 'رؤوس سوداء', 'مسامات', 'صابون'] },
+      { id: 'rose-oil', cat: 'skin', name: 'زيت الورد', shape: 'dropper', tint: '#c46a7a', price: 14000,
+        short: 'نضارة ومكافحة للخطوط الدقيقة.',
+        desc: 'زيت الورد الدمشقي، يرجّع النضارة ويغذّي البشرة الجافة.',
+        ingredients: ['ورد دمشقي', 'زيت جوجوبا'],
+        usage: 'قطرتين قبل النوم.',
+        tags: ['نضارة', 'جفاف', 'تجاعيد', 'ورد'] },
+      { id: 'clay-mask', cat: 'skin', name: 'ماسك الطين المغربي', shape: 'jar', tint: '#9b7b62', price: 9000,
+        short: 'تنظيف عميق وتنقية للمسامات.',
+        desc: 'طين الغاسول المغربي ويه ماء الورد، تنظيف عميق مرة بالأسبوع.',
+        ingredients: ['طين الغاسول', 'ماء الورد'],
+        usage: 'مرة بالأسبوع، ١٠ دقائق ويغسل.',
+        tags: ['مسامات', 'دهنية', 'تنظيف', 'طين'] },
+
+      { id: 'almond-oil', cat: 'body', name: 'زيت اللوز الحلو', shape: 'bottle', tint: '#d1b07a', price: 9000,
+        short: 'ترطيب للجسم والشعر وحتى للأطفال.',
+        desc: 'زيت لوز حلو معصور على البارد، لطيف ومناسب للبشرة الحساسة.',
+        ingredients: ['لوز حلو ١٠٠٪'],
+        usage: 'بعد الشاور على البشرة الرطبة.',
+        tags: ['ترطيب', 'جسم', 'لوز', 'أطفال', 'تشققات'] },
+      { id: 'shea-butter', cat: 'body', name: 'زبدة الشيا الخام', shape: 'jar', tint: '#e0c99a', price: 10000,
+        short: 'للتشققات والجفاف الشديد.',
+        desc: 'زبدة شيا خام غير مكررة، للكعب والكوع والتشققات.',
+        ingredients: ['شيا خام ١٠٠٪'],
+        usage: 'كمية قليلة تدفّى بين الإيدين وتنمسح.',
+        tags: ['تشققات', 'جفاف', 'جسم', 'كعب'] },
+      { id: 'coconut-oil', cat: 'body', name: 'زيت جوز الهند', shape: 'jar', tint: '#cfd8d2', price: 8000,
+        short: 'متعدد الاستخدامات للجسم والشعر.',
+        desc: 'زيت جوز الهند البكر، للترطيب ولحمام الزيت للشعر.',
+        ingredients: ['جوز هند بكر ١٠٠٪'],
+        usage: 'للجسم بعد الشاور، وللشعر كحمام زيت.',
+        tags: ['جوز الهند', 'ترطيب', 'شعر', 'جسم'] },
+
+      { id: 'chamomile', cat: 'herbs', name: 'بابونج', shape: 'pouch', tint: '#d6b54a', price: 4000,
+        short: 'للنوم والهدوء والمعدة.',
+        desc: 'زهر البابونج المجفف، منقّى ومعبأ بالمعصرة.',
+        ingredients: ['بابونج ١٠٠٪ — ١٠٠ غم'],
+        usage: 'ملعقة بكوب ماي حار ٥ دقائق.',
+        tags: ['نوم', 'هدوء', 'معدة', 'أعشاب', 'شاي'] },
+      { id: 'zahourat', cat: 'herbs', name: 'زهورات عراقية', shape: 'pouch', tint: '#b0563d', price: 5000,
+        short: 'خلطة الشتاء للبرد والكحة.',
+        desc: 'خلطة زهورات تقليدية: ورد، بابونج، زوفا، يانسون وغيرها.',
+        ingredients: ['ورد', 'بابونج', 'زوفا', 'يانسون', 'ليمون بصرة'],
+        usage: 'ملعقة بكوب ماي حار مع عسل.',
+        tags: ['برد', 'كحة', 'شتاء', 'زهورات', 'أعشاب'] },
+      { id: 'fenugreek', cat: 'herbs', name: 'حلبة مطحونة', shape: 'pouch', tint: '#c9a24a', price: 3000,
+        short: 'للشعر وللاستعمال الغذائي.',
+        desc: 'حلبة مطحونة طازجة، تستعمل كماسك للشعر أو بالأكل.',
+        ingredients: ['حلبة ١٠٠٪ — ٢٥٠ غم'],
+        usage: 'ماسك: تخلط ويه زيت وتترك ساعة.',
+        tags: ['حلبة', 'شعر', 'أعشاب'] },
+      { id: 'turmeric', cat: 'herbs', name: 'كركم', shape: 'pouch', tint: '#d9902a', price: 3000,
+        short: 'كركم نقي مطحون بالمعصرة.',
+        desc: 'كركم مطحون طازج، للطبخ وللماسكات.',
+        ingredients: ['كركم ١٠٠٪ — ٢٥٠ غم'],
+        usage: 'بالطبخ أو ماسك بشرة ويه لبن.',
+        tags: ['كركم', 'أعشاب', 'بشرة'] },
+
+      { id: 'sidr-honey', cat: 'pantry', name: 'عسل السدر', shape: 'honey', tint: '#b8741a', price: 35000,
+        short: 'عسل سدر طبيعي مفحوص.',
+        desc: 'عسل سدر أصلي، كثيف وبطعم مميز.',
+        ingredients: ['عسل سدر ١٠٠٪ — ٥٠٠ غم'],
+        usage: 'ملعقة على الريق.',
+        tags: ['عسل', 'سدر', 'مناعة'] },
+      { id: 'mountain-honey', cat: 'pantry', name: 'عسل جبلي', shape: 'honey', tint: '#c98a2a', price: 25000,
+        short: 'من جبال كردستان.',
+        desc: 'عسل جبلي متعدد الأزهار من مناحل الشمال.',
+        ingredients: ['عسل جبلي ١٠٠٪ — ٥٠٠ غم'],
+        usage: 'ويه الزهورات أو على الريق.',
+        tags: ['عسل', 'جبلي'] },
+      { id: 'sesame-oil', cat: 'pantry', name: 'زيت السمسم', shape: 'bottle', tint: '#a8792e', price: 9000,
+        short: 'معصور طازج بالمعصرة قدامك.',
+        desc: 'زيت سمسم (شيرج) معصور على الحجر، للأكل وللشعر.',
+        ingredients: ['سمسم ١٠٠٪ — ٥٠٠ مل'],
+        usage: 'بالأكل أو كحمام زيت للشعر.',
+        tags: ['سمسم', 'شيرج', 'غذائي'] },
+      { id: 'olive-oil', cat: 'pantry', name: 'زيت الزيتون البكر', shape: 'bottle', tint: '#6b7a2a', price: 15000,
+        short: 'بكر ممتاز، عصرة أولى.',
+        desc: 'زيت زيتون بكر ممتاز، عصرة أولى على البارد.',
+        ingredients: ['زيتون ١٠٠٪ — ٧٥٠ مل'],
+        usage: 'للسلطات والأكل، وللبشرة والشعر.',
+        tags: ['زيتون', 'غذائي'] }
+    ]
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = CATALOG;
+  else root.CATALOG = CATALOG;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  const C = window.CATALOG;
+  const byId = Object.fromEntries(C.products.map(p => [p.id, p]));
+  const $ = s => document.querySelector(s);
+  const fmt = n => n.toLocaleString('ar-IQ') + ' د.ع';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } }
+  };
+
+  /* ---------- product art (inline SVG, tinted per product) ---------- */
+  let gid = 0;
+  function art(p) {
+    const t = p.tint, id = 'g' + (++gid);
+    const grad = `<defs><linearGradient id="${id}" x1="0" x2="1"><stop offset="0" stop-color="${t}"/><stop offset=".45" stop-color="${t}" stop-opacity=".82"/><stop offset="1" stop-color="${t}"/></linearGradient></defs>`;
+    const label = (x, y, w, h, fs) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="#fbfaf6"/><text x="${x + w / 2}" y="${y + h * .45}" font-size="${fs}" text-anchor="middle" fill="${t}" font-family="IBM Plex Sans Arabic, sans-serif" font-weight="700">الرافدين</text><text x="${x + w / 2}" y="${y + h * .78}" font-size="${fs * .62}" text-anchor="middle" fill="#6e6e69" font-family="IBM Plex Sans Arabic, sans-serif"${p.name.length > 9 ? ` textLength="${w * .86}" lengthAdjust="spacingAndGlyphs"` : ''}>${esc(p.name)}</text>`;
+    const shapes = {
+      bottle: `<svg viewBox="0 0 100 220">${grad}<rect x="38" y="4" width="24" height="26" rx="4" fill="#2a2a28"/><rect x="41" y="28" width="18" height="18" fill="${t}" opacity=".9"/><path d="M41 46h18c0 10 21 14 21 34v120a14 14 0 0 1-14 14H34a14 14 0 0 1-14-14V80c0-20 21-24 21-34Z" fill="url(#${id})"/><rect x="26" y="88" width="6" height="104" rx="3" fill="#fff" opacity=".25"/>${label(30, 112, 40, 54, 9)}</svg>`,
+      dropper: `<svg viewBox="0 0 100 200">${grad}<ellipse cx="50" cy="18" rx="12" ry="15" fill="#2a2a28"/><rect x="36" y="30" width="28" height="22" rx="3" fill="#b9975b"/><rect x="26" y="52" width="48" height="140" rx="12" fill="url(#${id})"/><rect x="31" y="60" width="5" height="120" rx="2.5" fill="#fff" opacity=".25"/>${label(32, 96, 36, 50, 8)}</svg>`,
+      jar: `<svg viewBox="0 0 140 140">${grad}<rect x="24" y="14" width="92" height="26" rx="6" fill="#2a2a28"/><rect x="16" y="38" width="108" height="92" rx="20" fill="url(#${id})"/><rect x="24" y="48" width="6" height="70" rx="3" fill="#fff" opacity=".25"/>${label(40, 60, 60, 48, 11)}</svg>`,
+      soap: `<svg viewBox="0 0 180 110">${grad}<rect x="10" y="22" width="160" height="76" rx="26" fill="url(#${id})"/><rect x="18" y="16" width="144" height="70" rx="22" fill="${t}"/><text x="90" y="58" font-size="18" text-anchor="middle" fill="#fff" opacity=".55" font-family="IBM Plex Sans Arabic, sans-serif" font-weight="700">الرافدين</text></svg>`,
+      pouch: `<svg viewBox="0 0 120 170">${grad}<path d="M18 22h84l6 136a8 8 0 0 1-8 8H20a8 8 0 0 1-8-8Z" fill="#c9a77a"/><rect x="18" y="10" width="84" height="18" rx="3" fill="#b8956a"/><rect x="22" y="14" width="76" height="3" fill="#9b7b52"/><rect x="28" y="60" width="64" height="78" rx="6" fill="url(#${id})"/>${label(34, 72, 52, 52, 10)}</svg>`,
+      box: `<svg viewBox="0 0 170 150">${grad}<path d="M20 44 85 20l65 24-65 24Z" fill="${t}" opacity=".75"/><path d="M20 44v76l65 26V68Z" fill="url(#${id})"/><path d="M150 44v76l-65 26V68Z" fill="${t}"/><path d="M150 44v76l-65 26V68Z" fill="#000" opacity=".18"/>${label(30, 74, 46, 42, 9)}<rect x="96" y="80" width="40" height="5" rx="2" fill="#fff" opacity=".4"/><rect x="96" y="92" width="28" height="5" rx="2" fill="#fff" opacity=".3"/></svg>`,
+      honey: `<svg viewBox="0 0 130 160">${grad}<rect x="34" y="8" width="62" height="22" rx="5" fill="#2a2a28"/><path d="M28 30h74l12 22v86a14 14 0 0 1-14 14H30a14 14 0 0 1-14-14V52Z" fill="url(#${id})"/><rect x="24" y="58" width="6" height="74" rx="3" fill="#fff" opacity=".3"/>${label(36, 72, 58, 48, 10)}</svg>`
+    };
+    return shapes[p.shape] || shapes.bottle;
+  }
+  const tileBg = p => `background: color-mix(in srgb, ${p.tint} 14%, var(--surface-2))`;
+
+  /* ---------- catalog rendering ---------- */
+  let activeCat = 'all', query = '';
+  const norm = s => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
+
+  function card(p) {
+    return `<article class="card" data-id="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}">
+      <div class="art" style="${tileBg(p)}">${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}${art(p)}</div>
+      <div class="info"><h3>${esc(p.name)}</h3><div class="short">${esc(p.short)}</div>
+        <div class="row"><span class="price num">${fmt(p.price)}</span><button class="add" data-add="${p.id}" aria-label="أضف ${esc(p.name)} للسلة">+</button></div>
+      </div></article>`;
+  }
+  function renderGrid() {
+    const q = norm(query.trim());
+    const list = C.products.filter(p =>
+      (activeCat === 'all' || p.cat === activeCat) &&
+      (!q || norm([p.name, p.short, p.desc, ...p.tags].join(' ')).includes(q)));
+    $('#grid').innerHTML = list.map(card).join('') || `<div class="empty">ما لقينا شي بهالاسم. جرّب تسأل المساعد الذكي.</div>`;
+  }
+  $('#chips').innerHTML = C.categories.map(c => `<button class="chip" data-cat="${c.id}" aria-pressed="${c.id === 'all'}">${esc(c.name)}</button>`).join('');
+  $('#chips').addEventListener('click', e => {
+    const b = e.target.closest('[data-cat]'); if (!b) return;
+    activeCat = b.dataset.cat;
+    document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+    renderGrid();
+  });
+  $('#q').addEventListener('input', e => { query = e.target.value; renderGrid(); });
+  $('#openSearch').addEventListener('click', () => { $('#shop').scrollIntoView(); setTimeout(() => $('#q').focus(), 300); });
+
+  $('#setsGrid').innerHTML = C.products.filter(p => p.cat === 'sets').map(card).join('');
+  $('#heroStage').innerHTML = ['growth-oil', 'growth-set', 'face-cream'].map(id => art(byId[id])).join('');
+  $('#branchList').innerHTML = C.store.branches.map(b => `<div class="branch"><h3>${esc(b.name)}</h3><div>${esc(b.area)}</div><div class="meta">${esc(b.address)}</div><div class="meta">${esc(b.hours)}</div></div>`).join('');
+  renderGrid();
+
+  document.addEventListener('click', e => {
+    const add = e.target.closest('[data-add]');
+    if (add) { e.stopPropagation(); addToCart(add.dataset.add, 1); return; }
+    const c = e.target.closest('.card');
+    if (c) openProduct(c.dataset.id);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.classList?.contains('card')) openProduct(e.target.dataset.id);
+    if (e.key === 'Escape') { closeSheet(); toggleChat(false); }
+  });
+
+  /* ---------- sheet ---------- */
+  function openSheet(html) {
+    $('#sheetBody').innerHTML = html;
+    $('#sheet').hidden = false; $('#scrim').hidden = false;
+    requestAnimationFrame(() => { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); });
+    $('#sheet').scrollTop = 0;
+  }
+  function closeSheet() {
+    $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on');
+    setTimeout(() => { if (!$('#sheet').classList.contains('on')) { $('#sheet').hidden = true; $('#scrim').hidden = true; } }, 320);
+  }
+  $('#closeSheet').addEventListener('click', closeSheet);
+  $('#scrim').addEventListener('click', closeSheet);
+
+  function openProduct(id) {
+    const p = byId[id]; if (!p) return;
+    let qty = 1;
+    openSheet(`<div class="pd">
+      <div class="pd-art" style="${tileBg(p)}">${art(p)}</div>
+      ${p.badge ? `<div class="eyebrow">${esc(p.badge)}</div>` : ''}
+      <h2>${esc(p.name)}</h2>
+      <div class="price num" style="font-size:20px;margin-top:4px">${fmt(p.price)}</div>
+      <p>${esc(p.desc)}</p>
+      <h4>المكونات</h4><ul>${p.ingredients.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+      <h4>طريقة الاستخدام</h4><p>${esc(p.usage)}</p>
+      <div class="pd-buy">
+        <div class="qty"><button data-q="1" aria-label="زيادة">+</button><span class="num" id="pq">١</span><button data-q="-1" aria-label="نقصان">−</button></div>
+        <button class="btn block" id="pdAdd">أضف للسلة</button>
+      </div></div>`);
+    $('#sheetBody').querySelectorAll('[data-q]').forEach(b => b.onclick = () => {
+      qty = Math.max(1, qty + Number(b.dataset.q)); $('#pq').textContent = qty.toLocaleString('ar-IQ');
+    });
+    $('#pdAdd').onclick = () => { addToCart(id, qty); closeSheet(); };
+  }
+
+  /* ---------- cart ---------- */
+  let cart = store.get('rafidain.cart', []);
+  const saveCart = () => { store.set('rafidain.cart', cart); renderCount(); };
+  function renderCount() {
+    const n = cart.reduce((a, l) => a + l.qty, 0);
+    $('#cartCount').hidden = n === 0; $('#cartCount').textContent = n.toLocaleString('ar-IQ');
+  }
+  function addToCart(id, qty = 1, silent) {
+    if (!byId[id]) return;
+    const l = cart.find(x => x.id === id);
+    if (l) l.qty += qty; else cart.push({ id, qty });
+    saveCart();
+    if (!silent) toast(`انضاف ${byId[id].name} للسلة`);
+  }
+  function totals(gov) {
+    const sub = cart.reduce((a, l) => a + byId[l.id].price * l.qty, 0);
+    const d = C.store.delivery;
+    const fee = sub === 0 || sub >= d.freeOver ? 0 : (gov && gov !== 'بغداد' ? d.provinces : d.baghdad);
+    return { sub, fee, total: sub + fee };
+  }
+  function openCart() {
+    if (!cart.length) {
+      openSheet(`<div class="done"><h2>السلة فارغة</h2><p class="hint">تصفح المتجر، أو خلّي المساعد يختارلك.</p><button class="btn" id="goShop">تسوّق الآن</button></div>`);
+      $('#goShop').onclick = () => { closeSheet(); $('#shop').scrollIntoView(); };
+      return;
+    }
+    const t = totals('بغداد');
+    openSheet(`<h2>سلتك</h2>
+      <div>${cart.map(l => { const p = byId[l.id]; return `<div class="line">
+        <div class="thumb" style="${tileBg(p)}">${art(p)}</div>
+        <div style="min-width:0"><div class="nm">${esc(p.name)}</div><div class="sub num">${fmt(p.price)}</div></div>
+        <div class="qty"><button data-inc="${p.id}" aria-label="زيادة">+</button><span class="num">${l.qty.toLocaleString('ar-IQ')}</span><button data-dec="${p.id}" aria-label="نقصان">−</button></div>
+      </div>`; }).join('')}</div>
+      <div class="totals num">
+        <div><span>المجموع</span><span>${fmt(t.sub)}</span></div>
+        <div><span>التوصيل (بغداد)</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div>
+        <div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>
+      </div>
+      <p class="hint">التوصيل مجاني للطلبات فوق ${fmt(C.store.delivery.freeOver)}. المحافظات ${fmt(C.store.delivery.provinces)}.</p>
+      <button class="btn block" id="toCheckout">أكمل الطلب</button>`);
+    $('#sheetBody').querySelectorAll('[data-inc],[data-dec]').forEach(b => b.onclick = () => {
+      const id = b.dataset.inc || b.dataset.dec, l = cart.find(x => x.id === id);
+      l.qty += b.dataset.inc ? 1 : -1;
+      if (l.qty <= 0) cart = cart.filter(x => x !== l);
+      saveCart(); openCart();
+    });
+    $('#toCheckout').onclick = openCheckout;
+  }
+  $('#openCart').addEventListener('click', openCart);
+
+  function openCheckout() {
+    const prev = store.get('rafidain.customer', {});
+    openSheet(`<h2>معلومات التوصيل</h2>
+      <form class="form" id="checkout" novalidate style="margin-top:14px">
+        <div class="two">
+          <label for="cName">الاسم<input id="cName" required value="${esc(prev.name || '')}" autocomplete="name"></label>
+          <label for="cPhone">رقم الهاتف<input id="cPhone" required inputmode="tel" dir="ltr" placeholder="07XX XXX XXXX" value="${esc(prev.phone || '')}" autocomplete="tel"></label>
+        </div>
+        <div class="two">
+          <label for="cGov">المحافظة<select id="cGov">${C.store.governorates.map(g => `<option ${g === (prev.gov || 'بغداد') ? 'selected' : ''}>${g}</option>`).join('')}</select></label>
+          <label for="cArea">المنطقة<input id="cArea" required placeholder="مثال: المنصور" value="${esc(prev.area || '')}"></label>
+        </div>
+        <label for="cAddr">أقرب نقطة دالة<input id="cAddr" placeholder="مثال: قرب جامع…" value="${esc(prev.addr || '')}"></label>
+        <label for="cNote">ملاحظات<textarea id="cNote" rows="2" placeholder="اختياري"></textarea></label>
+        <div class="pay">الدفع نقداً عند الاستلام</div>
+        <div class="totals num" id="coTotals"></div>
+        <div class="err" id="coErr" hidden></div>
+        <button class="btn block" id="placeOrder" type="submit">تأكيد الطلب</button>
+      </form>`);
+    const upd = () => {
+      const t = totals($('#cGov').value);
+      $('#coTotals').innerHTML = `<div><span>المنتجات</span><span>${fmt(t.sub)}</span></div><div><span>التوصيل</span><span>${t.fee ? fmt(t.fee) : 'مجاني'}</span></div><div class="grand"><span>الكلي</span><span>${fmt(t.total)}</span></div>`;
+    };
+    $('#cGov').onchange = upd; upd();
+    $('#checkout').onsubmit = async e => {
+      e.preventDefault();
+      const c = { name: $('#cName').value.trim(), phone: $('#cPhone').value.replace(/\s/g, ''), gov: $('#cGov').value, area: $('#cArea').value.trim(), addr: $('#cAddr').value.trim(), note: $('#cNote').value.trim() };
+      const err = !c.name ? 'اكتب الاسم.' : !/^(\+?964|0)7\d{9}$/.test(c.phone) ? 'رقم الهاتف لازم يبدي بـ 07 ويكون ١١ رقم.' : !c.area ? 'اكتب المنطقة.' : '';
+      if (err) { $('#coErr').textContent = err; $('#coErr').hidden = false; return; }
+      store.set('rafidain.customer', c);
+      $('#placeOrder').disabled = true; $('#placeOrder').textContent = 'جاري الإرسال…';
+      const t = totals(c.gov);
+      const order = { customer: c, items: cart.map(l => ({ id: l.id, name: byId[l.id].name, qty: l.qty, price: byId[l.id].price })), ...t };
+      let id;
+      try {
+        const r = await fetch('api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(order) });
+        if (!r.ok) throw 0; id = (await r.json()).id;
+      } catch { id = 'RF-' + Date.now().toString().slice(-6); }  // preview mode: no server
+      const orders = store.get('rafidain.orders', []); orders.unshift({ id, at: Date.now(), total: t.total }); store.set('rafidain.orders', orders.slice(0, 20));
+      cart = []; saveCart();
+      openSheet(`<div class="done"><div class="tick">✓</div><h2>وصلنا طلبك</h2>
+        <p class="hint">رقم الطلب</p><code>${esc(id)}</code>
+        <p class="hint" style="max-width:34ch">راح نتصل بيك على <span dir="ltr">${esc(c.phone)}</span> حتى نأكد الطلب. التوصيل خلال ٢٤–٤٨ ساعة.</p>
+        <button class="btn" id="doneBtn">تمام</button></div>`);
+      $('#doneBtn').onclick = closeSheet;
+    };
+  }
+
+  let toastT;
+  function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 1800); }
+  renderCount();
+
+  /* ---------- AI assistant ---------- */
+  const history = [];
+  const msgs = $('#msgs');
+  function toggleChat(on) {
+    $('#chat').classList.toggle('on', on);
+    if (on) { if (!msgs.children.length) greet(); setTimeout(() => $('#chatInput').focus(), 200); }
+  }
+  document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => toggleChat(true)));
+  $('#closeChat').addEventListener('click', () => toggleChat(false));
+
+  function bubble(text, who) {
+    const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = text; msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight; return d;
+  }
+  function recs(ids) {
+    const list = ids.map(id => byId[id]).filter(Boolean); if (!list.length) return;
+    const d = document.createElement('div'); d.className = 'recs';
+    d.innerHTML = list.map(p => `<div class="rec"><div class="mini" style="${tileBg(p)}">${art(p)}</div><b>${esc(p.name)}</b><span class="price num">${fmt(p.price)}</span><button data-add="${p.id}">أضف للسلة</button></div>`).join('');
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function suggestions(list) {
+    $('#sugg').innerHTML = list.map(s => `<button type="button">${esc(s)}</button>`).join('');
+  }
+  $('#sugg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) send(b.textContent); });
+  function greet() {
+    bubble('هلا بيك بمعصرة الرافدين. آني مساعدك الذكي.\nاحجيلي شنو تحتاج: مشكلة بالشعر، البشرة، أعشاب، لو تريد تطلب مباشرة.', 'bot');
+    suggestions(['شعري يتساقط', 'عندي حبوب بالوجه', 'شنو أفضل باكج؟', 'وين فروعكم؟']);
+  }
+
+  let lastRecs = [];
+  async function send(text) {
+    text = text.trim(); if (!text) return;
+    bubble(text, 'user'); suggestions([]);
+    history.push({ role: 'user', content: text });
+    const typing = bubble('يكتب…', 'bot typing');
+    let res;
+    try {
+      const r = await fetch('api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history.slice(-16), cart }) });
+      if (!r.ok) throw 0; res = await r.json();
+      $('#agentMode').textContent = 'مدعوم بالذكاء الاصطناعي';
+    } catch {
+      await new Promise(r => setTimeout(r, 450));
+      res = localAgent(text);  // preview mode: no server, use the built-in rules
+      $('#agentMode').textContent = 'وضع تجريبي';
+    }
+    typing.remove();
+    bubble(res.reply, 'bot');
+    history.push({ role: 'assistant', content: res.reply });
+    if (res.products?.length) { recs(res.products); lastRecs = res.products; }
+    (res.actions || []).forEach(a => {
+      if (a.type === 'add') addToCart(a.id, a.qty || 1);
+      if (a.type === 'open_cart') { toggleChat(false); openCart(); }
+      if (a.type === 'checkout') { toggleChat(false); cart.length ? openCheckout() : openCart(); }
+    });
+    if (res.suggestions?.length) suggestions(res.suggestions);
+  }
+  $('#composer').addEventListener('submit', e => { e.preventDefault(); const i = $('#chatInput'); send(i.value); i.value = ''; });
+
+  // Rule-based fallback so the assistant still works without the AI server (preview / offline).
+  function localAgent(raw) {
+    const t = norm(raw), has = (...w) => w.some(x => t.includes(norm(x)));
+    const S = C.store;
+    if (has('اي', 'نعم', 'ضيف', 'اضيف', 'أضف', 'زين', 'تمام', 'اوكي') && lastRecs.length && t.length < 20)
+      return { reply: `ضفت ${byId[lastRecs[0]].name} للسلة. تريد تكمل الطلب هسه؟`, actions: [{ type: 'add', id: lastRecs[0] }], suggestions: ['أكمل الطلب', 'أريد شي ثاني'] };
+    if (has('اكمل', 'أكمل', 'اطلب', 'الطلب', 'السله', 'سلة'))
+      return { reply: 'تمام، فتحتلك صفحة الطلب. الدفع عند الاستلام والتوصيل خلال ٢٤–٤٨ ساعة.', actions: [{ type: 'checkout' }] };
+    if (has('تساقط', 'فراغ', 'صلع', 'انبات', 'خفيف', 'يطيح'))
+      return { reply: 'للتساقط والفراغات أنصحك بمجموعة الإنبات: زيت الإنبات (١٥ عشبة) ويه الشامبو.\nالزيت ٣ مرات بالأسبوع ويترك ساعتين، والنتيجة تبين ويه الاستمرار من ٦–٨ أسابيع.\nإذا التساقط بعد صبغ أو سشوار، زيت التساقط يفيد هم.', products: ['growth-set', 'growth-oil', 'anti-fall-oil'], suggestions: ['ضيف المجموعة', 'شكد التوصيل؟'] };
+    if (has('حبوب', 'دهني', 'رؤوس', 'مسامات', 'حب الشباب'))
+      return { reply: 'للبشرة الدهنية والحبوب: صابونة الفحم والعسل صباح ومساء، وماسك الطين مرة بالأسبوع.\nإذا تريد روتين كامل، باكج روتين البشرة أوفر.', products: ['charcoal-soap', 'clay-mask', 'skin-routine'], suggestions: ['ضيف الصابونة', 'بشرتي جافة'] };
+    if (has('جاف', 'جفاف', 'نضار', 'بقع', 'تصبغ', 'تجاعيد', 'بشرة', 'بشرتي'))
+      return { reply: 'للبشرة الجافة والبقع: كريم الرافدين للبشرة صباح ومساء، وزيت الورد قطرتين قبل النوم.', products: ['face-cream', 'rose-oil', 'skin-routine'], suggestions: ['ضيف الكريم', 'شنو أفضل باكج؟'] };
+    if (has('رموش', 'حواجب', 'لحيه', 'لحية'))
+      return { reply: 'للرموش والحواجب زيت الخروع بفرشاة قبل النوم. وللحية زيت الإنبات يفيد للفراغات.', products: ['castor-oil', 'growth-oil'] };
+    if (has('تقصف', 'هيشان', 'اطراف', 'لمعان'))
+      return { reply: 'للتقصف والهيشان: سيروم الأطراف بعد الغسل، وماسك الحناء والأعشاب مرة بالأسبوع.', products: ['hair-serum', 'henna-mask'] };
+    if (has('تشقق', 'كعب', 'جسم'))
+      return { reply: 'للجسم والتشققات: زبدة الشيا الخام للمناطق الجافة، وزيت اللوز الحلو بعد الشاور.', products: ['shea-butter', 'almond-oil'] };
+    if (has('برد', 'كحه', 'كحة', 'زكام', 'شتاء'))
+      return { reply: 'للبرد والكحة: زهورات عراقية ويه ملعقة عسل جبلي. صحتين.', products: ['zahourat', 'mountain-honey'] };
+    if (has('نوم', 'ارق', 'توتر', 'هدوء'))
+      return { reply: 'للنوم والهدوء: كوب بابونج قبل النوم بنص ساعة.', products: ['chamomile'] };
+    if (has('عسل')) return { reply: 'عدنا عسل السدر وعسل جبلي من كردستان.', products: ['sidr-honey', 'mountain-honey'] };
+    if (has('باكج', 'مجموعه', 'افضل', 'أفضل', 'عرض'))
+      return { reply: 'أكثر شي ينطلب عدنا مجموعة الإنبات للشعر. وإذا مهتم بالبشرة، روتين البشرة الطبيعي. وخلطة شيخ العطارين هي خلطتنا الأصلية.', products: ['growth-set', 'skin-routine', 'sheikh-blend'] };
+    if (has('وين', 'فرع', 'عنوان', 'موقع', 'مكان'))
+      return { reply: S.branches.map(b => `${b.name}: ${b.area}، ${b.address}`).join('\n') + `\nللتواصل: ${S.phone}`, suggestions: ['شكد التوصيل؟'] };
+    if (has('توصيل', 'شكد', 'سعر', 'محافظ'))
+      return { reply: `التوصيل لبغداد ${fmt(S.delivery.baghdad)}، وللمحافظات ${fmt(S.delivery.provinces)}.\nمجاني للطلبات فوق ${fmt(S.delivery.freeOver)}. الدفع عند الاستلام.` };
+    if (has('هلا', 'سلام', 'مرحب', 'شلون'))
+      return { reply: 'هلا بيك وعليكم السلام. شلون أكدر أساعدك اليوم؟', suggestions: ['شعري يتساقط', 'عندي حبوب بالوجه', 'وين فروعكم؟'] };
+    const hits = C.products.filter(p => norm([p.name, ...p.tags].join(' ')).split(/\s+/).some(w => w.length > 2 && t.includes(w))).slice(0, 3);
+    if (hits.length) return { reply: 'هاي المنتجات اللي تناسب سؤالك:', products: hits.map(p => p.id) };
+    return { reply: `ما فهمت عليك زين. تكدر تحجيلي عن مشكلة بالشعر أو البشرة، أو تسأل عن منتج، أو تتصل بينا على ${S.phone}.`, suggestions: ['شعري يتساقط', 'بشرتي جافة', 'شنو أفضل باكج؟'] };
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "rafidain-store",
+  "version": "1.0.0",
+  "description": "متجر معصرة الرافدين مع مساعد ذكي",
+  "main": "server.js",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.132.1",
+    "express": "^5.2.1"
+  }
+}

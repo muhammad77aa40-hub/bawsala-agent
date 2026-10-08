@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>معصرة الرافدين</title>
+<meta name="description" content="زيوت طبيعية، أعشاب، وعناية بالشعر والبشرة من معصرة الرافدين في بغداد. اطلب أونلاين والتوصيل لكل العراق.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="demo" id="demoNote">نسخة تجريبية: المنتجات والأسعار للعرض وتتبدل بأسعار المعصرة الحقيقية.</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="معصرة الرافدين">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/><path d="M9.5 14.5c.4 1.4 1.4 2.3 2.8 2.5"/></svg>
+      الرافدين
+    </a>
+    <div class="nav-links">
+      <a href="#shop">المتجر</a>
+      <a href="#sets">الباكجات</a>
+      <a href="#assistant">المساعد الذكي</a>
+      <a href="#branches">فروعنا</a>
+    </div>
+    <button class="icon-btn" id="openSearch" aria-label="بحث">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+    </button>
+    <button class="icon-btn" id="openCart" aria-label="السلة">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+      <span class="count num" id="cartCount" hidden>0</span>
+    </button>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero wrap">
+    <div class="eyebrow">معصرة ومعشب الرافدين · بغداد</div>
+    <h1>الطبيعة، معصورة بعناية.</h1>
+    <p>زيوت وأعشاب وخلطات للشعر والبشرة، من المعصرة لباب بيتك بكل العراق.</p>
+    <div class="ctas">
+      <a class="btn" href="#shop">تسوّق الآن</a>
+      <button class="btn ghost" data-open-chat>اسأل المساعد شنو يناسبك</button>
+    </div>
+    <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
+  </header>
+
+  <section id="sets" class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>الباكجات.</h2>
+        <p>روتين كامل بسعر أقل. ابدأ من هنا إذا ما تعرف منين تبدي.</p>
+      </div>
+    </div>
+    <div class="grid" id="setsGrid"></div>
+  </section>
+
+  <section id="shop" class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>المتجر.</h2>
+        <p>كل منتجات المعصرة بمكان واحد.</p>
+      </div>
+      <label class="search" for="q">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input id="q" type="search" placeholder="دوّر: تساقط، حبوب، عسل…" autocomplete="off">
+      </label>
+    </div>
+    <div class="chips" id="chips" role="toolbar" aria-label="الأقسام"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="wrap">
+    <div class="why">
+      <div><b>١٠٠٪</b><span>مكونات طبيعية بدون مواد حافظة صناعية.</span></div>
+      <div><b>+٤٠</b><span>نوع زيت طبيعي معصور ومنقوع بالمعصرة.</span></div>
+      <div><b>١٩</b><span>محافظة نوصلها، والدفع عند الاستلام.</span></div>
+      <div><b>٢</b><span>فرعين ببغداد: البلديات والسيدية.</span></div>
+    </div>
+  </section>
+
+  <section id="assistant" class="wrap">
+    <div class="ai-band">
+      <div>
+        <div class="eyebrow">مساعد الرافدين الذكي</div>
+        <h2>احجيله مشكلتك، يختارلك الروتين.</h2>
+        <p>تساقط؟ حبوب؟ بشرة جافة؟ المساعد يسألك كم سؤال، يقترح المنتجات المناسبة، يضيفها للسلة، ويكمل طلبك وياك.</p>
+        <button class="btn" data-open-chat>ابدأ المحادثة</button>
+      </div>
+      <div class="bubbles" aria-hidden="true">
+        <span class="u">شعري يتساقط وعندي فراغات بالمقدمة</span>
+        <span class="a">من شنو صار التساقط؟ بعد ولادة، صبغ، لو موسمي؟ حتى أختارلك الأنسب.</span>
+        <span class="u">بعد الصبغ</span>
+        <span class="a">أنصحك بمجموعة الإنبات: الزيت ٣ مرات بالأسبوع ويه الشامبو. أضيفها للسلة؟</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches" class="wrap">
+    <div class="sec-head"><div><h2>فروعنا.</h2><p>تفضلوا زورونا، أو اطلبوا وإحنا نوصلكم.</p></div></div>
+    <div class="branches" id="branchList"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© معصرة الرافدين. نُعيد صياغة سحر الطبيعة في منتجاتنا.</span>
+    <span class="links">
+      <a href="https://www.instagram.com/alr.afidayn" target="_blank" rel="noopener">انستغرام</a>
+      <a href="https://www.facebook.com/alrafidaynn" target="_blank" rel="noopener">فيسبوك</a>
+      <span class="num" dir="ltr">+964 771 900 0650</span>
+    </span>
+  </div>
+</footer>
+
+<button class="fab" data-open-chat aria-label="افتح المساعد الذكي">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/><circle cx="12" cy="12" r="3"/></svg>
+  اسأل الرافدين
+</button>
+
+<div class="chat" id="chat" role="dialog" aria-label="مساعد الرافدين">
+  <header>
+    <div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3c3.5 4 5.5 7.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 10.2 8.5 7 12 3Z"/></svg></div>
+    <div><b>مساعد الرافدين</b><small id="agentMode">يرد فوراً</small></div>
+    <button class="icon-btn" id="closeChat" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </header>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="sugg" id="sugg"></div>
+  <form class="composer" id="composer">
+    <input id="chatInput" placeholder="اكتب سؤالك…" autocomplete="off">
+    <button type="submit" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden>
+  <div class="grab"></div>
+  <button class="icon-btn close" id="closeSheet" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="sheetBody"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
