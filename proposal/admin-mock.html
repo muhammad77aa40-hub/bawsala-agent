@@ -1,0 +1,56 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+:root{--brand:#1f5a3d;--soft:#e2ede5;--oil:#c46d16;--oilsoft:#f8ead8;--bg:#f5f4ef;--ink:#1b211c;--muted:#6b7066;--line:#e6e2d8}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--ink);font-size:13px}
+.app{display:grid;grid-template-columns:210px 1fr;min-height:620px}
+aside{background:#fff;border-inline-end:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:4px}
+.logo{display:flex;gap:9px;align-items:center;margin-bottom:18px}.logo b{display:block;font-size:14px}.logo small{color:var(--muted);font-size:11px}
+.nav{padding:8px 10px;border-radius:9px;color:var(--ink);display:flex;gap:8px;align-items:center}.nav i{width:14px;height:14px;border:1.5px solid currentColor;border-radius:4px;opacity:.6}
+.nav.on{background:var(--brand);color:#fff}.nav.on i{opacity:1}
+.sec{margin-top:14px;font-size:10.5px;color:var(--muted);padding:0 10px}
+main{padding:22px 26px;display:grid;gap:14px;align-content:start}
+.top{display:flex;justify-content:space-between;align-items:center}.top h1{margin:0;font-size:22px}.top p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.pills{display:flex;gap:8px}.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px}.pill.p{background:var(--brand);color:#fff;border-color:var(--brand)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.k{background:#fff;border-radius:14px;padding:14px}.k span{color:var(--muted);font-size:11.5px}.k b{display:block;font-size:22px;margin:4px 0 2px;font-variant-numeric:tabular-nums}.k small{font-size:11px;color:var(--brand)}
+.row{display:grid;grid-template-columns:1.6fr 1fr;gap:12px}.card{background:#fff;border-radius:14px;padding:14px 16px}.card h3{margin:0 0 10px;font-size:13.5px;display:flex;justify-content:space-between}.card h3 span{color:var(--muted);font-weight:400;font-size:11.5px}
+table{width:100%;border-collapse:collapse}th{text-align:start;color:var(--muted);font-weight:500;font-size:11px;padding:6px 4px;border-bottom:1px solid var(--line)}td{padding:8px 4px;border-bottom:1px solid #f0ede5;font-size:12px}
+.st{font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}.s1{background:var(--oilsoft);color:var(--oil)}.s2{background:#e7effa;color:#2f6db5}.s3{background:#efe9f8;color:#6b4bb3}.s4{background:var(--soft);color:var(--brand)}
+.bar{display:grid;gap:9px}.bar div{display:grid;gap:4px}.bar p{margin:0;display:flex;justify-content:space-between;font-size:12px}.bar i{display:block;height:7px;border-radius:4px;background:var(--brand)}.bar em{display:block;height:7px;border-radius:4px;background:#eeece5}
+.gov{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}.gov p{margin:0;display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #f0ede5}
+.note{font-size:10.5px;color:var(--muted);text-align:left}
+</style></head><body><div class="app">
+<aside>
+ <div class="logo"><svg width="30" height="30" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#1f5a3d"/><path d="M20 8c4.6 5.2 7.2 9.3 7.2 13a7.2 7.2 0 0 1-14.4 0c0-3.7 2.6-7.8 7.2-13Z" fill="#c46d16"/></svg><div><b>الرافدين</b><small>لوحة التحكم</small></div></div>
+ <div class="nav on"><i></i>نظرة عامة</div><div class="nav"><i></i>الطلبات</div><div class="nav"><i></i>المنتجات والأسعار</div><div class="nav"><i></i>الزبائن</div><div class="nav"><i></i>التقارير</div>
+ <div class="sec">الذكاء الاصطناعي</div><div class="nav"><i></i>✦ محادثات المساعد</div>
+</aside>
+<main>
+ <div class="top"><div><h1>نظرة عامة</h1><p>الأربعاء ٨ تشرين الأول · كل طلبات اليوم بمكان واحد</p></div><div class="pills"><span class="pill">اليوم ▾</span><span class="pill">كل الفروع ▾</span><span class="pill p">تصدير</span></div></div>
+ <div class="kpis">
+  <div class="k"><span>طلبات اليوم</span><b>٢٣</b><small>+٦ عن أمس</small></div>
+  <div class="k"><span>مبيعات اليوم</span><b>١٬٠٣٥٬٠٠٠ د.ع</b><small>متوسط الطلب ٤٥٬٠٠٠</small></div>
+  <div class="k"><span>ويّه المندوب</span><b>٩</b><small>٤ بغداد · ٥ محافظات</small></div>
+  <div class="k"><span>محادثات المساعد</span><b>١٤٨</b><small>٣١ منها صارت طلب</small></div>
+ </div>
+ <div class="row">
+  <div class="card"><h3>آخر الطلبات <span>اضغط على الحالة لتغييرها</span></h3>
+   <table><tr><th>الطلب</th><th>الزبون</th><th>المحافظة</th><th>المنتجات</th><th>المبلغ</th><th>الحالة</th></tr>
+   <tr><td dir="ltr">RF-505057</td><td>زينب علي</td><td>بغداد</td><td>مجموعة الإنبات، زيت الإنبات</td><td>٧٥٬٠٠٠</td><td><span class="st s1">استلمنا الطلب</span></td></tr>
+   <tr><td dir="ltr">RF-505041</td><td>حسين كاظم</td><td>البصرة</td><td>خلطة شيخ العطارين</td><td>٣٧٬٠٠٠</td><td><span class="st s2">تم التأكيد</span></td></tr>
+   <tr><td dir="ltr">RF-505036</td><td>مريم سعد</td><td>بغداد</td><td>روتين البشرة الطبيعي</td><td>٤٣٬٠٠٠</td><td><span class="st s3">ويّه المندوب</span></td></tr>
+   <tr><td dir="ltr">RF-505022</td><td>علي حسن</td><td>النجف</td><td>زيت الخروع × ٢</td><td>٢٣٬٠٠٠</td><td><span class="st s3">ويّه المندوب</span></td></tr>
+   <tr><td dir="ltr">RF-505017</td><td>نور عباس</td><td>أربيل</td><td>كريم البشرة، زيت الورد</td><td>٣٦٬٠٠٠</td><td><span class="st s4">تم التوصيل</span></td></tr>
+   <tr><td dir="ltr">RF-505009</td><td>سارة محمد</td><td>بغداد</td><td>عسل السدر</td><td>٤٠٬٠٠٠</td><td><span class="st s4">تم التوصيل</span></td></tr>
+   </table></div>
+  <div style="display:grid;gap:12px">
+   <div class="card"><h3>الأكثر طلباً <span>هذا الشهر</span></h3><div class="bar">
+    <div><p><span>مجموعة الإنبات</span><b>١٨٤</b></p><em><i style="width:100%"></i></em></div>
+    <div><p><span>زيت الإنبات</span><b>١٢١</b></p><em><i style="width:66%"></i></em></div>
+    <div><p><span>كريم الرافدين للبشرة</span><b>٩٦</b></p><em><i style="width:52%"></i></em></div>
+    <div><p><span>خلطة شيخ العطارين</span><b>٧٤</b></p><em><i style="width:40%"></i></em></div></div></div>
+   <div class="card"><h3>حسب المحافظة</h3><div class="gov"><p>بغداد<b>٦١٪</b></p><p>البصرة<b>٩٪</b></p><p>النجف<b>٧٪</b></p><p>أربيل<b>٦٪</b></p><p>بابل<b>٥٪</b></p><p>باقي المحافظات<b>١٢٪</b></p></div></div>
+  </div>
+ </div>
+ <div class="note">بيانات توضيحية للعرض</div>
+</main></div></body></html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Rafidain Store · عرض فني ومالي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --blue: #0071e3; --ink: #1d1d1f; --gray: #6e6e73; --card: #f5f5f7; --lav: #efedfc; --line: #e3e3e8;
+    --g-green: #1f8a4c; --g-green-bg: #e3f4e9; --g-blue-bg: #e5f0fd; --g-red: #d70015; --g-red-bg: #fde8ea; --g-orange: #c25e00; --g-orange-bg: #fdf0e1;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :lang(ar), body { font-family: 'Inter', 'Noto Sans Arabic', 'Helvetica Neue', sans-serif; }
+  .page { width: 210mm; height: 297mm; padding: 20mm 18mm 18mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .foot { position: absolute; bottom: 9mm; inset-inline: 18mm; display: flex; justify-content: space-between; font-size: 8pt; color: #8e8e93; }
+
+  .eyebrow { color: var(--blue); font-weight: 700; font-size: 9.5pt; margin-bottom: 4mm; }
+  h1 { font-size: 33pt; font-weight: 800; line-height: 1.28; margin: 0 0 5mm; letter-spacing: -.01em; text-wrap: balance; }
+  h1.blue { color: var(--blue); }
+  .lede { font-size: 12.5pt; color: var(--gray); line-height: 1.85; margin: 0 0 7mm; }
+  .lede b { color: var(--ink); }
+  p { font-size: 10.5pt; line-height: 1.85; margin: 0 0 4mm; }
+  h3 { font-size: 14pt; font-weight: 800; margin: 8mm 0 4mm; }
+
+  .shot { border: 1px solid #d6d6db; border-radius: 4mm; overflow: hidden; margin: 0 0 7mm; background: #fff; }
+  .shot img { display: block; width: 100%; }
+  .caption { font-size: 8.5pt; color: #8e8e93; margin: -5mm 0 6mm; }
+
+  ul.dots { list-style: none; padding: 0; margin: 0; display: grid; gap: 3.2mm; }
+  ul.dots li { position: relative; padding-inline-start: 7mm; font-size: 10.5pt; line-height: 1.75; }
+  ul.dots li::before { content: ''; position: absolute; inset-inline-start: 0; top: 2.3mm; width: 2.6mm; height: 2.6mm; border-radius: 50%; background: var(--blue); }
+
+  .cards { display: grid; gap: 4mm; margin-bottom: 4mm; }
+  .c2 { grid-template-columns: 1fr 1fr; } .c3 { grid-template-columns: 1fr 1fr 1fr; } .c4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--card); border-radius: 4mm; padding: 5.5mm 6mm; }
+  .card h4 { margin: 0 0 2.5mm; font-size: 11.5pt; font-weight: 800; }
+  .card p { margin: 0; font-size: 9.5pt; color: var(--gray); line-height: 1.8; }
+  .card.blue { background: var(--blue); color: #fff; } .card.blue p { color: rgba(255,255,255,.88); }
+  .card.lav { background: var(--lav); }
+  .card.wide { grid-column: 1 / -1; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 8mm; }
+  .stats b { display: block; font-size: 25pt; font-weight: 800; line-height: 1.2; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+  .stats b.tbd { color: #c7c7cc; }
+  .stats span { font-size: 8.5pt; color: var(--gray); }
+
+  .pill { display: inline-block; font-size: 9pt; font-weight: 700; padding: 1mm 3.2mm; border-radius: 99px; margin-bottom: 2mm; }
+  .pg { background: var(--g-green-bg); color: var(--g-green); } .pb { background: var(--g-blue-bg); color: var(--blue); }
+  .po { background: var(--g-orange-bg); color: var(--g-orange); } .pl { background: var(--lav); color: #5b3fc4; }
+
+  table.cmp { width: 100%; border-collapse: collapse; margin: 4mm 0 5mm; font-size: 10pt; }
+  .cmp th { text-align: start; color: var(--gray); font-weight: 500; font-size: 9pt; padding: 0 0 3mm; border-bottom: 1px solid var(--line); }
+  .cmp td { padding: 3mm 0; border-bottom: 1px solid var(--line); }
+  .cmp td:nth-child(2) { color: var(--gray); }
+  .cmp td:nth-child(3) { font-weight: 800; }
+
+  .banner { background: var(--blue); color: #fff; border-radius: 4mm; padding: 5.5mm 6mm; }
+  .banner h4 { margin: 0 0 2mm; font-size: 12pt; font-weight: 800; }
+  .banner p { margin: 0; font-size: 9.5pt; opacity: .9; }
+
+  table.plan { width: 100%; border-collapse: collapse; margin: 0 0 8mm; font-size: 10pt; }
+  .plan th { text-align: start; color: var(--gray); font-weight: 500; font-size: 9pt; padding: 0 0 3mm; border-bottom: 1px solid var(--line); }
+  .plan td { padding: 3.8mm 0; border-bottom: 1px solid var(--line); }
+  .plan td:first-child { color: var(--blue); font-weight: 800; width: 26mm; }
+
+  .price { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .price > div { background: var(--card); border-radius: 4mm; padding: 6mm; display: flex; flex-direction: column; }
+  .price .hot { background: var(--blue); color: #fff; }
+  .price small { font-size: 9pt; color: var(--gray); } .price .hot small { color: rgba(255,255,255,.85); }
+  .price b { font-size: 24pt; font-weight: 800; margin: 3mm 0 4mm; color: #b8b8be; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+  .price .hot b { color: rgba(255,255,255,.6); }
+  .price ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.4mm; font-size: 9.2pt; line-height: 1.6; }
+  .price li { position: relative; padding-inline-start: 5mm; }
+  .price li::before { content: ''; position: absolute; inset-inline-start: 0; top: 1.9mm; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--blue); }
+  .price .hot li::before { background: #fff; }
+  .fine { font-size: 8.5pt; color: var(--gray); margin-top: 4mm; }
+
+  /* cover */
+  .brandrow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26mm; }
+  .studio { display: flex; align-items: center; gap: 3mm; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13pt; }
+  .studio i { width: 10mm; height: 10mm; border-radius: 2.6mm; background: var(--ink); color: #fff; display: grid; place-items: center; font-style: normal; font-size: 12pt; }
+  .brandrow span:last-child { font-size: 9.5pt; color: var(--gray); }
+  .cover h1 { font-size: 46pt; line-height: 1.2; margin-bottom: 6mm; }
+  .cover .en { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; display: block; direction: ltr; text-align: right; }
+  .cover .ar { color: var(--blue); display: block; }
+
+  /* how it works panel */
+  .panel { background: var(--card); border: 1px solid #e5e5ea; border-radius: 4mm; padding: 9mm 7mm 7mm; margin-bottom: 7mm; }
+  .panel .k { text-align: center; font-size: 8.5pt; color: var(--gray); }
+  .panel .t { text-align: center; font-size: 17pt; font-weight: 800; margin: 1mm 0 8mm; }
+  .panel .t em { font-style: normal; color: var(--blue); }
+  .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2.5mm; margin-bottom: 8mm; }
+  .steps div { background: #fff; border-radius: 2.6mm; padding: 3mm; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .steps div.on { background: var(--blue); color: #fff; }
+  .steps small { display: block; font-size: 7pt; color: var(--blue); font-weight: 700; font-family: 'Inter'; }
+  .steps .on small { color: rgba(255,255,255,.8); }
+  .steps b { display: block; font-size: 8.8pt; margin: 1mm 0; }
+  .steps span { font-size: 7.2pt; color: var(--gray); line-height: 1.5; display: block; }
+  .steps .on span { color: rgba(255,255,255,.85); }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .duo div { background: #fff; border-radius: 2.6mm; padding: 3.5mm 4mm; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .duo div.ai { background: linear-gradient(90deg, #f3f6fe, #ece9fc); }
+  .duo b { font-size: 9pt; display: block; } .duo span { font-size: 7.5pt; color: var(--gray); }
+
+  /* phones */
+  .phones { background: var(--card); border: 1px solid #e5e5ea; border-radius: 4mm; padding: 8mm 7mm; display: grid; grid-template-columns: 1.05fr 1fr 1fr 1fr; gap: 4mm; align-items: center; margin-bottom: 6mm; }
+  .phones .txt { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
+  .phones .txt small { font-size: 7.5pt; color: var(--gray); }
+  .phones .txt h5 { font-size: 17pt; font-weight: 800; margin: 1mm 0 2mm; line-height: 1.15; }
+  .phones .txt h5 em { font-style: normal; color: var(--blue); }
+  .phones .txt p { font-size: 7.5pt; color: var(--gray); line-height: 1.6; margin: 0; }
+  .phone { border: 2.2mm solid #1d1d1f; border-radius: 7mm; overflow: hidden; background: #fff; aspect-ratio: 390 / 844; }
+  .phone img { width: 100%; display: block; }
+
+  .closing { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding-bottom: 20mm; }
+  .closing .studio { margin-bottom: 10mm; }
+  .closing h1 { font-size: 36pt; }
+  .closing .lede { max-width: 140mm; }
+  .closing h4 { font-size: 12pt; font-weight: 800; margin: 6mm 0 3mm; }
+  .closing .steps-line { display: flex; gap: 7mm; font-size: 9.5pt; color: var(--gray); }
+  .need { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5mm; max-width: 160mm; margin-top: 3mm; }
+  .need span { background: var(--card); border-radius: 99px; padding: 1.5mm 4mm; font-size: 9pt; }
+</style>
+</head>
+<body>
+
+<!-- 1 · cover -->
+<div class="page cover">
+  <div class="brandrow">
+    <span class="studio"><i>A</i>Aivora Studio</span>
+    <span>عرض فني ومالي · تشرين الأول 2026</span>
+  </div>
+  <div class="eyebrow">مقدَّم إلى معصرة ومعشب الرافدين – بغداد</div>
+  <h1><span class="en">Rafidain Store.</span><span class="ar">طلبٌ أسهل.<br>ومبيعاتٌ أكثر.</span></h1>
+  <p class="lede">متجر إلكتروني متكامل لمنتجات المعصرة، مع مساعد ذكاء اصطناعي يختار للزبون المنتج المناسب ويستلم طلبه على مدار الساعة.</p>
+  <div class="shot" style="margin-top:12mm"><img src="shots/home.png" alt=""></div>
+</div>
+
+<!-- 2 · executive summary -->
+<div class="page">
+  <div class="eyebrow">الملخص التنفيذي</div>
+  <h1>متجر واحد للعرض والطلب والمتابعة.</h1>
+  <p class="lede">تقترح Aivora Studio متجر <b>Rafidain Store</b>: موقع رسمي مصمَّم خصيصاً لمعصرة الرافدين، يجمع المنتجات والطلبات والزبائن في مكان واحد، مع مساعد ذكي يعمل بدل الرد اليدوي على الرسائل.</p>
+  <p>حالياً تصل الطلبات عبر رسائل الانستغرام والفيسبوك وزيارة الفرع، ويُكتب كل طلب يدوياً. يستبدل Rafidain Store ذلك بمسار واحد واضح: يختار الزبون منتجه، يطلب بالدفع عند الاستلام، ويستلم صاحب المعصرة الطلب فوراً، ويتابع الزبون حالته بنفسه.</p>
+  <div class="cards c3" style="margin-top:6mm">
+    <div class="card"><h4>٠١ المتجر الإلكتروني</h4><p>كل المنتجات بأقسام وأسعار واضحة، والتسوّق حسب المشكلة، والطلب بالدفع عند الاستلام.</p></div>
+    <div class="card blue"><h4>٠٢ المساعد الذكي</h4><p>يسأل الزبون عن مشكلته، يقترح المنتج المناسب، يضيفه للسلة ويكمل الطلب.</p></div>
+    <div class="card"><h4>٠٣ لوحة التحكم</h4><p>استلام الطلبات وتغيير حالتها وتعديل الأسعار، مع إشعار واتساب بكل طلب جديد.</p></div>
+    <div class="card lav wide"><h4>إضافةً إلى: تجربة تطبيق على الموبايل ومتابعة الطلبات</h4><p>شريط تنقّل سفلي مثل التطبيقات، وصفحة «طلباتي» يتابع منها الزبون طلبه، فتقلّ رسائل «وين صار طلبي؟».</p></div>
+  </div>
+  <div class="stats">
+    <div><b>٤ أسابيع</b><span>مدة التنفيذ</span></div>
+    <div><b class="tbd">يُحدد</b><span>تكلفة لمرة واحدة</span></div>
+    <div><b>٢٤/٧</b><span>استلام الطلبات</span></div>
+    <div><b class="tbd">يُحدد</b><span>استضافة ودعم شهري</span></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٢</span></div>
+</div>
+
+<!-- 3 · problem -->
+<div class="page">
+  <div class="eyebrow">بيان المشكلة</div>
+  <h1>ثقة كبيرة، لكن الطلب ما زال بالرسائل.</h1>
+  <p class="lede">معصرة الرافدين في بغداد متخصصة بالزيوت الطبيعية والأعشاب ومنتجات العناية بالشعر والبشرة، بفرعين في البلديات والسيدية. منتجاتها مثل مجموعة الإنبات تحقق تفاعلاً كبيراً وتجارب حقيقية من الزبائن.</p>
+  <h3>التحديات الحالية</h3>
+  <div class="cards c2">
+    <div class="card"><h4>زبائن يضيعون قبل الطلب</h4><p>الزبون يسأل عن السعر والاستخدام والتوصيل وينتظر الرد، وجزء منهم يترك قبل أن يطلب.</p></div>
+    <div class="card"><h4>رد يدوي يستهلك الفريق</h4><p>ساعات يومياً تذهب في الإجابة على نفس الأسئلة وكتابة الطلبات من الرسائل.</p></div>
+    <div class="card"><h4>صفحات وهمية باسم المعصرة</h4><p>المعصرة نبّهت بنفسها على صفحات تنتحل اسمها، وغياب موقع رسمي موثوق يسهّل ذلك.</p></div>
+    <div class="card"><h4>لا سجل للطلبات والزبائن</h4><p>لا يوجد مكان واحد يُظهر الطلبات وحالتها، وأكثر المنتجات والمحافظات طلباً.</p></div>
+  </div>
+  <h3>ماذا يقدّم Rafidain Store</h3>
+  <ul class="dots">
+    <li>مسار واحد للزبون: <b>منشور ← الموقع ← المنتج المناسب ← الطلب ← التوصيل</b>.</li>
+    <li>مساعد ذكي يجيب ويقترح ويستلم الطلب على مدار الساعة، باللهجة العراقية.</li>
+    <li>لوحة لصاحب المعصرة تُظهر كل الطلبات وحالتها، مع إشعار واتساب فوري.</li>
+    <li>موقع رسمي موثوق باسم المعصرة، يحمي الزبون من الصفحات الوهمية.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٣</span></div>
+</div>
+
+<!-- 4 · how it works -->
+<div class="page">
+  <div class="eyebrow">كيف يعمل المتجر</div>
+  <h1>من أول منشور حتى وصول الطلب.</h1>
+  <p class="lede">كل خطوة تتم مرة واحدة، وترتبط تلقائياً بما بعدها، وتظهر في لوحة التحكم.</p>
+  <div class="panel">
+    <div class="k">كيف يعمل</div>
+    <div class="t">من المنشور <em>إلى باب البيت.</em></div>
+    <div class="steps">
+      <div><small>01</small><b>المنشور</b><span>الزبون يرى المنتج على الانستغرام.</span></div>
+      <div><small>02</small><b>الموقع</b><span>يفتح الرابط من البايو.</span></div>
+      <div><small>03</small><b>الاختيار</b><span>حسب مشكلته أو عبر المساعد.</span></div>
+      <div class="on"><small>04</small><b>الطلب</b><span>دفع عند الاستلام، خلال دقيقة.</span></div>
+      <div><small>05</small><b>التوصيل</b><span>إشعار واتساب للمعصرة فوراً.</span></div>
+      <div><small>06</small><b>المتابعة</b><span>من صفحة «طلباتي»، ثم يعيد الطلب.</span></div>
+    </div>
+    <div class="duo">
+      <div><b>صاحب المعصرة يرى كل شيء</b><span>الطلبات، الحالة، والأكثر طلباً، من شاشة واحدة.</span></div>
+      <div class="ai"><b>✦ مساعد ذكي للزبائن</b><span>يعرف كل منتج، ويقترح الروتين المناسب.</span></div>
+    </div>
+  </div>
+  <div class="cards c3">
+    <div class="card"><h4>الزبون</h4><p>يتصفح، يسأل المساعد، يطلب بالدفع عند الاستلام، ويتابع طلبه.</p></div>
+    <div class="card"><h4>فريق المعصرة</h4><p>يستلم الطلب جاهزاً بالاسم والرقم والعنوان، ويحدّث حالته.</p></div>
+    <div class="card"><h4>صاحب المعصرة</h4><p>لوحة المبيعات، الأسعار والمنتجات، وتقارير المحافظات.</p></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٤</span></div>
+</div>
+
+<!-- 5 · shop by concern -->
+<div class="page">
+  <div class="eyebrow">التسوّق حسب المشكلة</div>
+  <h1>كل زبون يجد منتجه بضغطة.</h1>
+  <p class="lede">أغلب الزبائن يعرفون مشكلتهم ولا يعرفون اسم المنتج. لذلك يبدأ المتجر من المشكلة، لا من الكتالوج.</p>
+  <div class="shot"><img src="shots/shop.png" alt=""></div>
+  <ul class="dots">
+    <li><b>سبع مشكلات شائعة:</b> تساقط وفراغات · حبوب ودهون · جفاف ونضارة · رموش ولحية · تقصف · برد وكحة · نوم وهدوء.</li>
+    <li><b>ثمانية أقسام:</b> الباكجات، زيوت الشعر، الشامبو والعناية، البشرة، الجسم، الأعشاب، العسل والزيوت الغذائية.</li>
+    <li>بحث فوري يفهم الكلمات العامية مثل «تساقط» و«حبوب»، وترتيب حسب السعر أو الأكثر طلباً.</li>
+    <li>الباكجات في مقدمة المتجر، لأنها روتين كامل بسعر أقل وتنطلب أكثر.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٥</span></div>
+</div>
+
+<!-- 6 · product page -->
+<div class="page">
+  <div class="eyebrow">صفحة المنتج</div>
+  <h1>صفحة منتج تبيع بنفسها.</h1>
+  <p class="lede">كل ما يسأل عنه الزبون في الرسائل موجود في صفحة المنتج: المكونات، طريقة الاستخدام، والسعر.</p>
+  <div class="shot"><img src="shots/product.png" alt=""></div>
+  <div class="cards c3">
+    <div class="card"><span class="pill pg">مكونات واضحة</span><p>كل مكوّن ظاهر، مع طريقة الاستخدام خطوة بخطوة.</p></div>
+    <div class="card"><span class="pill pb">يكمّل روتينك</span><p>منتجات مكمّلة للمشكلة نفسها، ترفع قيمة الطلب.</p></div>
+    <div class="card"><span class="pill po">الدفع عند الاستلام</span><p>والتوصيل خلال ٢٤–٤٨ ساعة لكل المحافظات.</p></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٦</span></div>
+</div>
+
+<!-- 7 · cart & checkout -->
+<div class="page">
+  <div class="eyebrow">السلة والطلب</div>
+  <h1>طلبٌ خلال دقيقة، بدون رسائل.</h1>
+  <p class="lede">سلة ذكية تشجّع على طلب أكبر، وصفحة طلب بأربع خانات فقط.</p>
+  <div class="shot"><img src="shots/cart.png" alt=""></div>
+  <ul class="dots">
+    <li><b>شريط التوصيل المجاني:</b> «باقي كذا وتحصل توصيل مجاني» يرفع متوسط قيمة الطلب.</li>
+    <li><b>«ناس طلبوا ويّاها هم»:</b> اقتراحات من نفس الروتين داخل السلة.</li>
+    <li><b>طلب سريع:</b> الاسم، الرقم، المحافظة، المنطقة، والدفع عند الاستلام. يتأكد المتجر من صحة الرقم العراقي ويحفظ معلومات الزبون للمرة القادمة.</li>
+    <li><b>أجور التوصيل</b> تُحسب تلقائياً حسب المحافظة، والأسعار تُحسب دائماً من الخادم لا من المتصفح.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٧</span></div>
+</div>
+
+<!-- 8 · AI assistant -->
+<div class="page">
+  <div class="eyebrow">مساعد الذكاء الاصطناعي</div>
+  <h1 class="blue">مساعد ذكي يعرف كل منتج في المعصرة.</h1>
+  <p class="lede">«اسأل الرافدين» يتحدث باللهجة العراقية، يسأل سؤالاً واحداً ليفهم الحالة، ثم يقترح ويضيف للسلة.</p>
+  <div class="shot"><img src="shots/chat.png" alt=""></div>
+  <ul class="dots">
+    <li><b>يقترح من ١ إلى ٣ منتجات</b> من كتالوج المعصرة فقط، ويعرضها كبطاقات مع زر «أضف للسلة».</li>
+    <li><b>يكمل الطلب:</b> يضيف المنتج عند موافقة الزبون ويفتح صفحة الطلب، ويتابع أي طلب برقمه.</li>
+    <li><b>حدود واضحة:</b> لا يخترع أسعاراً أو خصومات، ولا يعد بنتائج علاجية. في الحالات الطبية ينصح بمراجعة طبيب، وما لا يعرفه يحوّله لرقم المعصرة.</li>
+    <li>يعمل بنموذج Claude من شركة Anthropic.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٨</span></div>
+</div>
+
+<!-- 9 · tracking -->
+<div class="page">
+  <div class="eyebrow">متابعة الطلبات</div>
+  <h1>الزبون يتابع طلبه، دون أن يتصل.</h1>
+  <p class="lede">بعد الطلب يحصل الزبون على رقم طلب، ويتابع حالته من صفحة «طلباتي» لحظة بلحظة.</p>
+  <div class="shot"><img src="shots/orders.png" alt=""></div>
+  <div class="cards c4">
+    <div class="card"><span class="pill po">استلمنا الطلب</span><p>وصل الطلب للمعصرة مع إشعار واتساب.</p></div>
+    <div class="card"><span class="pill pb">تم التأكيد</span><p>اتصلت المعصرة وأكدت الطلب.</p></div>
+    <div class="card"><span class="pill pl">ويّه المندوب</span><p>الطلب في الطريق للزبون.</p></div>
+    <div class="card"><span class="pill pg">تم التوصيل</span><p>اكتمل الطلب ودخل في التقارير.</p></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>٩</span></div>
+</div>
+
+<!-- 10 · mobile -->
+<div class="page">
+  <div class="eyebrow">الموبايل</div>
+  <h1>على الموبايل، يعمل مثل التطبيق.</h1>
+  <p class="lede">أغلب الزبائن يصلون من الانستغرام على الهاتف، لذلك صُمّم المتجر للموبايل أولاً: شريط تنقّل سفلي، ومساعد بكامل الشاشة، وسلة بلمسة واحدة.</p>
+  <div class="phones">
+    <div class="txt"><small>On the go</small><h5>Rafidain<br><em>in your pocket.</em></h5><p>Customers browse, ask the assistant and order in under a minute, right from Instagram.</p></div>
+    <div class="phone"><img src="shots/m-home.png" alt=""></div>
+    <div class="phone"><img src="shots/m-chat.png" alt=""></div>
+    <div class="phone"><img src="shots/m-cart.png" alt=""></div>
+  </div>
+  <ul class="dots">
+    <li>يدعم الوضع الداكن تلقائياً حسب إعداد هاتف الزبون.</li>
+    <li>يمكن تثبيته على الشاشة الرئيسية كتطبيق، دون متجر تطبيقات (ضمن الباقة الشاملة).</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١٠</span></div>
+</div>
+
+<!-- 11 · owner dashboard -->
+<div class="page">
+  <div class="eyebrow">لوحة صاحب المعصرة</div>
+  <h1>كل الطلبات، في شاشة واحدة.</h1>
+  <p class="lede">يفتح صاحب المعصرة لوحة التحكم من هاتفه أو حاسوبه، ويرى طلبات اليوم والمبيعات وما يحتاج متابعة.</p>
+  <div class="shot"><img src="shots/admin.png" alt=""></div>
+  <p class="caption">الأرقام في الصورة توضيحية.</p>
+  <ul class="dots">
+    <li><b>الطلبات:</b> كل طلب مع معلومات الزبون، وتغيير حالته بضغطة، فيراها الزبون في «طلباتي».</li>
+    <li><b>المنتجات والأسعار:</b> إضافة منتج، تعديل سعر، أو إخفاء منتج نفد من المخزن.</li>
+    <li><b>المبيعات:</b> عدد الطلبات والمبلغ اليومي والشهري، وأكثر المنتجات والمحافظات طلباً.</li>
+    <li><b>محادثات المساعد:</b> كم محادثة جرت، وكم منها تحوّل إلى طلب.</li>
+    <li>تصدير أي تقرير إلى Excel.</li>
+  </ul>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١١</span></div>
+</div>
+
+<!-- 12 · value -->
+<div class="page">
+  <div class="eyebrow">القيمة التجارية</div>
+  <h1>وقت أقل، طلبات أكثر، وصورة كاملة.</h1>
+  <p class="lede">يسترد Rafidain Store تكلفته من الطلبات التي كانت تضيع في الرسائل، ومن الوقت الذي يوفّره على الفريق.</p>
+  <div class="cards c3">
+    <div class="card"><h4>بيع على مدار الساعة</h4><p>الطلب يصل حتى بعد إغلاق الفرع، دون انتظار رد.</p></div>
+    <div class="card"><h4>طلب أكبر</h4><p>الباكجات والمنتجات المكمّلة والتوصيل المجاني ترفع قيمة كل طلب.</p></div>
+    <div class="card"><h4>زبون يعود</h4><p>منتجات المعصرة روتين يتكرر، والزبون يعيد الطلب من نفس المكان.</p></div>
+    <div class="card"><h4>وقت الفريق</h4><p>المساعد يجيب على الأسئلة المتكررة بدل الرد اليدوي.</p></div>
+    <div class="card"><h4>ثقة وحماية</h4><p>موقع رسمي واحد بدل الصفحات الوهمية التي تنتحل الاسم.</p></div>
+    <div class="card"><h4>قرارات أوضح</h4><p>أرقام حقيقية عن المنتجات والمحافظات بدل التقدير.</p></div>
+  </div>
+  <table class="cmp">
+    <tr><th>المهمة</th><th>اليوم</th><th>مع Rafidain Store</th></tr>
+    <tr><td>الإجابة عن سعر منتج</td><td>رسالة وانتظار</td><td>فوراً، في صفحة المنتج أو المساعد</td></tr>
+    <tr><td>اختيار المنتج المناسب</td><td>سؤال الموظف</td><td>حسب المشكلة، أو بالمساعد الذكي</td></tr>
+    <tr><td>تسجيل الطلب</td><td>نسخ يدوي من الرسائل</td><td>يصل جاهزاً مع إشعار واتساب</td></tr>
+    <tr><td>«وين صار طلبي؟»</td><td>اتصال أو رسالة</td><td>صفحة «طلباتي»</td></tr>
+  </table>
+  <div class="banner"><h4>العائد على الاستثمار</h4><p>منتجات المعصرة روتين يستمر أسابيع، فكل زبون جديد يكسبه المتجر غالباً يعود ويطلب مرة ثانية وثالثة. عدد قليل من الطلبات الإضافية شهرياً يكفي لتغطية تكلفة التشغيل.</p></div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١٢</span></div>
+</div>
+
+<!-- 13 · add-ons -->
+<div class="page">
+  <div class="eyebrow">إضافات مستقبلية · برسوم إضافية</div>
+  <h1>جاهز للنمو مع الرافدين.</h1>
+  <p class="lede">ميزات ليست ضمن النطاق الحالي، ويمكن إضافة أي منها لاحقاً عند الطلب، دون تغيير ما تم بناؤه.</p>
+  <div class="cards c2">
+    <div class="card"><h4>المساعد على واتساب وانستغرام</h4><p>نفس المساعد الذكي يرد على رسائل الصفحة ويستلم الطلبات من داخلها.</p></div>
+    <div class="card"><h4>تذكير إعادة الطلب</h4><p>رسالة للزبون عندما يقترب روتينه من النهاية، مع رابط إعادة الطلب.</p></div>
+    <div class="card lav"><h4>✦ اقتراحات شخصية بالذكاء الاصطناعي</h4><p>يتعلّم المساعد من طلبات كل زبون ويقترح له ما يناسب روتينه.</p></div>
+    <div class="card"><h4>نقاط ولاء وعروض</h4><p>نقاط على كل طلب، وكوبونات للمناسبات مثل رمضان والأعياد.</p></div>
+    <div class="card"><h4>تقييمات وتجارب الزبائن</h4><p>صور وتجارب قبل وبعد على صفحة كل منتج.</p></div>
+    <div class="card"><h4>الدفع الإلكتروني</h4><p>بطاقات ومحافظ إلكترونية إلى جانب الدفع عند الاستلام.</p></div>
+    <div class="card"><h4>ربط شركة التوصيل</h4><p>إرسال الطلب لشركة التوصيل تلقائياً وتحديث الحالة منها.</p></div>
+    <div class="card"><h4>واجهة باللغة الكردية</h4><p>إضافة الكردية إلى جانب العربية لزبائن إقليم كردستان.</p></div>
+  </div>
+  <p class="fine">جميع الإضافات اختيارية وتُسعَّر بشكل منفصل عند طلبها.</p>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١٣</span></div>
+</div>
+
+<!-- 14 · timeline & pricing -->
+<div class="page">
+  <div class="eyebrow">مدة التنفيذ والتكلفة</div>
+  <h1>جاهز خلال ٤ أسابيع.</h1>
+  <table class="plan">
+    <tr><th>الأسبوع</th><th>ما يتم تسليمه</th></tr>
+    <tr><td>١</td><td>اجتماع الانطلاق، استلام الأسعار والصور والشعار، ومطابقة الهوية والألوان.</td></tr>
+    <tr><td>٢</td><td>المتجر: الأقسام، صفحات المنتجات، السلة والطلب، وإشعار واتساب. نسخة للمراجعة.</td></tr>
+    <tr><td>٣</td><td>المساعد الذكي، لوحة التحكم، ومتابعة الطلبات.</td></tr>
+    <tr><td>٤</td><td>الاختبار مع فريق المعصرة، التدريب، والإطلاق الرسمي على الدومين.</td></tr>
+  </table>
+  <div class="price">
+    <div><small>الأساسية · أسبوعان</small><b>يُحدد</b><ul><li>المتجر بكل أقسامه</li><li>السلة والطلب بالدفع عند الاستلام</li><li>إشعار واتساب بكل طلب</li><li>استضافة ودومين</li></ul></div>
+    <div class="hot"><small>المتقدمة · ٣ أسابيع · الأنسب</small><b>يُحدد</b><ul><li>كل ما في الأساسية</li><li>المساعد الذكي في الموقع</li><li>لوحة التحكم</li><li>متابعة الطلبات «طلباتي»</li></ul></div>
+    <div><small>الشاملة · ٤ أسابيع</small><b>يُحدد</b><ul><li>كل ما في المتقدمة</li><li>المساعد على واتساب وانستغرام</li><li>تثبيت الموقع كتطبيق</li><li>تصوير المنتجات</li></ul></div>
+  </div>
+  <p class="fine">الاستضافة والدعم الشهري: يُحدد. استخدام المساعد الذكي يُحتسب حسب عدد المحادثات. الدفع: ٥٠٪ عند الاتفاق و٥٠٪ عند الإطلاق.</p>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١٤</span></div>
+</div>
+
+<!-- 15 · closing -->
+<div class="page">
+  <div class="closing">
+    <span class="studio"><i>A</i>Aivora Studio</span>
+    <h1>لنبنِ <span style="font-family:Inter;font-weight:800">Rafidain Store</span> معاً.</h1>
+    <p class="lede">متجر رسمي لمنتجات المعصرة، ومساعد ذكي يخدم كل زبون، ولوحة تُظهر كل طلب. سهل الاستخدام وواضح من اليوم الأول.</p>
+    <h4>الخطوات القادمة</h4>
+    <div class="steps-line"><span>٠١ الموافقة على العرض</span><span>٠٢ اجتماع الانطلاق</span><span>٠٣ الإطلاق خلال ٤ أسابيع</span></div>
+    <h4>ما نحتاجه من المعصرة</h4>
+    <div class="need"><span>المنتجات والأسعار والأحجام</span><span>الشعار والألوان</span><span>صور المنتجات</span><span>المكونات وطريقة الاستخدام</span><span>أجور التوصيل</span><span>رقم واتساب الطلبات</span><span>اسم الدومين</span></div>
+  </div>
+  <div class="foot"><span>Aivora Studio · Rafidain Store</span><span>١٥</span></div>
+</div>
+
+</body>
+</html>
